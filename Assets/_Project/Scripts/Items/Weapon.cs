@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "WeaponName", menuName = "Inside-Ventura/Artifacts/Weapon")]
+[CreateAssetMenu(fileName = "NewWeapon", menuName = "Inside-Ventura/Artifacts/Weapon")]
 public class Weapon : Artifact
 {
   [SerializeField] private float attackSpeed = 1f;

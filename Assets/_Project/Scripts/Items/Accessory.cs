@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "HeartName", menuName = "Inside-Ventura/Artifacts/Accessory")]
+[CreateAssetMenu(fileName = "NewAccessory", menuName = "Inside-Ventura/Artifacts/Accessory")]
 public abstract class Accessory : Artifact
 {
   [SerializeField] private float cooldown = 3f;
