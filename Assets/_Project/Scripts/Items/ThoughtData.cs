@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewThought", menuName = "Inside-Ventura/ThoughtData")]
 public class ThoughtData : ScriptableObject
 {
-  [SerializeField] private string displayName;
+  [SerializeField] private string thoughtContent;
   [SerializeField] private string description;
   [SerializeField] private Sprite inventoryIcon;
 

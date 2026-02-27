@@ -7,7 +7,7 @@ public abstract class Artifact : ScriptableObject {
 
   private List<Thought> equippedThoughts = new List<Thought>();
 
-  protected void EquipThought(Thought thought, int slotIndex, IPlayer player) {
+  protected void EquipThought(Thought thought, int slotIndex) {
     if (slotIndex < 0 || slotIndex >= slotsCount) return;
 
     while (equippedThoughts.Count <= slotIndex)
@@ -15,19 +15,19 @@ public abstract class Artifact : ScriptableObject {
 
     Thought old = equippedThoughts[slotIndex];
     if (old != null)
-      UnequipThought(slotIndex, player);
+      UnequipThought(slotIndex);
 
     equippedThoughts[slotIndex] = thought;
-    thought.Equip(this, player);
+    thought.Equip(this);
   }
 
-  protected void UnequipThought(int slotIndex, IPlayer player) {
+  protected void UnequipThought(int slotIndex) {
     if (slotIndex < 0 || slotIndex >= equippedThoughts.Count) return;
 
     var thought = equippedThoughts[slotIndex];
     if (thought == null) return;
 
-    thought.Unequip(this, player);
+    thought.Unequip(this);
 
     equippedThoughts[slotIndex] = null;
   }
