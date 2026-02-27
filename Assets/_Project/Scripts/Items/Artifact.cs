@@ -2,33 +2,35 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Artifact : ScriptableObject {
-  [SerializeField] protected string artifactName;
+  [SerializeField] public string artifactName;
   [SerializeField] protected int slotsCount;
 
-  private List<Thought> equippedThoughts = new List<Thought>();
+  public int SlotsCount => slotsCount;
 
-  protected void EquipThought(Thought thought, int slotIndex) {
+  private List<Thought> _equippedThoughts = new List<Thought>();
+
+  public void EquipThought(Thought thought, int slotIndex, GameObject player) {
     if (slotIndex < 0 || slotIndex >= slotsCount) return;
 
-    while (equippedThoughts.Count <= slotIndex)
-      equippedThoughts.Add(null);
+    while (_equippedThoughts.Count <= slotIndex)
+      _equippedThoughts.Add(null);
 
-    Thought old = equippedThoughts[slotIndex];
+    Thought old = _equippedThoughts[slotIndex];
     if (old != null)
-      UnequipThought(slotIndex);
+      UnequipThought(slotIndex, player);
 
-    equippedThoughts[slotIndex] = thought;
-    thought.Equip(this);
+    _equippedThoughts[slotIndex] = thought;
+    thought.Equip(this, player);
   }
 
-  protected void UnequipThought(int slotIndex) {
-    if (slotIndex < 0 || slotIndex >= equippedThoughts.Count) return;
+  public void UnequipThought(int slotIndex, GameObject player) {
+    if (slotIndex < 0 || slotIndex >= _equippedThoughts.Count) return;
 
-    var thought = equippedThoughts[slotIndex];
+    var thought = _equippedThoughts[slotIndex];
     if (thought == null) return;
 
-    thought.Unequip(this);
+    thought.Unequip(this, player);
 
-    equippedThoughts[slotIndex] = null;
+    _equippedThoughts[slotIndex] = null;
   }
 }

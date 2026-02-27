@@ -9,18 +9,18 @@ public class Thought : MonoBehaviour
     _data = data;
   }
 
-  public void Equip(Artifact artifact) {
-    if (_data?.effects != null)
+  public void Equip(Artifact artifact, GameObject player) {
+    if (_data?.Effects != null)
     {
-      foreach (var effect in _data.effects)
-        effect.OnEquipThought(this, artifact);
+      foreach (var effect in _data.Effects)
+        effect.OnEquipThought(artifact, player);
     }
   }
 
-  public void Unequip(Artifact artifact) {
-    if (_data?.effects != null) {
-      foreach (var effect in _data.effects)
-        effect.OnUnequipThought(this, artifact);
+  public void Unequip(Artifact artifact, GameObject player) {
+    if (_data?.Effects != null) {
+      foreach (var effect in _data.Effects)
+        effect.OnUnequipThought(artifact, player);
     }
   }
 }

@@ -20,5 +20,7 @@ public class ThoughtData : ScriptableObject
   [SerializeField] private ThoughtType type;
   [SerializeField] private int rarityLevel = 1;
 
-  [SerializeReference] public List<Effect> effects = new List<Effect>();
+  [SerializeReference] private Effect[] effects;
+
+  public IReadOnlyList<Effect> Effects => effects;
 }

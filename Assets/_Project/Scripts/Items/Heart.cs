@@ -6,5 +6,6 @@ public class Heart : Artifact
 {
   [SerializeField] private readonly Dictionary<Stat, List<StatModifier>> _traits = new();
 
-  public void ApplyTraits() {}
+  public void ApplyHeartEffects(PlayerStats stats) {
+  }
 }
