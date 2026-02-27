@@ -6,5 +6,5 @@ public class DashAccessory : Accessory
   [SerializeField] private float distance = 3f;
   [SerializeField] private float speed = 1f;
 
-  public void UseAbility() {}
+  public override void UseAbility() {}
 }

@@ -2,5 +2,5 @@ using UnityEngine;
 
 public class MoneyItem : Item
 {
-  public void PickUp() {}
+  public override void PickUp() {}
 }

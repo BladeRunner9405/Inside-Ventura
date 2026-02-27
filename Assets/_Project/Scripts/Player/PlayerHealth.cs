@@ -9,8 +9,11 @@ public class PlayerHealth : MonoBehaviour
   event Action<int> OnTakeDamage;
   event Action OnDeath;
 
-  void TakeDamage(int amount);
-  void Heal(int amount);
-  void Die();
-  void ModifyMaxHealth(int delta);
+  void TakeDamage(int amount) {}
+
+  void Heal(int amount) {}
+
+  void Die() {}
+
+  void ModifyMaxHealth(int delta) {}
 }

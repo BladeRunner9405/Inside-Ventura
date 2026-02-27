@@ -5,5 +5,5 @@ public class ClearProjectilesAccessory : Accessory
 {
   [SerializeField] private float radius = 3f;
 
-  public void UseAbility() {}
+  public override void UseAbility() {}
 }
