@@ -1,6 +1,4 @@
 using UnityEngine;
 
-public class MoneyItem : Item
-{
-
+public class MoneyItem : Item {
 }

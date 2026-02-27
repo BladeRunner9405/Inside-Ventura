@@ -1,8 +1,7 @@
 using System;
 using UnityEngine;
 
-public class PlayerEquipment : MonoBehaviour
-{
+public class PlayerEquipment : MonoBehaviour {
   [SerializeField] private Weapon weapon;
   [SerializeField] private Heart heart;
   [SerializeField] private Accessory accessory;
@@ -30,13 +29,11 @@ public class PlayerEquipment : MonoBehaviour
     OnThoughtUnequipped?.Invoke(artifact, slotIndex);
   }
 
-  public void Attack()
-  {
+  public void Attack() {
     weapon?.Attack();
   }
 
-  public void UseAbility()
-  {
+  public void UseAbility() {
     accessory?.UseAbility();
   }
 }

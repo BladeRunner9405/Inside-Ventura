@@ -1,23 +1,19 @@
 using System;
 using UnityEngine;
 
-public class PlayerHealth : MonoBehaviour
-{
+public class PlayerHealth : MonoBehaviour {
   private int _health;
   private int _maxHealth;
   private bool _isDead;
 
-  public int Health
-  {
+  public int Health {
     get => _health;
     private set => _health = Mathf.Clamp(value, 0, MaxHealth);
   }
 
-  public int MaxHealth
-  {
+  public int MaxHealth {
     get => _maxHealth;
-    private set
-    {
+    private set {
       _maxHealth = Mathf.Max(1, value);
       if (_health > _maxHealth)
         _health = _maxHealth;
@@ -27,8 +23,7 @@ public class PlayerHealth : MonoBehaviour
   event Action<int> OnTakeDamage;
   event Action OnDeath;
 
-  private void Awake()
-  {
+  private void Awake() {
     _maxHealth = 100;
     _health = _maxHealth;
     _isDead = false;

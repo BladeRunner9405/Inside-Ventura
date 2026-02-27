@@ -1,6 +1,4 @@
 using UnityEngine;
 
-public class ThoughtItem : Item
-{
-
+public class ThoughtItem : Item {
 }
