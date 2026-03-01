@@ -1,9 +1,10 @@
+using System;
 using UnityEngine;
 
 public class Entity: MonoBehaviour
 {
     public float MoveSpeed;
-    public Transform aimPosition; // Transform, в чью сторону смотрит Entity
+    public Transform target; // Transform, в чью сторону смотрит Entity
 
     public void moveTo(Vector2 dir) // переместиться в направлении dir
     {
@@ -15,9 +16,7 @@ public class Entity: MonoBehaviour
 
     public void lookAt(Vector3 coords) // посмотреть на объект с координатами coords
     {
-        Vector3 localPosition = coords - transform.position; 
-        aimPosition.localPosition = new Vector3(localPosition.x, 
-                                           localPosition.y,  
-                                           transform.position.z);
+        // ...
     }
+
 }

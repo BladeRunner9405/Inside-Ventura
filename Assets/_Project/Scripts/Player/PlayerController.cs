@@ -10,6 +10,7 @@ public class PlayerController: MonoBehaviour
     private InputAction m_interactAction;
 
     public Entity player;
+    public AimTarget playerAim;
     private Vector2 m_moveAmt;
     private Vector2 m_lookAmt; // в координатах мира, используя основную камеру
 
@@ -61,6 +62,6 @@ public class PlayerController: MonoBehaviour
 
     private void Looking()
     {
-        player.lookAt(m_lookAmt);
+        playerAim.aimAt(m_lookAmt);
     }
 }
