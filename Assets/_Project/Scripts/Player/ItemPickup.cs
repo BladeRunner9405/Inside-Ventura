@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class ItemPickup : MonoBehaviour
 {
-    public float radius;
-    public Player owner;
+    [SerializeField] private float radius;
+    [SerializeField] private Player owner;
 
-    private List<InteractableObject> interactables = new List<InteractableObject>();
-    private InteractableObject closestInterObj;
+    private List<InteractableObject> _interactables = new List<InteractableObject>();
+    private InteractableObject _closestInterObj;
 
     public void Awake() {
         transform.localScale = new Vector3(radius, radius, 0);
@@ -17,27 +17,27 @@ public class ItemPickup : MonoBehaviour
     private void FixedUpdate() {
         InteractableObject nearest = GetNearest();
         if (nearest) {
-            if (closestInterObj != nearest) {
-                if (closestInterObj) {
-                    closestInterObj.SetFocused(false);
+            if (_closestInterObj != nearest) {
+                if (_closestInterObj) {
+                    _closestInterObj.SetFocused(false);
                 }
                 
-                closestInterObj = nearest;
-                closestInterObj.SetFocused(true);
+                _closestInterObj = nearest;
+                _closestInterObj.SetFocused(true);
             }
         } else {
-            if (closestInterObj) {
-                closestInterObj.SetFocused(false);
-                closestInterObj = null;
+            if (_closestInterObj) {
+                _closestInterObj.SetFocused(false);
+                _closestInterObj = null;
             }
         }
     }
 
     public InteractableObject GetNearest()
     {
-        if (interactables.Count == 0) return null;
+        if (_interactables.Count == 0) return null;
 
-        return interactables
+        return _interactables
             .OrderBy(obj => Vector3.Distance(transform.position, obj.transform.position))
             .FirstOrDefault();
     }
@@ -49,7 +49,7 @@ public class ItemPickup : MonoBehaviour
         {
             InteractableObject interactableObject = collision.GetComponent<InteractableObject>();
             interactableObject.PlayerIsNearby(true);
-            interactables.Add(interactableObject);
+            _interactables.Add(interactableObject);
         }
     }
 
@@ -59,17 +59,17 @@ public class ItemPickup : MonoBehaviour
         {
             InteractableObject interactableObject = collision.GetComponent<InteractableObject>();
             interactableObject.PlayerIsNearby(false);
-            interactables.Remove(interactableObject);
+            _interactables.Remove(interactableObject);
         }
     }
 
     public bool TryToInteract()
     {
-        if (closestInterObj) {
-            closestInterObj.Interact(owner);
+        if (_closestInterObj) {
+            _closestInterObj.Interact(owner);
 
-            if (!closestInterObj.IsActive()) {
-                interactables.Remove(closestInterObj);
+            if (!_closestInterObj.IsActive()) {
+                _interactables.Remove(_closestInterObj);
             }
             return true;
         } 

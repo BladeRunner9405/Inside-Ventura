@@ -3,14 +3,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerController: MonoBehaviour
 {
-    public InputActionAsset InputActions;
+    [SerializeField] private InputActionAsset InputActions;
 
     private InputAction m_moveAction;
     private InputAction m_lookAction;
     private InputAction m_interactAction;
 
-    public Player player;
-    public AimTarget playerAim;
+    [SerializeField] private Player player;
+    [SerializeField] private AimTarget playerAim;
     private Vector2 m_moveAmt;
     private Vector2 m_lookAmt; // в координатах мира, используя основную камеру
 

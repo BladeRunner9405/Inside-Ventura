@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Player : Entity
 {
-    public ItemPickup itemPickup;
+    [SerializeField] private ItemPickup itemPickup;
     public void TryToInteract() {
         itemPickup.TryToInteract();
     }

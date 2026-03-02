@@ -3,13 +3,13 @@ using UnityEngine;
 
 public abstract class InteractableObject : MonoBehaviour
 {
-    public GameObject outline;
-    private bool isPlayerNearby;
+    [SerializeField] private GameObject outline;
+    private bool _isPlayerNearby;
 
     private bool isActive = true;
 
     public void PlayerIsNearby(bool nearby) {  // мб этот метод нам не понадобится, но все равно. Срабатываеит, если рядом игрок
-        isPlayerNearby = nearby;
+        _isPlayerNearby = nearby;
     }
     public virtual void Interact(Player player) {
         SetActive(false);

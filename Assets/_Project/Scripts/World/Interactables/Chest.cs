@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class Chest: InteractableObject
 {
-    public float maxSpawnDistance;
-
+    [SerializeField] private float maxSpawnDistance;
     public GameObject itemToSpawn; // конечно же мы реализуем по-другому, это заглушка
     public int quantity;
 
