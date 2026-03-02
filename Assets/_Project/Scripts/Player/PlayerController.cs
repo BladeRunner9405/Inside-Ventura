@@ -9,7 +9,7 @@ public class PlayerController: MonoBehaviour
     private InputAction m_lookAction;
     private InputAction m_interactAction;
 
-    public Entity player;
+    public Player player;
     public AimTarget playerAim;
     private Vector2 m_moveAmt;
     private Vector2 m_lookAmt; // в координатах мира, используя основную камеру
@@ -44,9 +44,7 @@ public class PlayerController: MonoBehaviour
 
     private void Interact()
     {
-        Debug.Log("Action: Interract");
-
-        // ...
+        player.TryToInteract();
     }
 
     private void FixedUpdate()
@@ -57,7 +55,7 @@ public class PlayerController: MonoBehaviour
 
     private void Walking()
     {
-        player.moveTo(m_moveAmt);
+        player.Move(m_moveAmt);
     }
 
     private void Looking()
