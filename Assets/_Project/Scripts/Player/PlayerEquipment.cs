@@ -13,6 +13,14 @@ public class PlayerEquipment : MonoBehaviour {
   public event Action<Artifact, int, Thought> OnThoughtEquipped;
   public event Action<Artifact, int> OnThoughtUnequipped;
 
+  private void Start() {
+    // это капец важно для того, чтобы не менялся оригинальный ScriptableObject
+    if (weapon != null) {
+      weapon = Instantiate(weapon);
+      weapon.Initialize();
+    }
+  }
+
   public void EquipThought(Artifact artifact, Thought thought, int slotIndex) {
     if (slotIndex < 0 || slotIndex >= artifact.SlotsCount) return;
 
@@ -29,8 +37,8 @@ public class PlayerEquipment : MonoBehaviour {
     OnThoughtUnequipped?.Invoke(artifact, slotIndex);
   }
 
-  public void Attack() {
-    weapon?.Attack();
+  public void Attack(Vector2 direction) {
+    weapon?.Attack(gameObject, direction);
   }
 
   public void UseAbility() {
