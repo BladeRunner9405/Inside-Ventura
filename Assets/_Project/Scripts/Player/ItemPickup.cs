@@ -44,7 +44,6 @@ public class ItemPickup : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("Collision!");
         if (collision.CompareTag("InteractableObject"))
         {
             InteractableObject interactableObject = collision.GetComponent<InteractableObject>();
