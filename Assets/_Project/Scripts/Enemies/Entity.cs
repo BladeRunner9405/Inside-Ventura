@@ -1,11 +1,14 @@
 using UnityEngine;
 
-public class Entity: MonoBehaviour
+public abstract class Entity: MonoBehaviour
 {
+    public int MaxHealth;
     public float MoveSpeed;
-    public Transform target; // Transform, в чью сторону смотрит Entity
+    public Transform target; // Transform, на кого смотрит Entity
 
-    public void moveTo(Vector2 dir) // переместиться в направлении dir
+    private int Health;
+
+    public void Move(Vector3 dir) // переместиться в направлении dir
     {
         dir *= Time.deltaTime * MoveSpeed;
         transform.localPosition = new Vector3(transform.position.x + dir.x, 
@@ -13,9 +16,20 @@ public class Entity: MonoBehaviour
                                          transform.position.z);
     }
 
-    public void lookAt(Vector3 coords) // посмотреть на объект с координатами coords
-    {
+    public void Attack(Player player) {
         // ...
     }
 
+    public void TakeDamage(int amount) {
+        // ...
+    }
+
+    public void Die() {
+        // ...
+    }
+
+    public void TargetTo(Transform target) // назначить новую цель
+    {
+        this.target = target;
+    }
 }

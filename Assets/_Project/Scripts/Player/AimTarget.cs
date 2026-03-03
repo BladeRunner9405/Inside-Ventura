@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class AimTarget: MonoBehaviour
 {
-    public float aimDeltaModifier;
-    public float maxAimDist;
+    [SerializeField] private float aimDeltaModifier;
+    [SerializeField] private float maxAimDist;
 
     public void aimAt(Vector3 coords) // прицелиться на объект с координатами coords
     {
