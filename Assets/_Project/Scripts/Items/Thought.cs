@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Thought : MonoBehaviour {
+public class Thought {
   [SerializeField] private readonly ThoughtData _data;
 
   public Thought(ThoughtData data) {

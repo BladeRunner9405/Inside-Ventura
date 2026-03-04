@@ -15,7 +15,6 @@ public class SwordWeapon : Weapon {
   [SerializeField] private float lungeDistance = 15f;
 
   [Header("Debug")] [SerializeField] private bool drawSector = true;
-
   [SerializeField] private float debugDuration = 0.2f;
   [SerializeField] private Color normalColor = Color.yellow;
   [SerializeField] private Color specialColor = Color.red;
@@ -25,19 +24,19 @@ public class SwordWeapon : Weapon {
   }
 
   public override void Attack(GameObject playerObject, Vector2 direction) {
-    var player = playerObject.GetComponent<Player>();
+    Player player = playerObject.GetComponent<Player>();
 
     if (!CanAttack()) return;
     UpdateCombo();
 
-    var isSpecial = currentChainCount == chainCount;
+    bool isSpecial = currentChainCount == ChainCount;
 
-    var angle = isSpecial ? specialAngle : normalAngle;
-    var range = isSpecial ? specialRange : normalRange;
-    var damageAmount = isSpecial ? damage * specialDamageMultiplier : damage;
+    float angle = isSpecial ? specialAngle : normalAngle;
+    float range = isSpecial ? specialRange : normalRange;
+    float damageAmount = isSpecial ? Damage * specialDamageMultiplier : Damage;
 
     Vector2 playerPosition = playerObject.transform.position;
-    var dir = direction.normalized;
+    Vector2 dir = direction.normalized;
 
     // поиск врагов в секторе
     var hits = Physics2D.OverlapCircleAll(playerPosition, range, enemyLayer);
@@ -45,9 +44,9 @@ public class SwordWeapon : Weapon {
       Vector2 toEnemy = (hit.transform.position - (Vector3)playerPosition).normalized;
       var angleBetween = Vector2.Angle(dir, toEnemy);
       if (angleBetween <= angle / 2f) {
-        var enemy = hit.GetComponent<Enemy>();
-        if (enemy != null) {
-          Debug.Log($"Удар по {enemy.name} с уроном {damageAmount}!");
+        Enemy enemy = hit.GetComponent<Enemy>();
+        if (enemy) {
+          Debug.Log($"Удар по {enemy.name} с уроном {damageAmount} !!!");
 
           enemy.TakeDamage((int)damageAmount);
         }

@@ -1,10 +1,14 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerEquipment : MonoBehaviour {
   [SerializeField] private Weapon weapon;
   [SerializeField] private Heart heart;
   [SerializeField] private Accessory accessory;
+
+  [Header("Debug")]
+  [SerializeField] private ThoughtData testThought;
 
   public Weapon Weapon => weapon;
   public Heart Heart => heart;
@@ -15,9 +19,19 @@ public class PlayerEquipment : MonoBehaviour {
 
   private void Start() {
     // это капец важно для того, чтобы не менялся оригинальный ScriptableObject
-    if (weapon != null) {
+    if (weapon) {
       weapon = Instantiate(weapon);
       weapon.Initialize();
+    }
+    if (heart)
+    {
+      heart = Instantiate(heart);
+      // heart.Initialize();
+    }
+    if (accessory)
+    {
+      accessory = Instantiate(accessory);
+      // accessory.Initialize();
     }
   }
 
@@ -43,5 +57,28 @@ public class PlayerEquipment : MonoBehaviour {
 
   public void UseAbility() {
     accessory?.UseAbility();
+  }
+
+
+
+  [ContextMenu("Экипировать тестовую мысль в 0-ой слот оружия")]
+  private void DebugEquipThoughtToWeaponSlot0()
+  {
+    if (!testThought || !weapon)
+    {
+      return;
+    }
+    Thought thought = new Thought(testThought);
+    EquipThought(weapon, thought, 0);
+  }
+
+  [ContextMenu("Снять мысль с 0-ого слота оружия")]
+  private void DebugUnequipThoughtToWeaponSlot0()
+  {
+    if (!weapon)
+    {
+      return;
+    }
+    UnequipThought(weapon, 0);
   }
 }

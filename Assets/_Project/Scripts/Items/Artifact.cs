@@ -3,7 +3,7 @@ using UnityEngine;
 
 public abstract class Artifact : ScriptableObject {
   [SerializeField] public string artifactName;
-  [SerializeField] protected int slotsCount;
+  [SerializeField] protected int slotsCount = 3;
 
   public int SlotsCount => slotsCount;
 

@@ -855,6 +855,7 @@ MonoBehaviour:
   weapon: {fileID: 11400000, guid: 5e4b9560ddeaba84496d194378ab44d1, type: 2}
   heart: {fileID: 0}
   accessory: {fileID: 0}
+  testThought: {fileID: 11400000, guid: 2df9ad68f528b46488813d0267f42101, type: 2}
 --- !u!1 &653350354
 GameObject:
   m_ObjectHideFlags: 0

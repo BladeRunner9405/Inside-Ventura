@@ -1,22 +1,27 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Weapon : Artifact {
-  [SerializeField] protected float damage = 10f;
-  [SerializeField] protected float attackSpeed = 0.2f;
-
-  [SerializeField] protected int chainCount = 4;
-  [SerializeField] protected float chainSpeedMultiplier = 1.5f;
+  [SerializeField] protected ModifiableStat damage = new ModifiableStat(10f);
+  [SerializeField] protected ModifiableStat attackSpeed = new ModifiableStat(0.2f);
+  [SerializeField] protected ModifiableStat chainCount = new ModifiableStat(4f);
+  [SerializeField] protected ModifiableStat chainSpeedMultiplier = new ModifiableStat(1.5f);
   [SerializeField] protected float comboWindow = 0.5f;
 
   protected int currentChainCount;
-  protected bool isInitialized;
   protected float lastAttackTime;
   protected float nextCooldown;
+  protected bool isInitialized;
+
+  public float Damage => damage.Value;
+  public float AttackSpeed => attackSpeed.Value;
+  public int ChainCount => Mathf.RoundToInt(chainCount.Value);
+  public float ChainSpeedMultiplier => chainSpeedMultiplier.Value;
 
   public virtual void Initialize() {
-    lastAttackTime = -attackSpeed;
     currentChainCount = 0;
-    nextCooldown = attackSpeed;
+    lastAttackTime = -AttackSpeed;
+    nextCooldown = AttackSpeed;
     isInitialized = true;
   }
 
@@ -37,9 +42,13 @@ public abstract class Weapon : Artifact {
     // chainSpeedMultiplier - множитель, который используется на attackSpeed при совершении макс. комбо или при
     // преждевременном завершении предыдущего.
     // мб я чето не то сделал, надо будет спросить
-    if (tooLateForCombo || currentChainCount == chainCount)
-      nextCooldown = attackSpeed * chainSpeedMultiplier;
+    if (tooLateForCombo || currentChainCount == ChainCount)
+      nextCooldown = AttackSpeed * ChainSpeedMultiplier;
     else
-      nextCooldown = attackSpeed;
+      nextCooldown = AttackSpeed;
   }
+
+  // к примеру
+  public void AddDamageModifier(StatModifier modifier) => damage.AddModifier(modifier);
+  public void RemoveDamageModifier(StatModifier modifier) => damage.RemoveModifier(modifier);
 }

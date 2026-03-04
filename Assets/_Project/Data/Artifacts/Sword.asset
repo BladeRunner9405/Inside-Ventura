@@ -12,12 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb547c3736d5b6d4b96cf8373022380c, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: Assembly-CSharp::SwordWeapon
-  artifactName: 
-  slotsCount: 0
-  damage: 10
-  attackSpeed: 0.2
-  chainCount: 4
-  chainSpeedMultiplier: 1.5
+  artifactName: "\u041C\u0435\u0447"
+  slotsCount: 3
+  damage:
+    baseValue: 10
+  attackSpeed:
+    baseValue: 0.2
+  chainCount:
+    baseValue: 4
+  chainSpeedMultiplier:
+    baseValue: 1.5
   comboWindow: 0.5
   normalAngle: 90
   normalRange: 2

@@ -2,30 +2,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum Stat {
-  Health,
-  MaxHealth,
   Money,
   MoveSpeed,
   Mana,
-  Damage,
   // ...
-}
-
-public enum StatModifierType {
-  Add,
-  Multiply
-}
-
-public class StatModifier {
-  public readonly float Value;
-  public readonly StatModifierType Type;
-  public readonly Effect SourceEffect;
-
-  public StatModifier(float value, StatModifierType type, Effect sourceEffect) {
-    Value = value;
-    Type = type;
-    SourceEffect = sourceEffect;
-  }
 }
 
 public class PlayerStats : MonoBehaviour {
