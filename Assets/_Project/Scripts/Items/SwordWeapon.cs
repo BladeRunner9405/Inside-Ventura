@@ -24,19 +24,19 @@ public class SwordWeapon : Weapon {
   }
 
   public override void Attack(GameObject playerObject, Vector2 direction) {
-    Player player = playerObject.GetComponent<Player>();
+    var player = playerObject.GetComponent<Player>();
 
     if (!CanAttack()) return;
     UpdateCombo();
 
-    bool isSpecial = currentChainCount == ChainCount;
+    var isSpecial = currentChainCount == ChainCount;
 
-    float angle = isSpecial ? specialAngle : normalAngle;
-    float range = isSpecial ? specialRange : normalRange;
-    float damageAmount = isSpecial ? Damage * specialDamageMultiplier : Damage;
+    var angle = isSpecial ? specialAngle : normalAngle;
+    var range = isSpecial ? specialRange : normalRange;
+    var damageAmount = isSpecial ? Damage * specialDamageMultiplier : Damage;
 
     Vector2 playerPosition = playerObject.transform.position;
-    Vector2 dir = direction.normalized;
+    var dir = direction.normalized;
 
     // поиск врагов в секторе
     var hits = Physics2D.OverlapCircleAll(playerPosition, range, enemyLayer);
@@ -44,7 +44,7 @@ public class SwordWeapon : Weapon {
       Vector2 toEnemy = (hit.transform.position - (Vector3)playerPosition).normalized;
       var angleBetween = Vector2.Angle(dir, toEnemy);
       if (angleBetween <= angle / 2f) {
-        Enemy enemy = hit.GetComponent<Enemy>();
+        var enemy = hit.GetComponent<Enemy>();
         if (enemy) {
           Debug.Log($"Удар по {enemy.name} с уроном {damageAmount} !!!");
 

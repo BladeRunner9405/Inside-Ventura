@@ -25,13 +25,13 @@ public class ModifiableStat {
   [SerializeField] private float baseValue;
   private List<StatModifier> modifiers = new();
 
+  public ModifiableStat(float baseValue) {
+    BaseValue = baseValue;
+  }
+
   public float BaseValue {
     get => baseValue;
     set => baseValue = value;
-  }
-
-  public ModifiableStat(float baseValue) {
-    BaseValue = baseValue;
   }
 
   public float Value {

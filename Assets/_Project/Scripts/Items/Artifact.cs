@@ -5,9 +5,9 @@ public abstract class Artifact : ScriptableObject {
   [SerializeField] public string artifactName;
   [SerializeField] protected int slotsCount = 3;
 
-  public int SlotsCount => slotsCount;
+  private readonly List<Thought> _equippedThoughts = new();
 
-  private List<Thought> _equippedThoughts = new List<Thought>();
+  public int SlotsCount => slotsCount;
 
   public void EquipThought(Thought thought, int slotIndex, GameObject player) {
     if (slotIndex < 0 || slotIndex >= slotsCount) return;
@@ -15,7 +15,7 @@ public abstract class Artifact : ScriptableObject {
     while (_equippedThoughts.Count <= slotIndex)
       _equippedThoughts.Add(null);
 
-    Thought old = _equippedThoughts[slotIndex];
+    var old = _equippedThoughts[slotIndex];
     if (old != null)
       UnequipThought(slotIndex, player);
 

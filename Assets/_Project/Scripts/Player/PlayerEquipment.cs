@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerEquipment : MonoBehaviour {
@@ -7,15 +6,11 @@ public class PlayerEquipment : MonoBehaviour {
   [SerializeField] private Heart heart;
   [SerializeField] private Accessory accessory;
 
-  [Header("Debug")]
-  [SerializeField] private ThoughtData testThought;
+  [Header("Debug")] [SerializeField] private ThoughtData testThought;
 
   public Weapon Weapon => weapon;
   public Heart Heart => heart;
   public Accessory Accessory => accessory;
-
-  public event Action<Artifact, int, Thought> OnThoughtEquipped;
-  public event Action<Artifact, int> OnThoughtUnequipped;
 
   private void Start() {
     // это капец важно для того, чтобы не менялся оригинальный ScriptableObject
@@ -23,17 +18,15 @@ public class PlayerEquipment : MonoBehaviour {
       weapon = Instantiate(weapon);
       weapon.Initialize();
     }
-    if (heart)
-    {
-      heart = Instantiate(heart);
-      // heart.Initialize();
-    }
-    if (accessory)
-    {
-      accessory = Instantiate(accessory);
-      // accessory.Initialize();
-    }
+
+    if (heart) heart = Instantiate(heart);
+    // heart.Initialize();
+    if (accessory) accessory = Instantiate(accessory);
+    // accessory.Initialize();
   }
+
+  public event Action<Artifact, int, Thought> OnThoughtEquipped;
+  public event Action<Artifact, int> OnThoughtUnequipped;
 
   public void EquipThought(Artifact artifact, Thought thought, int slotIndex) {
     if (slotIndex < 0 || slotIndex >= artifact.SlotsCount) return;
@@ -43,7 +36,7 @@ public class PlayerEquipment : MonoBehaviour {
     OnThoughtEquipped?.Invoke(artifact, slotIndex, thought);
   }
 
-  void UnequipThought(Artifact artifact, int slotIndex) {
+  private void UnequipThought(Artifact artifact, int slotIndex) {
     if (slotIndex < 0 || slotIndex >= artifact.SlotsCount) return;
 
     artifact.UnequipThought(slotIndex, gameObject);
@@ -60,25 +53,16 @@ public class PlayerEquipment : MonoBehaviour {
   }
 
 
-
   [ContextMenu("Экипировать тестовую мысль в 0-ой слот оружия")]
-  private void DebugEquipThoughtToWeaponSlot0()
-  {
-    if (!testThought || !weapon)
-    {
-      return;
-    }
-    Thought thought = new Thought(testThought);
+  private void DebugEquipThoughtToWeaponSlot0() {
+    if (!testThought || !weapon) return;
+    var thought = new Thought(testThought);
     EquipThought(weapon, thought, 0);
   }
 
   [ContextMenu("Снять мысль с 0-ого слота оружия")]
-  private void DebugUnequipThoughtToWeaponSlot0()
-  {
-    if (!weapon)
-    {
-      return;
-    }
+  private void DebugUnequipThoughtToWeaponSlot0() {
+    if (!weapon) return;
     UnequipThought(weapon, 0);
   }
 }
