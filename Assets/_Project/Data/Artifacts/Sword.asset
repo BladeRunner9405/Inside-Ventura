@@ -14,6 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SwordWeapon
   artifactName: "\u041C\u0435\u0447"
   slotsCount: 3
+  _equippedThoughts:
+  - {fileID: 11400000, guid: da9d741ef0878914c9d7b4352fcda569, type: 2}
   damage:
     baseValue: 10
   attackSpeed:

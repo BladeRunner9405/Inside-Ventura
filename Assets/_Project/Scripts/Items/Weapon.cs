@@ -17,7 +17,8 @@ public abstract class Weapon : Artifact {
   public int ChainCount => Mathf.RoundToInt(chainCount.Value);
   public float ChainSpeedMultiplier => chainSpeedMultiplier.Value;
 
-  public virtual void Initialize() {
+  public override void Initialize(GameObject player) {
+    base.Initialize(player);
     currentChainCount = 0;
     lastAttackTime = -AttackSpeed;
     nextCooldown = AttackSpeed;
@@ -27,7 +28,6 @@ public abstract class Weapon : Artifact {
   public abstract void Attack(GameObject player, Vector2 direction);
 
   protected bool CanAttack() {
-    if (!isInitialized) Initialize();
     return Time.time >= lastAttackTime + nextCooldown;
   }
 

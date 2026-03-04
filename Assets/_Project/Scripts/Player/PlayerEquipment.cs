@@ -6,7 +6,7 @@ public class PlayerEquipment : MonoBehaviour {
   [SerializeField] private Heart heart;
   [SerializeField] private Accessory accessory;
 
-  [Header("Debug")] [SerializeField] private ThoughtData testThought;
+  [Header("Debug")] [SerializeField] private Thought testThought;
 
   public Weapon Weapon => weapon;
   public Heart Heart => heart;
@@ -16,13 +16,18 @@ public class PlayerEquipment : MonoBehaviour {
     // это капец важно для того, чтобы не менялся оригинальный ScriptableObject
     if (weapon) {
       weapon = Instantiate(weapon);
-      weapon.Initialize();
+      weapon.Initialize(gameObject);
     }
 
-    if (heart) heart = Instantiate(heart);
-    // heart.Initialize();
-    if (accessory) accessory = Instantiate(accessory);
-    // accessory.Initialize();
+    if (heart) {
+      heart = Instantiate(heart);
+      heart.Initialize(gameObject);
+    }
+
+    if (accessory) {
+      accessory = Instantiate(accessory);
+      accessory.Initialize(gameObject);
+    }
   }
 
   public event Action<Artifact, int, Thought> OnThoughtEquipped;
@@ -56,8 +61,7 @@ public class PlayerEquipment : MonoBehaviour {
   [ContextMenu("Экипировать тестовую мысль в 0-ой слот оружия")]
   private void DebugEquipThoughtToWeaponSlot0() {
     if (!testThought || !weapon) return;
-    var thought = new Thought(testThought);
-    EquipThought(weapon, thought, 0);
+    EquipThought(weapon, testThought, 0);
   }
 
   [ContextMenu("Снять мысль с 0-ого слота оружия")]

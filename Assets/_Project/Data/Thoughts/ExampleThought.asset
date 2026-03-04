@@ -9,14 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c78d3545e47b95749a826eb86fec55c8, type: 3}
+  m_Script: {fileID: 11500000, guid: 390cfaa48001e4b4a93a13d157a7a4c2, type: 3}
   m_Name: ExampleThought
-  m_EditorClassIdentifier: Assembly-CSharp::ThoughtData
+  m_EditorClassIdentifier: Assembly-CSharp::Thought
   thoughtContent: "\u0430\u044D\u0430\u044D\u044D\u0430\u044D\u0430\u044D\u0430\u044D\u0430\u044D\u0430\u044D\u044D\u0430\u044D\u0430\u044D\u0430"
   description: "\u0443\u0432\u0435\u043B\u0438\u0447\u0438\u0432\u0430\u0435\u0442
     \u0443\u0440\u043E\u043D \u043D\u0430 5"
   inventoryIcon: {fileID: 0}
   type: 0
   rarityLevel: 1
-  effects:
+  _effects:
   - {fileID: 11400000, guid: f3354583771f7f847938e264e4f3117e, type: 2}
