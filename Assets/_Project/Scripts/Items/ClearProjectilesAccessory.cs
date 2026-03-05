@@ -5,6 +5,6 @@ using UnityEngine;
 public class ClearProjectilesAccessory : Accessory {
   [SerializeField] private float radius = 3f;
 
-  public override void UseAbility() {
+  protected override void UseAbility(GameObject playerObject, Vector2 direction) {
   }
 }
