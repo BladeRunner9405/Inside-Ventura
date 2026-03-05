@@ -11,6 +11,8 @@ public class Player : Entity {
   public void Dash(Vector2 direction, float distance, float duration) {
     if (direction == Vector2.zero) direction = Vector2.right;
 
+    ResolveOverlap();
+
     var startPos = transform.position;
     var originalDistance = distance;
     var actualDistance = CalculateSafeDistance(direction, originalDistance);

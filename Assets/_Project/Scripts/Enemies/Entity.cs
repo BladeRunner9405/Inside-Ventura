@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class Entity : MonoBehaviour
 {
     [SerializeField] private int health;
-    [SerializeField] private int maxHealth;
+    [SerializeField] private int maxHealth = 100;
     [SerializeField] private bool isDead;
 
     [SerializeField] private bool isInvulnerable;
@@ -53,7 +53,6 @@ public abstract class Entity : MonoBehaviour
         _contactFilter.SetLayerMask(LayerMask.GetMask("Obstacle"));
         _contactFilter.useLayerMask = true;
 
-        maxHealth = 100;
         health = maxHealth;
         isDead = false;
     }
@@ -91,7 +90,7 @@ public abstract class Entity : MonoBehaviour
         }
     }
 
-    private void ResolveOverlap()
+    protected void ResolveOverlap()
     {
         Collider2D[] results = new Collider2D[5];
         int count = col.Overlap(_contactFilter, results);
