@@ -116,7 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1455550784345889493}
   - component: {fileID: 7565588302386387440}
-  - component: {fileID: 2095505011887306545}
+  - component: {fileID: 4564934156557082297}
   - component: {fileID: 2918440959256753838}
   - component: {fileID: 7896748311274141968}
   - component: {fileID: 5099958618039300702}
@@ -203,7 +203,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &2095505011887306545
+--- !u!114 &4564934156557082297
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -212,11 +212,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4271060110879062814}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99b0cfc8f1bfe5f4da73d316dc55da48, type: 3}
+  m_Script: {fileID: 11500000, guid: be0400240422d9b41adecce1cd943b17, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Entity
+  m_EditorClassIdentifier: Assembly-CSharp::Player
+  MaxHealth: 100
   MoveSpeed: 5
-  target: {fileID: 2060172430529618259}
+  target: {fileID: 0}
+  itemPickup: {fileID: 0}
 --- !u!114 &2918440959256753838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,7 +231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 161d64f000cbb3e469da1f9b58de41e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  player: {fileID: 2095505011887306545}
+  player: {fileID: 4564934156557082297}
   playerAim: {fileID: 4281833389515936015}
 --- !u!58 &7896748311274141968
 CircleCollider2D:

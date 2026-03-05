@@ -14,8 +14,8 @@ namespace Edgar.Unity
         /// <summary>
         /// The room that this control represents/displays.
         /// </summary>
+        // public RoomBase Room { get; private set; }
         public RoomBase Room { get; private set; }
-
         /// <summary>
         /// Default width of the room control.
         /// </summary>

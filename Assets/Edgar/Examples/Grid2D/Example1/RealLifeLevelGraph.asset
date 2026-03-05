@@ -73,7 +73,7 @@ MonoBehaviour:
   - {fileID: 114071673970787052}
   - {fileID: 4698793640383739538}
   EditorData:
-    PanOffset: {x: 222.45415, y: -55.810665}
+    PanOffset: {x: 221.98497, y: -50.783}
     Zoom: 0.7701224
   RoomType: Assets.ProceduralLevelGenerator.Scripts.Generators.Common.LevelGraph.Room
   ConnectionType: Assets.ProceduralLevelGenerator.Scripts.Generators.Common.LevelGraph.Connection
@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8074dc491ddc34f4e83332d9eae76980, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Position: {x: 304, y: 416}
+  Position: {x: 752, y: 672}
   Name: Room
   IndividualRoomTemplates: []
   RoomTemplateSets: []

@@ -52,6 +52,7 @@ namespace Edgar.Unity
         /// </summary>
         public static bool HasChanges { get; set; }
 
+        [SerializeField]
         public string RoomType = typeof(Room).FullName;
 
         public string ConnectionType = typeof(Connection).FullName;
