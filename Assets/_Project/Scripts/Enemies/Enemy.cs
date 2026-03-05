@@ -1,22 +1,23 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Enemy : Entity
-{
-    public int damage;
-    public bool isBoss;
+public class Enemy : Entity {
+  public int damage;
+  public bool isBoss;
 
-    protected override void Awake() {
-        base.Awake();
+  protected override void Awake() {
+    base.Awake();
 
-        Transform player = Object.FindFirstObjectByType<Player>().transform; // заглушка, врагам выдавать игрока будет, например, комната
+    Transform
+      player = Object.FindFirstObjectByType<Player>()
+        .transform; // заглушка, врагам выдавать игрока будет, например, комната
 
-        TargetTo(player);
-    }
+    TargetTo(player);
+  }
 
-    private void FixedUpdate() {
+  private void FixedUpdate() {
     if (target) {
-            Move((target.position - transform.position).normalized);
-        }
+      Move((target.position - transform.position).normalized);
     }
+  }
 }
