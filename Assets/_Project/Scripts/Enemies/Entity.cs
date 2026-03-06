@@ -42,7 +42,7 @@ public abstract class Entity : MonoBehaviour
     private const float _shellDistance = 0.01f; // отступ, чтобы не врастать в стены
 
     event Action<int> OnTakeDamage;
-    event Action OnDeath;
+    public event Action OnDeath;
 
     protected virtual void Awake()
     {
