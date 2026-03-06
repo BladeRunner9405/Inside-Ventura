@@ -8,7 +8,6 @@ public abstract class Weapon : Artifact {
   [SerializeField] protected float comboWindow = 0.5f;
 
   protected int currentChainCount;
-  protected bool isInitialized;
   protected float lastAttackTime;
   protected float nextCooldown;
 
@@ -22,13 +21,18 @@ public abstract class Weapon : Artifact {
     currentChainCount = 0;
     lastAttackTime = -AttackSpeed;
     nextCooldown = AttackSpeed;
-    isInitialized = true;
   }
-
-  public abstract void Attack(GameObject player, Vector2 direction);
 
   protected bool CanAttack() {
     return Time.time >= lastAttackTime + nextCooldown;
+  }
+
+  public void TryAttack(GameObject player, Vector2 direction)
+  {
+    if (!CanAttack()) return;
+
+    Attack(player, direction);
+    lastAttackTime = Time.time; // фиксируем время удара
   }
 
   protected void UpdateCombo() {
@@ -46,6 +50,8 @@ public abstract class Weapon : Artifact {
     else
       nextCooldown = AttackSpeed;
   }
+
+  protected abstract void Attack(GameObject player, Vector2 direction);
 
   // к примеру
   public void AddDamageModifier(StatModifier modifier) {

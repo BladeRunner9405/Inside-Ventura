@@ -49,12 +49,12 @@ public class PlayerEquipment : MonoBehaviour {
     OnThoughtUnequipped?.Invoke(artifact, slotIndex);
   }
 
-  public void Attack(Vector2 direction) {
-    weapon?.Attack(gameObject, direction);
+  public void TryToAttack(Vector2 direction) {
+    weapon?.TryAttack(gameObject, direction);
   }
 
-  public void UseAbility() {
-    accessory?.UseAbility();
+  public void TryToUseAbility(Vector2 direction) {
+    accessory?.TryUseAbility(gameObject, direction);
   }
 
 

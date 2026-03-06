@@ -23,10 +23,7 @@ public class SwordWeapon : Weapon {
     enemyLayer = LayerMask.GetMask("Entity");
   }
 
-  public override void Attack(GameObject playerObject, Vector2 direction) {
-    var player = playerObject.GetComponent<Player>();
-
-    if (!CanAttack()) return;
+  protected override void Attack(GameObject playerObject, Vector2 direction) {
     UpdateCombo();
 
     var isSpecial = currentChainCount == ChainCount;
@@ -53,13 +50,12 @@ public class SwordWeapon : Weapon {
       }
     }
 
+    var player = playerObject.GetComponent<Player>();
     if (isSpecial) player.Move(dir * lungeDistance);
 
     // рисуем сектор дипсиком
     if (drawSector)
       DrawSector(playerPosition, dir, angle, range, isSpecial ? specialColor : normalColor, debugDuration);
-
-    lastAttackTime = Time.time; // время удара
   }
 
   private void DrawSector(Vector2 center, Vector2 direction, float angle, float radius, Color color, float duration) {
