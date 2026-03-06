@@ -1,79 +1,61 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController: MonoBehaviour
-{
-    [SerializeField] private InputActionAsset InputActions;
+public class PlayerController : MonoBehaviour {
+  private InputAction m_moveAction;
+  private InputAction m_lookAction;
+  private InputAction m_interactAction;
+  private InputAction m_attackAction;
 
-    private InputAction m_moveAction;
-    private InputAction m_lookAction;
-    private InputAction m_interactAction;
-    private InputAction m_attackAction;
+  [SerializeField] private Player player;
 
-    [SerializeField] private Player player;
-    [SerializeField] private PlayerEquipment playerEquipment; // Мб надо вместо этого через Player обращаться, спрошу потом
-    [SerializeField] private AimTarget playerAim;
-    private Vector2 m_moveAmt;
-    private Vector2 m_lookAmt; // в координатах мира, используя основную камеру
+  [SerializeField]
+  private PlayerEquipment playerEquipment; // Мб надо вместо этого через Player обращаться, спрошу потом
 
-    private void OnEnable()
-    {
-        InputActions.FindActionMap("Player").Enable();
+  [SerializeField] private AimTarget playerAim;
+  private Vector2 m_moveAmt;
+  private Vector2 m_lookAmt; // в координатах мира, используя основную камеру
+
+
+  private void Awake() {
+    m_moveAction = InputSystem.actions.FindAction("Move");
+    m_lookAction = InputSystem.actions.FindAction("Look");
+    m_interactAction = InputSystem.actions.FindAction("Interact");
+    m_attackAction = InputSystem.actions.FindAction("Attack");
+  }
+
+  private void Update() {
+    m_moveAmt = m_moveAction.ReadValue<Vector2>();
+    m_lookAmt = Camera.main.ScreenToWorldPoint(m_lookAction.ReadValue<Vector2>());
+
+    if (m_interactAction.WasPressedThisFrame()) {
+      Interact();
     }
 
-    private void OnDisable()
-    {
-        InputActions.FindActionMap("Player").Disable();
+    if (m_attackAction.WasPressedThisFrame()) {
+      Attack();
     }
+  }
 
-    private void Awake()
-    {
-        m_moveAction = InputSystem.actions.FindAction("Move");
-        m_lookAction = InputSystem.actions.FindAction("Look");
-        m_interactAction = InputSystem.actions.FindAction("Interact");
-        m_attackAction = InputSystem.actions.FindAction("Attack");
-    }
+  private void Interact() {
+    player.TryToInteract();
+  }
 
-    private void Update()
-    {
-        m_moveAmt = m_moveAction.ReadValue<Vector2>();
-        m_lookAmt = Camera.main.ScreenToWorldPoint(m_lookAction.ReadValue<Vector2>());
+  private void Attack() {
+    Vector2 direction = (m_lookAmt - (Vector2)player.transform.position).normalized;
+    playerEquipment.Attack(direction);
+  }
 
-        if (m_interactAction.WasPressedThisFrame())
-        {
-            Interact();
-        }
+  private void FixedUpdate() {
+    Walking();
+    Looking();
+  }
 
-        if (m_attackAction.WasPressedThisFrame())
-        {
-            Attack();
-        }
-    }
+  private void Walking() {
+    player.Move(m_moveAmt);
+  }
 
-    private void Interact()
-    {
-        player.TryToInteract();
-    }
-
-    private void Attack()
-    {
-        Vector2 direction = (m_lookAmt - (Vector2)player.transform.position).normalized;
-        playerEquipment.Attack(direction);
-    }
-
-    private void FixedUpdate()
-    {
-        Walking();
-        Looking();
-    }
-
-    private void Walking()
-    {
-        player.Move(m_moveAmt);
-    }
-
-    private void Looking()
-    {
-        playerAim.aimAt(m_lookAmt);
-    }
+  private void Looking() {
+    playerAim.aimAt(m_lookAmt);
+  }
 }
