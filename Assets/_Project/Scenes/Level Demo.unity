@@ -119,22 +119,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &64674863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44c8014d31544667085426dbe52eeab8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DungeonRoom
-  Position: {x: 0, y: 0}
-  type: 0
-  IndividualRoomTemplates: []
-  RoomTemplateSets: []
 --- !u!1 &76040701
 GameObject:
   m_ObjectHideFlags: 0
@@ -3686,7 +3670,7 @@ MonoBehaviour:
         toZ: 0
       facingDirection: {x: 1, y: 0}
       isHorizontal: 0
-      connectedRoom: {fileID: 1663113899}
+      connectedRoom: {fileID: 0}
     - doorLine:
         fromX: 1
         fromY: -6
@@ -3696,7 +3680,7 @@ MonoBehaviour:
         toZ: 0
       facingDirection: {x: 0, y: -1}
       isHorizontal: 1
-      connectedRoom: {fileID: 64674863}
+      connectedRoom: {fileID: 0}
     doorLines:
     - doorLine:
         From: {x: -3, y: -4, z: 0}
@@ -3752,7 +3736,7 @@ MonoBehaviour:
           toZ: 0
         facingDirection: {x: 1, y: 0}
         isHorizontal: 0
-        connectedRoom: {fileID: 1663113899}
+        connectedRoom: {fileID: 0}
     - doorLine:
         From: {x: 2, y: -6, z: 0}
         To: {x: -1, y: -6, z: 0}
@@ -3771,7 +3755,7 @@ MonoBehaviour:
           toZ: 0
         facingDirection: {x: 0, y: -1}
         isHorizontal: 1
-        connectedRoom: {fileID: 64674863}
+        connectedRoom: {fileID: 0}
     outlinePolygon:
       points:
       - {x: -9, y: 7}
@@ -3815,7 +3799,7 @@ MonoBehaviour:
         toZ: 0
       facingDirection: {x: 1, y: 0}
       isHorizontal: 0
-      connectedRoom: {fileID: 1663113899}
+      connectedRoom: {fileID: 0}
     - doorLine:
         fromX: 1
         fromY: -6
@@ -3825,7 +3809,7 @@ MonoBehaviour:
         toZ: 0
       facingDirection: {x: 0, y: -1}
       isHorizontal: 1
-      connectedRoom: {fileID: 64674863}
+      connectedRoom: {fileID: 0}
     doorLines:
     - doorLine:
         From: {x: -3, y: -4, z: 0}
@@ -3881,7 +3865,7 @@ MonoBehaviour:
           toZ: 0
         facingDirection: {x: 1, y: 0}
         isHorizontal: 0
-        connectedRoom: {fileID: 1663113899}
+        connectedRoom: {fileID: 0}
     - doorLine:
         From: {x: 2, y: -6, z: 0}
         To: {x: -1, y: -6, z: 0}
@@ -3900,7 +3884,7 @@ MonoBehaviour:
           toZ: 0
         facingDirection: {x: 0, y: -1}
         isHorizontal: 1
-        connectedRoom: {fileID: 64674863}
+        connectedRoom: {fileID: 0}
     outlinePolygon:
       points:
       - {x: -9, y: 7}
@@ -4020,7 +4004,7 @@ MonoBehaviour:
   enemiesSpawned: 0
   floorCollider: {fileID: 567036689}
   roomInstance:
-    room: {fileID: 1663113899}
+    room: {fileID: 0}
     isCorridor: 1
     connection: {fileID: 9043679050618725029, guid: 98e2833862f8bea89852c2641f499c2c, type: 2}
     roomTemplatePrefab: {fileID: 8411853151689980096, guid: 7943d14a927fd91babbf3d713868f49e, type: 3}
@@ -4105,7 +4089,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Edgar.Unity::Edgar.Unity.RoomInfoGrid2D
   RoomInstance:
-    room: {fileID: 1663113899}
+    room: {fileID: 0}
     isCorridor: 1
     connection: {fileID: 9043679050618725029, guid: 98e2833862f8bea89852c2641f499c2c, type: 2}
     roomTemplatePrefab: {fileID: 8411853151689980096, guid: 7943d14a927fd91babbf3d713868f49e, type: 3}
@@ -5939,7 +5923,6 @@ Transform:
   - {fileID: 1692325521}
   - {fileID: 2002416082}
   - {fileID: 230695056}
-  - {fileID: 1780770636}
   m_Father: {fileID: 1870476103}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &764017537
@@ -5957,6 +5940,7 @@ MonoBehaviour:
   health: 0
   maxHealth: 0
   isDead: 0
+  isInvulnerable: 0
   target: {fileID: 2002416082}
   moveSpeed: 5
   itemPickup: {fileID: 230695057}
@@ -6051,6 +6035,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 161d64f000cbb3e469da1f9b58de41e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  InputActions: {fileID: -944628639613478452, guid: 033de9c0e7456694194a58028f84d035, type: 3}
   player: {fileID: 764017537}
   playerEquipment: {fileID: 764017540}
   playerAim: {fileID: 2002416083}
@@ -6176,7 +6161,7 @@ MonoBehaviour:
         toZ: 0
       facingDirection: {x: -1, y: 0}
       isHorizontal: 0
-      connectedRoom: {fileID: 1663113899}
+      connectedRoom: {fileID: 0}
     doorLines:
     - doorLine:
         From: {x: -3, y: -1, z: 0}
@@ -6196,7 +6181,7 @@ MonoBehaviour:
           toZ: 0
         facingDirection: {x: -1, y: 0}
         isHorizontal: 0
-        connectedRoom: {fileID: 1663113899}
+        connectedRoom: {fileID: 0}
     - doorLine:
         From: {x: 1, y: 6, z: 0}
         To: {x: 4, y: 6, z: 0}
@@ -6254,7 +6239,7 @@ MonoBehaviour:
         toZ: 0
       facingDirection: {x: 1, y: 0}
       isHorizontal: 0
-      connectedRoom: {fileID: 1663113899}
+      connectedRoom: {fileID: 0}
     - doorLine:
         fromX: 1
         fromY: -6
@@ -6264,7 +6249,7 @@ MonoBehaviour:
         toZ: 0
       facingDirection: {x: 0, y: -1}
       isHorizontal: 1
-      connectedRoom: {fileID: 64674863}
+      connectedRoom: {fileID: 0}
     doorLines:
     - doorLine:
         From: {x: -3, y: -4, z: 0}
@@ -6320,7 +6305,7 @@ MonoBehaviour:
           toZ: 0
         facingDirection: {x: 1, y: 0}
         isHorizontal: 0
-        connectedRoom: {fileID: 1663113899}
+        connectedRoom: {fileID: 0}
     - doorLine:
         From: {x: 2, y: -6, z: 0}
         To: {x: -1, y: -6, z: 0}
@@ -6339,7 +6324,7 @@ MonoBehaviour:
           toZ: 0
         facingDirection: {x: 0, y: -1}
         isHorizontal: 1
-        connectedRoom: {fileID: 64674863}
+        connectedRoom: {fileID: 0}
     outlinePolygon:
       points:
       - {x: -9, y: 7}
@@ -6370,7 +6355,7 @@ MonoBehaviour:
         toZ: 0
       facingDirection: {x: -1, y: 0}
       isHorizontal: 0
-      connectedRoom: {fileID: 2139167476}
+      connectedRoom: {fileID: 0}
     - doorLine:
         fromX: -1
         fromY: 1
@@ -6380,7 +6365,7 @@ MonoBehaviour:
         toZ: 0
       facingDirection: {x: 0, y: 1}
       isHorizontal: 1
-      connectedRoom: {fileID: 64674863}
+      connectedRoom: {fileID: 0}
     doorLines:
     - doorLine:
         From: {x: -4, y: -3, z: 0}
@@ -6400,7 +6385,7 @@ MonoBehaviour:
           toZ: 0
         facingDirection: {x: -1, y: 0}
         isHorizontal: 0
-        connectedRoom: {fileID: 2139167476}
+        connectedRoom: {fileID: 0}
     - doorLine:
         From: {x: -2, y: 1, z: 0}
         To: {x: 2, y: 1, z: 0}
@@ -6419,7 +6404,7 @@ MonoBehaviour:
           toZ: 0
         facingDirection: {x: 0, y: 1}
         isHorizontal: 1
-        connectedRoom: {fileID: 64674863}
+        connectedRoom: {fileID: 0}
     - doorLine:
         From: {x: 4, y: -1, z: 0}
         To: {x: 4, y: -3, z: 0}
@@ -6460,7 +6445,7 @@ MonoBehaviour:
         toZ: 0
       facingDirection: {x: 1, y: 0}
       isHorizontal: 0
-      connectedRoom: {fileID: 2139167476}
+      connectedRoom: {fileID: 0}
     doorLines:
     - doorLine:
         From: {x: -1, y: 0, z: 0}
@@ -6498,7 +6483,7 @@ MonoBehaviour:
           toZ: 0
         facingDirection: {x: 1, y: 0}
         isHorizontal: 0
-        connectedRoom: {fileID: 2139167476}
+        connectedRoom: {fileID: 0}
     - doorLine:
         From: {x: 7, y: -5, z: 0}
         To: {x: 0, y: -5, z: 0}
@@ -6522,7 +6507,7 @@ MonoBehaviour:
       - {x: -9, y: -7}
       - {x: -9, y: -10}
       - {x: -20, y: -10}
-  - room: {fileID: 1663113899}
+  - room: {fileID: 0}
     isCorridor: 1
     connection: {fileID: 9043679050618725029, guid: 98e2833862f8bea89852c2641f499c2c, type: 2}
     roomTemplatePrefab: {fileID: 8411853151689980096, guid: 7943d14a927fd91babbf3d713868f49e, type: 3}
@@ -6594,7 +6579,7 @@ MonoBehaviour:
       - {x: 0, y: 6}
       - {x: 0, y: 4}
       - {x: -2, y: 4}
-  - room: {fileID: 64674863}
+  - room: {fileID: 0}
     isCorridor: 1
     connection: {fileID: 3089958967307454796, guid: 98e2833862f8bea89852c2641f499c2c, type: 2}
     roomTemplatePrefab: {fileID: 7228749262884133912, guid: 68d2072ef9cb2ea54ab0d07e9cdce54d, type: 3}
@@ -6666,7 +6651,7 @@ MonoBehaviour:
       - {x: -4, y: 2}
       - {x: -4, y: 0}
       - {x: -6, y: 0}
-  - room: {fileID: 2139167476}
+  - room: {fileID: 0}
     isCorridor: 1
     connection: {fileID: 1310150932809509333, guid: 98e2833862f8bea89852c2641f499c2c, type: 2}
     roomTemplatePrefab: {fileID: 8411853151689980096, guid: 7943d14a927fd91babbf3d713868f49e, type: 3}
@@ -8256,7 +8241,7 @@ MonoBehaviour:
         toZ: 0
       facingDirection: {x: 1, y: 0}
       isHorizontal: 0
-      connectedRoom: {fileID: 2139167476}
+      connectedRoom: {fileID: 0}
     doorLines:
     - doorLine:
         From: {x: -1, y: 0, z: 0}
@@ -8294,7 +8279,7 @@ MonoBehaviour:
           toZ: 0
         facingDirection: {x: 1, y: 0}
         isHorizontal: 0
-        connectedRoom: {fileID: 2139167476}
+        connectedRoom: {fileID: 0}
     - doorLine:
         From: {x: 7, y: -5, z: 0}
         To: {x: 0, y: -5, z: 0}
@@ -8347,7 +8332,7 @@ MonoBehaviour:
         toZ: 0
       facingDirection: {x: 1, y: 0}
       isHorizontal: 0
-      connectedRoom: {fileID: 2139167476}
+      connectedRoom: {fileID: 0}
     doorLines:
     - doorLine:
         From: {x: -1, y: 0, z: 0}
@@ -8385,7 +8370,7 @@ MonoBehaviour:
           toZ: 0
         facingDirection: {x: 1, y: 0}
         isHorizontal: 0
-        connectedRoom: {fileID: 2139167476}
+        connectedRoom: {fileID: 0}
     - doorLine:
         From: {x: 7, y: -5, z: 0}
         To: {x: 0, y: -5, z: 0}
@@ -12638,7 +12623,7 @@ MonoBehaviour:
   enemiesSpawned: 0
   floorCollider: {fileID: 1381089923}
   roomInstance:
-    room: {fileID: 64674863}
+    room: {fileID: 0}
     isCorridor: 1
     connection: {fileID: 3089958967307454796, guid: 98e2833862f8bea89852c2641f499c2c, type: 2}
     roomTemplatePrefab: {fileID: 7228749262884133912, guid: 68d2072ef9cb2ea54ab0d07e9cdce54d, type: 3}
@@ -12723,7 +12708,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Edgar.Unity::Edgar.Unity.RoomInfoGrid2D
   RoomInstance:
-    room: {fileID: 64674863}
+    room: {fileID: 0}
     isCorridor: 1
     connection: {fileID: 3089958967307454796, guid: 98e2833862f8bea89852c2641f499c2c, type: 2}
     roomTemplatePrefab: {fileID: 7228749262884133912, guid: 68d2072ef9cb2ea54ab0d07e9cdce54d, type: 3}
@@ -13066,7 +13051,7 @@ MonoBehaviour:
         toZ: 0
       facingDirection: {x: -1, y: 0}
       isHorizontal: 0
-      connectedRoom: {fileID: 2139167476}
+      connectedRoom: {fileID: 0}
     - doorLine:
         fromX: -1
         fromY: 1
@@ -13076,7 +13061,7 @@ MonoBehaviour:
         toZ: 0
       facingDirection: {x: 0, y: 1}
       isHorizontal: 1
-      connectedRoom: {fileID: 64674863}
+      connectedRoom: {fileID: 0}
     doorLines:
     - doorLine:
         From: {x: -4, y: -3, z: 0}
@@ -13096,7 +13081,7 @@ MonoBehaviour:
           toZ: 0
         facingDirection: {x: -1, y: 0}
         isHorizontal: 0
-        connectedRoom: {fileID: 2139167476}
+        connectedRoom: {fileID: 0}
     - doorLine:
         From: {x: -2, y: 1, z: 0}
         To: {x: 2, y: 1, z: 0}
@@ -13115,7 +13100,7 @@ MonoBehaviour:
           toZ: 0
         facingDirection: {x: 0, y: 1}
         isHorizontal: 1
-        connectedRoom: {fileID: 64674863}
+        connectedRoom: {fileID: 0}
     - doorLine:
         From: {x: 4, y: -1, z: 0}
         To: {x: 4, y: -3, z: 0}
@@ -13169,7 +13154,7 @@ MonoBehaviour:
         toZ: 0
       facingDirection: {x: -1, y: 0}
       isHorizontal: 0
-      connectedRoom: {fileID: 2139167476}
+      connectedRoom: {fileID: 0}
     - doorLine:
         fromX: -1
         fromY: 1
@@ -13179,7 +13164,7 @@ MonoBehaviour:
         toZ: 0
       facingDirection: {x: 0, y: 1}
       isHorizontal: 1
-      connectedRoom: {fileID: 64674863}
+      connectedRoom: {fileID: 0}
     doorLines:
     - doorLine:
         From: {x: -4, y: -3, z: 0}
@@ -13199,7 +13184,7 @@ MonoBehaviour:
           toZ: 0
         facingDirection: {x: -1, y: 0}
         isHorizontal: 0
-        connectedRoom: {fileID: 2139167476}
+        connectedRoom: {fileID: 0}
     - doorLine:
         From: {x: -2, y: 1, z: 0}
         To: {x: 2, y: 1, z: 0}
@@ -13218,7 +13203,7 @@ MonoBehaviour:
           toZ: 0
         facingDirection: {x: 0, y: 1}
         isHorizontal: 1
-        connectedRoom: {fileID: 64674863}
+        connectedRoom: {fileID: 0}
     - doorLine:
         From: {x: 4, y: -1, z: 0}
         To: {x: 4, y: -3, z: 0}
@@ -13987,7 +13972,7 @@ MonoBehaviour:
   enemiesSpawned: 0
   floorCollider: {fileID: 876351685}
   roomInstance:
-    room: {fileID: 2139167476}
+    room: {fileID: 0}
     isCorridor: 1
     connection: {fileID: 1310150932809509333, guid: 98e2833862f8bea89852c2641f499c2c, type: 2}
     roomTemplatePrefab: {fileID: 8411853151689980096, guid: 7943d14a927fd91babbf3d713868f49e, type: 3}
@@ -14072,7 +14057,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Edgar.Unity::Edgar.Unity.RoomInfoGrid2D
   RoomInstance:
-    room: {fileID: 2139167476}
+    room: {fileID: 0}
     isCorridor: 1
     connection: {fileID: 1310150932809509333, guid: 98e2833862f8bea89852c2641f499c2c, type: 2}
     roomTemplatePrefab: {fileID: 8411853151689980096, guid: 7943d14a927fd91babbf3d713868f49e, type: 3}
@@ -14545,22 +14530,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1663113899
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44c8014d31544667085426dbe52eeab8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DungeonRoom
-  Position: {x: 0, y: 0}
-  type: 0
-  IndividualRoomTemplates: []
-  RoomTemplateSets: []
 --- !u!1 &1692325520
 GameObject:
   m_ObjectHideFlags: 0
@@ -14726,134 +14695,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &1780770635
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1780770636}
-  - component: {fileID: 1780770638}
-  - component: {fileID: 1780770637}
-  m_Layer: 3
-  m_Name: HardBody
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1780770636
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1780770635}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 764017536}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &1780770637
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1780770635}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Radius: 0.5
---- !u!212 &1780770638
-SpriteRenderer:
-  serializedVersion: 2
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1780770635}
-  m_Enabled: 0
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_MaskInteraction: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_SpriteSortPoint: 0
 --- !u!1 &1793196118
 GameObject:
   m_ObjectHideFlags: 0
@@ -16632,7 +16473,7 @@ MonoBehaviour:
         toZ: 0
       facingDirection: {x: -1, y: 0}
       isHorizontal: 0
-      connectedRoom: {fileID: 1663113899}
+      connectedRoom: {fileID: 0}
     doorLines:
     - doorLine:
         From: {x: -3, y: -1, z: 0}
@@ -16652,7 +16493,7 @@ MonoBehaviour:
           toZ: 0
         facingDirection: {x: -1, y: 0}
         isHorizontal: 0
-        connectedRoom: {fileID: 1663113899}
+        connectedRoom: {fileID: 0}
     - doorLine:
         From: {x: 1, y: 6, z: 0}
         To: {x: 4, y: 6, z: 0}
@@ -16723,7 +16564,7 @@ MonoBehaviour:
         toZ: 0
       facingDirection: {x: -1, y: 0}
       isHorizontal: 0
-      connectedRoom: {fileID: 1663113899}
+      connectedRoom: {fileID: 0}
     doorLines:
     - doorLine:
         From: {x: -3, y: -1, z: 0}
@@ -16743,7 +16584,7 @@ MonoBehaviour:
           toZ: 0
         facingDirection: {x: -1, y: 0}
         isHorizontal: 0
-        connectedRoom: {fileID: 1663113899}
+        connectedRoom: {fileID: 0}
     - doorLine:
         From: {x: 1, y: 6, z: 0}
         To: {x: 4, y: 6, z: 0}
@@ -23150,22 +22991,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!114 &2139167476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44c8014d31544667085426dbe52eeab8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DungeonRoom
-  Position: {x: 0, y: 0}
-  type: 0
-  IndividualRoomTemplates: []
-  RoomTemplateSets: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

@@ -2471,7 +2471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 161d64f000cbb3e469da1f9b58de41e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  InputActions: {fileID: -944628639613478452, guid: 4c5b8a31591a89243aaf7fa0544b91f5, type: 3}
+  InputActions: {fileID: -944628639613478452, guid: 033de9c0e7456694194a58028f84d035, type: 3}
   player: {fileID: 626734648}
   playerEquipment: {fileID: 626734651}
   playerAim: {fileID: 1747297715}

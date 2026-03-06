@@ -246,7 +246,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 669fe829c39da674cae711752119af63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  MaxHealth: 0
+  health: 0
+  maxHealth: 0
+  isDead: 0
+  isInvulnerable: 0
   target: {fileID: 626734647}
   moveSpeed: 1
   damage: 0
@@ -675,8 +678,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 161d64f000cbb3e469da1f9b58de41e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
-  InputActions: {fileID: -944628639613478452, guid: 4c5b8a31591a89243aaf7fa0544b91f5, type: 3}
+  InputActions: {fileID: -944628639613478452, guid: 033de9c0e7456694194a58028f84d035, type: 3}
   player: {fileID: 626734648}
+  playerEquipment: {fileID: 0}
   playerAim: {fileID: 1747297715}
 --- !u!212 &626734646
 SpriteRenderer:
@@ -766,7 +770,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be0400240422d9b41adecce1cd943b17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  MaxHealth: 0
+  health: 0
+  maxHealth: 0
+  isDead: 0
+  isInvulnerable: 0
   target: {fileID: 1747297713}
   moveSpeed: 5
   itemPickup: {fileID: 661825146}
