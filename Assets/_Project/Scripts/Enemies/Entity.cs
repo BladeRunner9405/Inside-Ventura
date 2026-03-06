@@ -1,28 +1,54 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Entity : MonoBehaviour
 {
-    public int MaxHealth;
+    [SerializeField] private int health;
+    [SerializeField] private int maxHealth;
+    [SerializeField] private bool isDead;
+
+    public int Health {
+        get => health;
+        protected set => health = Mathf.Clamp(value, 0, MaxHealth);
+    }
+
+    public int MaxHealth {
+        get => maxHealth;
+        protected set {
+            maxHealth = Mathf.Max(1, value);
+            if (health > maxHealth)
+                health = maxHealth;
+        }
+    }
+
+    public bool IsDead => isDead;
+
     public Transform target; // Transform, на кого смотрит Entity
 
     public float moveSpeed = 5f;
     protected Rigidbody2D rb;
     protected Collider2D col;
 
-    private ContactFilter2D _contactFilter; 
+    private ContactFilter2D _contactFilter;
     private RaycastHit2D[] _hitBuffer = new RaycastHit2D[16];
     private const float _shellDistance = 0.01f; // отступ, чтобы не врастать в стены
-    
+
+    event Action<int> OnTakeDamage;
+    public event Action OnDeath;
 
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
-        
+
         _contactFilter.useTriggers = false;
-        _contactFilter.SetLayerMask(LayerMask.GetMask("Obstacle")); 
+        _contactFilter.SetLayerMask(LayerMask.GetMask("Obstacle"));
         _contactFilter.useLayerMask = true;
+
+        maxHealth = 100;
+        health = maxHealth;
+        isDead = false;
     }
 
     public void Move(Vector2 direction)
@@ -33,7 +59,7 @@ public abstract class Entity : MonoBehaviour
 
         ResolveOverlap(); // проверка уже внутри стены
 
-        int maxIterations = 4; 
+        int maxIterations = 4;
         for (int i = 0; i < maxIterations; i++) {
             float distance = deltaMove.magnitude;
             if (distance < 0.0001f) break;
@@ -42,7 +68,7 @@ public abstract class Entity : MonoBehaviour
 
             if (count > 0) {
                 RaycastHit2D hit = _hitBuffer[0];
-                
+
                 float safeDistance = Mathf.Max(0, hit.distance - _shellDistance);
                 rb.position += deltaMove.normalized * safeDistance;
 
@@ -62,7 +88,7 @@ public abstract class Entity : MonoBehaviour
     {
         Collider2D[] results = new Collider2D[5];
         int count = col.Overlap(_contactFilter, results);
-        
+
         for (int i = 0; i < count; i++) {
             ColliderDistance2D dist = col.Distance(results[i]);
             if (dist.isOverlapped) {
@@ -75,16 +101,26 @@ public abstract class Entity : MonoBehaviour
         // ...
     }
 
-
-
     public void TakeDamage(int amount) {
-        // ...
+        if (IsDead) return;
+        if (amount <= 0) return;
+
+        Health -= amount;
+
+        OnTakeDamage?.Invoke(amount);
+
+        if (Health == 0)
+            Die();
+
+        Debug.Log($"{gameObject.name} получил {amount} урона. Его здоровье - {Health}/{maxHealth}");
     }
 
-
-
     public void Die() {
-        // ...
+        if (IsDead) return;
+
+        isDead = true;
+        Health = 0;
+        OnDeath?.Invoke();
     }
 
     public void TargetTo(Transform target) // назначить новую цель
