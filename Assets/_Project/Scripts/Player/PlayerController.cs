@@ -46,11 +46,15 @@ public class PlayerController : MonoBehaviour {
   }
 
   private void OnEnable() {
-    InputActions.FindActionMap("Player").Enable();
+    if (InputActions) {
+      InputActions.FindActionMap("Player").Enable();
+    }
   }
 
   private void OnDisable() {
-    InputActions.FindActionMap("Player").Disable();
+    if (InputActions) {
+      InputActions.FindActionMap("Player").Disable();
+    }
   }
 
   private void Interact() {

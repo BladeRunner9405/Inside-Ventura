@@ -1,0 +1,143 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8400baee4cafd34091c865089a167b2, type: 3}
+  m_Name: DemoLevelGraphEnhanced
+  m_EditorClassIdentifier: Edgar.Unity::Edgar.Unity.LevelGraph
+  Connections:
+  - {fileID: 9043679050618725029}
+  - {fileID: 3089958967307454796}
+  - {fileID: 1310150932809509333}
+  CorridorIndividualRoomTemplates: []
+  CorridorRoomTemplateSets:
+  - {fileID: 11400000, guid: 04070c089613f78e9bc52f20037c5dc9, type: 2}
+  DefaultIndividualRoomTemplates: []
+  DefaultRoomTemplateSets: []
+  Rooms:
+  - {fileID: 2295331113537441066}
+  - {fileID: 5285161534663789096}
+  - {fileID: 139973469307808076}
+  - {fileID: 5767150732156699903}
+  EditorData:
+    PanOffset: {x: 184.67374, y: 251.50974}
+    Zoom: 0.86845386
+  RoomType: DungeonRoom
+  ConnectionType: Edgar.Unity.Connection
+--- !u!114 &139973469307808076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44c8014d31544667085426dbe52eeab8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonRoom
+  Position: {x: 320, y: 96}
+  type: 1
+  individualRoomTemplates: []
+  roomTemplateSets:
+  - {fileID: 11400000, guid: 17f1f39f94500c3dfb63341fe6e8bf53, type: 2}
+--- !u!114 &1310150932809509333
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Edgar.Unity::Edgar.Unity.Connection
+  From: {fileID: 139973469307808076}
+  To: {fileID: 5767150732156699903}
+--- !u!114 &2295331113537441066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44c8014d31544667085426dbe52eeab8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonRoom
+  Position: {x: 320, y: 320}
+  type: 0
+  individualRoomTemplates:
+  - {fileID: 9204587858199253963, guid: a36b111d7dc1a5317815b7ada2cf115b, type: 3}
+  roomTemplateSets: []
+--- !u!114 &3089958967307454796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Edgar.Unity::Edgar.Unity.Connection
+  From: {fileID: 5285161534663789096}
+  To: {fileID: 139973469307808076}
+--- !u!114 &5285161534663789096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44c8014d31544667085426dbe52eeab8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonRoom
+  Position: {x: 320, y: 208}
+  type: 1
+  individualRoomTemplates: []
+  roomTemplateSets:
+  - {fileID: 11400000, guid: 17f1f39f94500c3dfb63341fe6e8bf53, type: 2}
+--- !u!114 &5767150732156699903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44c8014d31544667085426dbe52eeab8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonRoom
+  Position: {x: 320, y: 0}
+  type: 2
+  individualRoomTemplates:
+  - {fileID: 8262108126446541429, guid: 71e2cdbe8e216a589b4a40c1fc19026e, type: 3}
+  roomTemplateSets: []
+--- !u!114 &9043679050618725029
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Edgar.Unity::Edgar.Unity.Connection
+  From: {fileID: 2295331113537441066}
+  To: {fileID: 5285161534663789096}
