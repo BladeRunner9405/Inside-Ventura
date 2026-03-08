@@ -1,23 +1,46 @@
+using DG.Tweening;
 using UnityEngine;
 
-public class Player : Entity
-{
-    [SerializeField] private ItemPickup itemPickup;
+public class Player : Entity {
+  [SerializeField] private ItemPickup itemPickup;
 
-    public void TryToInteract() {
-        itemPickup.TryToInteract();
-    }
+  public void TryToInteract() {
+    itemPickup.TryToInteract();
+  }
 
-    /*void Heal(int amount) {
-        if (IsDead) return;
-        if (amount <= 0) return;
+  public void Dash(Vector2 direction, float distance, float duration) {
+    if (direction == Vector2.zero) direction = Vector2.right;
 
-        Health += amount;
-    }
+    var startPos = transform.position;
+    var originalDistance = distance;
+    var actualDistance = CalculateSafeDistance(direction, originalDistance);
 
-    void ModifyMaxHealth(int delta) {
+    // если упёрлись в стену
+    if (actualDistance <= 0f)
+      return;
+
+    var targetPos = startPos + (Vector3)direction * actualDistance;
+
+    var actualDuration = duration * (actualDistance / originalDistance);
+
+    SetInvulnerable(true);
+
+    // сам дэш, Ease.OutQuad - анимация начинается быстро и замедляется к концу
+    transform.DOMove(targetPos, actualDuration)
+      .SetEase(Ease.OutQuad)
+      .OnComplete(() => SetInvulnerable(false));
+  }
+
+  /*void Heal(int amount) {
       if (IsDead) return;
+      if (amount <= 0) return;
 
-      MaxHealth += delta;
-    }*/
+      Health += amount;
+  }
+
+  void ModifyMaxHealth(int delta) {
+    if (IsDead) return;
+
+    MaxHealth += delta;
+  }*/
 }

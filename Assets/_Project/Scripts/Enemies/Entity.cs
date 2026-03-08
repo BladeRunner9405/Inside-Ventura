@@ -8,6 +8,13 @@ public abstract class Entity : MonoBehaviour
     [SerializeField] private int maxHealth;
     [SerializeField] private bool isDead;
 
+    [SerializeField] private bool isInvulnerable;
+
+    public void SetInvulnerable(bool invulnerable)
+    {
+      isInvulnerable = invulnerable;
+    }
+
     public int Health {
         get => health;
         protected set => health = Mathf.Clamp(value, 0, MaxHealth);
@@ -97,12 +104,26 @@ public abstract class Entity : MonoBehaviour
         }
     }
 
+    // обрезает вектор до столкновения со стеной
+    protected float CalculateSafeDistance(Vector2 direction, float distance) {
+        int count = col.Cast(direction, _contactFilter, _hitBuffer, distance + _shellDistance);
+
+        if (count > 0) {
+            RaycastHit2D hit = _hitBuffer[0];
+
+            float safeDistance = Mathf.Max(0, hit.distance - _shellDistance);
+            return safeDistance;
+        }
+
+        return distance;
+    }
+
     public void Attack(Player player) {
         // ...
     }
 
     public void TakeDamage(int amount) {
-        if (IsDead) return;
+        if (IsDead || isInvulnerable) return;
         if (amount <= 0) return;
 
         Health -= amount;
