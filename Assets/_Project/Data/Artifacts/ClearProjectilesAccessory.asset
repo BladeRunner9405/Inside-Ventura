@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: facb6fde637b1744d91555a96c0fbc82, type: 3}
   m_Name: ClearProjectilesAccessory
   m_EditorClassIdentifier: Assembly-CSharp::ClearProjectilesAccessory
-  artifactName: "\u0428\u0430\u0440\u0444 \u0432\u0440\u043E\u0434\u0435"
+  artifactName: "\u041E\u0436\u0435\u0440\u0435\u043B\u044C\u0435"
   slotsCount: 3
   _equippedThoughts: []
   cooldown: 0
