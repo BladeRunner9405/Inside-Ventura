@@ -66,20 +66,19 @@ public class RoomManager : MonoBehaviour {
   /// </summary>
   /// <param name="player"></param>
   public void OnRoomEnter(GameObject player) {
-    if (roomInstance != null) {
-      Debug.Log(
+    if (roomInstance == null) return;
+
+    Debug.Log(
       $"Room enter. Room name: {roomInstance.Room.GetDisplayName()}, Room template: {roomInstance.RoomTemplatePrefab.name}");
 
-      var type = ((DungeonRoom)roomInstance.Room).type;
-      if (roomInstance.IsCorridor || type != DungeonRoomType.Normal || enemiesSpawned) return;
+    var type = ((DungeonRoom)roomInstance.Room).type;
+    if (roomInstance.IsCorridor || type != DungeonRoomType.Normal || enemiesSpawned) return;
 
-      Debug.Log("Spawning enemies and closing all doors...");
-      SpawnEnemies();
-      foreach (var door in doors) {
-        door.SetActive(true);
-      }
+    Debug.Log("Spawning enemies and closing all doors...");
+    SpawnEnemies();
+    foreach (var door in doors) {
+      door.SetActive(true);
     }
-    
   }
 
   /// <summary>

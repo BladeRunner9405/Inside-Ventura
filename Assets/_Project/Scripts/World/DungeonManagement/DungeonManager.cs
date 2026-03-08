@@ -8,7 +8,8 @@ using Debug = UnityEngine.Debug;
 public class DungeonManager : MonoBehaviour {
   public System.Random Random { get; private set; }
 
-  public InputActionAsset inputActions;
+  [SerializeField]
+  private InputActionAsset inputActions;
 
   public static DungeonManager Instance;
 

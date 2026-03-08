@@ -2,8 +2,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour {
-  [SerializeField] private InputActionAsset InputActions;
-
   [SerializeField] private Player player;
 
   [SerializeField]
@@ -43,18 +41,6 @@ public class PlayerController : MonoBehaviour {
   private void FixedUpdate() {
     Walking();
     Looking();
-  }
-
-  private void OnEnable() {
-    if (InputActions) {
-      InputActions.FindActionMap("Player").Enable();
-    }
-  }
-
-  private void OnDisable() {
-    if (InputActions) {
-      InputActions.FindActionMap("Player").Disable();
-    }
   }
 
   private void Interact() {
