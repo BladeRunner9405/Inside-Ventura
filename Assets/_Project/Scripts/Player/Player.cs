@@ -1,8 +1,20 @@
+using CherryFramework.DependencyManager;
 using DG.Tweening;
 using UnityEngine;
 
 public class Player : Entity {
   [SerializeField] private ItemPickup itemPickup;
+
+  [Inject] private PlayerAccessor _playerAccessor;
+
+  protected override void OnEnable() {
+    base.OnEnable();
+    _playerAccessor?.RegisterPlayer(this);
+  }
+
+  private void OnDisable() {
+    _playerAccessor?.UnregisterPlayer(this);
+  }
 
   public void TryToInteract() {
     itemPickup.TryToInteract();
