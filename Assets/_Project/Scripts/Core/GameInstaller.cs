@@ -8,8 +8,6 @@ public class GameInstaller : InstallerBehaviourBase {
   [SerializeField] private GlobalAudioSettings _audioSettings;
   [SerializeField] private List<AudioEventsCollection> _audioCollections;*/
 
-  [SerializeField] private DungeonManager dungeonManager;
-
   protected override void Install() {
     /*// Core services
     BindAsSingleton(new SaveGameManager(new PlayerPrefsData(), true));
@@ -26,7 +24,6 @@ public class GameInstaller : InstallerBehaviourBase {
     var modelService = new ModelService(new PlayerPrefsBridge<PlayerPrefsData>(), true);
     BindAsSingleton(modelService);*/
 
-    BindAsSingleton(dungeonManager);
     BindAsSingleton(new PlayerAccessor());
   }
 }

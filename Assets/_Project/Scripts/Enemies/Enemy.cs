@@ -6,9 +6,7 @@ public class Enemy : Entity {
 
   [Inject] private PlayerAccessor _playerAccessor;
 
-  protected override void Awake() {
-    base.Awake();
-
+  protected void Start() {
     var player = _playerAccessor.Player.transform;
 
     TargetTo(player);

@@ -1557,6 +1557,72 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1001 &106157025
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 2041783611}
+    m_Modifications:
+    - target: {fileID: 1920397921343419224, guid: c1101908a4a25814ea7326d49584755d, type: 3}
+      propertyPath: m_Name
+      value: Game Root
+      objectReference: {fileID: 0}
+    - target: {fileID: 4685659300167826757, guid: c1101908a4a25814ea7326d49584755d, type: 3}
+      propertyPath: dungeonManager
+      value: 
+      objectReference: {fileID: 1795588464}
+    - target: {fileID: 7808730789921945459, guid: c1101908a4a25814ea7326d49584755d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 15.55344
+      objectReference: {fileID: 0}
+    - target: {fileID: 7808730789921945459, guid: c1101908a4a25814ea7326d49584755d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.13968
+      objectReference: {fileID: 0}
+    - target: {fileID: 7808730789921945459, guid: c1101908a4a25814ea7326d49584755d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7808730789921945459, guid: c1101908a4a25814ea7326d49584755d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7808730789921945459, guid: c1101908a4a25814ea7326d49584755d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7808730789921945459, guid: c1101908a4a25814ea7326d49584755d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7808730789921945459, guid: c1101908a4a25814ea7326d49584755d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7808730789921945459, guid: c1101908a4a25814ea7326d49584755d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7808730789921945459, guid: c1101908a4a25814ea7326d49584755d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7808730789921945459, guid: c1101908a4a25814ea7326d49584755d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c1101908a4a25814ea7326d49584755d, type: 3}
+--- !u!4 &106157026 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7808730789921945459, guid: c1101908a4a25814ea7326d49584755d, type: 3}
+  m_PrefabInstance: {fileID: 106157025}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &133455065
 GameObject:
   m_ObjectHideFlags: 0
@@ -14701,7 +14767,7 @@ GameObject:
   - component: {fileID: 1795588463}
   - component: {fileID: 1795588464}
   m_Layer: 0
-  m_Name: Game Manager
+  m_Name: Dungeon Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21747,6 +21813,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 106157026}
   - {fileID: 1795588463}
   - {fileID: 133455066}
   m_Father: {fileID: 0}

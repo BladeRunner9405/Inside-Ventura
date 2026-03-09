@@ -1,4 +1,5 @@
 using System;
+using CherryFramework.DependencyManager;
 using UnityEngine;
 
 public class PlayerEquipment : MonoBehaviour {
@@ -16,17 +17,20 @@ public class PlayerEquipment : MonoBehaviour {
     // это капец важно для того, чтобы не менялся оригинальный ScriptableObject
     if (weapon) {
       weapon = Instantiate(weapon);
-      weapon.Initialize(gameObject);
+      DependencyContainer.Instance.InjectDependencies(weapon);
+      weapon.Initialize();
     }
 
     if (heart) {
       heart = Instantiate(heart);
-      heart.Initialize(gameObject);
+      DependencyContainer.Instance.InjectDependencies(heart);
+      heart.Initialize();
     }
 
     if (accessory) {
       accessory = Instantiate(accessory);
-      accessory.Initialize(gameObject);
+      DependencyContainer.Instance.InjectDependencies(accessory);
+      accessory.Initialize();
     }
   }
 
@@ -36,7 +40,7 @@ public class PlayerEquipment : MonoBehaviour {
   public void EquipThought(Artifact artifact, Thought thought, int slotIndex) {
     if (slotIndex < 0 || slotIndex >= artifact.SlotsCount) return;
 
-    artifact.EquipThought(thought, slotIndex, gameObject);
+    artifact.EquipThought(thought, slotIndex);
 
     OnThoughtEquipped?.Invoke(artifact, slotIndex, thought);
   }
@@ -44,17 +48,17 @@ public class PlayerEquipment : MonoBehaviour {
   private void UnequipThought(Artifact artifact, int slotIndex) {
     if (slotIndex < 0 || slotIndex >= artifact.SlotsCount) return;
 
-    artifact.UnequipThought(slotIndex, gameObject);
+    artifact.UnequipThought(slotIndex);
 
     OnThoughtUnequipped?.Invoke(artifact, slotIndex);
   }
 
   public void TryToAttack(Vector2 direction) {
-    weapon?.TryAttack(gameObject, direction);
+    weapon?.TryAttack(direction);
   }
 
   public void TryToUseAbility(Vector2 direction) {
-    accessory?.TryUseAbility(gameObject, direction);
+    accessory?.TryUseAbility(direction);
   }
 
 

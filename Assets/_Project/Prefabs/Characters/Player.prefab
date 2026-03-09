@@ -600,7 +600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   health: 0
-  maxHealth: 0
+  maxHealth: 100
   isDead: 0
   isInvulnerable: 0
   target: {fileID: 1066906017858410233}

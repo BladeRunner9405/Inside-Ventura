@@ -1,54 +1,57 @@
+using CherryFramework.DependencyManager;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Artifact : ScriptableObject {
+  [Inject] public PlayerAccessor PlayerAccessor;
+
   [SerializeField] public string artifactName;
   [SerializeField] protected int slotsCount = 3;
 
-  [SerializeField] private List<Thought> _equippedThoughts = new();
+  [SerializeField] private List<Thought> equippedThoughts = new();
 
   public int SlotsCount => slotsCount;
 
-  public virtual void Initialize(GameObject player) {
-    RestoreThoughts(player);
+  public virtual void Initialize() {
+    RestoreThoughts();
   }
 
-  public void EquipThought(Thought thought, int slotIndex, GameObject player) {
+  public void EquipThought(Thought thought, int slotIndex) {
     if (slotIndex < 0 || slotIndex >= slotsCount) return;
 
-    while (_equippedThoughts.Count <= slotIndex)
-      _equippedThoughts.Add(null);
+    while (equippedThoughts.Count <= slotIndex)
+      equippedThoughts.Add(null);
 
-    var old = _equippedThoughts[slotIndex];
+    var old = equippedThoughts[slotIndex];
     if (old != null)
-      UnequipThought(slotIndex, player);
+      UnequipThought(slotIndex);
 
-    _equippedThoughts[slotIndex] = thought;
-    thought.Equip(this, player);
+    equippedThoughts[slotIndex] = thought;
+    thought.Equip(this);
   }
 
-  public void UnequipThought(int slotIndex, GameObject player) {
-    if (slotIndex < 0 || slotIndex >= _equippedThoughts.Count) return;
+  public void UnequipThought(int slotIndex) {
+    if (slotIndex < 0 || slotIndex >= equippedThoughts.Count) return;
 
-    var thought = _equippedThoughts[slotIndex];
+    var thought = equippedThoughts[slotIndex];
     if (thought == null) return;
 
-    thought.Unequip(this, player);
+    thought.Unequip(this);
 
-    _equippedThoughts[slotIndex] = null;
+    equippedThoughts[slotIndex] = null;
   }
 
-  protected void RestoreThoughts(GameObject player) {
-    if (_equippedThoughts.Count > slotsCount) {
+  private void RestoreThoughts() {
+    if (equippedThoughts.Count > slotsCount) {
       Debug.Log($"Эээээ на {artifactName} экипировано больше мыслей, чем слотов. Ничего не экипирую.");
-      _equippedThoughts = new List<Thought>();
+      equippedThoughts = new List<Thought>();
       return;
     }
 
-    for (var i = 0; i < _equippedThoughts.Count; ++i) {
-      var thought = _equippedThoughts[i];
+    for (var i = 0; i < equippedThoughts.Count; ++i) {
+      var thought = equippedThoughts[i];
       if (thought)
-        thought.Equip(this, player);
+        thought.Equip(this);
     }
   }
 }

@@ -7,8 +7,8 @@ public abstract class Accessory : Artifact {
 
   public float Cooldown => cooldown;
 
-  public override void Initialize(GameObject player) {
-    base.Initialize(player);
+  public override void Initialize() {
+    base.Initialize();
     lastUseTime = -cooldown;
   }
 
@@ -16,12 +16,12 @@ public abstract class Accessory : Artifact {
     return Time.time >= lastUseTime + cooldown;
   }
 
-  public void TryUseAbility(GameObject player, Vector2 direction) {
+  public void TryUseAbility(Vector2 direction) {
     if (!CanUse()) return;
 
-    UseAbility(player, direction);
+    UseAbility(direction);
     lastUseTime = Time.time; // фиксируем время использования
   }
 
-  protected abstract void UseAbility(GameObject player, Vector2 direction);
+  protected abstract void UseAbility(Vector2 direction);
 }

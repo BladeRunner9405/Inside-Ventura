@@ -9,11 +9,11 @@ public class Player : Entity {
 
   protected override void OnEnable() {
     base.OnEnable();
-    _playerAccessor?.RegisterPlayer(this);
+    _playerAccessor.RegisterPlayer(this);
   }
 
   private void OnDisable() {
-    _playerAccessor?.UnregisterPlayer(this);
+    _playerAccessor.UnregisterPlayer(this);
   }
 
   public void TryToInteract() {

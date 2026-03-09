@@ -7,7 +7,7 @@ public class ExampleEffect : Effect {
 
   private StatModifier modifier;
 
-  public override void OnEquipThought(Artifact artifact, GameObject player) {
+  public override void OnEquipThought(Artifact artifact) {
     Debug.Log($"ExampleEffect экипирован на {artifact.name}");
 
     if (artifact is Weapon weapon) {
@@ -17,7 +17,7 @@ public class ExampleEffect : Effect {
     }
   }
 
-  public override void OnUnequipThought(Artifact artifact, GameObject player) {
+  public override void OnUnequipThought(Artifact artifact) {
     Debug.Log($"ExampleEffect снят с {artifact.name}");
 
     if (artifact is Weapon weapon && modifier != null) {
