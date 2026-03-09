@@ -13,6 +13,6 @@ public class Enemy : Entity {
   }
 
   private void FixedUpdate() {
-    if (target) Move((target.position - transform.position).normalized);
+    if (target && !IsDead) Move((target.position - transform.position).normalized);
   }
 }
