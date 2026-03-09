@@ -13,9 +13,9 @@ public abstract class Entity : InjectMonoBehaviour {
   public Transform target; // Transform, на кого смотрит Entity
 
   public float moveSpeed = 5f;
+  private readonly RaycastHit2D[] _hitBuffer = new RaycastHit2D[16];
 
   private ContactFilter2D _contactFilter;
-  private readonly RaycastHit2D[] _hitBuffer = new RaycastHit2D[16];
   protected Collider2D col;
   protected Rigidbody2D rb;
 

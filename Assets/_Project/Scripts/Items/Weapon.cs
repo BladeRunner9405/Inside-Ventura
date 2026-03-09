@@ -27,8 +27,7 @@ public abstract class Weapon : Artifact {
     return Time.time >= lastAttackTime + nextCooldown;
   }
 
-  public void TryAttack(Vector2 direction)
-  {
+  public void TryAttack(Vector2 direction) {
     if (!CanAttack()) return;
 
     Attack(direction);

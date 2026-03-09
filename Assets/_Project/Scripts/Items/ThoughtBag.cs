@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ThoughtBag : MonoBehaviour {
-  [SerializeField] private List<Thought> thoughts = new List<Thought>();
+  [SerializeField] private List<Thought> thoughts = new();
   [SerializeField] private int maxSize = 99;
 
   public bool AddThought(Thought thought) {

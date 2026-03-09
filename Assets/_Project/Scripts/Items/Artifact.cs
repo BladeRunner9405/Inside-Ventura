@@ -1,14 +1,13 @@
-using CherryFramework.DependencyManager;
 using System.Collections.Generic;
+using CherryFramework.DependencyManager;
 using UnityEngine;
 
 public abstract class Artifact : ScriptableObject {
-  [Inject] public PlayerAccessor PlayerAccessor;
-
   [SerializeField] public string artifactName;
   [SerializeField] protected int slotsCount = 3;
 
   [SerializeField] private List<Thought> equippedThoughts = new();
+  [Inject] public PlayerAccessor PlayerAccessor;
 
   public int SlotsCount => slotsCount;
 

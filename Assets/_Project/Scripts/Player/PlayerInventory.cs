@@ -1,14 +1,14 @@
 using UnityEngine;
 
 public class PlayerInventory : MonoBehaviour {
-  ThoughtBag ThoughtBag { get; }
+  private ThoughtBag ThoughtBag { get; }
 
-  void AddThoughtToBag(Thought thought, int slotIndex) {
+  public void AddThoughtToBag(Thought thought, int slotIndex) {
   }
 
-  void RemoveThoughtFromBag(Thought thought) {
+  public void RemoveThoughtFromBag(Thought thought) {
   }
 
-  void RemoveThoughtFromBag(int slotIndex) {
+  public void RemoveThoughtFromBag(int slotIndex) {
   }
 }

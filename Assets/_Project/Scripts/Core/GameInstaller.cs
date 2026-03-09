@@ -1,6 +1,5 @@
 using CherryFramework.DependencyManager;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 [DefaultExecutionOrder(-10000)]
 public class GameInstaller : InstallerBehaviourBase {
