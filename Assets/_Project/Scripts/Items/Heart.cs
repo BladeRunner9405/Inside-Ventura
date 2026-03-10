@@ -7,14 +7,14 @@ public class Heart : Artifact {
 
   public IReadOnlyList<Effect> Traits => traits;
 
-  public override void Initialize(GameObject player) {
-    base.Initialize(player);
-    ApplyHeartEffects(player);
+  public override void Initialize() {
+    base.Initialize();
+    ApplyHeartEffects();
   }
 
-  public void ApplyHeartEffects(GameObject player) {
+  public void ApplyHeartEffects() {
     if (Traits != null)
       foreach (var effect in Traits)
-        effect.OnEquipThought(this, player);
+        effect.OnEquipThought(this);
   }
 }

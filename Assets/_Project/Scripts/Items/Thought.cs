@@ -22,15 +22,15 @@ public class Thought : ScriptableObject {
 
   public IReadOnlyList<Effect> Effects => effects;
 
-  public void Equip(Artifact artifact, GameObject player) {
+  public void Equip(Artifact artifact) {
     if (Effects != null)
       foreach (var effect in Effects)
-        effect.OnEquipThought(artifact, player);
+        effect.OnEquipThought(artifact);
   }
 
-  public void Unequip(Artifact artifact, GameObject player) {
+  public void Unequip(Artifact artifact) {
     if (Effects != null)
       foreach (var effect in Effects)
-        effect.OnUnequipThought(artifact, player);
+        effect.OnUnequipThought(artifact);
   }
 }

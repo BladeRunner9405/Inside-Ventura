@@ -14,13 +14,13 @@ public class DungeonManager : MonoBehaviour {
   public static DungeonManager Instance;
 
   private void OnEnable() {
-    Debug.Log("Enabling input acions...");
+    Debug.Log("Enabling input actions...");
     inputActions.Enable();
   }
 
   private void OnDisable() {
-    Debug.Log("Disabling input acions...");
-    inputActions.Enable();
+    Debug.Log("Disabling input actions...");
+    inputActions.Disable();
   }
 
   public void Awake() {

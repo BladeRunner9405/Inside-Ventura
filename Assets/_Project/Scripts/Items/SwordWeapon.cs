@@ -23,7 +23,7 @@ public class SwordWeapon : Weapon {
     enemyLayer = LayerMask.GetMask("Entity");
   }
 
-  protected override void Attack(GameObject playerObject, Vector2 direction) {
+  protected override void Attack(Vector2 direction) {
     UpdateCombo();
 
     var isSpecial = currentChainCount == ChainCount;
@@ -32,7 +32,7 @@ public class SwordWeapon : Weapon {
     var range = isSpecial ? specialRange : normalRange;
     var damageAmount = isSpecial ? Damage * specialDamageMultiplier : Damage;
 
-    Vector2 playerPosition = playerObject.transform.position;
+    Vector2 playerPosition = PlayerAccessor.Player.transform.position;
     var dir = direction.normalized;
 
     // поиск врагов в секторе
@@ -50,7 +50,7 @@ public class SwordWeapon : Weapon {
       }
     }
 
-    var player = playerObject.GetComponent<Player>();
+    var player = PlayerAccessor.Player;
     if (isSpecial) player.Move(dir * lungeDistance);
 
     // рисуем сектор дипсиком

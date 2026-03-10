@@ -1,23 +1,18 @@
-using Unity.VisualScripting;
-using UnityEngine;
+using CherryFramework.DependencyManager;
 
 public class Enemy : Entity {
   public int damage;
   public bool isBoss;
 
-  protected override void Awake() {
-    base.Awake();
+  [Inject] private PlayerAccessor _playerAccessor;
 
-    Transform
-      player = Object.FindFirstObjectByType<Player>()
-        .transform; // заглушка, врагам выдавать игрока будет, например, комната
+  protected void Start() {
+    var player = _playerAccessor.Player.transform;
 
     TargetTo(player);
   }
 
   private void FixedUpdate() {
-    if (target) {
-      Move((target.position - transform.position).normalized);
-    }
+    if (target && !IsDead) Move((target.position - transform.position).normalized);
   }
 }

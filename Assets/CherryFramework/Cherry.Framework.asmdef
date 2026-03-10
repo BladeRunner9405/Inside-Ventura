@@ -1,0 +1,19 @@
+{
+    "name": "Cherry.Framework",
+    "rootNamespace": "",
+    "references": [
+        "GUID:6055be8ebefd69e48b49212b09b47b2f",
+        "GUID:cf5db827f94c6034e8eb0762ea346341",
+        "GUID:febaf25a60dafbd44941357b21678606",
+        "GUID:977a1e5adfd18fe4596d123204895dae"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
