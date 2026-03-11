@@ -1,16 +1,16 @@
-using UnityEngine;
-
 public abstract class Item : InteractableObject {
-  public virtual void OnPickup(GameObject player) {
+  protected virtual void OnPickup() {
   }
 
-  public override void Interact(Player player) {
-    base.Interact(player);
+  protected virtual bool CanPickUp() {
+    // хватает ли места и т. п.
+    return true;
   }
-  // private void OnTriggerEnter2D(Collider2D other) {
-  //   if (other.CompareTag("Player")) {
-  //     OnPickup(other.gameObject);
-  //     // А может и не так, надо подумать
-  //   }
-  // }
+
+  public override void OnInteract() {
+    if (!CanPickUp()) return;
+
+    OnPickup();
+    base.OnInteract();
+  }
 }

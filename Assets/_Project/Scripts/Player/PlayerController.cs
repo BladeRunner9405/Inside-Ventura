@@ -4,8 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour {
   [SerializeField] private Player player;
 
-  [SerializeField]
-  private PlayerEquipment playerEquipment; // Мб надо вместо этого через Player обращаться, спрошу потом
+  [SerializeField] private PlayerEquipment playerEquipment;
 
   [SerializeField] private AimTarget playerAim;
   private InputAction m_abilityAction;
