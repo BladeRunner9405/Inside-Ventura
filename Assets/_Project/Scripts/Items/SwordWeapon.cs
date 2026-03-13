@@ -51,7 +51,10 @@ public class SwordWeapon : Weapon {
     }
 
     var player = PlayerAccessor.Player;
-    if (isSpecial) player.Move(dir * lungeDistance);
+    if (isSpecial) {
+      player.Move(dir * lungeDistance);
+      currentChainCount = 0;
+    }
 
     // рисуем сектор дипсиком
     if (drawSector)
