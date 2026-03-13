@@ -1,4 +1,5 @@
 using CherryFramework.DependencyManager;
+using UnityEngine;
 
 public class Enemy : Entity {
   public int damage;
@@ -7,9 +8,13 @@ public class Enemy : Entity {
   [Inject] private PlayerAccessor _playerAccessor;
 
   protected void Start() {
-    var player = _playerAccessor.Player.transform;
+    var player = _playerAccessor.Player;
+    if (!player) {
+      Debug.LogWarning("Игрок не найден и не назначен врагу.", this);
+      return;
+    }
 
-    TargetTo(player);
+    TargetTo(player.transform);
   }
 
   private void FixedUpdate() {

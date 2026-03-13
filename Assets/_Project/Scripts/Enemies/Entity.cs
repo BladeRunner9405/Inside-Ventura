@@ -1,5 +1,6 @@
 using System;
 using CherryFramework.DependencyManager;
+using DG.Tweening;
 using UnityEngine;
 
 public abstract class Entity : InjectMonoBehaviour {
@@ -97,7 +98,7 @@ public abstract class Entity : InjectMonoBehaviour {
   }
 
   // обрезает вектор до столкновения со стеной
-  protected float CalculateSafeDistance(Vector2 direction, float distance) {
+  private float CalculateSafeDistance(Vector2 direction, float distance) {
     var count = col.Cast(direction, _contactFilter, _hitBuffer, distance + _shellDistance);
 
     if (count > 0) {
@@ -108,6 +109,29 @@ public abstract class Entity : InjectMonoBehaviour {
     }
 
     return distance;
+  }
+
+  public void Dash(Vector2 direction, float distance, float duration) {
+    if (direction == Vector2.zero) direction = Vector2.right;
+
+    var startPos = transform.position;
+    var originalDistance = distance;
+    var actualDistance = CalculateSafeDistance(direction, originalDistance);
+
+    // если упёрлись в стену
+    if (actualDistance <= 0f)
+      return;
+
+    var targetPos = startPos + (Vector3)direction * actualDistance;
+
+    var actualDuration = duration * (actualDistance / originalDistance);
+
+    SetInvulnerable(true);
+
+    // сам дэш, Ease.OutQuad - анимация начинается быстро и замедляется к концу
+    transform.DOMove(targetPos, actualDuration)
+      .SetEase(Ease.OutQuad)
+      .OnComplete(() => SetInvulnerable(false));
   }
 
   public void Attack(Player player) {
