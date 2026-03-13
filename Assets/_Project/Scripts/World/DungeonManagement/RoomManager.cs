@@ -2,6 +2,7 @@
 using System.Linq;
 using Edgar.Unity;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class RoomManager : MonoBehaviour {
   /// <summary>
@@ -54,6 +55,11 @@ public class RoomManager : MonoBehaviour {
         Debug.Log("No doors in the corridor, are you sure?");
       }
     }
+
+    // Otherwise the enemy gets teleported after being spawned.
+    foreach (var enemy in enemyPrefabs) {
+      enemy.GetComponent<NavMeshAgent>().enabled = false;
+    }
   }
 
   /// <summary>
@@ -97,7 +103,7 @@ public class RoomManager : MonoBehaviour {
 
     var enemies = new List<Enemy>();
     var totalEnemiesCount = Random.Next(4, 8);
-
+    Debug.Log(floorCollider.bounds);
     while (enemies.Count < totalEnemiesCount) {
       // Find random position inside floor collider bounds
       var position = RandomPointInBounds(floorCollider.bounds, 1f);
@@ -118,6 +124,7 @@ public class RoomManager : MonoBehaviour {
       // Create an instance of the enemy and set position and parent
       var enemy = Instantiate(enemyPrefab, roomInstance.RoomTemplateInstance.transform, true);
       enemy.transform.position = position;
+      Debug.Log(position);
 
       var gungeonEnemy = enemy.GetComponent<Enemy>();
       gungeonEnemy.OnDeath += () => {
@@ -143,7 +150,8 @@ public class RoomManager : MonoBehaviour {
     return new Vector3(
       RandomRange(bounds.min.x + margin, bounds.max.x - margin),
       RandomRange(bounds.min.y + margin, bounds.max.y - margin),
-      RandomRange(bounds.min.z + margin, bounds.max.z - margin)
+      // RandomRange(bounds.min.z + margin, bounds.max.z - margin)
+      0
     );
   }
 
