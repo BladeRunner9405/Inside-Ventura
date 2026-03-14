@@ -61,6 +61,7 @@ public class PlayerController : MonoBehaviour {
   }
 
   private void Walking() {
+    if (player.IsDashing) return;
     player.Move(m_moveAmt);
   }
 
