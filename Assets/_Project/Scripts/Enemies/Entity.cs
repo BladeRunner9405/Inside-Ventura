@@ -104,7 +104,7 @@ public abstract class Entity : InjectMonoBehaviour {
     if (count > 0) {
       var hit = _hitBuffer[0];
 
-      var safeDistance = Mathf.Max(0, hit.distance - _shellDistance);
+      var safeDistance = Mathf.Max(0, hit.distance - _shellDistance * 2f);
       return safeDistance;
     }
 
@@ -113,6 +113,8 @@ public abstract class Entity : InjectMonoBehaviour {
 
   public void Dash(Vector2 direction, float distance, float duration) {
     if (direction == Vector2.zero) direction = Vector2.right;
+
+    ResolveOverlap();
 
     var startPos = transform.position;
     var originalDistance = distance;
@@ -131,7 +133,10 @@ public abstract class Entity : InjectMonoBehaviour {
     // сам дэш, Ease.OutQuad - анимация начинается быстро и замедляется к концу
     transform.DOMove(targetPos, actualDuration)
       .SetEase(Ease.OutQuad)
-      .OnComplete(() => SetInvulnerable(false));
+      .OnComplete(() => {
+        ResolveOverlap();
+        SetInvulnerable(false);
+      });
   }
 
   public void Attack(Player player) {
