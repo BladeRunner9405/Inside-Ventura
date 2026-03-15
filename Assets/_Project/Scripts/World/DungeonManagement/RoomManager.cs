@@ -102,7 +102,7 @@ public class RoomManager : MonoBehaviour {
     enemiesSpawned = true;
 
     var enemies = new List<Enemy>();
-    var totalEnemiesCount = Random.Next(4, 8);
+    var totalEnemiesCount = Random.Next(1, 3);
     Debug.Log(floorCollider.bounds);
     while (enemies.Count < totalEnemiesCount) {
       // Find random position inside floor collider bounds
