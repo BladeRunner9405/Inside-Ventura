@@ -7,30 +7,30 @@ public class Enemy : Entity {
   public int damage;
   public bool isBoss;
 
-  [Inject] private PlayerAccessor _playerAccessor;
-  private NavMeshAgent _agent;
+  [Inject] protected PlayerAccessor PlayerAccessor;
+  protected NavMeshAgent Agent;
 
   protected void Start() {
-    var player = _playerAccessor.Player.transform;
-
-    _agent = GetComponent<NavMeshAgent>();
+    Agent = GetComponent<NavMeshAgent>();
 
     // Otherwise the enemy gets teleported after being spawned.
     Invoke(nameof(EnableAI), 0.01F);
 
-    _agent.updateRotation = false;
-    _agent.updateUpAxis = false;
+    Agent.updateRotation = false;
+    Agent.updateUpAxis = false;
+    Agent.speed = moveSpeed;
 
+    var player = PlayerAccessor.Player.transform;
     TargetTo(player);
   }
 
   private void Update() {
-    if (_agent.enabled) {
-      _agent.SetDestination(target.position);
+    if (Agent.enabled) {
+      Agent.SetDestination(target.position);
     }
   }
 
   private void EnableAI() {
-    _agent.enabled = true;
+    Agent.enabled = true;
   }
 }
