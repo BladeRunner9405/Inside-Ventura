@@ -27,8 +27,8 @@ MonoBehaviour:
   - {fileID: 139973469307808076}
   - {fileID: 5767150732156699903}
   EditorData:
-    PanOffset: {x: 184.67374, y: 251.50974}
-    Zoom: 0.86845386
+    PanOffset: {x: -21.44569, y: -50.7137}
+    Zoom: 1.5385189
   RoomType: DungeonRoom
   ConnectionType: Edgar.Unity.Connection
 --- !u!114 &139973469307808076
