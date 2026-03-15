@@ -7,6 +7,18 @@ public class Player : Entity {
 
   [Inject] private PlayerAccessor _playerAccessor;
 
+  private const float ShellDistance = 0.01f; // отступ, чтобы не врастать в стены
+  private ContactFilter2D _contactFilter;
+  private readonly RaycastHit2D[] _hitBuffer = new RaycastHit2D[16];
+
+  protected override void Awake() {
+    base.Awake();
+
+    _contactFilter.useTriggers = false;
+    _contactFilter.SetLayerMask(LayerMask.GetMask("Obstacle"));
+    _contactFilter.useLayerMask = true;
+  }
+
   protected override void OnEnable() {
     base.OnEnable();
     _playerAccessor.RegisterPlayer(this);
@@ -41,6 +53,62 @@ public class Player : Entity {
     transform.DOMove(targetPos, actualDuration)
       .SetEase(Ease.OutQuad)
       .OnComplete(() => SetInvulnerable(false));
+  }
+
+  public void Move(Vector2 direction) {
+    if (direction.sqrMagnitude < 0.001f) return;
+
+    var deltaMove = direction * moveSpeed * Time.fixedDeltaTime;
+
+    ResolveOverlap(); // проверка уже внутри стены
+
+    var maxIterations = 4;
+    for (var i = 0; i < maxIterations; i++) {
+      var distance = deltaMove.magnitude;
+      if (distance < 0.0001f) break;
+
+      var count = col.Cast(deltaMove.normalized, _contactFilter, _hitBuffer, distance + ShellDistance);
+
+      if (count > 0) {
+        var hit = _hitBuffer[0];
+
+        var safeDistance = Mathf.Max(0, hit.distance - ShellDistance);
+        rb.position += deltaMove.normalized * safeDistance;
+
+        var remainingDelta = deltaMove.normalized * (distance - safeDistance);
+        deltaMove = remainingDelta - Vector2.Dot(remainingDelta, hit.normal) * hit.normal;
+
+        if (Vector2.Dot(deltaMove, direction) <= 0) deltaMove = Vector2.zero;
+      }
+      else {
+        rb.position += deltaMove;
+        break;
+      }
+    }
+  }
+
+  private void ResolveOverlap() {
+    var results = new Collider2D[5];
+    var count = col.Overlap(_contactFilter, results);
+
+    for (var i = 0; i < count; i++) {
+      var dist = col.Distance(results[i]);
+      if (dist.isOverlapped) rb.position += dist.normal * dist.distance;
+    }
+  }
+
+  // обрезает вектор до столкновения со стеной
+  protected float CalculateSafeDistance(Vector2 direction, float distance) {
+    var count = col.Cast(direction, _contactFilter, _hitBuffer, distance + ShellDistance);
+
+    if (count > 0) {
+      var hit = _hitBuffer[0];
+
+      var safeDistance = Mathf.Max(0, hit.distance - ShellDistance);
+      return safeDistance;
+    }
+
+    return distance;
   }
 
   /*void Heal(int amount) {
