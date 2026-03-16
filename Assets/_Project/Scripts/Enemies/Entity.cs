@@ -1,10 +1,8 @@
 using System;
 using CherryFramework.DependencyManager;
-using DG.Tweening;
 using UnityEngine;
 
 public abstract class Entity : InjectMonoBehaviour {
-  private const float _shellDistance = 0.01f; // отступ, чтобы не врастать в стены
   [SerializeField] private int health;
   [SerializeField] private int maxHealth = 100;
   [SerializeField] private bool isDead;
@@ -14,9 +12,7 @@ public abstract class Entity : InjectMonoBehaviour {
   public Transform target; // Transform, на кого смотрит Entity
 
   public float moveSpeed = 5f;
-  private readonly RaycastHit2D[] _hitBuffer = new RaycastHit2D[16];
 
-  private ContactFilter2D _contactFilter;
   protected Collider2D col;
   protected Rigidbody2D rb;
 
@@ -40,10 +36,6 @@ public abstract class Entity : InjectMonoBehaviour {
     rb = GetComponent<Rigidbody2D>();
     col = GetComponent<Collider2D>();
 
-    _contactFilter.useTriggers = false;
-    _contactFilter.SetLayerMask(LayerMask.GetMask("Obstacle"));
-    _contactFilter.useLayerMask = true;
-
     health = maxHealth;
     isDead = false;
   }
@@ -54,85 +46,6 @@ public abstract class Entity : InjectMonoBehaviour {
 
   private event Action<int> OnTakeDamage;
   public event Action OnDeath;
-
-  public void Move(Vector2 direction) {
-    if (direction.sqrMagnitude < 0.001f) return;
-
-    var deltaMove = direction * moveSpeed * Time.fixedDeltaTime;
-
-    ResolveOverlap(); // проверка уже внутри стены
-
-    var maxIterations = 4;
-    for (var i = 0; i < maxIterations; i++) {
-      var distance = deltaMove.magnitude;
-      if (distance < 0.0001f) break;
-
-      var count = col.Cast(deltaMove.normalized, _contactFilter, _hitBuffer, distance + _shellDistance);
-
-      if (count > 0) {
-        var hit = _hitBuffer[0];
-
-        var safeDistance = Mathf.Max(0, hit.distance - _shellDistance);
-        rb.position += deltaMove.normalized * safeDistance;
-
-        var remainingDelta = deltaMove.normalized * (distance - safeDistance);
-        deltaMove = remainingDelta - Vector2.Dot(remainingDelta, hit.normal) * hit.normal;
-
-        if (Vector2.Dot(deltaMove, direction) <= 0) deltaMove = Vector2.zero;
-      }
-      else {
-        rb.position += deltaMove;
-        break;
-      }
-    }
-  }
-
-  private void ResolveOverlap() {
-    var results = new Collider2D[5];
-    var count = col.Overlap(_contactFilter, results);
-
-    for (var i = 0; i < count; i++) {
-      var dist = col.Distance(results[i]);
-      if (dist.isOverlapped) rb.position += dist.normal * dist.distance;
-    }
-  }
-
-  // обрезает вектор до столкновения со стеной
-  private float CalculateSafeDistance(Vector2 direction, float distance) {
-    var count = col.Cast(direction, _contactFilter, _hitBuffer, distance + _shellDistance);
-
-    if (count > 0) {
-      var hit = _hitBuffer[0];
-
-      var safeDistance = Mathf.Max(0, hit.distance - _shellDistance);
-      return safeDistance;
-    }
-
-    return distance;
-  }
-
-  public void Dash(Vector2 direction, float distance, float duration) {
-    if (direction == Vector2.zero) direction = Vector2.right;
-
-    var startPos = transform.position;
-    var originalDistance = distance;
-    var actualDistance = CalculateSafeDistance(direction, originalDistance);
-
-    // если упёрлись в стену
-    if (actualDistance <= 0f)
-      return;
-
-    var targetPos = startPos + (Vector3)direction * actualDistance;
-
-    var actualDuration = duration * (actualDistance / originalDistance);
-
-    SetInvulnerable(true);
-
-    // сам дэш, Ease.OutQuad - анимация начинается быстро и замедляется к концу
-    transform.DOMove(targetPos, actualDuration)
-      .SetEase(Ease.OutQuad)
-      .OnComplete(() => SetInvulnerable(false));
-  }
 
   public void Attack(Player player) {
     // ...
