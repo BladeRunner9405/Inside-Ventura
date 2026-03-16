@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb547c3736d5b6d4b96cf8373022380c, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: Assembly-CSharp::SwordWeapon
-  artifactName: "\u041C\u0435\u0447"
+  artifactName: "\u041A\u0430\u0440\u0430\u0442\u0435\u043B\u044C\u043D\u0430\u044F
+    \u0422\u0435\u0440\u0430\u043F\u0438\u044F"
   slotsCount: 3
-  _equippedThoughts:
-  - {fileID: 11400000, guid: da9d741ef0878914c9d7b4352fcda569, type: 2}
+  equippedThoughts: []
   damage:
     baseValue: 10
   attackSpeed:
@@ -25,16 +25,14 @@ MonoBehaviour:
   chainSpeedMultiplier:
     baseValue: 1.5
   comboWindow: 0.5
+  sectorAttackPrefab: {fileID: 2462862026025648702, guid: 1f5f4e86c05ebe64bbdcc71104438f4e, type: 3}
   normalAngle: 90
   normalRange: 2
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 320
   specialAngle: 30
   specialRange: 5
   specialDamageMultiplier: 2
   lungeDistance: 15
-  drawSector: 1
-  debugDuration: 0.2
-  normalColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  specialColor: {r: 1, g: 0, b: 0, a: 1}
+  hitboxActiveTime: 0.1
