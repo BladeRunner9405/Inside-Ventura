@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+public enum StatName {
+  Cooldown,
+  Damage
+}
+
 public enum StatModifierType {
   Add,
   Multiply
@@ -48,9 +53,5 @@ public class ModifiableStat {
 
   public void RemoveModifier(StatModifier modifier) {
     modifiers.Remove(modifier);
-  }
-
-  public void RemoveAllEffectModifiers(Effect effect) {
-    modifiers.RemoveAll(m => m.SourceEffect == effect);
   }
 }

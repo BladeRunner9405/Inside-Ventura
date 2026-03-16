@@ -5,7 +5,7 @@ public abstract class Weapon : Artifact {
   [SerializeField] protected ModifiableStat attackSpeed = new(0.2f);
   [SerializeField] protected ModifiableStat chainCount = new(4f);
   [SerializeField] protected ModifiableStat chainSpeedMultiplier = new(1.5f);
-  [SerializeField] protected float comboWindow = 0.5f;
+  [SerializeField] protected ModifiableStat comboWindow = new(0.5f);
 
   protected int currentChainCount;
   protected float lastAttackTime;
@@ -15,6 +15,13 @@ public abstract class Weapon : Artifact {
   public float AttackSpeed => attackSpeed.Value;
   public int ChainCount => Mathf.RoundToInt(chainCount.Value);
   public float ChainSpeedMultiplier => chainSpeedMultiplier.Value;
+  public float ComboWindow => comboWindow.Value;
+
+  public override ModifiableStat GetStat(StatName statName) {
+    if (statName == StatName.Damage)
+      return damage;
+    return base.GetStat(statName);
+  }
 
   public override void Initialize() {
     base.Initialize();
@@ -35,7 +42,7 @@ public abstract class Weapon : Artifact {
   }
 
   protected void UpdateCombo() {
-    var tooLateForCombo = Time.time > lastAttackTime + comboWindow; // если опоздал на комбо
+    var tooLateForCombo = Time.time > lastAttackTime + ComboWindow; // если опоздал на комбо
 
     if (tooLateForCombo) currentChainCount = 0;
 
@@ -51,13 +58,4 @@ public abstract class Weapon : Artifact {
   }
 
   protected abstract void Attack(Vector2 direction);
-
-  // к примеру
-  public void AddDamageModifier(StatModifier modifier) {
-    damage.AddModifier(modifier);
-  }
-
-  public void RemoveDamageModifier(StatModifier modifier) {
-    damage.RemoveModifier(modifier);
-  }
 }

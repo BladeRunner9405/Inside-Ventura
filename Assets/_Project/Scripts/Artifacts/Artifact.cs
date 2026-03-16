@@ -17,6 +17,8 @@ public abstract class Artifact : ScriptableObject {
 
   public void EquipThought(Thought thought, int slotIndex) {
     if (slotIndex < 0 || slotIndex >= slotsCount) return;
+    
+    if (!thought.HasRightType(this) || equippedThoughts.Contains(thought)) return;
 
     while (equippedThoughts.Count <= slotIndex)
       equippedThoughts.Add(null);
@@ -26,7 +28,7 @@ public abstract class Artifact : ScriptableObject {
       UnequipThought(slotIndex);
 
     equippedThoughts[slotIndex] = thought;
-    thought.Equip(this);
+    thought.OnEquip(this);
   }
 
   public void UnequipThought(int slotIndex) {
@@ -35,7 +37,7 @@ public abstract class Artifact : ScriptableObject {
     var thought = equippedThoughts[slotIndex];
     if (thought == null) return;
 
-    thought.Unequip(this);
+    thought.OnUnequip(this);
 
     equippedThoughts[slotIndex] = null;
   }
@@ -50,7 +52,9 @@ public abstract class Artifact : ScriptableObject {
     for (var i = 0; i < equippedThoughts.Count; ++i) {
       var thought = equippedThoughts[i];
       if (thought)
-        thought.Equip(this);
+        thought.OnEquip(this);
     }
   }
+
+  public virtual ModifiableStat GetStat(StatName statName) => null;
 }

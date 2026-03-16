@@ -38,16 +38,12 @@ public class PlayerEquipment : MonoBehaviour {
   public event Action<Artifact, int> OnThoughtUnequipped;
 
   public void EquipThought(Artifact artifact, Thought thought, int slotIndex) {
-    if (slotIndex < 0 || slotIndex >= artifact.SlotsCount) return;
-
     artifact.EquipThought(thought, slotIndex);
 
     OnThoughtEquipped?.Invoke(artifact, slotIndex, thought);
   }
 
   private void UnequipThought(Artifact artifact, int slotIndex) {
-    if (slotIndex < 0 || slotIndex >= artifact.SlotsCount) return;
-
     artifact.UnequipThought(slotIndex);
 
     OnThoughtUnequipped?.Invoke(artifact, slotIndex);
@@ -62,15 +58,18 @@ public class PlayerEquipment : MonoBehaviour {
   }
 
 
+  [ContextMenu("Экипировать тестовую мысль в 0-ой слот аксессуара")]
+  private void DebugEquipThoughtToAccessorySlot0() {
+    EquipThought(accessory, testThought, 0);
+  }
+
   [ContextMenu("Экипировать тестовую мысль в 0-ой слот оружия")]
   private void DebugEquipThoughtToWeaponSlot0() {
-    if (!testThought || !weapon) return;
     EquipThought(weapon, testThought, 0);
   }
 
   [ContextMenu("Снять мысль с 0-ого слота оружия")]
   private void DebugUnequipThoughtToWeaponSlot0() {
-    if (!weapon) return;
     UnequipThought(weapon, 0);
   }
 }

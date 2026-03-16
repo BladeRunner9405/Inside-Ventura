@@ -12,19 +12,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb547c3736d5b6d4b96cf8373022380c, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: Assembly-CSharp::SwordWeapon
-  artifactName: "\u041C\u0435\u0447"
+  artifactName: "\u041A\u0430\u0440\u0430\u0442\u0435\u043B\u044C\u043D\u0430\u044F
+    \u0422\u0435\u0440\u0430\u043F\u0438\u044F"
   slotsCount: 3
-  _equippedThoughts:
-  - {fileID: 11400000, guid: da9d741ef0878914c9d7b4352fcda569, type: 2}
+  equippedThoughts: []
   damage:
-    baseValue: 10
+    baseValue: 3
   attackSpeed:
-    baseValue: 0.2
+    baseValue: 0.6
   chainCount:
     baseValue: 4
   chainSpeedMultiplier:
-    baseValue: 1.5
-  comboWindow: 0.5
+    baseValue: 1.2
+  comboWindow: 1
   normalAngle: 90
   normalRange: 2
   enemyLayer:

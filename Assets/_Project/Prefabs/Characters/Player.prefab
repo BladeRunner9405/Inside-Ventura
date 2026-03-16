@@ -175,7 +175,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 102
+  m_SortingOrder: 103
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 0, b: 0, a: 1}
@@ -217,7 +217,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2175958641244862860
 Transform:
   m_ObjectHideFlags: 0
@@ -350,7 +350,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 101
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.7924528, g: 0.73988616, b: 0.36258456, a: 0.105882354}
@@ -500,7 +500,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 101
+  m_SortingOrder: 102
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -562,7 +562,7 @@ MonoBehaviour:
   weapon: {fileID: 11400000, guid: 5e4b9560ddeaba84496d194378ab44d1, type: 2}
   heart: {fileID: 0}
   accessory: {fileID: 11400000, guid: ae6983f8916c037418df00f7fe92fb3e, type: 2}
-  testThought: {fileID: 11400000, guid: da9d741ef0878914c9d7b4352fcda569, type: 2}
+  testThought: {fileID: 11400000, guid: 1599944266bf5f34b88f65be7e12f146, type: 2}
 --- !u!114 &2006968051814620889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -601,7 +601,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &8784012674413471974
 CircleCollider2D:

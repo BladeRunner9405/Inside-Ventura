@@ -12,9 +12,9 @@ public enum Stat {
 public class PlayerStats : MonoBehaviour {
   private readonly Dictionary<Stat, List<StatModifier>> _modifiers = new();
 
-  private int Money { get; }
+  private int Money { get; } // Замыслы, игровая валюта
   private float MoveSpeed { get; }
-  private int Mana { get; }
+  private int Mana { get; } // Idea Points, тратятся активацией активируемых мыслей
 
   private float GetStat(Stat stat) {
     return 0;
