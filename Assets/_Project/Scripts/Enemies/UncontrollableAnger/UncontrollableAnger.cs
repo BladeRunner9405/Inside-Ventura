@@ -78,16 +78,22 @@ public class UncontrollableAnger : Enemy {
   // ReSharper disable once InconsistentNaming
   // Called from UA animation clip. Spawn the attack field.
   
-  private void UADoDamage() 
-  {
-      var diff = target.position - transform.position;
-      var rotZ = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-      var rot = Quaternion.Euler(0f, 0f, rotZ - 90f); // Поворачиваем волну к игроку
 
-      var attackObj = SimplePool.Instance.Spawn(waveAttackPrefab, transform.position, rot);
-      
-      attackObj.Initialize(damage, LayerMask.GetMask("Player"), 0f); 
-  }
+    private void UADoDamage() 
+    {
+        var diff = target.position - transform.position;
+        var rotZ = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+        var rot = Quaternion.Euler(0f, 0f, rotZ - 90f);
+
+        // Берем из пула Cherry Framework
+        var attackObj = GamePools.Hitboxes.Get(waveAttackPrefab, transform.position, rot);
+        
+        // Включаем
+        attackObj.gameObject.SetActive(true);
+        
+        // Инициализируем
+        attackObj.Initialize(damage, LayerMask.GetMask("Player"), 0f); 
+    }
 
   // ReSharper disable once InconsistentNaming
   // Called from UA animation clip.

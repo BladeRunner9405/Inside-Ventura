@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
-
-public abstract class AttackObject : MonoBehaviour 
+using CherryFramework.DependencyManager;
+public abstract class AttackObject : InjectMonoBehaviour 
 {
     [Header("Debug Info")]
     [SerializeField] protected int currentDamage;
@@ -9,9 +9,7 @@ public abstract class AttackObject : MonoBehaviour
     [SerializeField] protected float lifeTime;
     
     protected float spawnTime;
-
-    protected HashSet<Entity> hitEntities = new HashSet<Entity>();  // те, кого уже продамажили, чтобы не дамажить их постоянно
-
+    protected HashSet<Entity> hitEntities = new HashSet<Entity>();
 
     public virtual void Initialize(int damage, LayerMask layer, float timeToLive) 
     {
@@ -33,27 +31,23 @@ public abstract class AttackObject : MonoBehaviour
 
     protected virtual void TryDealDamage(Collider2D col) 
     {
-        if (((1 << col.gameObject.layer) & targetLayer) == 0) return; // сверяем маски
+        if (((1 << col.gameObject.layer) & targetLayer) == 0) return;
 
         if (col.TryGetComponent<Entity>(out var entity)) 
         {
-            if (!hitEntities.Contains(entity)) // не били ли мы его за текущую атаку
+            if (!hitEntities.Contains(entity)) 
             {
                 entity.TakeDamage(currentDamage);
                 hitEntities.Add(entity);
-                Debug.Log($"I hit {entity.name}");
                 OnEntityHit(entity);
             }
         }
     }
 
-    protected virtual void OnEntityHit(Entity entity) 
-    {
-        // ...
-    }
+    protected virtual void OnEntityHit(Entity entity) { }
 
     protected virtual void Despawn() 
     {
-        SimplePool.Instance.Despawn(gameObject); 
+        gameObject.SetActive(false); // свободный, если он просто выключен
     }
 }

@@ -17,10 +17,9 @@ public class SwordWeapon : Weapon
     [SerializeField] private float specialDamageMultiplier = 2f;
     [SerializeField] private float lungeDistance = 15f;
 
-    // Время жизни хитбокса. Если 0 — удар мгновенный (1 кадр).
-    // Если 0.1f — удар "висит" в воздухе одну десятую секунды.
+    [Tooltip("Время жизни хитбокса в секундах. 0 = мгновенно")]
     [SerializeField] private float hitboxActiveTime = 0.1f; 
-    
+
     protected override void Attack(Vector2 direction) 
     {
         UpdateCombo();
@@ -35,10 +34,10 @@ public class SwordWeapon : Weapon
         Vector2 playerPosition = player.transform.position;
         var dir = direction.normalized;
 
-        // Достаем хитбокс из пула
-        var attackObj = SimplePool.Instance.Spawn(sectorAttackPrefab, playerPosition, Quaternion.identity);
+        var attackObj = (SectorAttackObject)GamePools.Hitboxes.Get(sectorAttackPrefab, playerPosition, Quaternion.identity);
+        
+        attackObj.gameObject.SetActive(true);
 
-        // Инициализируем его параметрами
         attackObj.Initialize(
             damage: (int)damageAmount, 
             layer: enemyLayer, 
