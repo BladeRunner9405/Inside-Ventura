@@ -12,9 +12,13 @@ public class PlayerInventory : MonoBehaviour {
     }
   }
 
+  public bool CanAddThought() {
+    return thoughtBag.CanAddThought();
+  }
+
   public void AddThoughtToBag(Thought thought, int slotIndex = -1) {
     if (!thought) return;
-    thoughtBag.TryAddThought(thought);
+    thoughtBag.AddThought(thought);
   }
 
   public void RemoveThoughtFromBag(Thought thought) {
