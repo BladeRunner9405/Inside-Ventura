@@ -15,16 +15,19 @@ public class ThoughtBag : ScriptableObject {
     Clear();
   }
 
-  public bool TryAddThought(Thought thought) {
-    if (!thought) return false;
+  public bool CanAddThought() {
     if (thoughts.Count >= maxSize) {
-      Debug.Log("Не удалось добавить мысль: переполнение.");
+      Debug.Log("Нельзя добавить мысль: переполнение.");
       return false;
     }
+    return true;
+  }
+
+  public void AddThought(Thought thought) {
+    if (!thought) return;
 
     thoughts.Add(thought);
     OnThoughtsChanged?.Invoke();
-    return true;
   }
 
   public bool RemoveThought(Thought thought) {
