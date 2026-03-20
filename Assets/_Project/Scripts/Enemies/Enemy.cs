@@ -1,23 +1,36 @@
 using CherryFramework.DependencyManager;
 using UnityEngine;
+using UnityEngine.AI;
 
+[RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : Entity {
   public int damage;
   public bool isBoss;
 
-  [Inject] private PlayerAccessor _playerAccessor;
+  [Inject] protected PlayerAccessor PlayerAccessor;
+  protected NavMeshAgent Agent;
 
   protected void Start() {
-    var player = _playerAccessor.Player;
-    if (!player) {
-      Debug.LogWarning("Игрок не найден и не назначен врагу.", this);
-      return;
-    }
+    Agent = GetComponent<NavMeshAgent>();
 
-    TargetTo(player.transform);
+    // Otherwise the enemy gets teleported after being spawned.
+    Invoke(nameof(EnableAI), 0.01F);
+
+    Agent.updateRotation = false;
+    Agent.updateUpAxis = false;
+    Agent.speed = moveSpeed;
+
+    var player = PlayerAccessor.Player.transform;
+    TargetTo(player);
   }
 
-  private void FixedUpdate() {
-    if (target && !IsDead) Move((target.position - transform.position).normalized);
+  private void Update() {
+    if (Agent.enabled) {
+      Agent.SetDestination(target.position);
+    }
+  }
+
+  private void EnableAI() {
+    Agent.enabled = true;
   }
 }
