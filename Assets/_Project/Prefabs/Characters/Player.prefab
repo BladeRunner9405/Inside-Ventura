@@ -562,7 +562,7 @@ MonoBehaviour:
   weapon: {fileID: 11400000, guid: 5e4b9560ddeaba84496d194378ab44d1, type: 2}
   heart: {fileID: 0}
   accessory: {fileID: 11400000, guid: ae6983f8916c037418df00f7fe92fb3e, type: 2}
-  testThought: {fileID: 11400000, guid: 1599944266bf5f34b88f65be7e12f146, type: 2}
+  testThought: {fileID: 11400000, guid: ff98e578b9b01e346b3440a0a8ef3bde, type: 2}
 --- !u!114 &2006968051814620889
 MonoBehaviour:
   m_ObjectHideFlags: 0

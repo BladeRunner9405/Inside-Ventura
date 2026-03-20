@@ -6,9 +6,9 @@ using UnityEngine.AI;
 public class Enemy : Entity {
   public int damage;
   public bool isBoss;
+  protected NavMeshAgent Agent;
 
   [Inject] protected PlayerAccessor PlayerAccessor;
-  protected NavMeshAgent Agent;
 
   protected void Start() {
     Agent = GetComponent<NavMeshAgent>();
@@ -25,9 +25,7 @@ public class Enemy : Entity {
   }
 
   private void Update() {
-    if (Agent.enabled) {
-      Agent.SetDestination(target.position);
-    }
+    if (Agent.enabled) Agent.SetDestination(target.position);
   }
 
   private void EnableAI() {

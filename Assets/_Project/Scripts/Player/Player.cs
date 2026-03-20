@@ -1,20 +1,20 @@
 using System.Collections;
 using CherryFramework.DependencyManager;
 using UnityEngine;
-using DG.Tweening; // Не забудьте добавить, так как используется .DOMove и .SetEase
+
+// Не забудьте добавить, так как используется .DOMove и .SetEase
 
 public class Player : Entity {
+  private const float ShellDistance = 0.01f; // отступ, чтобы не врастать в стены
   [SerializeField] private ItemPickup itemPickup;
 
   [SerializeField] private PlayerInventory inventory;
+  private readonly RaycastHit2D[] _hitBuffer = new RaycastHit2D[16];
+  private ContactFilter2D _contactFilter;
 
   [Inject] private PlayerAccessor _playerAccessor;
   public PlayerInventory Inventory => inventory;
   public bool IsDashing { get; private set; }
-
-  private const float ShellDistance = 0.01f; // отступ, чтобы не врастать в стены
-  private ContactFilter2D _contactFilter;
-  private readonly RaycastHit2D[] _hitBuffer = new RaycastHit2D[16];
 
   protected override void Awake() {
     base.Awake();

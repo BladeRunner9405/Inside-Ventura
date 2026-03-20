@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb16b9229f35ba74e8be434d2d37334d, type: 3}
-  m_Name: AddWillPoints
+  m_Name: DivideDamage
   m_EditorClassIdentifier: Assembly-CSharp::ModifyStatEffect
-  description: 
-  statName: 0
-  modifierType: 0
-  coefficient: -0.5
+  description: x0.66 DMG
+  statName: 1
+  modifierType: 1
+  coefficient: 0.66

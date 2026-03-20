@@ -6,6 +6,7 @@ using UnityEngine;
 public enum StatName {
   Cooldown,
   Damage,
+  SpecialDamage,
   Mana
 }
 
@@ -15,14 +16,12 @@ public enum StatModifierType {
 }
 
 public class StatModifier {
-  public readonly Effect SourceEffect;
   public readonly StatModifierType Type;
   public readonly float Value;
 
-  public StatModifier(float value, StatModifierType type, Effect sourceEffect) {
-    Value = value;
+  public StatModifier(StatModifierType type, float value) {
     Type = type;
-    SourceEffect = sourceEffect;
+    Value = value;
   }
 }
 
@@ -43,7 +42,8 @@ public class ModifiableStat {
   public float Value {
     get {
       var addSum = modifiers.Where(m => m.Type == StatModifierType.Add).Sum(m => m.Value);
-      var multiplyFactor = 1f + modifiers.Where(m => m.Type == StatModifierType.Multiply).Sum(m => m.Value);
+      var multiplyFactor = modifiers.Where(m => m.Type == StatModifierType.Multiply)
+        .Aggregate(1f, (current, m) => current * m.Value);
       return (baseValue + addSum) * multiplyFactor;
     }
   }

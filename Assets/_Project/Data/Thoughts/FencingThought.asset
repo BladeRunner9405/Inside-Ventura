@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: FencingThought
   m_EditorClassIdentifier: Assembly-CSharp::Thought
   thoughtName: "\u041C\u044B\u0441\u043B\u044C \u043E \u0424\u0438\u0445\u0442\u043E\u0432\u0430\u043D\u0438\u0438"
-  effects: []
+  effects:
+  - {fileID: 11400000, guid: a5bd5e67f132b8f40983c9d7ad17aecf, type: 2}
+  - {fileID: 11400000, guid: 2fd054db804a21a42ad3c8cce57624fa, type: 2}
   inventoryIcon: {fileID: 0}
   rarityLevel: 1
-  thoughtContent: "\u0430\u044D\u0430\u044D\u044D\u0430\u044D\u0430\u044D\u0430\u044D\u0430\u044D\u0430\u044D\u044D\u0430\u044D\u0430\u044D\u0430"
   type: 0

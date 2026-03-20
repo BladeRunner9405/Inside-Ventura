@@ -3,8 +3,8 @@ using CherryFramework.DependencyManager;
 using UnityEngine;
 
 public abstract class Entity : InjectMonoBehaviour {
-  [SerializeField] private int health;
-  [SerializeField] private int maxHealth = 100;
+  [SerializeField] private float health;
+  [SerializeField] private float maxHealth = 100;
   [SerializeField] private bool isDead;
 
   [SerializeField] private bool isInvulnerable;
@@ -16,12 +16,12 @@ public abstract class Entity : InjectMonoBehaviour {
   protected Collider2D col;
   protected Rigidbody2D rb;
 
-  public int Health {
+  public float Health {
     get => health;
     protected set => health = Mathf.Clamp(value, 0, MaxHealth);
   }
 
-  public int MaxHealth {
+  public float MaxHealth {
     get => maxHealth;
     protected set {
       maxHealth = Mathf.Max(1, value);
@@ -44,14 +44,10 @@ public abstract class Entity : InjectMonoBehaviour {
     isInvulnerable = invulnerable;
   }
 
-  private event Action<int> OnTakeDamage;
+  private event Action<float> OnTakeDamage;
   public event Action OnDeath;
 
-  public void Attack(Player player) {
-    // ...
-  }
-
-  public void TakeDamage(int amount) {
+  public void TakeDamage(float amount) {
     if (IsDead || isInvulnerable) return;
     if (amount <= 0) return;
 
