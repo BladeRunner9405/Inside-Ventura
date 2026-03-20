@@ -17,26 +17,22 @@ MonoBehaviour:
   slotsCount: 3
   equippedThoughts: []
   damage:
-    baseValue: 3
+    baseValue: 10
   attackSpeed:
     baseValue: 0.2
   chainCount:
     baseValue: 4
   chainSpeedMultiplier:
-    baseValue: 1.2
-  comboWindow:
-    baseValue: 0.5
+    baseValue: 1.5
+  comboWindow: 0.5
+  sectorAttackPrefab: {fileID: 2462862026025648702, guid: 1f5f4e86c05ebe64bbdcc71104438f4e, type: 3}
   normalAngle: 90
   normalRange: 2
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 320
   specialAngle: 30
   specialRange: 5
-  specialDamageMultiplier: 1.3333334
-  lungeDistance: 1.5
-  lungeDuration: 0.1
-  drawSector: 1
-  debugDuration: 0.2
-  normalColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  specialColor: {r: 1, g: 0, b: 0, a: 1}
+  specialDamageMultiplier: 2
+  lungeDistance: 15
+  hitboxActiveTime: 0.1
