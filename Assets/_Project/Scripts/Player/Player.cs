@@ -67,29 +67,6 @@ public class Player : Entity {
     ResolveOverlap();
   }
 
-  public void Dash(Vector2 direction, float distance, float duration) {
-    if (direction == Vector2.zero) direction = Vector2.right;
-
-    var startPos = transform.position;
-    var originalDistance = distance;
-    var actualDistance = CalculateSafeDistance(direction, originalDistance);
-
-    // если упёрлись в стену
-    if (actualDistance <= 0f)
-      return;
-
-    var targetPos = startPos + (Vector3)direction * actualDistance;
-
-    var actualDuration = duration * (actualDistance / originalDistance);
-
-    SetInvulnerable(true);
-
-    // сам дэш, Ease.OutQuad - анимация начинается быстро и замедляется к концу
-    transform.DOMove(targetPos, actualDuration)
-      .SetEase(Ease.OutQuad)
-      .OnComplete(() => SetInvulnerable(false));
-  }
-
   public void Move(Vector2 direction) {
     if (direction.sqrMagnitude < 0.001f) return;
 
