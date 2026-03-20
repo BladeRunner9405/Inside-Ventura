@@ -5,7 +5,8 @@ using UnityEngine;
 
 public enum StatName {
   Cooldown,
-  Damage
+  Damage,
+  Mana
 }
 
 public enum StatModifierType {
@@ -30,7 +31,7 @@ public class ModifiableStat {
   [SerializeField] private float baseValue;
   private List<StatModifier> modifiers = new();
 
-  public ModifiableStat(float baseValue) {
+  public ModifiableStat(float baseValue = 0f) {
     BaseValue = baseValue;
   }
 

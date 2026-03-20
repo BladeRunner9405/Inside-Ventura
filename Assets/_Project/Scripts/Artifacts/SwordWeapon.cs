@@ -13,6 +13,7 @@ public class SwordWeapon : Weapon {
   [SerializeField] private float specialRange = 5f;
   [SerializeField] private float specialDamageMultiplier = 2f;
   [SerializeField] private float lungeDistance = 15f;
+  [SerializeField] private float lungeDuration = 1f;
 
   [Header("Debug")] [SerializeField] private bool drawSector = true;
   [SerializeField] private float debugDuration = 0.2f;
@@ -52,7 +53,7 @@ public class SwordWeapon : Weapon {
 
     var player = PlayerAccessor.Player;
     if (isSpecial) {
-      player.Move(dir * lungeDistance);
+      player.Dash(dir, lungeDistance, lungeDuration);
       currentChainCount = 0;
     }
 

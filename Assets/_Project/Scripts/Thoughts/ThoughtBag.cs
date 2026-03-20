@@ -20,6 +20,7 @@ public class ThoughtBag : ScriptableObject {
       Debug.Log("Нельзя добавить мысль: переполнение.");
       return false;
     }
+
     return true;
   }
 

@@ -19,12 +19,13 @@ MonoBehaviour:
   damage:
     baseValue: 3
   attackSpeed:
-    baseValue: 0.6
+    baseValue: 0.2
   chainCount:
     baseValue: 4
   chainSpeedMultiplier:
     baseValue: 1.2
-  comboWindow: 1
+  comboWindow:
+    baseValue: 0.5
   normalAngle: 90
   normalRange: 2
   enemyLayer:
@@ -32,8 +33,9 @@ MonoBehaviour:
     m_Bits: 64
   specialAngle: 30
   specialRange: 5
-  specialDamageMultiplier: 2
-  lungeDistance: 15
+  specialDamageMultiplier: 1.3333334
+  lungeDistance: 1.5
+  lungeDuration: 0.1
   drawSector: 1
   debugDuration: 0.2
   normalColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}

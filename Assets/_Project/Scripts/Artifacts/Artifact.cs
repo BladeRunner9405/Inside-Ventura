@@ -17,7 +17,7 @@ public abstract class Artifact : ScriptableObject {
 
   public void EquipThought(Thought thought, int slotIndex) {
     if (slotIndex < 0 || slotIndex >= slotsCount) return;
-    
+
     if (!thought.HasRightType(this) || equippedThoughts.Contains(thought)) return;
 
     while (equippedThoughts.Count <= slotIndex)
@@ -56,5 +56,7 @@ public abstract class Artifact : ScriptableObject {
     }
   }
 
-  public virtual ModifiableStat GetStat(StatName statName) => null;
+  public virtual ModifiableStat GetStat(StatName statName) {
+    return null;
+  }
 }

@@ -15,6 +15,7 @@ public class Thought : ScriptableObject {
 
   [SerializeReference] private Effect[] effects;
   [SerializeField] private Sprite inventoryIcon;
+
   [SerializeField] private int rarityLevel = 1;
   // [SerializeField] private string thoughtContent;
 
