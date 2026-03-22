@@ -4,7 +4,8 @@ public abstract class Weapon : Artifact {
   [SerializeField] protected ModifiableStat damage = new(3f);
   [SerializeField] protected ModifiableStat attackSpeed = new(0.2f);
   [SerializeField] protected ModifiableStat chainCount = new(4f);
-  [SerializeField] protected ModifiableStat chainSpeedMultiplier = new(1.5f);
+  [SerializeField] protected ModifiableStat chainSpeedMultiplier = new(1.2f);
+  [SerializeField] protected ModifiableStat chainSpeedAddition = new();
   [SerializeField] protected ModifiableStat comboWindow = new(0.5f);
 
   [Header("Critical Hit")] [SerializeField]
@@ -20,6 +21,7 @@ public abstract class Weapon : Artifact {
   public float AttackSpeed => attackSpeed.Value;
   public int ChainCount => Mathf.RoundToInt(chainCount.Value);
   public float ChainSpeedMultiplier => chainSpeedMultiplier.Value;
+  public float ChainSpeedAddition => chainSpeedAddition.Value;
   public float ComboWindow => comboWindow.Value;
   public float CritChance => critChance.Value;
   public float CritMultiplier => critMultiplier.Value;
@@ -27,6 +29,10 @@ public abstract class Weapon : Artifact {
   public override ModifiableStat GetStat(StatName statName) {
     if (statName == StatName.Damage)
       return damage;
+    if (statName == StatName.ChainCount)
+      return chainCount;
+    if (statName == StatName.ChainSpeedAddition)
+      return chainSpeedAddition;
     return base.GetStat(statName);
   }
 
@@ -55,7 +61,9 @@ public abstract class Weapon : Artifact {
 
     ++currentChainCount;
 
-    if (tooLateForCombo || currentChainCount == ChainCount)
+    if (currentChainCount == ChainCount)
+      cooldown = AttackSpeed * ChainSpeedMultiplier + ChainSpeedAddition;
+    else if (tooLateForCombo)
       cooldown = AttackSpeed * ChainSpeedMultiplier;
     else
       cooldown = AttackSpeed;

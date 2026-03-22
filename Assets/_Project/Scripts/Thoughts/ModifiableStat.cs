@@ -6,6 +6,8 @@ using UnityEngine;
 public enum StatName {
   Cooldown,
   Damage,
+  ChainCount,
+  ChainSpeedAddition,
   SpecialDamage,
   Mana
 }
