@@ -7,7 +7,11 @@ public class ChangeStatOnceEffect : Effect {
   [SerializeField] private StatOperationType operationType = StatOperationType.Add;
   [SerializeField] private float coefficient = 5f;
 
-  private bool _wasEquipped = false;
+  private bool _wasEquipped;
+
+  void OnEnable() {
+    _wasEquipped = false;
+  }
 
   public override void OnEquipThought(Artifact artifact) {
     if (_wasEquipped) return;

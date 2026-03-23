@@ -7,7 +7,8 @@ public class PlayerEquipment : MonoBehaviour {
   [SerializeField] private Heart heart;
   [SerializeField] private Accessory accessory;
 
-  [Header("Debug")] [SerializeField] private Thought testThought;
+  [Header("Debug")]
+  [SerializeField] private Thought testThought;
 
   public Weapon Weapon => weapon;
   public Heart Heart => heart;
@@ -57,23 +58,34 @@ public class PlayerEquipment : MonoBehaviour {
     accessory?.TryUseAbility(direction);
   }
 
+
+
+  // DebugDebugDebugDebugDebugDebugDebugDebugDebugDebugDebugDebugDebugDebugDebugDebug
+
   [ContextMenu("Экипировать тестовую мысль в 0-ой слот сердца")]
-  private void DebugEquipThoughtToHeartSlot0() {
+  public void DebugEquipThoughtToHeartSlot0() {
+    if (heart.HasThought(testThought)) {
+      UnequipThought(heart, 0);
+      return;
+    }
     EquipThought(heart, testThought, 0);
   }
 
   [ContextMenu("Экипировать тестовую мысль в 0-ой слот аксессуара")]
-  private void DebugEquipThoughtToAccessorySlot0() {
+  public void DebugEquipThoughtToAccessorySlot0() {
+    if (heart.HasThought(testThought)) {
+      UnequipThought(accessory, 0);
+      return;
+    }
     EquipThought(accessory, testThought, 0);
   }
 
   [ContextMenu("Экипировать тестовую мысль в 0-ой слот оружия")]
-  private void DebugEquipThoughtToWeaponSlot0() {
+  public void DebugEquipThoughtToWeaponSlot0() {
+    if (heart.HasThought(testThought)) {
+      UnequipThought(weapon, 0);
+      return;
+    }
     EquipThought(weapon, testThought, 0);
-  }
-
-  [ContextMenu("Снять мысль с 0-ого слота оружия")]
-  private void DebugUnequipThoughtToWeaponSlot0() {
-    UnequipThought(weapon, 0);
   }
 }

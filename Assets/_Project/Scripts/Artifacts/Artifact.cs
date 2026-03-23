@@ -23,10 +23,14 @@ public abstract class Artifact : ScriptableObject {
     RestoreThoughts();
   }
 
+  public bool HasThought(Thought thought) {
+    return equippedThoughts.Contains(thought);
+  }
+
   public void EquipThought(Thought thought, int slotIndex) {
     if (slotIndex < 0 || slotIndex >= slotsCount) return;
 
-    if (!thought.HasRightType(this) || equippedThoughts.Contains(thought)) return;
+    if (!thought.HasRightType(this) || HasThought(thought)) return;
 
     while (equippedThoughts.Count <= slotIndex)
       equippedThoughts.Add(null);

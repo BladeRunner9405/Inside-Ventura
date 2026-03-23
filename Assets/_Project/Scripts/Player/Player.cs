@@ -9,11 +9,14 @@ public class Player : Entity {
   [SerializeField] private ItemPickup itemPickup;
 
   [SerializeField] private PlayerInventory inventory;
+  [SerializeField] private PlayerEquipment equipment;
   private readonly RaycastHit2D[] _hitBuffer = new RaycastHit2D[16];
   private ContactFilter2D _contactFilter;
 
   [Inject] private PlayerAccessor _playerAccessor;
   public PlayerInventory Inventory => inventory;
+  public PlayerEquipment Equipment => equipment;
+
   public bool IsDashing { get; private set; }
 
   protected override void Awake() {
@@ -27,7 +30,6 @@ public class Player : Entity {
   protected override void OnEnable() {
     base.OnEnable();
     _playerAccessor.RegisterPlayer(this);
-    Debug.Log("asfsdafasdf");
   }
 
   private void OnDisable() {
