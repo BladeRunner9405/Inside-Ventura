@@ -23,7 +23,7 @@ public abstract class Weapon : Artifact {
   public float ChainSpeedMultiplier => chainSpeedMultiplier.Value;
   public float ChainSpeedAddition => chainSpeedAddition.Value;
   public float ComboWindow => comboWindow.Value;
-  public float CritChance => critChance.Value;
+  public float CritChance => Mathf.Min(1f, critChance.Value);
   public float CritMultiplier => critMultiplier.Value;
 
   public override ModifiableStat GetStat(StatName statName) {

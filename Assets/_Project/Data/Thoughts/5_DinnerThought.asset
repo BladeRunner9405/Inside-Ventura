@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 390cfaa48001e4b4a93a13d157a7a4c2, type: 3}
-  m_Name: BreathThought
+  m_Name: 5_DinnerThought
   m_EditorClassIdentifier: Assembly-CSharp::Thought
-  thoughtName: "\u041C\u044B\u0441\u043B\u044C \u043E \u0414\u044B\u0445\u0430\u043D\u0438\u0438"
-  effects:
-  - {fileID: 11400000, guid: b2de839dc9957854183b1d077da079cf, type: 2}
+  thoughtName: "\u041C\u044B\u0441\u043B\u044C \u043E \u0421\u044B\u0442\u043D\u043E\u043C
+    \u041E\u0431\u0435\u0434\u0435"
+  effects: []
   inventoryIcon: {fileID: 0}
   rarityLevel: 1
-  type: 2
+  thoughtContent: "\u0430\u044D\u0430\u044D\u044D\u0430\u044D\u0430\u044D\u0430\u044D\u0430\u044D\u0430\u044D\u044D\u0430\u044D\u0430\u044D\u0430"
+  type: 1

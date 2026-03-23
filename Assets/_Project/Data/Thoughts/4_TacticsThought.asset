@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 390cfaa48001e4b4a93a13d157a7a4c2, type: 3}
-  m_Name: TacticsThought
+  m_Name: 4_TacticsThought
   m_EditorClassIdentifier: Assembly-CSharp::Thought
   thoughtName: "\u041C\u044B\u0441\u043B\u044C \u043E \u0422\u0430\u043A\u0442\u0438\u043A\u0435"
-  effects: []
+  effects:
+  - {fileID: 11400000, guid: a816240f7f3bd8048813625247e7d502, type: 2}
+  - {fileID: 11400000, guid: 7761eb9a647cbce4d9af953a11ac4ac8, type: 2}
   inventoryIcon: {fileID: 0}
   rarityLevel: 1
-  thoughtContent: 
   type: 0

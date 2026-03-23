@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 390cfaa48001e4b4a93a13d157a7a4c2, type: 3}
-  m_Name: FencingThought
+  m_Name: 1_BreathThought
   m_EditorClassIdentifier: Assembly-CSharp::Thought
-  thoughtName: "\u041C\u044B\u0441\u043B\u044C \u043E \u0424\u0438\u0445\u0442\u043E\u0432\u0430\u043D\u0438\u0438"
+  thoughtName: "\u041C\u044B\u0441\u043B\u044C \u043E \u0414\u044B\u0445\u0430\u043D\u0438\u0438"
   effects:
-  - {fileID: 11400000, guid: a5bd5e67f132b8f40983c9d7ad17aecf, type: 2}
-  - {fileID: 11400000, guid: 2fd054db804a21a42ad3c8cce57624fa, type: 2}
+  - {fileID: 11400000, guid: b2de839dc9957854183b1d077da079cf, type: 2}
   inventoryIcon: {fileID: 0}
   rarityLevel: 1
-  type: 0
+  type: 2

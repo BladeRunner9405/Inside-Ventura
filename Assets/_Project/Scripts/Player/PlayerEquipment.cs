@@ -57,6 +57,10 @@ public class PlayerEquipment : MonoBehaviour {
     accessory?.TryUseAbility(direction);
   }
 
+  [ContextMenu("Экипировать тестовую мысль в 0-ой слот сердца")]
+  private void DebugEquipThoughtToHeartSlot0() {
+    EquipThought(heart, testThought, 0);
+  }
 
   [ContextMenu("Экипировать тестовую мысль в 0-ой слот аксессуара")]
   private void DebugEquipThoughtToAccessorySlot0() {

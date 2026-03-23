@@ -24,6 +24,8 @@ MonoBehaviour:
     baseValue: 4
   chainSpeedMultiplier:
     baseValue: 1.2
+  chainSpeedAddition:
+    baseValue: 0.2
   comboWindow:
     baseValue: 0.5
   critChance:

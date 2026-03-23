@@ -9,19 +9,20 @@ public class ModifyStatEffect : Effect {
   private StatModifier _modifier;
 
   public override void OnEquipThought(Artifact artifact) {
-    var oldValue = artifact.GetStat(statName).Value; // чисто для дебага
-
     _modifier = new StatModifier(modifierType, coefficient);
-    artifact.GetStat(statName)?.AddModifier(_modifier);
 
-    Debug.Log($"Изменен {statName}: был {oldValue}, стал {artifact.GetStat(statName)?.Value}");
+    var stat = GetStat(statName, artifact);
+
+    var oldValue = stat?.Value; // чисто для дебага
+    stat?.AddModifier(_modifier);
+    Debug.Log($"Изменен {statName}: был {oldValue}, стал {stat?.Value}");
   }
 
   public override void OnUnequipThought(Artifact artifact) {
-    var oldValue = artifact.GetStat(statName).Value; // чисто для дебага
+    var stat = GetStat(statName, artifact);
 
-    artifact.GetStat(statName)?.RemoveModifier(_modifier);
-
-    Debug.Log($"Изменен {statName}: был {oldValue}, стал {artifact.GetStat(statName)?.Value}");
+    var oldValue = stat?.Value; // чисто для дебага
+    stat?.RemoveModifier(_modifier);
+    Debug.Log($"Изменен {statName}: был {oldValue}, стал {stat?.Value}");
   }
 }

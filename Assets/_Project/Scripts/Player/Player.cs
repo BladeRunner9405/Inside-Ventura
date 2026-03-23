@@ -27,6 +27,7 @@ public class Player : Entity {
   protected override void OnEnable() {
     base.OnEnable();
     _playerAccessor.RegisterPlayer(this);
+    Debug.Log("asfsdafasdf");
   }
 
   private void OnDisable() {

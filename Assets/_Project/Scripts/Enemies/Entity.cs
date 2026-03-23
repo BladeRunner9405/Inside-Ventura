@@ -1,13 +1,16 @@
 using System;
 using CherryFramework.DependencyManager;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public abstract class Entity : InjectMonoBehaviour {
   [SerializeField] private float health;
-  [SerializeField] private float maxHealth = 100;
+  [SerializeField] private ModifiableStat maxHealth = new(100f);
   [SerializeField] private bool isDead;
 
   [SerializeField] private bool isInvulnerable;
+
+  [SerializeField] private ModifiableStat dodgeChance = new();
 
   public Transform target; // Transform, на кого смотрит Entity
 
@@ -21,22 +24,25 @@ public abstract class Entity : InjectMonoBehaviour {
     protected set => health = Mathf.Clamp(value, 0, MaxHealth);
   }
 
-  public float MaxHealth {
-    get => maxHealth;
-    protected set {
-      maxHealth = Mathf.Max(1, value);
-      if (health > maxHealth)
-        health = maxHealth;
-    }
-  }
+  public float MaxHealth => maxHealth.Value;
 
   public bool IsDead => isDead;
+
+  public float DodgeChance => Mathf.Min(1f, dodgeChance.Value);
+
+  public ModifiableStat GetStat(StatName statName) {
+    if (statName == StatName.MaxHealth)
+      return maxHealth;
+    if (statName == StatName.DodgeChance)
+      return dodgeChance;
+    return null;
+  }
 
   protected virtual void Awake() {
     rb = GetComponent<Rigidbody2D>();
     col = GetComponent<Collider2D>();
 
-    health = maxHealth;
+    health = MaxHealth;
     isDead = false;
   }
 
@@ -51,14 +57,17 @@ public abstract class Entity : InjectMonoBehaviour {
     if (IsDead || isInvulnerable) return;
     if (amount <= 0) return;
 
-    Health -= amount;
+    var hasDodged = Random.value <= DodgeChance;
+    var finalAmount = hasDodged ? 0f : amount;
 
-    OnTakeDamage?.Invoke(amount);
+    Health -= finalAmount;
+
+    OnTakeDamage?.Invoke(finalAmount);
 
     if (Health == 0)
       Die();
 
-    Debug.Log($"{gameObject.name} получил {amount} урона. Его здоровье - {Health}/{maxHealth}");
+    Debug.Log($"{gameObject.name} получил {finalAmount} урона. Его здоровье - {Health}/{maxHealth}");
   }
 
   public void Die() {

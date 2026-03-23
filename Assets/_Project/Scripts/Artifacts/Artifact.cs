@@ -11,6 +11,10 @@ public abstract class Artifact : ScriptableObject {
 
   public int SlotsCount => slotsCount;
 
+  public virtual ModifiableStat GetStat(StatName statName) {
+    return null;
+  }
+
   public virtual void Initialize() {
     RestoreThoughts();
   }
@@ -54,9 +58,5 @@ public abstract class Artifact : ScriptableObject {
       if (thought)
         thought.OnEquip(this);
     }
-  }
-
-  public virtual ModifiableStat GetStat(StatName statName) {
-    return null;
   }
 }

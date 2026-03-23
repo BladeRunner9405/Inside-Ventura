@@ -8,10 +8,4 @@ public class PlayerStats : MonoBehaviour {
   public float Money => money.Value;
   public float MoveSpeed => moveSpeed.Value;
   public float Mana => mana.Value;
-
-  public ModifiableStat GetStat(StatName statName) {
-    if (statName == StatName.Mana)
-      return mana;
-    return null;
-  }
 }

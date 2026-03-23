@@ -9,7 +9,8 @@ public enum StatName {
   ChainCount,
   ChainSpeedAddition,
   SpecialDamage,
-  Mana
+  MaxHealth,
+  DodgeChance
 }
 
 public enum StatModifierType {

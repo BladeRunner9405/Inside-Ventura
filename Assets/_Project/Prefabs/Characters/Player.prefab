@@ -540,9 +540,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   health: 0
-  maxHealth: 100
+  maxHealth:
+    baseValue: 100
   isDead: 0
   isInvulnerable: 0
+  dodgeChance:
+    baseValue: 0
   target: {fileID: 1066906017858410233}
   moveSpeed: 5
   itemPickup: {fileID: 3745830094519559823}
@@ -560,9 +563,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerEquipment
   weapon: {fileID: 11400000, guid: 5e4b9560ddeaba84496d194378ab44d1, type: 2}
-  heart: {fileID: 0}
+  heart: {fileID: 11400000, guid: 5e36adab51773824ba07752b11df5116, type: 2}
   accessory: {fileID: 11400000, guid: ae6983f8916c037418df00f7fe92fb3e, type: 2}
-  testThought: {fileID: 11400000, guid: 1a8de9b8c77d4c64ea7c73777c15c3ba, type: 2}
+  testThought: {fileID: 11400000, guid: d4b3892ed89d0a54bbd1d8713562ebfd, type: 2}
 --- !u!114 &2006968051814620889
 MonoBehaviour:
   m_ObjectHideFlags: 0

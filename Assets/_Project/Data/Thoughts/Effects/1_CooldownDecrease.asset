@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fb16b9229f35ba74e8be434d2d37334d, type: 3}
-  m_Name: DecreaseCooldown
+  m_Name: 1_CooldownDecrease
   m_EditorClassIdentifier: Assembly-CSharp::ModifyStatEffect
   description: "-0.5\u0441 \u043F\u0435\u0440\u0435\u0437\u0430\u0440\u044F\u0434\u043A\u0438
     \u0430\u0440\u0442\u0435\u0444\u0430\u043A\u0442\u0430"
