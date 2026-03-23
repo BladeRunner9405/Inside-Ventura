@@ -7,8 +7,8 @@ public abstract class Accessory : Artifact {
 
   public float Cooldown => cooldown.Value;
 
-  public override ModifiableStat GetStat(StatName statName) {
-    if (statName == StatName.Cooldown)
+  public override ModifiableStat GetStat(ModifiableStatName statName) {
+    if (statName == ModifiableStatName.Cooldown)
       return cooldown;
     return base.GetStat(statName);
   }

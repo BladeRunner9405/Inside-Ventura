@@ -47,8 +47,8 @@ public class Player : Entity {
 
   private IEnumerator DashCoroutine(Vector2 direction, float distance, float duration) {
     IsDashing = true;
-    var originalSpeed = moveSpeed;
-    moveSpeed = distance / duration;
+    var originalSpeed = MoveSpeed;
+    MoveSpeed = distance / duration;
 
     SetInvulnerable(true);
 
@@ -61,7 +61,7 @@ public class Player : Entity {
       yield return new WaitForFixedUpdate();
     }
 
-    moveSpeed = originalSpeed;
+    MoveSpeed = originalSpeed;
     SetInvulnerable(false);
     IsDashing = false;
 
@@ -71,7 +71,7 @@ public class Player : Entity {
   public void Move(Vector2 direction) {
     if (direction.sqrMagnitude < 0.001f) return;
 
-    var deltaMove = direction * moveSpeed * Time.fixedDeltaTime;
+    var deltaMove = direction * MoveSpeed * Time.fixedDeltaTime;
 
     ResolveOverlap(); // проверка уже внутри стены
 

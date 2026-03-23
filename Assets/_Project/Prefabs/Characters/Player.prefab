@@ -539,9 +539,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be0400240422d9b41adecce1cd943b17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
-  health: 0
+  health:
+    baseValue: 0
   maxHealth:
-    baseValue: 100
+    baseValue: 6
   isDead: 0
   isInvulnerable: 0
   dodgeChance:

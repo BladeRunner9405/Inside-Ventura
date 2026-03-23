@@ -18,7 +18,7 @@ public class Enemy : Entity {
 
     Agent.updateRotation = false;
     Agent.updateUpAxis = false;
-    Agent.speed = moveSpeed;
+    Agent.speed = MoveSpeed;
 
     var player = PlayerAccessor.Player.transform;
     TargetTo(player);

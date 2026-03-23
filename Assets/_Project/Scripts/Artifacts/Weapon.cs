@@ -26,12 +26,12 @@ public abstract class Weapon : Artifact {
   public float CritChance => Mathf.Min(1f, critChance.Value);
   public float CritMultiplier => critMultiplier.Value;
 
-  public override ModifiableStat GetStat(StatName statName) {
-    if (statName == StatName.Damage)
+  public override ModifiableStat GetStat(ModifiableStatName statName) {
+    if (statName == ModifiableStatName.Damage)
       return damage;
-    if (statName == StatName.ChainCount)
+    if (statName == ModifiableStatName.ChainCount)
       return chainCount;
-    if (statName == StatName.ChainSpeedAddition)
+    if (statName == ModifiableStatName.ChainSpeedAddition)
       return chainSpeedAddition;
     return base.GetStat(statName);
   }

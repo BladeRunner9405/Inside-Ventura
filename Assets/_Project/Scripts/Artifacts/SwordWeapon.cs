@@ -23,8 +23,8 @@ public class SwordWeapon : Weapon {
 
   public float SpecialDamage => specialDamage.Value;
 
-  public override ModifiableStat GetStat(StatName statName) {
-    if (statName == StatName.SpecialDamage)
+  public override ModifiableStat GetStat(ModifiableStatName statName) {
+    if (statName == ModifiableStatName.SpecialDamage)
       return specialDamage;
     return base.GetStat(statName);
   }

@@ -11,7 +11,11 @@ public abstract class Artifact : ScriptableObject {
 
   public int SlotsCount => slotsCount;
 
-  public virtual ModifiableStat GetStat(StatName statName) {
+  public virtual ModifiableStat GetStat(ModifiableStatName statName) {
+    return null;
+  }
+
+  public virtual DynamicStat GetStat(DynamicStatName statName) {
     return null;
   }
 

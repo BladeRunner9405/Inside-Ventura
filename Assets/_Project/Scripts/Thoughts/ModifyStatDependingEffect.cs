@@ -2,12 +2,12 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "ModifyStatDependingEffect", menuName = "Inside-Ventura/Effects/ModifyStatDependingEffect")]
 public class ModifyStatDependingEffect : Effect {
-  [SerializeField] private StatName statName;
-  [SerializeField] private StatModifierType modifierType = StatModifierType.Add;
+  [SerializeField] private ModifiableStatName statName;
+  [SerializeField] private StatOperationType operationType = StatOperationType.Add;
 
   [Header("Source")]
-  [SerializeField] private StatName sourceStatName;
-  [SerializeField] private StatModifierType sourceModifierType = StatModifierType.Multiply;
+  [SerializeField] private ModifiableStatName sourceStatName;
+  [SerializeField] private StatOperationType sourceOperationType = StatOperationType.Multiply;
   [SerializeField] private float sourceCoefficient = 1.2f;
   private ModifiableStat _coefficient;
 
@@ -18,9 +18,9 @@ public class ModifyStatDependingEffect : Effect {
     if (sourceStat == null) return;
 
     _coefficient = new ModifiableStat(sourceStat.Value);
-    _coefficient.AddModifier(new StatModifier(sourceModifierType, sourceCoefficient));
+    _coefficient.AddModifier(new StatModifier(sourceOperationType, sourceCoefficient));
 
-    _modifier = new StatModifier(modifierType, _coefficient.Value);
+    _modifier = new StatModifier(operationType, _coefficient.Value);
 
     var stat = GetStat(statName, artifact);
 

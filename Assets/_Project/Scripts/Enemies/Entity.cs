@@ -4,7 +4,7 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 public abstract class Entity : InjectMonoBehaviour {
-  [SerializeField] private float health;
+  [SerializeField] private DynamicStat health = new();
   [SerializeField] private ModifiableStat maxHealth = new(100f);
   [SerializeField] private bool isDead;
 
@@ -14,14 +14,14 @@ public abstract class Entity : InjectMonoBehaviour {
 
   public Transform target; // Transform, на кого смотрит Entity
 
-  public float moveSpeed = 5f;
+  [SerializeField] private ModifiableStat moveSpeed = new(5f);
 
   protected Collider2D col;
   protected Rigidbody2D rb;
 
   public float Health {
-    get => health;
-    protected set => health = Mathf.Clamp(value, 0, MaxHealth);
+    get => health.BaseValue;
+    set => health.BaseValue = value;
   }
 
   public float MaxHealth => maxHealth.Value;
@@ -30,11 +30,24 @@ public abstract class Entity : InjectMonoBehaviour {
 
   public float DodgeChance => Mathf.Min(1f, dodgeChance.Value);
 
-  public ModifiableStat GetStat(StatName statName) {
-    if (statName == StatName.MaxHealth)
+  public float MoveSpeed {
+    get => moveSpeed.Value;
+    set => moveSpeed.BaseValue = value;
+  }
+
+  public ModifiableStat GetStat(ModifiableStatName statName) {
+    if (statName == ModifiableStatName.MaxHealth)
       return maxHealth;
-    if (statName == StatName.DodgeChance)
+    if (statName == ModifiableStatName.DodgeChance)
       return dodgeChance;
+    if (statName == ModifiableStatName.MoveSpeed)
+      return moveSpeed;
+    return null;
+  }
+
+  public DynamicStat GetStat(DynamicStatName statName) {
+    if (statName == DynamicStatName.Health)
+      return health;
     return null;
   }
 
@@ -42,7 +55,7 @@ public abstract class Entity : InjectMonoBehaviour {
     rb = GetComponent<Rigidbody2D>();
     col = GetComponent<Collider2D>();
 
-    health = MaxHealth;
+    Health = MaxHealth;
     isDead = false;
   }
 

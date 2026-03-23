@@ -3,26 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public enum StatName {
+// модфифицируемые статы:
+public enum ModifiableStatName {
   Cooldown,
   Damage,
   ChainCount,
   ChainSpeedAddition,
   SpecialDamage,
   MaxHealth,
-  DodgeChance
+  DodgeChance,
+  MoveSpeed
 }
 
-public enum StatModifierType {
+public enum StatOperationType {
   Add,
   Multiply
 }
 
 public class StatModifier {
-  public readonly StatModifierType Type;
+  public readonly StatOperationType Type;
   public readonly float Value;
 
-  public StatModifier(StatModifierType type, float value) {
+  public StatModifier(StatOperationType type, float value) {
     Type = type;
     Value = value;
   }
@@ -44,8 +46,8 @@ public class ModifiableStat {
 
   public float Value {
     get {
-      var addSum = modifiers.Where(m => m.Type == StatModifierType.Add).Sum(m => m.Value);
-      var multiplyFactor = modifiers.Where(m => m.Type == StatModifierType.Multiply)
+      var addSum = modifiers.Where(m => m.Type == StatOperationType.Add).Sum(m => m.Value);
+      var multiplyFactor = modifiers.Where(m => m.Type == StatOperationType.Multiply)
         .Aggregate(1f, (current, m) => current * m.Value);
       return (baseValue + addSum) * multiplyFactor;
     }
