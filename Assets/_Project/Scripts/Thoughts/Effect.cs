@@ -18,6 +18,9 @@ public abstract class Effect : ScriptableObject {
     stat = player.Equipment.Weapon.GetStat(statName);
     if (stat != null) return stat;
 
+    stat = player.Stats.GetStat(statName);
+    if (stat != null) return stat;
+
     return null;
   }
 
@@ -34,6 +37,9 @@ public abstract class Effect : ScriptableObject {
     stat = player.Equipment.Heart.GetStat(statName);
     if (stat != null) return stat;
     stat = player.Equipment.Weapon.GetStat(statName);
+    if (stat != null) return stat;
+
+    stat = player.Stats.GetStat(statName);
     if (stat != null) return stat;
 
     return null;

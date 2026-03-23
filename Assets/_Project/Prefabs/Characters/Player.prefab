@@ -425,6 +425,7 @@ GameObject:
   - component: {fileID: 2290521665905086042}
   - component: {fileID: 5668263648549799090}
   - component: {fileID: 2006968051814620889}
+  - component: {fileID: 4856137141599547314}
   - component: {fileID: 7098316057293861836}
   - component: {fileID: 8784012674413471974}
   m_Layer: 9
@@ -542,7 +543,7 @@ MonoBehaviour:
   health:
     baseValue: 0
   maxHealth:
-    baseValue: 6
+    baseValue: 0
   isDead: 0
   isInvulnerable: 0
   dodgeChance:
@@ -553,6 +554,7 @@ MonoBehaviour:
   itemPickup: {fileID: 3745830094519559823}
   inventory: {fileID: 2006968051814620889}
   equipment: {fileID: 5668263648549799090}
+  stats: {fileID: 4856137141599547314}
 --- !u!114 &5668263648549799090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -582,6 +584,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInventory
   thoughtBag: {fileID: 11400000, guid: 33652611b2c076d40871404edb813dee, type: 2}
+--- !u!114 &4856137141599547314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8131152870917328023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a2ca6f37d8c68a4993ea1dca2dc1b5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
+  money:
+    baseValue: 0
+  mana:
+    baseValue: 0
 --- !u!50 &7098316057293861836
 Rigidbody2D:
   serializedVersion: 5

@@ -15,4 +15,6 @@ MonoBehaviour:
   artifactName: "\u042E\u043D\u043E\u0435 \u0421\u0435\u0440\u0434\u0446\u0435"
   slotsCount: 3
   equippedThoughts: []
-  traits: []
+  traits:
+  - {fileID: 11400000, guid: deaa3968e0bbddc4785cbe0de913332e, type: 2}
+  - {fileID: 11400000, guid: 4f33767b2021a08478ac852d61a020ae, type: 2}

@@ -3,7 +3,8 @@ using UnityEngine;
 
 // динамические (=> немодифицируемые) статы:
 public enum DynamicStatName {
-  Health
+  Health,
+  Mana
 }
 
 [Serializable]

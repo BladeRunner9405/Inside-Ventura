@@ -10,12 +10,14 @@ public class Player : Entity {
 
   [SerializeField] private PlayerInventory inventory;
   [SerializeField] private PlayerEquipment equipment;
+  [SerializeField] private PlayerStats stats;
   private readonly RaycastHit2D[] _hitBuffer = new RaycastHit2D[16];
   private ContactFilter2D _contactFilter;
 
   [Inject] private PlayerAccessor _playerAccessor;
   public PlayerInventory Inventory => inventory;
   public PlayerEquipment Equipment => equipment;
+  public PlayerStats Stats => stats;
 
   public bool IsDashing { get; private set; }
 
