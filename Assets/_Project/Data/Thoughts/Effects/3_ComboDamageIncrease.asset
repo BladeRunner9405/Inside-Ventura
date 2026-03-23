@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 3_ComboDamageIncrease
   m_EditorClassIdentifier: Assembly-CSharp::ModifyStatDependingEffect
   description: Combo DMG += DMG * (1 - 0.66) * 1.2
-  statName: 2
+  statName: 4
   modifierType: 0
   sourceStatName: 1
   sourceModifierType: 1

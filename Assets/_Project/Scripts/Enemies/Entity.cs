@@ -67,11 +67,13 @@ public abstract class Entity : InjectMonoBehaviour {
     if (Health == 0)
       Die();
 
-    Debug.Log($"{gameObject.name} получил {finalAmount} урона. Его здоровье - {Health}/{maxHealth}");
+    Debug.Log($"{gameObject.name} получил {finalAmount} урона. Его здоровье - {Health}/{MaxHealth}");
   }
 
   public void Die() {
     if (IsDead) return;
+
+    GetComponent<SpriteRenderer>().enabled = false; // заглушка
 
     isDead = true;
     Health = 0;

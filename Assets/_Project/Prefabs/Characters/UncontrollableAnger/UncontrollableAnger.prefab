@@ -93,9 +93,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UncontrollableRage
   health: 0
-  maxHealth: 100
+  maxHealth:
+    baseValue: 36
   isDead: 0
   isInvulnerable: 0
+  dodgeChance:
+    baseValue: 0
   target: {fileID: 0}
   moveSpeed: 1
   damage: 10

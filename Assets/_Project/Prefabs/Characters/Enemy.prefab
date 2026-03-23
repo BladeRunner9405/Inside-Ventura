@@ -108,9 +108,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   health: 0
-  maxHealth: 100
+  maxHealth:
+    baseValue: 100
   isDead: 0
   isInvulnerable: 0
+  dodgeChance:
+    baseValue: 0
   target: {fileID: 0}
   moveSpeed: 1
   damage: 0
