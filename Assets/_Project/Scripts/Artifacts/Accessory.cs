@@ -6,10 +6,10 @@ public abstract class Accessory : Artifact {
 
   private float _lastUseTime;
 
-  public float Cooldown => cooldown.Value;
+  public float Cooldown => cooldown.ModifiedValue;
 
-  public override ModifiableStat GetStat(ModifiableStatName statName) {
-    if (statName == ModifiableStatName.Cooldown)
+  public override Stat GetStat(StatName statName) {
+    if (statName == StatName.Cooldown)
       return cooldown;
     return base.GetStat(statName);
   }

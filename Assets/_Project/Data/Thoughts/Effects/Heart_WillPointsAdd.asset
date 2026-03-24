@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Heart_WillPointsAdd
   m_EditorClassIdentifier: Assembly-CSharp::ChangeStatOnceEffect
   description: +6 WP
-  statName: 0
+  statName: 8
   operationType: 0
   coefficient: 6

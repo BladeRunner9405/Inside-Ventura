@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Heart_IdeaPointsAdd
   m_EditorClassIdentifier: Assembly-CSharp::ChangeStatOnceEffect
   description: +10 IP
-  statName: 1
+  statName: 9
   operationType: 0
   coefficient: 10

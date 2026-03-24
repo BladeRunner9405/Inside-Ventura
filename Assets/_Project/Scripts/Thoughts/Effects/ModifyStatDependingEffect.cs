@@ -2,10 +2,10 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "ModifyStatDependingEffect", menuName = "Inside-Ventura/Effects/ModifyStatDependingEffect")]
 public class ModifyStatDependingEffect : Effect {
-  [SerializeField] private ModifiableStatName statName;
+  [SerializeField] private StatName statName;
   [SerializeField] private StatOperationType operationType = StatOperationType.Add;
 
-  [Header("Source")] [SerializeField] private ModifiableStatName sourceStatName;
+  [Header("Source")] [SerializeField] private StatName sourceStatName;
 
   [SerializeField] private StatOperationType sourceOperationType = StatOperationType.Multiply;
   [SerializeField] private float sourceCoefficient = 1.2f;
@@ -15,25 +15,29 @@ public class ModifyStatDependingEffect : Effect {
 
   public override void OnEquipThought(Artifact artifact) {
     var sourceStat = GetStat(sourceStatName, artifact);
-    if (sourceStat == null) return;
+    if (sourceStat is not ModifiableStat modifiableSourceStat) return;
 
-    _coefficient = new ModifiableStat(sourceStat.Value);
+    _coefficient = new ModifiableStat(modifiableSourceStat.ModifiedValue);
     _coefficient.AddModifier(new StatModifier(sourceOperationType, sourceCoefficient));
 
     _modifier = new StatModifier(operationType, _coefficient.Value);
 
     var stat = GetStat(statName, artifact);
+    if (stat is not ModifiableStat modifiableStat) return;
 
-    var oldValue = stat?.Value; // чисто для дебага
-    stat?.AddModifier(_modifier);
-    Debug.Log($"Изменен {statName}: был {oldValue}, стал {stat?.Value}");
+    var oldValue = modifiableStat.ModifiedValue; // чисто для дебага
+    modifiableStat.AddModifier(_modifier);
+    Debug.Log($"Изменен {statName}: был {oldValue}, стал {modifiableStat.ModifiedValue}");
   }
 
   public override void OnUnequipThought(Artifact artifact) {
     var stat = GetStat(statName, artifact);
+    if (stat is not ModifiableStat modifiableStat) {
+      return;
+    }
 
-    var oldValue = stat?.Value; // чисто для дебага
-    stat?.RemoveModifier(_modifier);
-    Debug.Log($"Изменен {statName}: был {oldValue}, стал {stat?.Value}");
+    var oldValue = modifiableStat.ModifiedValue; // чисто для дебага
+    modifiableStat.RemoveModifier(_modifier);
+    Debug.Log($"Изменен {statName}: был {oldValue}, стал {modifiableStat.ModifiedValue}");
   }
 }

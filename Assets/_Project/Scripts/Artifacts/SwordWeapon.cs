@@ -21,10 +21,10 @@ public class SwordWeapon : Weapon {
   [Tooltip("Время жизни хитбокса в секундах. 0 = мгновенно")] [SerializeField]
   private float hitboxActiveTime = 0.1f;
 
-  public float SpecialDamage => specialDamage.Value;
+  public float SpecialDamage => specialDamage.ModifiedValue;
 
-  public override ModifiableStat GetStat(ModifiableStatName statName) {
-    if (statName == ModifiableStatName.SpecialDamage)
+  public override Stat GetStat(StatName statName) {
+    if (statName == StatName.SpecialDamage)
       return specialDamage;
     return base.GetStat(statName);
   }

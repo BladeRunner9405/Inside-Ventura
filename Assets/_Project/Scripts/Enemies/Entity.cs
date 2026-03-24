@@ -5,39 +5,39 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 public abstract class Entity : InjectMonoBehaviour {
-  // переменные для перемещения без NavMesh
   private const float ShellDistance = 0.01f; // отступ, чтобы не врастать в стены
-  [SerializeField] private DynamicStat health = new();
+
+  [Header("Health")] [SerializeField] private DynamicStat health = new();
   [SerializeField] private ModifiableStat maxHealth = new(100f);
-  [SerializeField] private bool isDead;
-
-  [SerializeField] private bool isInvulnerable;
-
   [SerializeField] private ModifiableStat dodgeChance = new();
 
-  public Transform target; // Transform, на кого смотрит Entity
+  [Header("Moving")] [SerializeField] private ModifiableStat moveSpeed = new(5f);
 
-  [SerializeField] private ModifiableStat moveSpeed = new(5f);
+  [Header("Target")] public Transform target; // Transform, на кого смотрит Entity
+
+  // переменные для перемещения без NavMesh
   private readonly RaycastHit2D[] _hitBuffer = new RaycastHit2D[16];
   private ContactFilter2D _contactFilter;
 
   protected Collider2D col;
+
+  private bool isInvulnerable;
   protected Rigidbody2D rb;
 
   public float Health {
-    get => health.BaseValue;
-    set => health.BaseValue = Mathf.Clamp(value, 0, MaxHealth);
+    get => health.Value;
+    set => health.Value = Mathf.Clamp(value, 0, MaxHealth);
   }
 
-  public float MaxHealth => maxHealth.Value;
+  public float MaxHealth => maxHealth.ModifiedValue;
 
-  public bool IsDead => isDead;
+  public bool IsDead { get; private set; }
 
-  public float DodgeChance => Mathf.Min(1f, dodgeChance.Value);
+  public float DodgeChance => Mathf.Min(1f, dodgeChance.ModifiedValue);
 
   public float MoveSpeed {
-    get => moveSpeed.Value;
-    set => moveSpeed.BaseValue = value;
+    get => moveSpeed.ModifiedValue;
+    set => moveSpeed.Value = value;
   }
 
   public bool IsDashing { get; private set; }
@@ -47,25 +47,21 @@ public abstract class Entity : InjectMonoBehaviour {
     col = GetComponent<Collider2D>();
 
     Health = MaxHealth;
-    isDead = false;
+    IsDead = false;
 
     _contactFilter.useTriggers = false;
     _contactFilter.SetLayerMask(LayerMask.GetMask("Obstacle"));
     _contactFilter.useLayerMask = true;
   }
 
-  public ModifiableStat GetStat(ModifiableStatName statName) {
-    if (statName == ModifiableStatName.MaxHealth)
+  public Stat GetStat(StatName statName) {
+    if (statName == StatName.MaxHealth)
       return maxHealth;
-    if (statName == ModifiableStatName.DodgeChance)
+    if (statName == StatName.DodgeChance)
       return dodgeChance;
-    if (statName == ModifiableStatName.MoveSpeed)
+    if (statName == StatName.MoveSpeed)
       return moveSpeed;
-    return null;
-  }
-
-  public DynamicStat GetStat(DynamicStatName statName) {
-    if (statName == DynamicStatName.Health)
+    if (statName == StatName.Health)
       return health;
     return null;
   }
@@ -99,7 +95,7 @@ public abstract class Entity : InjectMonoBehaviour {
 
     // GetComponent<SpriteRenderer>().enabled = false; // заглушка
 
-    isDead = true;
+    IsDead = true;
     Health = 0;
     OnDeath?.Invoke();
   }

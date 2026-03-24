@@ -17,21 +17,21 @@ public abstract class Weapon : Artifact {
   protected int currentChainCount;
   protected float lastAttackTime;
 
-  public float Damage => damage.Value;
-  public float AttackSpeed => attackSpeed.Value;
-  public int ChainCount => Mathf.RoundToInt(chainCount.Value);
-  public float ChainSpeedMultiplier => chainSpeedMultiplier.Value;
-  public float ChainSpeedAddition => chainSpeedAddition.Value;
-  public float ComboWindow => comboWindow.Value;
-  public float CritChance => Mathf.Min(1f, critChance.Value);
-  public float CritMultiplier => critMultiplier.Value;
+  public float Damage => damage.ModifiedValue;
+  public float AttackSpeed => attackSpeed.ModifiedValue;
+  public int ChainCount => Mathf.RoundToInt(chainCount.ModifiedValue);
+  public float ChainSpeedMultiplier => chainSpeedMultiplier.ModifiedValue;
+  public float ChainSpeedAddition => chainSpeedAddition.ModifiedValue;
+  public float ComboWindow => comboWindow.ModifiedValue;
+  public float CritChance => Mathf.Min(1f, critChance.ModifiedValue);
+  public float CritMultiplier => critMultiplier.ModifiedValue;
 
-  public override ModifiableStat GetStat(ModifiableStatName statName) {
-    if (statName == ModifiableStatName.Damage)
+  public override Stat GetStat(StatName statName) {
+    if (statName == StatName.Damage)
       return damage;
-    if (statName == ModifiableStatName.ChainCount)
+    if (statName == StatName.ChainCount)
       return chainCount;
-    if (statName == ModifiableStatName.ChainSpeedAddition)
+    if (statName == StatName.ChainSpeedAddition)
       return chainSpeedAddition;
     return base.GetStat(statName);
   }

@@ -1,19 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
-
-// модфифицируемые статы:
-public enum ModifiableStatName {
-  Cooldown,
-  Damage,
-  ChainCount,
-  ChainSpeedAddition,
-  SpecialDamage,
-  MaxHealth,
-  DodgeChance,
-  MoveSpeed
-}
 
 public enum StatOperationType {
   Add,
@@ -31,25 +18,19 @@ public class StatModifier {
 }
 
 [Serializable]
-public class ModifiableStat {
-  [SerializeField] private float baseValue;
+public class ModifiableStat : Stat {
   private List<StatModifier> modifiers = new();
 
-  public ModifiableStat(float baseValue = 0f) {
-    BaseValue = baseValue;
+  public ModifiableStat(float value = 0f) {
+    Value = value;
   }
 
-  public float BaseValue {
-    get => baseValue;
-    set => baseValue = value;
-  }
-
-  public float Value {
+  public float ModifiedValue {
     get {
       var addSum = modifiers.Where(m => m.Type == StatOperationType.Add).Sum(m => m.Value);
       var multiplyFactor = modifiers.Where(m => m.Type == StatOperationType.Multiply)
         .Aggregate(1f, (current, m) => current * m.Value);
-      return (baseValue + addSum) * multiplyFactor;
+      return (value + addSum) * multiplyFactor;
     }
   }
 

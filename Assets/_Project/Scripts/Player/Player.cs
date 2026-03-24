@@ -2,6 +2,7 @@ using CherryFramework.DependencyManager;
 using UnityEngine;
 
 public class Player : Entity {
+  [Header("Player stuff")]
   [SerializeField] private ItemPickup itemPickup;
 
   [SerializeField] private PlayerInventory inventory;

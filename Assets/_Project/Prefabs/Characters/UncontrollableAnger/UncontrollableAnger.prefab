@@ -94,16 +94,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UncontrollableRage
   health:
-    baseValue: 0
+    value: 0
   maxHealth:
-    baseValue: 36
-  isDead: 0
-  isInvulnerable: 0
+    value: 36
   dodgeChance:
-    baseValue: 0
-  target: {fileID: 0}
+    value: 0
   moveSpeed:
-    baseValue: 3.75
+    value: 5
+  target: {fileID: 0}
   damage: 1
   isBoss: 0
   playerDistance: 2.7

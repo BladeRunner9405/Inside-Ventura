@@ -5,21 +5,17 @@ public class PlayerStats : MonoBehaviour {
   [SerializeField] private DynamicStat mana = new(); // Idea Points, тратятся активацией активируемых мыслей
 
   public float Money {
-    get => money.BaseValue;
-    set => money.BaseValue = value;
+    get => money.Value;
+    set => money.Value = value;
   }
 
   public float Mana {
-    get => mana.BaseValue;
-    set => mana.BaseValue = value;
+    get => mana.Value;
+    set => mana.Value = value;
   }
 
-  public ModifiableStat GetStat(ModifiableStatName statName) {
-    return null;
-  }
-
-  public DynamicStat GetStat(DynamicStatName statName) {
-    if (statName == DynamicStatName.Mana)
+  public Stat GetStat(StatName statName) {
+    if (statName == StatName.Mana)
       return mana;
     return null;
   }

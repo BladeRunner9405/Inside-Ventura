@@ -2,7 +2,7 @@ using UnityEngine;
 
 [CreateAssetMenu(fileName = "ChangeStatOnceEffect", menuName = "Inside-Ventura/Effects/ChangeStatOnceEffect")]
 public class ChangeStatOnceEffect : Effect {
-  [SerializeField] private DynamicStatName statName;
+  [SerializeField] private StatName statName;
   [SerializeField] private StatOperationType operationType = StatOperationType.Add;
   [SerializeField] private float coefficient = 5f;
 
@@ -16,10 +16,13 @@ public class ChangeStatOnceEffect : Effect {
     if (_wasEquipped) return;
 
     var stat = GetStat(statName, artifact);
+    if (stat is not DynamicStat dynamicStat) {
+      return;
+    }
 
-    var oldValue = stat?.BaseValue; // чисто для дебага
-    stat?.Change(operationType, coefficient);
-    Debug.Log($"Изменен {statName}: был {oldValue}, стал {stat?.BaseValue}");
+    var oldValue = dynamicStat.Value; // чисто для дебага
+    dynamicStat.Change(operationType, coefficient);
+    Debug.Log($"Изменен {statName}: был {oldValue}, стал {dynamicStat.Value}");
 
     _wasEquipped = true;
   }
