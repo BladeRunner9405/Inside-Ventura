@@ -10,13 +10,13 @@ public enum StatName {
   MaxHealth,
   DodgeChance,
   MoveSpeed,
+
   // динамические (=> немодифицируемые) статы:
   Health,
   Mana
 }
 
-public class Stat
-{
+public class Stat {
   [SerializeField] protected float value;
 
   public Stat(float value = 0f) {

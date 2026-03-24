@@ -5,8 +5,8 @@ using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : Entity {
-  [Header("Enemy stuff")]
-  public int damage;
+  [Header("Enemy stuff")] public int damage;
+
   public bool isBoss;
   protected NavMeshAgent Agent;
 

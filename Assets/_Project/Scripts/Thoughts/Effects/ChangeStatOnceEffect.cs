@@ -16,9 +16,7 @@ public class ChangeStatOnceEffect : Effect {
     if (_wasEquipped) return;
 
     var stat = GetStat(statName, artifact);
-    if (stat is not DynamicStat dynamicStat) {
-      return;
-    }
+    if (stat is not DynamicStat dynamicStat) return;
 
     var oldValue = dynamicStat.Value; // чисто для дебага
     dynamicStat.Change(operationType, coefficient);

@@ -32,9 +32,7 @@ public class ModifyStatDependingEffect : Effect {
 
   public override void OnUnequipThought(Artifact artifact) {
     var stat = GetStat(statName, artifact);
-    if (stat is not ModifiableStat modifiableStat) {
-      return;
-    }
+    if (stat is not ModifiableStat modifiableStat) return;
 
     var oldValue = modifiableStat.ModifiedValue; // чисто для дебага
     modifiableStat.RemoveModifier(_modifier);
