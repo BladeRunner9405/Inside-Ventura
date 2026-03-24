@@ -1,3 +1,4 @@
+using System.Collections;
 using CherryFramework.DependencyManager;
 using UnityEngine;
 using UnityEngine.AI;
@@ -30,5 +31,13 @@ public class Enemy : Entity {
 
   private void EnableAI() {
     Agent.enabled = true;
+  }
+
+  protected override IEnumerator DashCoroutine(Vector2 direction, float distance, float duration) {
+    var originalAgentStatus = Agent.enabled;
+
+    Agent.enabled = false;
+    yield return base.DashCoroutine(direction, distance, duration);
+    Agent.enabled = originalAgentStatus;
   }
 }

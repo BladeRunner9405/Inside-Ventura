@@ -5,8 +5,8 @@ public class ModifyStatDependingEffect : Effect {
   [SerializeField] private ModifiableStatName statName;
   [SerializeField] private StatOperationType operationType = StatOperationType.Add;
 
-  [Header("Source")]
-  [SerializeField] private ModifiableStatName sourceStatName;
+  [Header("Source")] [SerializeField] private ModifiableStatName sourceStatName;
+
   [SerializeField] private StatOperationType sourceOperationType = StatOperationType.Multiply;
   [SerializeField] private float sourceCoefficient = 1.2f;
   private ModifiableStat _coefficient;

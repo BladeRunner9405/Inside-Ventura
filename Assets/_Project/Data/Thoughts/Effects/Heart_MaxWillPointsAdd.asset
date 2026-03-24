@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb16b9229f35ba74e8be434d2d37334d, type: 3}
+  m_Name: Heart_MaxWillPointsAdd
+  m_EditorClassIdentifier: Assembly-CSharp::ModifyStatEffect
+  description: +6 MaxWP
+  statName: 5
+  operationType: 0
+  coefficient: 6

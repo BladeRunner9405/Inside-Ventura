@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "ModifyStatEffect", menuName = "Inside-Ventura/Effects/ModifyStatEffect")]
 public class ModifyStatEffect : Effect {

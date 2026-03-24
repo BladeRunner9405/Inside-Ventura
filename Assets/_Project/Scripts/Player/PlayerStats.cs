@@ -8,6 +8,7 @@ public class PlayerStats : MonoBehaviour {
     get => money.BaseValue;
     set => money.BaseValue = value;
   }
+
   public float Mana {
     get => mana.BaseValue;
     set => mana.BaseValue = value;

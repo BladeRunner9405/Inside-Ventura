@@ -7,8 +7,7 @@ public class PlayerEquipment : MonoBehaviour {
   [SerializeField] private Heart heart;
   [SerializeField] private Accessory accessory;
 
-  [Header("Debug")]
-  [SerializeField] private Thought testThought;
+  [Header("Debug")] [SerializeField] private Thought testThought;
 
   public Weapon Weapon => weapon;
   public Heart Heart => heart;
@@ -59,7 +58,6 @@ public class PlayerEquipment : MonoBehaviour {
   }
 
 
-
   // DebugDebugDebugDebugDebugDebugDebugDebugDebugDebugDebugDebugDebugDebugDebugDebug
 
   [ContextMenu("Экипировать тестовую мысль в 0-ой слот сердца")]
@@ -68,6 +66,7 @@ public class PlayerEquipment : MonoBehaviour {
       UnequipThought(heart, 0);
       return;
     }
+
     EquipThought(heart, testThought, 0);
   }
 
@@ -77,6 +76,7 @@ public class PlayerEquipment : MonoBehaviour {
       UnequipThought(accessory, 0);
       return;
     }
+
     EquipThought(accessory, testThought, 0);
   }
 
@@ -86,6 +86,7 @@ public class PlayerEquipment : MonoBehaviour {
       UnequipThought(weapon, 0);
       return;
     }
+
     EquipThought(weapon, testThought, 0);
   }
 }

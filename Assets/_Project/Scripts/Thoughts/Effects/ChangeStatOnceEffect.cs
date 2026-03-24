@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 [CreateAssetMenu(fileName = "ChangeStatOnceEffect", menuName = "Inside-Ventura/Effects/ChangeStatOnceEffect")]
 public class ChangeStatOnceEffect : Effect {
@@ -9,7 +8,7 @@ public class ChangeStatOnceEffect : Effect {
 
   private bool _wasEquipped;
 
-  void OnEnable() {
+  private void OnEnable() {
     _wasEquipped = false;
   }
 

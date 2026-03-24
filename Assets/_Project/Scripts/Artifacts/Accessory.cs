@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public abstract class Accessory : Artifact {
@@ -13,6 +14,8 @@ public abstract class Accessory : Artifact {
     return base.GetStat(statName);
   }
 
+  public event Action<Vector2> OnAbilityUsed;
+
   public override void Initialize() {
     base.Initialize();
     _lastUseTime = -Cooldown;
@@ -27,6 +30,7 @@ public abstract class Accessory : Artifact {
 
     UseAbility(direction);
     _lastUseTime = Time.time;
+    OnAbilityUsed?.Invoke(direction);
   }
 
   protected abstract void UseAbility(Vector2 direction);

@@ -21,10 +21,8 @@ public class DynamicStat {
   }
 
   public void Change(StatOperationType type, float value) {
-    if (type == StatOperationType.Add) {
+    if (type == StatOperationType.Add)
       baseValue += value;
-    } else if (type == StatOperationType.Multiply) {
-      baseValue *= value;
-    }
+    else if (type == StatOperationType.Multiply) baseValue *= value;
   }
 }

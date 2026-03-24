@@ -1,9 +1,12 @@
 using System;
+using System.Collections;
 using CherryFramework.DependencyManager;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
 public abstract class Entity : InjectMonoBehaviour {
+  // переменные для перемещения без NavMesh
+  private const float ShellDistance = 0.01f; // отступ, чтобы не врастать в стены
   [SerializeField] private DynamicStat health = new();
   [SerializeField] private ModifiableStat maxHealth = new(100f);
   [SerializeField] private bool isDead;
@@ -15,13 +18,15 @@ public abstract class Entity : InjectMonoBehaviour {
   public Transform target; // Transform, на кого смотрит Entity
 
   [SerializeField] private ModifiableStat moveSpeed = new(5f);
+  private readonly RaycastHit2D[] _hitBuffer = new RaycastHit2D[16];
+  private ContactFilter2D _contactFilter;
 
   protected Collider2D col;
   protected Rigidbody2D rb;
 
   public float Health {
     get => health.BaseValue;
-    set => health.BaseValue = value;
+    set => health.BaseValue = Mathf.Clamp(value, 0, MaxHealth);
   }
 
   public float MaxHealth => maxHealth.Value;
@@ -33,6 +38,20 @@ public abstract class Entity : InjectMonoBehaviour {
   public float MoveSpeed {
     get => moveSpeed.Value;
     set => moveSpeed.BaseValue = value;
+  }
+
+  public bool IsDashing { get; private set; }
+
+  protected virtual void Awake() {
+    rb = GetComponent<Rigidbody2D>();
+    col = GetComponent<Collider2D>();
+
+    Health = MaxHealth;
+    isDead = false;
+
+    _contactFilter.useTriggers = false;
+    _contactFilter.SetLayerMask(LayerMask.GetMask("Obstacle"));
+    _contactFilter.useLayerMask = true;
   }
 
   public ModifiableStat GetStat(ModifiableStatName statName) {
@@ -49,14 +68,6 @@ public abstract class Entity : InjectMonoBehaviour {
     if (statName == DynamicStatName.Health)
       return health;
     return null;
-  }
-
-  protected virtual void Awake() {
-    rb = GetComponent<Rigidbody2D>();
-    col = GetComponent<Collider2D>();
-
-    Health = MaxHealth;
-    isDead = false;
   }
 
   public void SetInvulnerable(bool invulnerable) {
@@ -86,7 +97,7 @@ public abstract class Entity : InjectMonoBehaviour {
   public void Die() {
     if (IsDead) return;
 
-    GetComponent<SpriteRenderer>().enabled = false; // заглушка
+    // GetComponent<SpriteRenderer>().enabled = false; // заглушка
 
     isDead = true;
     Health = 0;
@@ -96,5 +107,77 @@ public abstract class Entity : InjectMonoBehaviour {
   public void TargetTo(Transform target) // назначить новую цель
   {
     this.target = target;
+  }
+
+  public void Move(Vector2 direction) {
+    if (direction.sqrMagnitude < 0.001f) return;
+
+    var deltaMove = direction * MoveSpeed * Time.fixedDeltaTime;
+
+    ResolveOverlap(); // проверка уже внутри стены
+
+    var maxIterations = 4;
+    for (var i = 0; i < maxIterations; i++) {
+      var distance = deltaMove.magnitude;
+      if (distance < 0.0001f) break;
+
+      var count = col.Cast(deltaMove.normalized, _contactFilter, _hitBuffer, distance + ShellDistance);
+
+      if (count > 0) {
+        var hit = _hitBuffer[0];
+
+        var safeDistance = Mathf.Max(0, hit.distance - ShellDistance);
+        rb.position += deltaMove.normalized * safeDistance;
+
+        var remainingDelta = deltaMove.normalized * (distance - safeDistance);
+        deltaMove = remainingDelta - Vector2.Dot(remainingDelta, hit.normal) * hit.normal;
+
+        if (Vector2.Dot(deltaMove, direction) <= 0) deltaMove = Vector2.zero;
+      }
+      else {
+        rb.position += deltaMove;
+        break;
+      }
+    }
+  }
+
+  private void ResolveOverlap() {
+    var results = new Collider2D[5];
+    var count = col.Overlap(_contactFilter, results);
+
+    for (var i = 0; i < count; i++) {
+      var dist = col.Distance(results[i]);
+      if (dist.isOverlapped) rb.position += dist.normal * dist.distance;
+    }
+  }
+
+  public void Dash(Vector2 direction, float distance, float duration) {
+    if (direction == Vector2.zero) direction = Vector2.right;
+    if (IsDashing) return;
+
+    StartCoroutine(DashCoroutine(direction, distance, duration));
+  }
+
+  protected virtual IEnumerator DashCoroutine(Vector2 direction, float distance, float duration) {
+    IsDashing = true;
+    var originalSpeed = MoveSpeed;
+    MoveSpeed = distance / duration;
+
+    SetInvulnerable(true);
+
+    var elapsed = 0f;
+    while (elapsed < duration) {
+      Move(direction);
+
+      elapsed += Time.fixedDeltaTime;
+
+      yield return new WaitForFixedUpdate();
+    }
+
+    MoveSpeed = originalSpeed;
+    SetInvulnerable(false);
+    IsDashing = false;
+
+    ResolveOverlap();
   }
 }
