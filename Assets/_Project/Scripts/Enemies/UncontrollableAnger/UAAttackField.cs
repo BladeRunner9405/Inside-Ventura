@@ -41,7 +41,7 @@ public class UAAttackField : InjectMonoBehaviour {
     // Debug.Log($"Updating hitbox with new index {newVal}");
     _curHitbox = newVal;
     _lastHitbox = newVal;
-    if (hitboxes[_curHitbox].OverlapPoint(PlayerAccessor.Player.transform.position))
-      PlayerAccessor.Player.TakeDamage(damage);
+    if (hitboxes[_curHitbox].OverlapPoint(PlayerAccessor.Transform.position))
+      PlayerAccessor.TakeDamage(damage);
   }
 }

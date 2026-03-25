@@ -7,18 +7,18 @@ public abstract class Effect : ScriptableObject {
     var stat = artifact.GetStat(statName);
     if (stat != null) return stat;
 
-    var player = artifact.PlayerAccessor.Player;
-    stat = player.GetStat(statName);
+    var playerAccessor = artifact.PlayerAccessor;
+    stat = playerAccessor.GetStat(statName);
     if (stat != null) return stat;
 
-    stat = player.Equipment.Accessory.GetStat(statName);
+    stat = playerAccessor.Equipment.Accessory.GetStat(statName);
     if (stat != null) return stat;
-    stat = player.Equipment.Heart.GetStat(statName);
+    stat = playerAccessor.Equipment.Heart.GetStat(statName);
     if (stat != null) return stat;
-    stat = player.Equipment.Weapon.GetStat(statName);
+    stat = playerAccessor.Equipment.Weapon.GetStat(statName);
     if (stat != null) return stat;
 
-    stat = player.Stats.GetStat(statName);
+    stat = playerAccessor.Stats.GetStat(statName);
     if (stat != null) return stat;
 
     return null;

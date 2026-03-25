@@ -40,8 +40,8 @@ public class SwordWeapon : Weapon {
 
     var finalDamage = GetDamageWithCritChance(baseDamage);
 
-    var player = PlayerAccessor.Player;
-    Vector2 playerPosition = player.transform.position;
+    var playerAccessor = PlayerAccessor;
+    Vector2 playerPosition = playerAccessor.Transform.position;
     var dir = direction.normalized;
 
     var attackObj = (SectorAttackObject)GamePools.Hitboxes.Get(sectorAttackPrefab, playerPosition, Quaternion.identity);
@@ -58,7 +58,7 @@ public class SwordWeapon : Weapon {
     );
 
     if (isSpecial) {
-      player.Dash(dir, lungeDistance, lungeDuration);
+      playerAccessor.Dash(dir, lungeDistance, lungeDuration);
       currentChainCount = 0;
     }
   }

@@ -24,8 +24,8 @@ public class Enemy : Entity {
 
     Health = MaxHealth;
 
-    var player = PlayerAccessor.Player.transform;
-    TargetTo(player);
+    var playerTransform = PlayerAccessor.Transform;
+    TargetTo(playerTransform);
   }
 
   private void Update() {
