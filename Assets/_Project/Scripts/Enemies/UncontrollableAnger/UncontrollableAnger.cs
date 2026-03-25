@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEditor;
 using UnityEngine;
 
@@ -121,5 +122,15 @@ public class UncontrollableAnger : Enemy {
     Attacking,
     Retreating,
     Idle
+  }
+
+  protected override void Die() {
+    base.Die();
+
+    // видимо заглушка:
+    Agent.enabled = false;
+    _animator.enabled = false;
+    GetComponent<SpriteRenderer>().DOKill();
+    GetComponent<SpriteRenderer>().DOColor(Color.gray, 0.2f);
   }
 }
