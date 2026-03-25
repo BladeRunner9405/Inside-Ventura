@@ -12,7 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71306d67ad25840459ca4a85f79aadae, type: 3}
   m_Name: ThoughtBag
   m_EditorClassIdentifier: Assembly-CSharp::ThoughtBag
-  thoughts:
-  - {fileID: 0}
-  - {fileID: 11400000, guid: da9d741ef0878914c9d7b4352fcda569, type: 2}
+  thoughts: []
   maxSize: 99

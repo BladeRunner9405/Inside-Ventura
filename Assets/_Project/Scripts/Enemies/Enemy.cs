@@ -1,14 +1,16 @@
+using System.Collections;
 using CherryFramework.DependencyManager;
 using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
 public class Enemy : Entity {
-  public int damage;
+  [Header("Enemy stuff")] public int damage;
+
   public bool isBoss;
+  protected NavMeshAgent Agent;
 
   [Inject] protected PlayerAccessor PlayerAccessor;
-  protected NavMeshAgent Agent;
 
   protected void Start() {
     Agent = GetComponent<NavMeshAgent>();
@@ -18,19 +20,27 @@ public class Enemy : Entity {
 
     Agent.updateRotation = false;
     Agent.updateUpAxis = false;
-    Agent.speed = moveSpeed;
+    Agent.speed = MoveSpeed;
+
+    Health = MaxHealth;
 
     var player = PlayerAccessor.Player.transform;
     TargetTo(player);
   }
 
   private void Update() {
-    if (Agent.enabled) {
-      Agent.SetDestination(target.position);
-    }
+    if (Agent.enabled) Agent.SetDestination(target.position);
   }
 
   private void EnableAI() {
     Agent.enabled = true;
+  }
+
+  protected override IEnumerator DashCoroutine(Vector2 direction, float distance, float duration) {
+    var originalAgentStatus = Agent.enabled;
+
+    Agent.enabled = false;
+    yield return base.DashCoroutine(direction, distance, duration);
+    Agent.enabled = originalAgentStatus;
   }
 }
