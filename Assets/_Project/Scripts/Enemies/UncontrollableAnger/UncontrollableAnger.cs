@@ -1,4 +1,3 @@
-using DG.Tweening;
 using UnityEditor;
 using UnityEngine;
 
@@ -130,7 +129,5 @@ public class UncontrollableAnger : Enemy {
     // видимо заглушка:
     Agent.enabled = false;
     _animator.enabled = false;
-    GetComponent<SpriteRenderer>().DOKill();
-    GetComponent<SpriteRenderer>().DOColor(Color.gray, 0.2f);
   }
 }

@@ -109,7 +109,15 @@ public abstract class Entity : InjectMonoBehaviour {
 
     IsDead = true;
     Health = 0;
+
+    VisualizeDeath();
+
     OnDeath?.Invoke();
+  }
+
+  private void VisualizeDeath() {
+    GetComponent<SpriteRenderer>().DOKill();
+    GetComponent<SpriteRenderer>().DOColor(Color.gray, 0.2f);
   }
 
   public void TargetTo(Transform target) // назначить новую цель
