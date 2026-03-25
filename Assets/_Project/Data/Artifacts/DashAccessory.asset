@@ -16,6 +16,6 @@ MonoBehaviour:
   slotsCount: 3
   equippedThoughts: []
   cooldown:
-    value: 3
+    _value: 3
   distance: 2.2
-  duration: 0.4
+  duration: 0.2

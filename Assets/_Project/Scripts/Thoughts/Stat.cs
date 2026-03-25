@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public enum StatName {
@@ -16,15 +17,17 @@ public enum StatName {
   Mana
 }
 
+[Serializable]
 public class Stat {
-  [SerializeField] protected float value;
-
-  public Stat(float value = 0f) {
-    Value = value;
-  }
+  [SerializeField] private float _value;
 
   public float Value {
-    get => value;
-    set => this.value = value;
+    get => _value;
+    set => _value = value;
+  }
+
+  public void Change(StatOperationType type, float coefficient) {
+    if (type == StatOperationType.Add) Value += coefficient;
+    else if (type == StatOperationType.Multiply) Value *= coefficient;
   }
 }

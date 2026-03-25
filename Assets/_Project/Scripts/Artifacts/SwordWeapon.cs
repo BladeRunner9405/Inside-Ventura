@@ -14,7 +14,7 @@ public class SwordWeapon : Weapon {
   private float specialAngle = 30f;
 
   [SerializeField] private float specialRange = 5f;
-  [SerializeField] private ModifiableStat specialDamage = new(4f);
+  [SerializeField] private ModifiableStat specialDamage;
   [SerializeField] private float lungeDistance = 3f;
   [SerializeField] private float lungeDuration = 1f;
 

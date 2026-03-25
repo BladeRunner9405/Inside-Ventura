@@ -118,7 +118,7 @@ Transform:
   m_GameObject: {fileID: 1664613408544001436}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -14.333334}
+  m_LocalPosition: {x: 0.0000002980232, y: 0, z: -13.499999}
   m_LocalScale: {x: 0.9866667, y: 0.9866667, z: 0.9866667}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -633,16 +633,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   health:
-    value: 0
+    _value: 0
   maxHealth:
-    value: 0
-  isDead: 0
-  isInvulnerable: 0
+    _value: 0
   dodgeChance:
-    value: 0
-  target: {fileID: 1066906017858410233}
+    _value: 0
   moveSpeed:
-    value: 5
+    _value: 5
+  target: {fileID: 1066906017858410233}
   itemPickup: {fileID: 3745830094519559823}
   inventory: {fileID: 2006968051814620889}
   equipment: {fileID: 5668263648549799090}
@@ -689,9 +687,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
   money:
-    value: 0
+    _value: 0
   mana:
-    value: 0
+    _value: 0
 --- !u!50 &7098316057293861836
 Rigidbody2D:
   serializedVersion: 5

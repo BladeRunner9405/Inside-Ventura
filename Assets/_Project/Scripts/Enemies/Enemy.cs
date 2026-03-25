@@ -22,6 +22,8 @@ public class Enemy : Entity {
     Agent.updateUpAxis = false;
     Agent.speed = MoveSpeed;
 
+    Health = MaxHealth;
+
     var player = PlayerAccessor.Player.transform;
     TargetTo(player);
   }

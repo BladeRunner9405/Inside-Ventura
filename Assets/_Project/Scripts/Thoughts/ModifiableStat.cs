@@ -21,16 +21,12 @@ public class StatModifier {
 public class ModifiableStat : Stat {
   private List<StatModifier> modifiers = new();
 
-  public ModifiableStat(float value = 0f) {
-    Value = value;
-  }
-
   public float ModifiedValue {
     get {
       var addSum = modifiers.Where(m => m.Type == StatOperationType.Add).Sum(m => m.Value);
       var multiplyFactor = modifiers.Where(m => m.Type == StatOperationType.Multiply)
         .Aggregate(1f, (current, m) => current * m.Value);
-      return (value + addSum) * multiplyFactor;
+      return (Value + addSum) * multiplyFactor;
     }
   }
 

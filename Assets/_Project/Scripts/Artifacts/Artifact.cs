@@ -6,7 +6,7 @@ public abstract class Artifact : ScriptableObject {
   [SerializeField] public string artifactName;
   [SerializeField] protected int slotsCount = 3;
 
-  [SerializeField] private List<Thought> equippedThoughts = new();
+  [SerializeField] private List<Thought> equippedThoughts;
   [Inject] public PlayerAccessor PlayerAccessor;
 
   public int SlotsCount => slotsCount;
@@ -16,7 +16,13 @@ public abstract class Artifact : ScriptableObject {
   }
 
   public virtual void Initialize() {
-    RestoreThoughts();
+    if (equippedThoughts != null) {
+      var cloned = new List<Thought>();
+      for (var i = 0; i < equippedThoughts.Count; ++i) cloned.Add(Instantiate(equippedThoughts[i]));
+      equippedThoughts = cloned;
+    }
+
+    EquipInitialThoughts();
   }
 
   public bool HasThought(Thought thought) {
@@ -50,7 +56,8 @@ public abstract class Artifact : ScriptableObject {
     equippedThoughts[slotIndex] = null;
   }
 
-  private void RestoreThoughts() {
+  // Это метод для дебага
+  private void EquipInitialThoughts() {
     if (equippedThoughts.Count > slotsCount) {
       Debug.Log($"Эээээ на {artifactName} экипировано больше мыслей, чем слотов. Ничего не экипирую.");
       equippedThoughts = new List<Thought>();

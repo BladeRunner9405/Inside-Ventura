@@ -16,6 +16,6 @@ MonoBehaviour:
   slotsCount: 3
   equippedThoughts: []
   traits:
-  - {fileID: 11400000, guid: b497df592825b2649b35561fe05a0147, type: 2}
+  - {fileID: 11400000, guid: 10d640e590140b74897638d87ac6243b, type: 2}
   - {fileID: 11400000, guid: deaa3968e0bbddc4785cbe0de913332e, type: 2}
   - {fileID: 11400000, guid: 4f33767b2021a08478ac852d61a020ae, type: 2}

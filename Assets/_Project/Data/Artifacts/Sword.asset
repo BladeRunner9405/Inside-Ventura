@@ -17,21 +17,21 @@ MonoBehaviour:
   slotsCount: 3
   equippedThoughts: []
   damage:
-    baseValue: 3
+    _value: 3
   attackSpeed:
-    baseValue: 0.2
+    _value: 0.2
   chainCount:
-    baseValue: 4
+    _value: 4
   chainSpeedMultiplier:
-    baseValue: 1.2
+    _value: 1.2
   chainSpeedAddition:
-    baseValue: 0.2
+    _value: 0.2
   comboWindow:
-    baseValue: 0.5
+    _value: 0.5
   critChance:
-    baseValue: 0.05
+    _value: 0.05
   critMultiplier:
-    baseValue: 1.2
+    _value: 1.2
   sectorAttackPrefab: {fileID: 2462862026025648702, guid: 1f5f4e86c05ebe64bbdcc71104438f4e, type: 3}
   normalAngle: 90
   normalRange: 2
@@ -41,7 +41,7 @@ MonoBehaviour:
   specialAngle: 30
   specialRange: 5
   specialDamage:
-    baseValue: 4
+    _value: 4
   lungeDistance: 1.75
   lungeDuration: 0.1
   hitboxActiveTime: 0.1

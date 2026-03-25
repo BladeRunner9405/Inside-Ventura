@@ -1,17 +1,17 @@
 using UnityEngine;
 
 public abstract class Weapon : Artifact {
-  [SerializeField] protected ModifiableStat damage = new(3f);
-  [SerializeField] protected ModifiableStat attackSpeed = new(0.2f);
-  [SerializeField] protected ModifiableStat chainCount = new(4f);
-  [SerializeField] protected ModifiableStat chainSpeedMultiplier = new(1.2f);
-  [SerializeField] protected ModifiableStat chainSpeedAddition = new();
-  [SerializeField] protected ModifiableStat comboWindow = new(0.5f);
+  [SerializeField] protected ModifiableStat damage;
+  [SerializeField] protected ModifiableStat attackSpeed;
+  [SerializeField] protected ModifiableStat chainCount;
+  [SerializeField] protected ModifiableStat chainSpeedMultiplier;
+  [SerializeField] protected ModifiableStat chainSpeedAddition;
+  [SerializeField] protected ModifiableStat comboWindow;
 
   [Header("Critical Hit")] [SerializeField]
-  protected ModifiableStat critChance = new(0.05f);
+  protected ModifiableStat critChance;
 
-  [SerializeField] protected ModifiableStat critMultiplier = new(1.2f);
+  [SerializeField] protected ModifiableStat critMultiplier;
   protected float cooldown;
 
   protected int currentChainCount;

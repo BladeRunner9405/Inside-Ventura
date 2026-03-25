@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 public abstract class Accessory : Artifact {
-  [SerializeField] private ModifiableStat cooldown = new(3f);
+  [SerializeField] private ModifiableStat cooldown;
 
   private float _lastUseTime;
 

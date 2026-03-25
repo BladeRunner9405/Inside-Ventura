@@ -1,8 +1,8 @@
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour {
-  [SerializeField] private DynamicStat money = new(); // Замыслы, игровая валюта
-  [SerializeField] private DynamicStat mana = new(); // Idea Points, тратятся активацией активируемых мыслей
+  [SerializeField] private Stat money; // Замыслы, игровая валюта
+  [SerializeField] private Stat mana; // Idea Points, тратятся активацией активируемых мыслей
 
   public float Money {
     get => money.Value;

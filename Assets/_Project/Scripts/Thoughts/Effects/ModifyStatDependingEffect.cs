@@ -17,7 +17,8 @@ public class ModifyStatDependingEffect : Effect {
     var sourceStat = GetStat(sourceStatName, artifact);
     if (sourceStat is not ModifiableStat modifiableSourceStat) return;
 
-    _coefficient = new ModifiableStat(modifiableSourceStat.ModifiedValue);
+    _coefficient = new ModifiableStat();
+    _coefficient.Value = modifiableSourceStat.ModifiedValue;
     _coefficient.AddModifier(new StatModifier(sourceOperationType, sourceCoefficient));
 
     _modifier = new StatModifier(operationType, _coefficient.Value);

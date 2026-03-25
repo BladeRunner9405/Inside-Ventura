@@ -7,11 +7,11 @@ using Random = UnityEngine.Random;
 public abstract class Entity : InjectMonoBehaviour {
   private const float ShellDistance = 0.01f; // отступ, чтобы не врастать в стены
 
-  [Header("Health")] [SerializeField] private DynamicStat health = new();
-  [SerializeField] private ModifiableStat maxHealth = new(100f);
-  [SerializeField] private ModifiableStat dodgeChance = new();
+  [Header("Health")] [SerializeField] private Stat health;
+  [SerializeField] private ModifiableStat maxHealth;
+  [SerializeField] private ModifiableStat dodgeChance;
 
-  [Header("Moving")] [SerializeField] private ModifiableStat moveSpeed = new(5f);
+  [Header("Moving")] [SerializeField] private ModifiableStat moveSpeed;
 
   [Header("Target")] public Transform target; // Transform, на кого смотрит Entity
 
@@ -46,7 +46,6 @@ public abstract class Entity : InjectMonoBehaviour {
     rb = GetComponent<Rigidbody2D>();
     col = GetComponent<Collider2D>();
 
-    Health = MaxHealth;
     IsDead = false;
 
     _contactFilter.useTriggers = false;

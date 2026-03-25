@@ -16,11 +16,11 @@ public class ChangeStatOnceEffect : Effect {
     if (_wasEquipped) return;
 
     var stat = GetStat(statName, artifact);
-    if (stat is not DynamicStat dynamicStat) return;
+    if (stat == null) return;
 
-    var oldValue = dynamicStat.Value; // чисто для дебага
-    dynamicStat.Change(operationType, coefficient);
-    Debug.Log($"Изменен {statName}: был {oldValue}, стал {dynamicStat.Value}");
+    var oldValue = stat.Value; // чисто для дебага
+    stat.Change(operationType, coefficient);
+    Debug.Log($"Изменен {statName}: был {oldValue}, стал {stat.Value}");
 
     _wasEquipped = true;
   }
