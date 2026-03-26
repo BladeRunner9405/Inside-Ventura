@@ -84,18 +84,21 @@ public abstract class Entity : InjectMonoBehaviour {
     if (amount <= 0) return;
 
     var hasDodged = Random.value <= DodgeChance;
-    var finalAmount = hasDodged ? 0f : amount;
+    if (hasDodged) {
+      Debug.Log($"{gameObject.name} задоджил {amount} урона.");
+      return;
+    }
 
-    Health -= finalAmount;
+    Health -= amount;
 
     VisualizeDamage();
 
-    OnTakeDamage?.Invoke(finalAmount);
+    OnTakeDamage?.Invoke(amount);
 
     if (Health == 0)
       Die();
 
-    Debug.Log($"{gameObject.name} получил {finalAmount} урона. Его здоровье - {Health}/{MaxHealth}");
+    Debug.Log($"{gameObject.name} получил {amount} урона. Его здоровье - {Health}/{MaxHealth}");
   }
 
   private void VisualizeDamage() {
