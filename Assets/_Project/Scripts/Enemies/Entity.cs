@@ -11,6 +11,7 @@ public abstract class Entity : InjectMonoBehaviour {
   [Header("Health")] [SerializeField] private Stat health;
   [SerializeField] private ModifiableStat maxHealth;
   [SerializeField] private ModifiableStat dodgeChance;
+  [SerializeField] protected float changeColorDuration = 0.1f;
 
   [Header("Moving")] [SerializeField] private ModifiableStat moveSpeed;
 
@@ -19,14 +20,14 @@ public abstract class Entity : InjectMonoBehaviour {
   // переменные для перемещения без NavMesh
   private readonly RaycastHit2D[] _hitBuffer = new RaycastHit2D[16];
   private ContactFilter2D _contactFilter;
+  private Collider2D col;
+  private Rigidbody2D rb;
 
-  protected Collider2D col;
-
-  private bool isInvulnerable;
-  protected Rigidbody2D rb;
-
-  private SpriteRenderer _spriteRenderer;
   private Color _spriteColor;
+  private SpriteRenderer _spriteRenderer;
+
+  private bool _isInvulnerable;
+  private Sequence _damageSequence;
 
   public float Health {
     get => health.Value;
@@ -45,6 +46,8 @@ public abstract class Entity : InjectMonoBehaviour {
   }
 
   public bool IsDashing { get; private set; }
+
+  protected float WithChangedColorDuration { get; set; } = 0f;
 
   protected virtual void Awake() {
     rb = GetComponent<Rigidbody2D>();
@@ -72,15 +75,15 @@ public abstract class Entity : InjectMonoBehaviour {
     return null;
   }
 
-  public void SetInvulnerable(bool invulnerable) {
-    isInvulnerable = invulnerable;
+  protected void SetInvulnerable(bool invulnerable) {
+    _isInvulnerable = invulnerable;
   }
 
-  private event Action<float> OnTakeDamage;
+  protected event Action<float> OnTakeDamage;
   public event Action OnDeath;
 
   public void TakeDamage(float amount) {
-    if (IsDead || isInvulnerable) return;
+    if (IsDead || _isInvulnerable) return;
     if (amount <= 0) return;
 
     var hasDodged = Random.value <= DodgeChance;
@@ -101,9 +104,14 @@ public abstract class Entity : InjectMonoBehaviour {
   }
 
   private void VisualizeDamage() {
-    _spriteRenderer.DOKill();
-    _spriteRenderer.DOColor(Color.red, 0.1f)
-      .OnComplete(() => _spriteRenderer.DOColor(_spriteColor, 0.1f));
+    if (_damageSequence != null && _damageSequence.IsActive())
+      _damageSequence.Kill();
+
+    _damageSequence = DOTween.Sequence();
+    _damageSequence.Append(_spriteRenderer.DOColor(Color.red, changeColorDuration));
+    _damageSequence.AppendInterval(WithChangedColorDuration);
+    _damageSequence.Append(_spriteRenderer.DOColor(_spriteColor, changeColorDuration));
+    _damageSequence.OnComplete(() => _damageSequence = null);
   }
 
   protected virtual void Die() {
@@ -118,8 +126,11 @@ public abstract class Entity : InjectMonoBehaviour {
   }
 
   private void VisualizeDeath() {
-    GetComponent<SpriteRenderer>().DOKill();
-    GetComponent<SpriteRenderer>().DOColor(Color.gray, 0.2f);
+    if (_damageSequence != null && _damageSequence.IsActive())
+      _damageSequence.Kill();
+
+    _spriteRenderer.DOKill();
+    _spriteRenderer.DOColor(Color.gray, changeColorDuration);
   }
 
   public void TargetTo(Transform target) // назначить новую цель

@@ -1,3 +1,4 @@
+using System.Collections;
 using CherryFramework.DependencyManager;
 using UnityEngine;
 
@@ -9,6 +10,11 @@ public class Player : Entity {
   [SerializeField] private PlayerEquipment equipment;
   [SerializeField] private PlayerStats stats;
 
+  [Header("Invulnerability")] [SerializeField]
+  private float invulnerabilityDuration = 0.5f;
+
+  private bool _invulnerabilityRunning;
+
   [Inject] private PlayerAccessor _playerAccessor;
 
   public PlayerInventory Inventory => inventory;
@@ -18,13 +24,37 @@ public class Player : Entity {
   protected override void OnEnable() {
     base.OnEnable();
     _playerAccessor.RegisterPlayer(this);
+
+    OnTakeDamage += HandleTakeDamage;
+    WithChangedColorDuration =
+      invulnerabilityDuration - changeColorDuration; // чтобы был красным всё время неуязвимости
   }
 
   private void OnDisable() {
+    OnTakeDamage -= HandleTakeDamage;
+
     _playerAccessor.UnregisterPlayer(this);
   }
 
   public void TryToInteract() {
     itemPickup.TryToInteract();
+  }
+
+  private void HandleTakeDamage(float finalAmount) {
+    if (finalAmount > 0 && !_invulnerabilityRunning) StartCoroutine(InvulnerabilityCoroutine());
+  }
+
+  private IEnumerator InvulnerabilityCoroutine() {
+    _invulnerabilityRunning = true;
+    SetInvulnerable(true);
+
+    var elapsed = 0f;
+    while (elapsed < invulnerabilityDuration) {
+      elapsed += Time.deltaTime;
+      yield return null;
+    }
+
+    SetInvulnerable(false);
+    _invulnerabilityRunning = false;
   }
 }
