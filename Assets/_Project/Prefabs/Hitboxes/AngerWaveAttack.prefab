@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5624906754629031424}
   - component: {fileID: 3364469944443894014}
   - component: {fileID: 2175236104518389985}
+  - component: {fileID: 8898911841327239469}
   m_Layer: 0
   m_Name: Segment_4
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 4235360401287023124}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3.5, z: 0}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -138,6 +139,18 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &8898911841327239469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4235360401287023124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04401e26651edb946ba0b9efc2ab9c71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AbsoluteZeroRotation
 --- !u!1 &5075386224492302624
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,7 +209,7 @@ MonoBehaviour:
   - {fileID: 4609364808057516263}
   - {fileID: 4423855891536234482}
   - {fileID: 3364469944443894014}
-  waveDuration: 0.5
+  waveDuration: 1
   leavePreviousActive: 0
 --- !u!1 &6829813492983386425
 GameObject:
@@ -209,6 +222,7 @@ GameObject:
   - component: {fileID: 1909820568090813263}
   - component: {fileID: 4423855891536234482}
   - component: {fileID: 929344687248005780}
+  - component: {fileID: 1948056834949582875}
   m_Layer: 0
   m_Name: Segment_3
   m_TagString: Untagged
@@ -225,7 +239,7 @@ Transform:
   m_GameObject: {fileID: 6829813492983386425}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.5, z: 0}
+  m_LocalPosition: {x: 0, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -336,6 +350,18 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1948056834949582875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6829813492983386425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04401e26651edb946ba0b9efc2ab9c71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AbsoluteZeroRotation
 --- !u!1 &7272807997110331185
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,6 +373,7 @@ GameObject:
   - component: {fileID: 8125939328034937944}
   - component: {fileID: 2071618166874286390}
   - component: {fileID: 8883093170949391868}
+  - component: {fileID: 6760014515451788263}
   m_Layer: 0
   m_Name: Segment_1
   m_TagString: Untagged
@@ -474,6 +501,18 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &6760014515451788263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7272807997110331185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04401e26651edb946ba0b9efc2ab9c71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AbsoluteZeroRotation
 --- !u!1 &7729160651196508997
 GameObject:
   m_ObjectHideFlags: 0
@@ -485,6 +524,7 @@ GameObject:
   - component: {fileID: 3516984276462688678}
   - component: {fileID: 4609364808057516263}
   - component: {fileID: 6286899105454111649}
+  - component: {fileID: 7483766433951610364}
   m_Layer: 0
   m_Name: Segment_2
   m_TagString: Untagged
@@ -501,7 +541,7 @@ Transform:
   m_GameObject: {fileID: 7729160651196508997}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.5, z: 0}
+  m_LocalPosition: {x: 0, y: 1.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -612,3 +652,15 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &7483766433951610364
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7729160651196508997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04401e26651edb946ba0b9efc2ab9c71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AbsoluteZeroRotation
