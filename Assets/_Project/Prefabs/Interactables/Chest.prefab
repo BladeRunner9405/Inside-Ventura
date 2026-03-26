@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5562937006458292782}
   - component: {fileID: 1265067714395566337}
+  - component: {fileID: -175407555631936300}
   - component: {fileID: 7211305667528950234}
   - component: {fileID: 5034061477902459261}
   - component: {fileID: 7967648524297885639}
@@ -81,9 +82,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingLayerID: -222208283
+  m_SortingLayer: 2
+  m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.5660378, g: 0.39289057, b: 0.31772876, a: 1}
@@ -95,6 +96,18 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &-175407555631936300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3791626637372268971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6502c4f2e8f40f4187973c8e2b3ac42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpritesSorting
 --- !u!114 &7211305667528950234
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,6 +6,6 @@ public class DashAccessory : Accessory {
   [SerializeField] private float duration = 0.5f;
 
   protected override void UseAbility(Vector2 direction) {
-    PlayerAccessor.Player.Dash(direction, distance, duration);
+    PlayerAccessor.Dash(direction, distance, duration);
   }
 }
