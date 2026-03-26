@@ -18,13 +18,24 @@ public class Player : Entity {
   protected override void OnEnable() {
     base.OnEnable();
     _playerAccessor.RegisterPlayer(this);
+
+    OnTakeDamage += TriggerCameraShake;
   }
 
   private void OnDisable() {
     _playerAccessor.UnregisterPlayer(this);
+
+    OnTakeDamage -= TriggerCameraShake;
   }
 
   public void TryToInteract() {
     itemPickup.TryToInteract();
+  }
+
+  private void TriggerCameraShake(float damageAmount)
+  {
+      // Интенсивность (например, 3f) и время (например, 0.2 секунды)
+      // Можно даже привязать силу тряски к размеру полученного урона!
+      CameraShaker.Instance.ShakeCamera(damageAmount);
   }
 }
