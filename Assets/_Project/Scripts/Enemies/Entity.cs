@@ -88,7 +88,9 @@ public abstract class Entity : InjectMonoBehaviour {
 
     Health -= finalAmount;
 
-    VisualizeDamage();
+    if (finalAmount > 0) {
+      VisualizeDamage();
+    }
 
     OnTakeDamage?.Invoke(finalAmount);
 
