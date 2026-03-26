@@ -79,7 +79,7 @@ public abstract class Entity : InjectMonoBehaviour {
     _isInvulnerable = invulnerable;
   }
 
-  protected event Action<float> OnTakeDamage;
+  public event Action<float> OnTakeDamage;
   public event Action OnDeath;
 
   public void TakeDamage(float amount) {
