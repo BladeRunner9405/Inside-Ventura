@@ -122,4 +122,12 @@ public class UncontrollableAnger : Enemy {
     Retreating,
     Idle
   }
+
+  protected override void Die() {
+    base.Die();
+
+    // видимо заглушка:
+    Agent.enabled = false;
+    _animator.enabled = false;
+  }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using CherryFramework.DependencyManager;
+using DG.Tweening;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -23,6 +24,9 @@ public abstract class Entity : InjectMonoBehaviour {
 
   private bool isInvulnerable;
   protected Rigidbody2D rb;
+
+  private SpriteRenderer _spriteRenderer;
+  private Color _spriteColor;
 
   public float Health {
     get => health.Value;
@@ -51,6 +55,9 @@ public abstract class Entity : InjectMonoBehaviour {
     _contactFilter.useTriggers = false;
     _contactFilter.SetLayerMask(LayerMask.GetMask("Obstacle"));
     _contactFilter.useLayerMask = true;
+
+    _spriteRenderer = GetComponent<SpriteRenderer>();
+    _spriteColor = _spriteRenderer.color;
   }
 
   public Stat GetStat(StatName statName) {
@@ -81,6 +88,10 @@ public abstract class Entity : InjectMonoBehaviour {
 
     Health -= finalAmount;
 
+    if (finalAmount > 0) {
+      VisualizeDamage();
+    }
+
     OnTakeDamage?.Invoke(finalAmount);
 
     if (Health == 0)
@@ -89,14 +100,26 @@ public abstract class Entity : InjectMonoBehaviour {
     Debug.Log($"{gameObject.name} получил {finalAmount} урона. Его здоровье - {Health}/{MaxHealth}");
   }
 
-  public void Die() {
-    if (IsDead) return;
+  private void VisualizeDamage() {
+    _spriteRenderer.DOKill();
+    _spriteRenderer.DOColor(Color.red, 0.1f)
+      .OnComplete(() => _spriteRenderer.DOColor(_spriteColor, 0.1f));
+  }
 
-    // GetComponent<SpriteRenderer>().enabled = false; // заглушка
+  protected virtual void Die() {
+    if (IsDead) return;
 
     IsDead = true;
     Health = 0;
+
+    VisualizeDeath();
+
     OnDeath?.Invoke();
+  }
+
+  private void VisualizeDeath() {
+    GetComponent<SpriteRenderer>().DOKill();
+    GetComponent<SpriteRenderer>().DOColor(Color.gray, 0.2f);
   }
 
   public void TargetTo(Transform target) // назначить новую цель

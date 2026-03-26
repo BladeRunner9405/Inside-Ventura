@@ -25,9 +25,9 @@ public class PushAwayEnemiesEffect : Effect {
   }
 
   private void OnAccessoryUsed(Vector2 direction) {
-    var player = _accessory.PlayerAccessor.Player;
+    var playerAccessor = _accessory.PlayerAccessor;
 
-    Vector2 playerPos = player.transform.position;
+    Vector2 playerPos = playerAccessor.Transform.position;
     var colliders = Physics2D.OverlapCircleAll(playerPos, pushRadius, LayerMask.GetMask("Enemy"));
 
     foreach (var col in colliders) {
