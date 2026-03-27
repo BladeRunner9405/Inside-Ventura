@@ -3,67 +3,67 @@ using CherryFramework.DependencyManager;
 using UnityEngine;
 
 public class Player : Entity {
-  [Header("Player stuff")] [SerializeField]
-  private ItemPickup itemPickup;
+  [Header("Player stuff")] [SerializeField]
+  private ItemPickup itemPickup;
 
-  [SerializeField] private PlayerInventory inventory;
-  [SerializeField] private PlayerEquipment equipment;
-  [SerializeField] private PlayerStats stats;
+  [SerializeField] private PlayerInventory inventory;
+  [SerializeField] private PlayerEquipment equipment;
+  [SerializeField] private PlayerStats stats;
 
-  [Header("Invulnerability")] [SerializeField]
-  private float invulnerabilityDuration = 0.5f;
+  [Header("Invulnerability")] [SerializeField]
+  private float invulnerabilityDuration = 0.5f;
 
-  private bool _invulnerabilityRunning;
+  private bool _invulnerabilityRunning;
 
-  [Inject] private PlayerAccessor _playerAccessor;
+  [Inject] private PlayerAccessor _playerAccessor;
 
-  public PlayerInventory Inventory => inventory;
-  public PlayerEquipment Equipment => equipment;
-  public PlayerStats Stats => stats;
+  public PlayerInventory Inventory => inventory;
+  public PlayerEquipment Equipment => equipment;
+  public PlayerStats Stats => stats;
 
-  protected override void OnEnable() {
-    base.OnEnable();
-    _playerAccessor.RegisterPlayer(this);
+  protected override void OnEnable() {
+    base.OnEnable();
+    _playerAccessor.RegisterPlayer(this);
 
-    OnTakeDamage += TriggerCameraShake;
-    OnTakeDamage += HandleTakeDamage;
-    WithChangedColorDuration =
-      invulnerabilityDuration - changeColorDuration; // чтобы был красным всё время неуязвимости
-  }
+    OnTakeDamage += TriggerCameraShake;
+    OnTakeDamage += HandleTakeDamage;
+    WithChangedColorDuration =
+      invulnerabilityDuration - changeColorDuration; // чтобы был красным всё время неуязвимости
+  }
 
-  private void OnDisable() {
-    OnTakeDamage -= HandleTakeDamage;
+  private void OnDisable() {
+    OnTakeDamage -= HandleTakeDamage;
 
-    _playerAccessor.UnregisterPlayer(this);
+    _playerAccessor.UnregisterPlayer(this);
 
-    OnTakeDamage -= TriggerCameraShake;
-  }
+    OnTakeDamage -= TriggerCameraShake;
+  }
 
-  public void TryToInteract() {
-    itemPickup.TryToInteract();
-  }
+  public void TryToInteract() {
+    itemPickup.TryToInteract();
+  }
 
-  private void TriggerCameraShake(float damageAmount)
-  {
-      // Можно привязать силу тряски к размеру полученного урона
-      CameraShaker.Instance.ShakeCamera(damageAmount);
-  }
+  private void TriggerCameraShake(float damageAmount)
+  {
+      // Можно привязать силу тряски к размеру полученного урона
+      CameraShaker.Instance.ShakeCamera(damageAmount);
+  }
 
-  private void HandleTakeDamage(float finalAmount) {
-    if (finalAmount > 0 && !_invulnerabilityRunning) StartCoroutine(InvulnerabilityCoroutine());
-  }
+  private void HandleTakeDamage(float finalAmount) {
+    if (finalAmount > 0 && !_invulnerabilityRunning) StartCoroutine(InvulnerabilityCoroutine());
+  }
 
-  private IEnumerator InvulnerabilityCoroutine() {
-    _invulnerabilityRunning = true;
-    SetInvulnerable(true);
+  private IEnumerator InvulnerabilityCoroutine() {
+    _invulnerabilityRunning = true;
+    SetInvulnerable(true);
 
-    var elapsed = 0f;
-    while (elapsed < invulnerabilityDuration) {
-      elapsed += Time.deltaTime;
-      yield return null;
-    }
+    var elapsed = 0f;
+    while (elapsed < invulnerabilityDuration) {
+      elapsed += Time.deltaTime;
+      yield return null;
+    }
 
-    SetInvulnerable(false);
-    _invulnerabilityRunning = false;
-  }
+    SetInvulnerable(false);
+    _invulnerabilityRunning = false;
+  }
 }
