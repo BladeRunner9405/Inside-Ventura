@@ -192,9 +192,18 @@
             "id": "582107c8-9c7f-4076-9f96-396acb082654",
             "actions": [
                 {
-                    "name": "New action",
-                    "type": "Button",
+                    "name": "Point",
+                    "type": "Value",
                     "id": "87dae4e0-9e47-4dc8-8071-84553257967f",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "Click",
+                    "type": "Button",
+                    "id": "7e4d4767-4f77-4631-8973-2e8d1c8bbc41",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -205,11 +214,22 @@
                 {
                     "name": "",
                     "id": "bd3d07f3-0dac-43fa-94d6-c8e6de2b5d77",
-                    "path": "",
+                    "path": "<Mouse>/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
+                    "action": "Point",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "972932a2-47dc-4937-afde-b3d51c767501",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Click",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
