@@ -55,7 +55,7 @@ public class Player : Entity {
 
   private IEnumerator InvulnerabilityCoroutine() {
     _invulnerabilityRunning = true;
-    SetInvulnerable(true);
+    ++InvulnerabilityProcCount;
 
     var elapsed = 0f;
     while (elapsed < invulnerabilityDuration) {
@@ -63,7 +63,13 @@ public class Player : Entity {
       yield return null;
     }
 
-    SetInvulnerable(false);
+    --InvulnerabilityProcCount;
     _invulnerabilityRunning = false;
+  }
+
+  protected override IEnumerator DashCoroutine(Vector2 direction, float distance, float duration) {
+    ++InvulnerabilityProcCount;
+    yield return base.DashCoroutine(direction, distance, duration);
+    --InvulnerabilityProcCount;
   }
 }
