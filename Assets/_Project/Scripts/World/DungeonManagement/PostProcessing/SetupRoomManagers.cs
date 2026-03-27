@@ -4,9 +4,6 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 public class GenerationPostProcessing : DungeonGeneratorPostProcessingComponentGrid2D {
-  [SerializeField]
-  private GameObject[] enemies;
-
   public override void Run(DungeonGeneratorLevelGrid2D level) {
     level.GetSharedTilemaps().ForEach(x => {
       if (x.gameObject.name == "Walls") x.gameObject.layer = 3;
@@ -27,11 +24,21 @@ public class GenerationPostProcessing : DungeonGeneratorPostProcessingComponentG
       floor.AddComponent<RoomEnterTriggerHandler>();
 
       // Add the room manager component
-      var roomManager = roomTemplateInstance.AddComponent<RoomManager>();
-      roomManager.Init(enemies, floor.GetComponent<CompositeCollider2D>(), roomInstance);
+      RoomManagerBase roomManager = AddRoomManager(roomTemplateInstance, roomInstance);
+      roomManager.Init(floor.GetComponent<CompositeCollider2D>(), roomInstance);
     }
 
     Debug.Log("Done setting up dungeon rooms");
+  }
+
+  private RoomManagerBase AddRoomManager(GameObject roomTemplateInstance, RoomInstanceGrid2D roomInstance) {
+    var dungeonRoom = roomInstance.Room as DungeonRoom;
+    switch (dungeonRoom.type) {
+      case DungeonRoomType.Normal:
+        return roomTemplateInstance.AddComponent<NormalRoomManager>();
+      default:
+        return roomTemplateInstance.AddComponent<RoomManagerBase>();
+    }
   }
 
   private void AddFloorCollider(GameObject floor) {
