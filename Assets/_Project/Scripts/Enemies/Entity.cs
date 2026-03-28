@@ -26,7 +26,6 @@ public abstract class Entity : InjectMonoBehaviour {
   private Color _spriteColor;
   private SpriteRenderer _spriteRenderer;
 
-  private bool _isInvulnerable;
   private Sequence _damageSequence;
 
   public float Health {
@@ -48,6 +47,9 @@ public abstract class Entity : InjectMonoBehaviour {
   public bool IsDashing { get; private set; }
 
   protected float WithChangedColorDuration { get; set; } = 0f;
+
+  protected int InvulnerabilityProcCount { get; set; } = 0; // количество "процессов", требующих неуязвимости
+  private bool IsInvulnerable => InvulnerabilityProcCount > 0;
 
   protected virtual void Awake() {
     rb = GetComponent<Rigidbody2D>();
@@ -75,15 +77,11 @@ public abstract class Entity : InjectMonoBehaviour {
     return null;
   }
 
-  protected void SetInvulnerable(bool invulnerable) {
-    _isInvulnerable = invulnerable;
-  }
-
   public event Action<float> OnTakeDamage;
   public event Action OnDeath;
 
   public void TakeDamage(float amount) {
-    if (IsDead || _isInvulnerable) return;
+    if (IsDead || IsInvulnerable) return;
     if (amount <= 0) return;
 
     var hasDodged = Random.value <= DodgeChance;
@@ -192,8 +190,6 @@ public abstract class Entity : InjectMonoBehaviour {
     var originalSpeed = MoveSpeed;
     MoveSpeed = distance / duration;
 
-    SetInvulnerable(true);
-
     var elapsed = 0f;
     while (elapsed < duration) {
       Move(direction);
@@ -204,7 +200,6 @@ public abstract class Entity : InjectMonoBehaviour {
     }
 
     MoveSpeed = originalSpeed;
-    SetInvulnerable(false);
     IsDashing = false;
 
     ResolveOverlap();
