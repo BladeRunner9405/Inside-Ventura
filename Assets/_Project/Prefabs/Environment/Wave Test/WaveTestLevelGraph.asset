@@ -56,8 +56,8 @@ MonoBehaviour:
   - {fileID: 5285161534663789096}
   - {fileID: -4885061016151264925}
   EditorData:
-    PanOffset: {x: 52.065933, y: -30.217796}
-    Zoom: 1.3168045
+    PanOffset: {x: -0.80265576, y: -11.039719}
+    Zoom: 1.2397453
   RoomType: DungeonRoom
   ConnectionType: Edgar.Unity.Connection
 --- !u!114 &2295331113537441066
@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c8014d31544667085426dbe52eeab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DungeonRoom
-  Position: {x: 320, y: 208}
+  Position: {x: 320, y: 224}
   type: 1
   individualRoomTemplates:
   - {fileID: 4938271001061371832, guid: dd437b3fa7b0b18d59bc25d1eed7bcdc, type: 3}

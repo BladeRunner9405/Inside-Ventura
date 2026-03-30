@@ -20,15 +20,16 @@ MonoBehaviour:
   CorridorRoomTemplateSets:
   - {fileID: 11400000, guid: 04070c089613f78e9bc52f20037c5dc9, type: 2}
   DefaultIndividualRoomTemplates: []
-  DefaultRoomTemplateSets: []
+  DefaultRoomTemplateSets:
+  - {fileID: 11400000, guid: 17f1f39f94500c3dfb63341fe6e8bf53, type: 2}
   Rooms:
   - {fileID: 2295331113537441066}
   - {fileID: 5285161534663789096}
   - {fileID: 139973469307808076}
   - {fileID: 5767150732156699903}
   EditorData:
-    PanOffset: {x: -21.44569, y: -50.7137}
-    Zoom: 1.5385189
+    PanOffset: {x: 4.4071856, y: -161.89961}
+    Zoom: 2.3441575
   RoomType: DungeonRoom
   ConnectionType: Edgar.Unity.Connection
 --- !u!114 &139973469307808076
