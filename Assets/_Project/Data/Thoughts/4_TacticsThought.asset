@@ -16,6 +16,6 @@ MonoBehaviour:
   effects:
   - {fileID: 11400000, guid: a816240f7f3bd8048813625247e7d502, type: 2}
   - {fileID: 11400000, guid: 7761eb9a647cbce4d9af953a11ac4ac8, type: 2}
-  inventoryIcon: {fileID: 0}
+  inventoryIcon: {fileID: 4383203243967761144, guid: ef876bb57e0fc0344ab5000baaf8bea2, type: 3}
   rarityLevel: 1
   type: 0

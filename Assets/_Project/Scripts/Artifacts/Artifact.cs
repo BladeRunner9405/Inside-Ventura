@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using CherryFramework.DependencyManager;
 using UnityEngine;
@@ -10,6 +11,9 @@ public abstract class Artifact : ScriptableObject {
   [Inject] public PlayerAccessor PlayerAccessor;
 
   public int SlotsCount => slotsCount;
+
+  public event Action<int, Thought> OnThoughtEquipped;
+  public event Action<int> OnThoughtUnequipped;
 
   public virtual Stat GetStat(StatName statName) {
     return null;
@@ -43,6 +47,8 @@ public abstract class Artifact : ScriptableObject {
 
     equippedThoughts[slotIndex] = thought;
     thought.OnEquip(this);
+
+    OnThoughtEquipped?.Invoke(slotIndex, thought);
   }
 
   public void UnequipThought(int slotIndex) {
@@ -54,6 +60,14 @@ public abstract class Artifact : ScriptableObject {
     thought.OnUnequip(this);
 
     equippedThoughts[slotIndex] = null;
+
+    OnThoughtUnequipped?.Invoke(slotIndex);
+  }
+
+  public Thought GetThoughtAtSlot(int slotIndex)
+  {
+    if (slotIndex < 0 || slotIndex >= equippedThoughts.Count) return null;
+    return equippedThoughts[slotIndex];
   }
 
   // Это метод для дебага

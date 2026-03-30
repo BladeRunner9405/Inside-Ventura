@@ -22,6 +22,8 @@ public class Thought : ScriptableObject {
   [SerializeField] private ThoughtType type;
 
   public IReadOnlyList<Effect> Effects => effects;
+  public Sprite InventoryIcon => inventoryIcon;
+  public ThoughtType Type => type;
 
   public bool HasRightType(Artifact artifact) {
     if (type == ThoughtType.Weapon && artifact is not Weapon) return false;

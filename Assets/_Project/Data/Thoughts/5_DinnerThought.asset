@@ -19,6 +19,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d3bc7d895fad2594fa1ce750043fb313, type: 2}
   - {fileID: 11400000, guid: 8dd30ce2e253afe4fb725430de275f21, type: 2}
   - {fileID: 11400000, guid: 85dcfe40c06b4b640bf8c4d146a337b0, type: 2}
-  inventoryIcon: {fileID: 0}
+  inventoryIcon: {fileID: 6573017898754754575, guid: ef876bb57e0fc0344ab5000baaf8bea2, type: 3}
   rarityLevel: 1
   type: 1

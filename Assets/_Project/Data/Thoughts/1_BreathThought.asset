@@ -15,6 +15,6 @@ MonoBehaviour:
   thoughtName: "\u041C\u044B\u0441\u043B\u044C \u043E \u0414\u044B\u0445\u0430\u043D\u0438\u0438"
   effects:
   - {fileID: 11400000, guid: b2de839dc9957854183b1d077da079cf, type: 2}
-  inventoryIcon: {fileID: 0}
+  inventoryIcon: {fileID: -2340950413744678522, guid: ef876bb57e0fc0344ab5000baaf8bea2, type: 3}
   rarityLevel: 1
   type: 2

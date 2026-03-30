@@ -1,0 +1,377 @@
+fileFormatVersion: 2
+guid: ef876bb57e0fc0344ab5000baaf8bea2
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2340950413744678522
+    second: "\u2014Pngtree\u20143d black 1 to 10_6027770_0"
+  - first:
+      213: -1753602250054716455
+    second: "\u2014Pngtree\u20143d black 1 to 10_6027770_1"
+  - first:
+      213: 6834091029862786803
+    second: "\u2014Pngtree\u20143d black 1 to 10_6027770_2"
+  - first:
+      213: 4383203243967761144
+    second: "\u2014Pngtree\u20143d black 1 to 10_6027770_3"
+  - first:
+      213: 6573017898754754575
+    second: "\u2014Pngtree\u20143d black 1 to 10_6027770_4"
+  - first:
+      213: -7964445384326693337
+    second: "\u2014Pngtree\u20143d black 1 to 10_6027770_5"
+  - first:
+      213: 6883398989176119331
+    second: "\u2014Pngtree\u20143d black 1 to 10_6027770_6"
+  - first:
+      213: -9068677565989737946
+    second: "\u2014Pngtree\u20143d black 1 to 10_6027770_7"
+  - first:
+      213: 42836072835269628
+    second: "\u2014Pngtree\u20143d black 1 to 10_6027770_8"
+  - first:
+      213: -5325619803860822787
+    second: "\u2014Pngtree\u20143d black 1 to 10_6027770_9"
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u20143d black 1 to 10_6027770_0"
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 3022
+        width: 372
+        height: 868
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 689d1f76006438fd0800000000000000
+      internalID: -2340950413744678522
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u20143d black 1 to 10_6027770_1"
+      rect:
+        serializedVersion: 2
+        x: 1623
+        y: 3022
+        width: 516
+        height: 872
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d3b9286b04f9a7e0800000000000000
+      internalID: -1753602250054716455
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u20143d black 1 to 10_6027770_2"
+      rect:
+        serializedVersion: 2
+        x: 2902
+        y: 3022
+        width: 515
+        height: 869
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3f6a7a5459197de50800000000000000
+      internalID: 6834091029862786803
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u20143d black 1 to 10_6027770_3"
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 2042
+        width: 515
+        height: 868
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8fac90f802444dc30800000000000000
+      internalID: 4383203243967761144
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u20143d black 1 to 10_6027770_4"
+      rect:
+        serializedVersion: 2
+        x: 1694
+        y: 2042
+        width: 519
+        height: 868
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f08cf8d14fc083b50800000000000000
+      internalID: 6573017898754754575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u20143d black 1 to 10_6027770_5"
+      rect:
+        serializedVersion: 2
+        x: 2973
+        y: 2042
+        width: 516
+        height: 869
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 72e3532de1b987190800000000000000
+      internalID: -7964445384326693337
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u20143d black 1 to 10_6027770_6"
+      rect:
+        serializedVersion: 2
+        x: 440
+        y: 1062
+        width: 485
+        height: 869
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 320202d29eeb68f50800000000000000
+      internalID: 6883398989176119331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u20143d black 1 to 10_6027770_7"
+      rect:
+        serializedVersion: 2
+        x: 1673
+        y: 1062
+        width: 520
+        height: 868
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 62aa0a83dc5952280800000000000000
+      internalID: -9068677565989737946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u20143d black 1 to 10_6027770_8"
+      rect:
+        serializedVersion: 2
+        x: 2947
+        y: 1062
+        width: 520
+        height: 869
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf34be86e2f289000800000000000000
+      internalID: 42836072835269628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u20143d black 1 to 10_6027770_9"
+      rect:
+        serializedVersion: 2
+        x: 1693
+        y: 82
+        width: 519
+        height: 869
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: df4171631099716b0800000000000000
+      internalID: -5325619803860822787
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      "\u2014Pngtree\u20143d black 1 to 10_6027770_0": -2340950413744678522
+      "\u2014Pngtree\u20143d black 1 to 10_6027770_1": -1753602250054716455
+      "\u2014Pngtree\u20143d black 1 to 10_6027770_2": 6834091029862786803
+      "\u2014Pngtree\u20143d black 1 to 10_6027770_3": 4383203243967761144
+      "\u2014Pngtree\u20143d black 1 to 10_6027770_4": 6573017898754754575
+      "\u2014Pngtree\u20143d black 1 to 10_6027770_5": -7964445384326693337
+      "\u2014Pngtree\u20143d black 1 to 10_6027770_6": 6883398989176119331
+      "\u2014Pngtree\u20143d black 1 to 10_6027770_7": -9068677565989737946
+      "\u2014Pngtree\u20143d black 1 to 10_6027770_8": 42836072835269628
+      "\u2014Pngtree\u20143d black 1 to 10_6027770_9": -5325619803860822787
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
