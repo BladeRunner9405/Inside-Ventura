@@ -7,7 +7,7 @@ public class ClearProjectilesAccessory : Accessory {
   [SerializeField] private float radius = 3f;
 
   protected override void UseAbility(Vector2 direction) {
-    var hits = Physics2D.OverlapCircleAll(PlayerAccessor.Player.transform.position, radius, projectileLayer);
+    var hits = Physics2D.OverlapCircleAll(PlayerAccessor.Transform.position, radius, projectileLayer);
     foreach (var hit in hits) Destroy(hit.gameObject);
   }
 }

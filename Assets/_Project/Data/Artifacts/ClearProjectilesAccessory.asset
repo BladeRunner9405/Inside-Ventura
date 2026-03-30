@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ClearProjectilesAccessory
   artifactName: "\u041E\u0436\u0435\u0440\u0435\u043B\u044C\u0435"
   slotsCount: 3
-  _equippedThoughts: []
+  equippedThoughts: []
   cooldown: 0
   projectileLayer:
     serializedVersion: 2

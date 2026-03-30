@@ -12,7 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b517771f38635d48aab74fb4ee56fae, type: 3}
   m_Name: DashAccessory
   m_EditorClassIdentifier: Assembly-CSharp::DashAccessory
-  artifactName: "\u0428\u0430\u0440\u0444"
+  artifactName: "\u041F\u043E\u043B\u0451\u0442 \u0424\u0430\u043D\u0442\u0430\u0437\u0438\u0438"
   slotsCount: 3
-  _equippedThoughts: []
-  cooldown: 0
+  equippedThoughts: []
+  cooldown:
+    _value: 3
+  distance: 2.2
+  duration: 0.2

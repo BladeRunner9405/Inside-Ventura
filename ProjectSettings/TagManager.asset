@@ -14,8 +14,8 @@ TagManager:
   - UI
   - Entity
   - Projectile
-  - 
-  - 
+  - Enemy
+  - Player
   - 
   - 
   - 
@@ -41,6 +41,12 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Entities+Items
+    uniqueID: 4072759013
+    locked: 0
+  - name: UI
+    uniqueID: 2024515277
     locked: 0
   m_RenderingLayers:
   - Default

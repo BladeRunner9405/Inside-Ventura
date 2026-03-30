@@ -55,12 +55,17 @@ public class PlayerController : MonoBehaviour {
 
   private void UseAbility() {
     if (playerEquipment) {
-      var direction = (m_lookAmt - (Vector2)player.transform.position).normalized;
+      Vector2 direction;
+      if (m_moveAmt != Vector2.zero)
+        direction = m_moveAmt.normalized;
+      else
+        direction = (m_lookAmt - (Vector2)player.transform.position).normalized;
       playerEquipment.TryToUseAbility(direction);
     }
   }
 
   private void Walking() {
+    if (player.IsDashing) return;
     player.Move(m_moveAmt);
   }
 

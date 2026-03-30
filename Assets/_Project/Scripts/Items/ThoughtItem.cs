@@ -4,14 +4,14 @@ public class ThoughtItem : Item {
   [SerializeField] private Thought thoughtData;
 
   protected override bool CanPickUp() {
-    if (!PlayerAccessor.Player?.Inventory) return false;
+    if (!PlayerAccessor.Inventory) return false;
 
-    return PlayerAccessor.Player.Inventory.CanAddThought();
+    return PlayerAccessor.Inventory.CanAddThought();
   }
 
   protected override void OnPickup() {
-    if (!PlayerAccessor.Player?.Inventory) return;
+    if (!PlayerAccessor.Inventory) return;
 
-    PlayerAccessor.Player.Inventory.AddThoughtToBag(thoughtData);
+    PlayerAccessor.Inventory.AddThoughtToBag(thoughtData);
   }
 }

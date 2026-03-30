@@ -9,6 +9,13 @@ public class Heart : Artifact {
 
   public override void Initialize() {
     base.Initialize();
+
+    if (traits != null) {
+      var cloned = new Effect[traits.Length];
+      for (var i = 0; i < traits.Length; ++i) cloned[i] = Instantiate(traits[i]);
+      traits = cloned;
+    }
+
     ApplyHeartEffects();
   }
 

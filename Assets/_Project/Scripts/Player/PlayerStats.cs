@@ -1,28 +1,22 @@
-using System.Collections.Generic;
 using UnityEngine;
 
-public enum Stat {
-  Money,
-  MoveSpeed,
-
-  Mana
-  // ...
-}
-
 public class PlayerStats : MonoBehaviour {
-  private readonly Dictionary<Stat, List<StatModifier>> _modifiers = new();
+  [SerializeField] private Stat money; // Замыслы, игровая валюта
+  [SerializeField] private Stat mana; // Idea Points, тратятся активацией активируемых мыслей
 
-  private int Money { get; }
-  private float MoveSpeed { get; }
-  private int Mana { get; }
-
-  private float GetStat(Stat stat) {
-    return 0;
+  public float Money {
+    get => money.Value;
+    set => money.Value = value;
   }
 
-  private void AddModifier(Stat stat, StatModifier modifier) {
+  public float Mana {
+    get => mana.Value;
+    set => mana.Value = value;
   }
 
-  private void RemoveModifier(Stat stat, StatModifier modifier) {
+  public Stat GetStat(StatName statName) {
+    if (statName == StatName.Mana)
+      return mana;
+    return null;
   }
 }

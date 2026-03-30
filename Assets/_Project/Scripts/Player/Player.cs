@@ -1,129 +1,75 @@
+using System.Collections;
 using CherryFramework.DependencyManager;
 using UnityEngine;
-using DG.Tweening; // Не забудьте добавить, так как используется .DOMove и .SetEase
 
 public class Player : Entity {
-  [SerializeField] private ItemPickup itemPickup;
+  [Header("Player stuff")] [SerializeField]
+  private ItemPickup itemPickup;
 
   [SerializeField] private PlayerInventory inventory;
+  [SerializeField] private PlayerEquipment equipment;
+  [SerializeField] private PlayerStats stats;
+
+  [Header("Invulnerability")] [SerializeField]
+  private float invulnerabilityDuration = 0.5f;
+
+  private bool _invulnerabilityRunning;
 
   [Inject] private PlayerAccessor _playerAccessor;
+
   public PlayerInventory Inventory => inventory;
-
-  private const float ShellDistance = 0.01f; // отступ, чтобы не врастать в стены
-  private ContactFilter2D _contactFilter;
-  private readonly RaycastHit2D[] _hitBuffer = new RaycastHit2D[16];
-
-  protected override void Awake() {
-    base.Awake();
-
-    _contactFilter.useTriggers = false;
-    _contactFilter.SetLayerMask(LayerMask.GetMask("Obstacle"));
-    _contactFilter.useLayerMask = true;
-  }
+  public PlayerEquipment Equipment => equipment;
+  public PlayerStats Stats => stats;
 
   protected override void OnEnable() {
     base.OnEnable();
     _playerAccessor.RegisterPlayer(this);
+
+    OnTakeDamage += TriggerCameraShake;
+    OnTakeDamage += HandleTakeDamage;
+    WithChangedColorDuration =
+      invulnerabilityDuration - changeColorDuration; // чтобы был красным всё время неуязвимости
   }
 
   private void OnDisable() {
+    OnTakeDamage -= HandleTakeDamage;
+
     _playerAccessor.UnregisterPlayer(this);
+
+    OnTakeDamage -= TriggerCameraShake;
   }
 
   public void TryToInteract() {
     itemPickup.TryToInteract();
   }
 
-  public void Dash(Vector2 direction, float distance, float duration) {
-    if (direction == Vector2.zero) direction = Vector2.right;
-
-    var startPos = transform.position;
-    var originalDistance = distance;
-    var actualDistance = CalculateSafeDistance(direction, originalDistance);
-
-    // если упёрлись в стену
-    if (actualDistance <= 0f)
-      return;
-
-    var targetPos = startPos + (Vector3)direction * actualDistance;
-
-    var actualDuration = duration * (actualDistance / originalDistance);
-
-    SetInvulnerable(true);
-
-    // сам дэш, Ease.OutQuad - анимация начинается быстро и замедляется к концу
-    transform.DOMove(targetPos, actualDuration)
-      .SetEase(Ease.OutQuad)
-      .OnComplete(() => SetInvulnerable(false));
+  private void TriggerCameraShake(float damageAmount)
+  {
+      // Можно привязать силу тряски к размеру полученного урона
+      CameraShaker.Instance.ShakeCamera(damageAmount);
   }
 
-  public void Move(Vector2 direction) {
-    if (direction.sqrMagnitude < 0.001f) return;
-
-    var deltaMove = direction * moveSpeed * Time.fixedDeltaTime;
-
-    ResolveOverlap(); // проверка уже внутри стены
-
-    var maxIterations = 4;
-    for (var i = 0; i < maxIterations; i++) {
-      var distance = deltaMove.magnitude;
-      if (distance < 0.0001f) break;
-
-      var count = col.Cast(deltaMove.normalized, _contactFilter, _hitBuffer, distance + ShellDistance);
-
-      if (count > 0) {
-        var hit = _hitBuffer[0];
-
-        var safeDistance = Mathf.Max(0, hit.distance - ShellDistance);
-        rb.position += deltaMove.normalized * safeDistance;
-
-        var remainingDelta = deltaMove.normalized * (distance - safeDistance);
-        deltaMove = remainingDelta - Vector2.Dot(remainingDelta, hit.normal) * hit.normal;
-
-        if (Vector2.Dot(deltaMove, direction) <= 0) deltaMove = Vector2.zero;
-      }
-      else {
-        rb.position += deltaMove;
-        break;
-      }
-    }
+  private void HandleTakeDamage(float finalAmount) {
+    if (finalAmount > 0 && !_invulnerabilityRunning) StartCoroutine(InvulnerabilityCoroutine());
   }
 
-  private void ResolveOverlap() {
-    var results = new Collider2D[5];
-    var count = col.Overlap(_contactFilter, results);
+  private IEnumerator InvulnerabilityCoroutine() {
+    _invulnerabilityRunning = true;
+    ++InvulnerabilityProcCount;
 
-    for (var i = 0; i < count; i++) {
-      var dist = col.Distance(results[i]);
-      if (dist.isOverlapped) rb.position += dist.normal * dist.distance;
-    }
-  }
-
-  // обрезает вектор до столкновения со стеной
-  protected float CalculateSafeDistance(Vector2 direction, float distance) {
-    var count = col.Cast(direction, _contactFilter, _hitBuffer, distance + ShellDistance);
-
-    if (count > 0) {
-      var hit = _hitBuffer[0];
-
-      var safeDistance = Mathf.Max(0, hit.distance - ShellDistance);
-      return safeDistance;
+    var elapsed = 0f;
+    while (elapsed < invulnerabilityDuration) {
+      elapsed += Time.deltaTime;
+      yield return null;
     }
 
-    return distance;
+    --InvulnerabilityProcCount;
+    _invulnerabilityRunning = false;
   }
 
-  /*void Heal(int amount) {
-      if (IsDead) return;
-      if (amount <= 0) return;
-
-      Health += amount;
+  protected override IEnumerator DashCoroutine(Vector2 direction, float distance, float duration) {
+    ++InvulnerabilityProcCount;
+    yield return base.DashCoroutine(direction, distance, duration);
+    --InvulnerabilityProcCount;
   }
-
-  void ModifyMaxHealth(int delta) {
-    if (IsDead) return;
-
-    MaxHealth += delta;
-  }*/
 }

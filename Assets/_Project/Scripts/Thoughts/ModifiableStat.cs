@@ -1,44 +1,32 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
-public enum StatModifierType {
+public enum StatOperationType {
   Add,
   Multiply
 }
 
 public class StatModifier {
-  public readonly Effect SourceEffect;
-  public readonly StatModifierType Type;
+  public readonly StatOperationType Type;
   public readonly float Value;
 
-  public StatModifier(float value, StatModifierType type, Effect sourceEffect) {
-    Value = value;
+  public StatModifier(StatOperationType type, float value) {
     Type = type;
-    SourceEffect = sourceEffect;
+    Value = value;
   }
 }
 
 [Serializable]
-public class ModifiableStat {
-  [SerializeField] private float baseValue;
+public class ModifiableStat : Stat {
   private List<StatModifier> modifiers = new();
 
-  public ModifiableStat(float baseValue) {
-    BaseValue = baseValue;
-  }
-
-  public float BaseValue {
-    get => baseValue;
-    set => baseValue = value;
-  }
-
-  public float Value {
+  public float ModifiedValue {
     get {
-      var addSum = modifiers.Where(m => m.Type == StatModifierType.Add).Sum(m => m.Value);
-      var multiplyFactor = 1f + modifiers.Where(m => m.Type == StatModifierType.Multiply).Sum(m => m.Value);
-      return (baseValue + addSum) * multiplyFactor;
+      var addSum = modifiers.Where(m => m.Type == StatOperationType.Add).Sum(m => m.Value);
+      var multiplyFactor = modifiers.Where(m => m.Type == StatOperationType.Multiply)
+        .Aggregate(1f, (current, m) => current * m.Value);
+      return (Value + addSum) * multiplyFactor;
     }
   }
 
@@ -48,9 +36,5 @@ public class ModifiableStat {
 
   public void RemoveModifier(StatModifier modifier) {
     modifiers.Remove(modifier);
-  }
-
-  public void RemoveAllEffectModifiers(Effect effect) {
-    modifiers.RemoveAll(m => m.SourceEffect == effect);
   }
 }

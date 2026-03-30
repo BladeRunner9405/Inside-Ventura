@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ItemPickup : MonoBehaviour {
   [SerializeField] private float radius;
-  private InteractableObject _closestInterObj;
 
   private readonly List<InteractableObject> _interactables = new();
+  private InteractableObject _closestInterObj;
 
   public void Awake() {
     transform.localScale = new Vector3(radius, radius, 0);

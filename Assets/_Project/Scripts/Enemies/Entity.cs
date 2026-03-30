@@ -1,80 +1,207 @@
 using System;
+using System.Collections;
 using CherryFramework.DependencyManager;
+using DG.Tweening;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public abstract class Entity : InjectMonoBehaviour {
-  [SerializeField] private int health;
-  [SerializeField] private int maxHealth = 100;
-  [SerializeField] private bool isDead;
+  private const float ShellDistance = 0.01f; // отступ, чтобы не врастать в стены
 
-  [SerializeField] private bool isInvulnerable;
+  [Header("Health")] [SerializeField] private Stat health;
+  [SerializeField] private ModifiableStat maxHealth;
+  [SerializeField] private ModifiableStat dodgeChance;
+  [SerializeField] protected float changeColorDuration = 0.1f;
 
-  public Transform target; // Transform, на кого смотрит Entity
+  [Header("Moving")] [SerializeField] private ModifiableStat moveSpeed;
 
-  public float moveSpeed = 5f;
+  [Header("Target")] public Transform target; // Transform, на кого смотрит Entity
 
-  protected Collider2D col;
-  protected Rigidbody2D rb;
+  // переменные для перемещения без NavMesh
+  private readonly RaycastHit2D[] _hitBuffer = new RaycastHit2D[16];
+  private ContactFilter2D _contactFilter;
+  private Collider2D col;
+  private Rigidbody2D rb;
 
-  public int Health {
-    get => health;
-    protected set => health = Mathf.Clamp(value, 0, MaxHealth);
+  private Color _spriteColor;
+  private SpriteRenderer _spriteRenderer;
+
+  private Sequence _damageSequence;
+
+  public float Health {
+    get => health.Value;
+    set => health.Value = Mathf.Clamp(value, 0, MaxHealth);
   }
 
-  public int MaxHealth {
-    get => maxHealth;
-    protected set {
-      maxHealth = Mathf.Max(1, value);
-      if (health > maxHealth)
-        health = maxHealth;
-    }
+  public float MaxHealth => maxHealth.ModifiedValue;
+
+  public bool IsDead { get; private set; }
+
+  public float DodgeChance => Mathf.Min(1f, dodgeChance.ModifiedValue);
+
+  public float MoveSpeed {
+    get => moveSpeed.ModifiedValue;
+    set => moveSpeed.Value = value;
   }
 
-  public bool IsDead => isDead;
+  public bool IsDashing { get; private set; }
+
+  protected float WithChangedColorDuration { get; set; } = 0f;
+
+  protected int InvulnerabilityProcCount { get; set; } = 0; // количество "процессов", требующих неуязвимости
+  private bool IsInvulnerable => InvulnerabilityProcCount > 0;
 
   protected virtual void Awake() {
     rb = GetComponent<Rigidbody2D>();
     col = GetComponent<Collider2D>();
 
-    health = maxHealth;
-    isDead = false;
+    IsDead = false;
+
+    _contactFilter.useTriggers = false;
+    _contactFilter.SetLayerMask(LayerMask.GetMask("Obstacle"));
+    _contactFilter.useLayerMask = true;
+
+    _spriteRenderer = GetComponent<SpriteRenderer>();
+    _spriteColor = _spriteRenderer.color;
   }
 
-  public void SetInvulnerable(bool invulnerable) {
-    isInvulnerable = invulnerable;
+  public Stat GetStat(StatName statName) {
+    if (statName == StatName.MaxHealth)
+      return maxHealth;
+    if (statName == StatName.DodgeChance)
+      return dodgeChance;
+    if (statName == StatName.MoveSpeed)
+      return moveSpeed;
+    if (statName == StatName.Health)
+      return health;
+    return null;
   }
 
-  private event Action<int> OnTakeDamage;
+  public event Action<float> OnTakeDamage;
   public event Action OnDeath;
 
-  public void Attack(Player player) {
-    // ...
-  }
-
-  public void TakeDamage(int amount) {
-    if (IsDead || isInvulnerable) return;
+  public void TakeDamage(float amount) {
+    if (IsDead || IsInvulnerable) return;
     if (amount <= 0) return;
 
-    Health -= amount;
+    var hasDodged = Random.value <= DodgeChance;
+    var finalAmount = hasDodged ? 0f : amount;
 
-    OnTakeDamage?.Invoke(amount);
+    Health -= finalAmount;
+
+    if (finalAmount > 0) {
+      VisualizeDamage();
+    }
+
+    OnTakeDamage?.Invoke(finalAmount);
 
     if (Health == 0)
       Die();
 
-    Debug.Log($"{gameObject.name} получил {amount} урона. Его здоровье - {Health}/{maxHealth}");
+    Debug.Log($"{gameObject.name} получил {finalAmount} урона. Его здоровье - {Health}/{MaxHealth}");
   }
 
-  public void Die() {
+  private void VisualizeDamage() {
+    if (_damageSequence != null && _damageSequence.IsActive())
+      _damageSequence.Kill();
+
+    _damageSequence = DOTween.Sequence();
+    _damageSequence.Append(_spriteRenderer.DOColor(Color.red, changeColorDuration));
+    _damageSequence.AppendInterval(WithChangedColorDuration);
+    _damageSequence.Append(_spriteRenderer.DOColor(_spriteColor, changeColorDuration));
+    _damageSequence.OnComplete(() => _damageSequence = null);
+  }
+
+  protected virtual void Die() {
     if (IsDead) return;
 
-    isDead = true;
+    IsDead = true;
     Health = 0;
+
+    VisualizeDeath();
+
     OnDeath?.Invoke();
+  }
+
+  private void VisualizeDeath() {
+    if (_damageSequence != null && _damageSequence.IsActive())
+      _damageSequence.Kill();
+
+    _spriteRenderer.DOKill();
+    _spriteRenderer.DOColor(Color.gray, changeColorDuration);
   }
 
   public void TargetTo(Transform target) // назначить новую цель
   {
     this.target = target;
+  }
+
+  public void Move(Vector2 direction) {
+    if (direction.sqrMagnitude < 0.001f) return;
+
+    var deltaMove = direction * MoveSpeed * Time.fixedDeltaTime;
+
+    ResolveOverlap(); // проверка уже внутри стены
+
+    var maxIterations = 4;
+    for (var i = 0; i < maxIterations; i++) {
+      var distance = deltaMove.magnitude;
+      if (distance < 0.0001f) break;
+
+      var count = col.Cast(deltaMove.normalized, _contactFilter, _hitBuffer, distance + ShellDistance);
+
+      if (count > 0) {
+        var hit = _hitBuffer[0];
+
+        var safeDistance = Mathf.Max(0, hit.distance - ShellDistance);
+        rb.position += deltaMove.normalized * safeDistance;
+
+        var remainingDelta = deltaMove.normalized * (distance - safeDistance);
+        deltaMove = remainingDelta - Vector2.Dot(remainingDelta, hit.normal) * hit.normal;
+
+        if (Vector2.Dot(deltaMove, direction) <= 0) deltaMove = Vector2.zero;
+      }
+      else {
+        rb.position += deltaMove;
+        break;
+      }
+    }
+  }
+
+  private void ResolveOverlap() {
+    var results = new Collider2D[5];
+    var count = col.Overlap(_contactFilter, results);
+
+    for (var i = 0; i < count; i++) {
+      var dist = col.Distance(results[i]);
+      if (dist.isOverlapped) rb.position += dist.normal * dist.distance;
+    }
+  }
+
+  public void Dash(Vector2 direction, float distance, float duration) {
+    if (direction == Vector2.zero) direction = Vector2.right;
+    if (IsDashing) return;
+
+    StartCoroutine(DashCoroutine(direction, distance, duration));
+  }
+
+  protected virtual IEnumerator DashCoroutine(Vector2 direction, float distance, float duration) {
+    IsDashing = true;
+    var originalSpeed = MoveSpeed;
+    MoveSpeed = distance / duration;
+
+    var elapsed = 0f;
+    while (elapsed < duration) {
+      Move(direction);
+
+      elapsed += Time.fixedDeltaTime;
+
+      yield return new WaitForFixedUpdate();
+    }
+
+    MoveSpeed = originalSpeed;
+    IsDashing = false;
+
+    ResolveOverlap();
   }
 }
