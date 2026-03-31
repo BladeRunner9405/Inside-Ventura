@@ -8,12 +8,9 @@ public class ThoughtSlotUI : PopulatorElementBase<Thought>,
   IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler {
   [SerializeField] private Image iconImage;
 
-  // Опционально: спрайт-заглушка для пустого слота (можно не назначать)
-  [SerializeField] private Sprite emptySlotSprite;
-
   private CanvasGroup _canvasGroup;
 
-  [Inject] private DragDropManager _dragDropManager;
+  [Inject] private DragAndDropManager _dragDropManager;
 
   public ThoughtBag SourceBag { get; set; }
   public Artifact SourceArtifact { get; set; }
@@ -29,16 +26,12 @@ public class ThoughtSlotUI : PopulatorElementBase<Thought>,
     DependencyContainer.Instance.InjectDependencies(this);
   }
 
-  // ─── Сброс ───────────────────────────────────────────────────────────────
-
   private void OnDisable() {
     SourceBag = null;
     SourceArtifact = null;
     SlotIndex = -1;
     ArtifactSlotIndex = -1;
   }
-
-  // ─── Drag & Drop ─────────────────────────────────────────────────────────
 
   public void OnBeginDrag(PointerEventData eventData) {
     if (data == null || _dragDropManager == null) return;
@@ -52,9 +45,6 @@ public class ThoughtSlotUI : PopulatorElementBase<Thought>,
     _dragDropManager?.OnDrag(eventData);
   }
 
-  // IDropHandler нужен для корректной работы EventSystem:
-  // когда blocksRaycasts источника выключен, цель должна иметь IDropHandler,
-  // чтобы eventData.pointerEnter указывал на неё.
   public void OnDrop(PointerEventData eventData) {
   }
 
@@ -63,8 +53,6 @@ public class ThoughtSlotUI : PopulatorElementBase<Thought>,
     _canvasGroup.alpha = 1f;
     _canvasGroup.blocksRaycasts = true;
   }
-
-  // ─── Данные ──────────────────────────────────────────────────────────────
 
   public override void SetData(Thought thought) {
     base.SetData(thought);
@@ -76,15 +64,9 @@ public class ThoughtSlotUI : PopulatorElementBase<Thought>,
   }
 
   private void RefreshVisual() {
-    // Компонент Image ВСЕГДА включён — иначе пустой слот не принимает дроп,
-    // так как Raycast не проходит через отключённый Image.
     if (data != null) {
       iconImage.sprite = data.InventoryIcon;
       iconImage.color = Color.white;
-    }
-    else {
-      iconImage.sprite = emptySlotSprite;
-      iconImage.color = emptySlotSprite != null ? Color.white : Color.clear;
     }
   }
 }

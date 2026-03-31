@@ -42,6 +42,6 @@ MonoBehaviour:
   specialRange: 5
   specialDamage:
     _value: 4
-  lungeDistance: 1.75
+  lungeDistance: 1
   lungeDuration: 0.1
   hitboxActiveTime: 0.1

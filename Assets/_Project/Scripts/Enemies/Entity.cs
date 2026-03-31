@@ -98,7 +98,7 @@ public abstract class Entity : InjectMonoBehaviour {
     if (Health == 0)
       Die();
 
-    Debug.Log($"{gameObject.name} получил {finalAmount} урона. Его здоровье - {Health}/{MaxHealth}");
+    // Debug.Log($"{gameObject.name} получил {finalAmount} урона. Его здоровье - {Health}/{MaxHealth}");
   }
 
   private void VisualizeDamage() {

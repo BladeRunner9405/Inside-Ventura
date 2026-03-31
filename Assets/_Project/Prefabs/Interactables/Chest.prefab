@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Chest
   outline: {fileID: 8119080435599757954}
-  maxSpawnDistance: 3
+  maxSpawnDistance: 1
   itemsToSpawn:
   - {fileID: 1631135601703695119, guid: 22648fd89888168418ae65f7ba4b307e, type: 3}
   - {fileID: 1631135601703695119, guid: 2ca9f0717d90e4a4c8122af2e7773715, type: 3}
@@ -129,6 +129,12 @@ MonoBehaviour:
   - {fileID: 1631135601703695119, guid: 25a55a11ffce433479f8124616057382, type: 3}
   - {fileID: 1631135601703695119, guid: e4babb3402b962a4dbf4a3e9934a50ea, type: 3}
   - {fileID: 1631135601703695119, guid: 293125c3414772e45ad6aef325d2bd57, type: 3}
+  - {fileID: 1631135601703695119, guid: 1ce0be89c7cf3554f8c4b8ddaadfd030, type: 3}
+  - {fileID: 1631135601703695119, guid: 1ce0be89c7cf3554f8c4b8ddaadfd030, type: 3}
+  - {fileID: 1631135601703695119, guid: 1ce0be89c7cf3554f8c4b8ddaadfd030, type: 3}
+  - {fileID: 1631135601703695119, guid: 1ce0be89c7cf3554f8c4b8ddaadfd030, type: 3}
+  - {fileID: 1631135601703695119, guid: 1ce0be89c7cf3554f8c4b8ddaadfd030, type: 3}
+  - {fileID: 1631135601703695119, guid: 1ce0be89c7cf3554f8c4b8ddaadfd030, type: 3}
   quantity: 6
 --- !u!61 &5034061477902459261
 BoxCollider2D:

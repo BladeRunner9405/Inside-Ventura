@@ -24,7 +24,9 @@ public class GameInstaller : InstallerBehaviourBase {
     BindAsSingleton(modelService);*/
 
     // UI
-    BindAsSingleton(new ViewService(_rootUI, true));
+    if (_rootUI) {
+      BindAsSingleton(new ViewService(_rootUI, true));
+    }
 
     BindAsSingleton(new PlayerAccessor());
   }

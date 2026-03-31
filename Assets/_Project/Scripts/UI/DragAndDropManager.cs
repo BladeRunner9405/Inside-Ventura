@@ -3,12 +3,13 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DragDropManager : InjectMonoBehaviour {
+public class DragAndDropManager : InjectMonoBehaviour {
+  [SerializeField] private Canvas rootCanvas;
+
   private Thought _draggedThought;
 
   private GameObject _dragVisual;
   private RectTransform _dragVisualRect;
-  private Canvas _rootCanvas;
   private ThoughtSlotUI _sourceSlot;
 
   protected override void OnEnable() {
@@ -19,9 +20,6 @@ public class DragDropManager : InjectMonoBehaviour {
   public void StartDrag(ThoughtSlotUI sourceSlot, PointerEventData eventData) {
     _sourceSlot = sourceSlot;
     _draggedThought = sourceSlot.CurrentThought;
-
-    _rootCanvas = FindRootCanvas();
-    if (_rootCanvas == null) return;
 
     CreateDragVisual(sourceSlot);
     MoveDragVisual(eventData);
@@ -51,23 +49,18 @@ public class DragDropManager : InjectMonoBehaviour {
       Debug.LogWarning("[DragDrop] Кешированная мысль null.");
       return false;
     }
-
     if (target.SourceArtifact != null && !IsCompatible(_draggedThought, target.SourceArtifact)) {
       Debug.Log("[DragDrop] Мысль несовместима с артефактом.");
       return false;
     }
 
-    // Сохраняем мысль цели до изменений (она тоже может обнулиться при swap)
     var swapThought = target.CurrentThought;
 
-    // 1. Убираем из источника
     RemoveFromSource(source, _draggedThought);
 
-    // 2. Кладём в цель
     if (!AddToTarget(target, _draggedThought))
       return false;
 
-    // 3. Swap: если в цели была мысль — возвращаем её в источник
     if (swapThought != null)
       AddToSource(source, swapThought);
 
@@ -103,11 +96,9 @@ public class DragDropManager : InjectMonoBehaviour {
       source.SourceArtifact.EquipThought(thought, source.ArtifactSlotIndex);
   }
 
-  // ─── Визуал ──────────────────────────────────────────────────────────────
-
   private void CreateDragVisual(ThoughtSlotUI sourceSlot) {
     _dragVisual = new GameObject("DragVisual_Thought");
-    _dragVisual.transform.SetParent(_rootCanvas.transform, false);
+    _dragVisual.transform.SetParent(rootCanvas.transform, false);
     _dragVisual.transform.SetAsLastSibling();
 
     var img = _dragVisual.AddComponent<Image>();
@@ -122,7 +113,7 @@ public class DragDropManager : InjectMonoBehaviour {
     if (_dragVisual == null) return;
 
     RectTransformUtility.ScreenPointToLocalPointInRectangle(
-      _rootCanvas.transform as RectTransform,
+      rootCanvas.transform as RectTransform,
       eventData.position,
       eventData.pressEventCamera,
       out var localPoint);
@@ -138,8 +129,6 @@ public class DragDropManager : InjectMonoBehaviour {
     _draggedThought = null;
   }
 
-  // ─── Совместимость ───────────────────────────────────────────────────────
-
   private static bool IsCompatible(Thought thought, Artifact artifact) {
     if (thought.Type is ThoughtType.Fluid or ThoughtType.Absolute)
       return true;
@@ -150,15 +139,5 @@ public class DragDropManager : InjectMonoBehaviour {
       Accessory => thought.Type == ThoughtType.Accessory,
       _ => false
     };
-  }
-
-  // ─── Вспомогательное ─────────────────────────────────────────────────────
-
-  private Canvas FindRootCanvas() {
-    var canvas = GetComponentInParent<Canvas>()?.rootCanvas
-                 ?? FindObjectOfType<Canvas>();
-
-    if (canvas == null) Debug.LogError("[DragDrop] Canvas не найден.");
-    return canvas;
   }
 }

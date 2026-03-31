@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Chest : InteractableObject {
@@ -12,16 +11,11 @@ public class Chest : InteractableObject {
   }
 
   private void SpawnItems() {
-    List<GameObject> available = new List<GameObject>(itemsToSpawn);
-    int spawnCount = Mathf.Min(quantity, available.Count);
-
-    for (int i = 0; i < spawnCount; ++i) {
-      int randIndex = Random.Range(0, available.Count);
-      GameObject item = available[randIndex];
-      available.RemoveAt(randIndex);
-
-      Vector3 pos = transform.position + (Vector3)Random.insideUnitCircle.normalized * Random.Range(0, maxSpawnDistance);
-      Instantiate(item, pos, transform.rotation);
+    for (int i = 0; i < quantity; ++i) {
+      GameObject randomItem = itemsToSpawn[Random.Range(0, itemsToSpawn.Length)];
+      Vector3 spawnPosition = transform.position +
+                              (Vector3)Random.insideUnitCircle.normalized * Random.Range(0, maxSpawnDistance);
+      Instantiate(randomItem, spawnPosition, transform.rotation);
     }
   }
 }
