@@ -2213,6 +2213,7 @@ GameObject:
   - component: {fileID: 4836405020602751043}
   - component: {fileID: 7596404184973337437}
   - component: {fileID: 5920310730956470844}
+  - component: {fileID: 773449382933638895}
   m_Layer: 0
   m_Name: InventoryButton
   m_TagString: Untagged
@@ -2351,6 +2352,20 @@ MonoBehaviour:
   - {fileID: 7236830983888240394}
   - {fileID: 1889902176956660583}
   - {fileID: 4966474956015165063}
+--- !u!114 &773449382933638895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6296339890726572611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43520894fa7dcd04ea7622b693ce2b0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InputToggler
+  inputActionAsset: {fileID: -944628639613478452, guid: 4c5b8a31591a89243aaf7fa0544b91f5, type: 3}
+  actionMapName: Player
 --- !u!1 &6549862437882643304
 GameObject:
   m_ObjectHideFlags: 0
