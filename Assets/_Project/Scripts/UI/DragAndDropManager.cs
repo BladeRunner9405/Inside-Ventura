@@ -14,6 +14,8 @@ public class DragAndDropManager : InjectMonoBehaviour {
 
   protected override void OnEnable() {
     base.OnEnable();
+
+    if (DependencyContainer.Instance.HasDependency<DragAndDropManager>()) return;
     DependencyContainer.Instance.BindAsSingleton(this);
   }
 

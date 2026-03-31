@@ -161,6 +161,7 @@ GameObject:
   - component: {fileID: 7442035023727073168}
   - component: {fileID: 2144534949975296342}
   - component: {fileID: 216160737396346118}
+  - component: {fileID: 8877503353020413260}
   m_Layer: 0
   m_Name: ThoughtSlotUI
   m_TagString: Untagged
@@ -216,4 +217,15 @@ MonoBehaviour:
   animators: []
   data: {fileID: 0}
   iconImage: {fileID: 8103914615071410756}
-  emptySlotSprite: {fileID: 0}
+--- !u!114 &8877503353020413260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6899186520313650796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 043fe8af44886dc499d11303cf3c7e3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ThoughtTooltip

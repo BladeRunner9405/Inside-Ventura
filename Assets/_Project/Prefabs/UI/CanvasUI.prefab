@@ -35,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 298, y: 11.233}
-  m_SizeDelta: {x: 123.646, y: 242.0935}
+  m_AnchoredPosition: {x: 298, y: 25}
+  m_SizeDelta: {x: 117.5, y: 230.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7123040471061882673
 CanvasRenderer:
@@ -360,8 +360,6 @@ GameObject:
   - component: {fileID: 9016016339298740931}
   - component: {fileID: 5044957950243425713}
   - component: {fileID: 4902934743412511132}
-  - component: {fileID: 5047760167580407061}
-  - component: {fileID: 4768491357000791735}
   m_Layer: 0
   m_Name: BackButton
   m_TagString: Untagged
@@ -496,33 +494,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 966ec53f504ce29af9d10ba6104dd56b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonExit
-  objectToToggle: {fileID: 7236830983888240394}
---- !u!114 &5047760167580407061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1907032478053930997}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 966ec53f504ce29af9d10ba6104dd56b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ButtonExit
-  objectToToggle: {fileID: 7819412658601312218}
---- !u!114 &4768491357000791735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1907032478053930997}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 966ec53f504ce29af9d10ba6104dd56b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ButtonExit
-  objectToToggle: {fileID: 1247242286192817546}
+  objectsToToggle:
+  - {fileID: 7236830983888240394}
+  - {fileID: 1247242286192817546}
+  - {fileID: 7819412658601312218}
 --- !u!1 &2072917205626229077
 GameObject:
   m_ObjectHideFlags: 0
@@ -872,6 +847,156 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &3798884843041457874
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6739209948403044432}
+  - component: {fileID: 8634707358502879270}
+  - component: {fileID: 7327868362050570373}
+  - component: {fileID: 1353924235859897920}
+  m_Layer: 5
+  m_Name: InfoText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6739209948403044432
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3798884843041457874}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.6163328, y: 0.6163328, z: 0.6163328}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 4573705440918325363}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: -310, y: -156}
+  m_SizeDelta: {x: 750, y: 50}
+  m_Pivot: {x: 0, y: 0}
+--- !u!222 &8634707358502879270
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3798884843041457874}
+  m_CullTransparentMesh: 1
+--- !u!114 &7327868362050570373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3798884843041457874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: 
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 24
+  m_fontSizeBase: 24
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_characterHorizontalScale: 1
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_TextWrappingMode: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 0
+  m_ActiveFontFeatures: 6e72656b
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_EmojiFallbackSupport: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &1353924235859897920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3798884843041457874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35b405f81b698cf4886d07f2a38737c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TooltipText
 --- !u!1 &3917245084762101299
 GameObject:
   m_ObjectHideFlags: 0
@@ -980,8 +1105,6 @@ GameObject:
   - component: {fileID: 1786038896036529381}
   - component: {fileID: 3155674710681604599}
   - component: {fileID: 6773658505898448716}
-  - component: {fileID: 2554500157153400363}
-  - component: {fileID: 1541020390088946486}
   - component: {fileID: 8532978795767911529}
   m_Layer: 0
   m_Name: Sword
@@ -1104,32 +1227,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.OnScreen.OnScreenButton
   m_ControlPath: <Keyboard>/escape
---- !u!114 &2554500157153400363
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3948078702113875945}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 966ec53f504ce29af9d10ba6104dd56b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ButtonExit
-  objectToToggle: {fileID: 7236830983888240394}
---- !u!114 &1541020390088946486
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3948078702113875945}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 966ec53f504ce29af9d10ba6104dd56b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ButtonExit
-  objectToToggle: {fileID: 7819412658601312218}
 --- !u!114 &8532978795767911529
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1142,7 +1239,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 966ec53f504ce29af9d10ba6104dd56b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonExit
-  objectToToggle: {fileID: 1247242286192817546}
+  objectsToToggle:
+  - {fileID: 7236830983888240394}
+  - {fileID: 1247242286192817546}
+  - {fileID: 7819412658601312218}
 --- !u!1 &4128609919004246581
 GameObject:
   m_ObjectHideFlags: 0
@@ -1181,7 +1281,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00023269653, y: 0.00022888184}
+  m_AnchoredPosition: {x: 0.00024414062, y: 0.00022888184}
   m_SizeDelta: {x: -0.00049591, y: -0.0005188}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6569488821169378492
@@ -1522,8 +1622,6 @@ GameObject:
   - component: {fileID: 7746959383953145084}
   - component: {fileID: 3894478346745334873}
   - component: {fileID: 6168872790043278157}
-  - component: {fileID: 4198224382656009152}
-  - component: {fileID: 277231826074500997}
   m_Layer: 0
   m_Name: Accessory
   m_TagString: Untagged
@@ -1657,33 +1755,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 966ec53f504ce29af9d10ba6104dd56b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonExit
-  objectToToggle: {fileID: 7236830983888240394}
---- !u!114 &4198224382656009152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5319030832573397614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 966ec53f504ce29af9d10ba6104dd56b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ButtonExit
-  objectToToggle: {fileID: 8345302804359319228}
---- !u!114 &277231826074500997
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5319030832573397614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 966ec53f504ce29af9d10ba6104dd56b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ButtonExit
-  objectToToggle: {fileID: 1247242286192817546}
+  objectsToToggle:
+  - {fileID: 7236830983888240394}
+  - {fileID: 1247242286192817546}
+  - {fileID: 8345302804359319228}
 --- !u!1 &5362955729496664930
 GameObject:
   m_ObjectHideFlags: 0
@@ -1698,8 +1773,6 @@ GameObject:
   - component: {fileID: 477991100733791654}
   - component: {fileID: 1367788469765321341}
   - component: {fileID: 6583006427585072023}
-  - component: {fileID: 9080365933209655891}
-  - component: {fileID: 5769711341996136067}
   m_Layer: 0
   m_Name: BackButton
   m_TagString: Untagged
@@ -1834,33 +1907,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 966ec53f504ce29af9d10ba6104dd56b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonExit
-  objectToToggle: {fileID: 7236830983888240394}
---- !u!114 &9080365933209655891
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5362955729496664930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 966ec53f504ce29af9d10ba6104dd56b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ButtonExit
-  objectToToggle: {fileID: 8345302804359319228}
---- !u!114 &5769711341996136067
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5362955729496664930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 966ec53f504ce29af9d10ba6104dd56b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ButtonExit
-  objectToToggle: {fileID: 1247242286192817546}
+  objectsToToggle:
+  - {fileID: 7236830983888240394}
+  - {fileID: 1247242286192817546}
+  - {fileID: 8345302804359319228}
 --- !u!1 &5629805166585803785
 GameObject:
   m_ObjectHideFlags: 0
@@ -1874,8 +1924,6 @@ GameObject:
   - component: {fileID: 335995856859173074}
   - component: {fileID: 51012112493010587}
   - component: {fileID: 3859674277906237870}
-  - component: {fileID: 4797990778245016190}
-  - component: {fileID: 1389876763646878579}
   - component: {fileID: 1683232996874298609}
   m_Layer: 0
   m_Name: Heart
@@ -1998,32 +2046,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.OnScreen.OnScreenButton
   m_ControlPath: <Keyboard>/escape
---- !u!114 &4797990778245016190
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5629805166585803785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 966ec53f504ce29af9d10ba6104dd56b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ButtonExit
-  objectToToggle: {fileID: 7236830983888240394}
---- !u!114 &1389876763646878579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5629805166585803785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 966ec53f504ce29af9d10ba6104dd56b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ButtonExit
-  objectToToggle: {fileID: 4435956782738873735}
 --- !u!114 &1683232996874298609
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2036,7 +2058,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 966ec53f504ce29af9d10ba6104dd56b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonExit
-  objectToToggle: {fileID: 1247242286192817546}
+  objectsToToggle:
+  - {fileID: 7236830983888240394}
+  - {fileID: 1247242286192817546}
+  - {fileID: 4435956782738873735}
 --- !u!1 &5816935947432070565
 GameObject:
   m_ObjectHideFlags: 0
@@ -2187,8 +2212,6 @@ GameObject:
   - component: {fileID: 1977956835116096121}
   - component: {fileID: 4836405020602751043}
   - component: {fileID: 7596404184973337437}
-  - component: {fileID: 7379771002474551662}
-  - component: {fileID: 3544308665496493568}
   - component: {fileID: 5920310730956470844}
   m_Layer: 0
   m_Name: InventoryButton
@@ -2312,32 +2335,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.OnScreen.OnScreenButton
   m_ControlPath: <Keyboard>/escape
---- !u!114 &7379771002474551662
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6296339890726572611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 966ec53f504ce29af9d10ba6104dd56b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ButtonExit
-  objectToToggle: {fileID: 7236830983888240394}
---- !u!114 &3544308665496493568
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6296339890726572611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 966ec53f504ce29af9d10ba6104dd56b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ButtonExit
-  objectToToggle: {fileID: 1889902176956660583}
 --- !u!114 &5920310730956470844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2350,7 +2347,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 966ec53f504ce29af9d10ba6104dd56b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonExit
-  objectToToggle: {fileID: 4966474956015165063}
+  objectsToToggle:
+  - {fileID: 7236830983888240394}
+  - {fileID: 1889902176956660583}
+  - {fileID: 4966474956015165063}
 --- !u!1 &6549862437882643304
 GameObject:
   m_ObjectHideFlags: 0
@@ -2387,7 +2387,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 294, y: 21}
-  m_SizeDelta: {x: 111.6302, y: 258.3109}
+  m_SizeDelta: {x: 99.9, y: 230}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6773002700705837766
 CanvasRenderer:
@@ -2489,7 +2489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.6}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2540,6 +2540,7 @@ RectTransform:
   - {fileID: 4683602886788410663}
   - {fileID: 114854354379377727}
   - {fileID: 2119488068585463519}
+  - {fileID: 6739209948403044432}
   m_Father: {fileID: 7824407142371358878}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2561,8 +2562,6 @@ GameObject:
   - component: {fileID: 8693085679888537976}
   - component: {fileID: 620627545813677905}
   - component: {fileID: 3327575413505896913}
-  - component: {fileID: 4210642811834854455}
-  - component: {fileID: 5943315720867351695}
   m_Layer: 0
   m_Name: BackButton
   m_TagString: Untagged
@@ -2697,33 +2696,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 966ec53f504ce29af9d10ba6104dd56b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonExit
-  objectToToggle: {fileID: 7236830983888240394}
---- !u!114 &4210642811834854455
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7547142155519646359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 966ec53f504ce29af9d10ba6104dd56b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ButtonExit
-  objectToToggle: {fileID: 4435956782738873735}
---- !u!114 &5943315720867351695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7547142155519646359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 966ec53f504ce29af9d10ba6104dd56b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ButtonExit
-  objectToToggle: {fileID: 1247242286192817546}
+  objectsToToggle:
+  - {fileID: 7236830983888240394}
+  - {fileID: 1247242286192817546}
+  - {fileID: 4435956782738873735}
 --- !u!1 &7819412658601312218
 GameObject:
   m_ObjectHideFlags: 0

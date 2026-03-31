@@ -1,36 +1,48 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic; // Для работы со списками
 
-// Добавляем для работы с UI кнопкой
-
-public class ObjectToggler : MonoBehaviour {
-  [SerializeField] private GameObject objectToToggle; // Панель, которую будем переключать
+public class ObjectToggler : MonoBehaviour
+{
+  [SerializeField] private List<GameObject> objectsToToggle; // Список объектов, активность которых будем переключать
   private Button button; // Ссылка на компонент Button
 
-  private void Start() {
+  private void Start()
+  {
     // Получаем компонент Button на этом объекте
     button = GetComponent<Button>();
 
     // Добавляем обработчик события нажатия кнопки
-    if (button != null) button.onClick.AddListener(TogglePanel);
+    if (button != null)
+      button.onClick.AddListener(ToggleObjects);
 
-    // Проверяем, назначена ли панель в инспекторе
-    if (objectToToggle == null) Debug.LogWarning("Панель не назначена в инспекторе!", this);
+    // Проверяем, назначен ли список в инспекторе
+    if (objectsToToggle == null || objectsToToggle.Count == 0)
+      Debug.LogWarning("Список объектов для переключения пуст или не назначен в инспекторе!", this);
   }
 
-
-  private void OnDestroy() {
-    if (button != null) button.onClick.RemoveListener(TogglePanel);
+  private void OnDestroy()
+  {
+    // Удаляем обработчик при уничтожении объекта, чтобы избежать утечек
+    if (button != null)
+      button.onClick.RemoveListener(ToggleObjects);
   }
 
-  private void TogglePanel() {
-    // Проверяем, существует ли панель
-    if (objectToToggle != null) {
-      // Переключаем состояние панели на противоположное
-      var isActive = objectToToggle.activeSelf;
-      objectToToggle.SetActive(!isActive);
+  private void ToggleObjects()
+  {
+    // Если список не задан, ничего не делаем
+    if (objectsToToggle == null) return;
 
-      // Debug.Log($"Панель {(isActive ? "деактивирована" : "активирована")}");
+    // Перебираем все объекты в списке и переключаем их активность
+    foreach (GameObject obj in objectsToToggle)
+    {
+      if (obj != null) // Проверяем, что объект существует
+      {
+        bool isActive = obj.activeSelf;
+        obj.SetActive(!isActive);
+
+        // Debug.Log($"Объект {obj.name} {(isActive ? "деактивирован" : "активирован")}");
+      }
     }
   }
 }

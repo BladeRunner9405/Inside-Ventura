@@ -12,18 +12,21 @@ public enum ThoughtType {
 [CreateAssetMenu(fileName = "NewThought", menuName = "Inside-Ventura/Thought")]
 public class Thought : ScriptableObject {
   [SerializeField] private string thoughtName;
+  [SerializeField] private string thoughtDescription;
+  // [SerializeField] private string thoughtContent;
 
   [SerializeReference] private Effect[] effects;
   [SerializeField] private Sprite inventoryIcon;
 
   [SerializeField] private int rarityLevel = 1;
-  // [SerializeField] private string thoughtContent;
 
   [SerializeField] private ThoughtType type;
 
   public IReadOnlyList<Effect> Effects => effects;
   public Sprite InventoryIcon => inventoryIcon;
   public ThoughtType Type => type;
+  public string Name => thoughtName;
+  public string Description => thoughtDescription;
 
   public bool HasRightType(Artifact artifact) {
     if (type == ThoughtType.Weapon && artifact is not Weapon) return false;
