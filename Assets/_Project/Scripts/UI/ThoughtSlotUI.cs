@@ -1,66 +1,90 @@
+using CherryFramework.DependencyManager;
+using CherryFramework.UI.InteractiveElements.Populators;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using CherryFramework.UI.InteractiveElements.Populators;
 
-public class ThoughtSlotUI : PopulatorElementBase<Thought>, IBeginDragHandler, IDragHandler, IEndDragHandler
-{
+public class ThoughtSlotUI : PopulatorElementBase<Thought>,
+  IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler {
   [SerializeField] private Image iconImage;
-  // [SerializeField] private Image backgroundImage;
+
+  // Опционально: спрайт-заглушка для пустого слота (можно не назначать)
+  [SerializeField] private Sprite emptySlotSprite;
+
+  private CanvasGroup _canvasGroup;
+
+  [Inject] private DragDropManager _dragDropManager;
 
   public ThoughtBag SourceBag { get; set; }
-  public int SlotIndex { get; set; }
   public Artifact SourceArtifact { get; set; }
+  public int SlotIndex { get; set; } = -1;
   public int ArtifactSlotIndex { get; set; } = -1;
-
-  private RectTransform rectTransform;
-  private CanvasGroup canvasGroup;
 
   public Thought CurrentThought => data;
 
-  private void Awake()
-  {
-    rectTransform = GetComponent<RectTransform>();
-    canvasGroup = GetComponent<CanvasGroup>();
-    if (canvasGroup == null) canvasGroup = gameObject.AddComponent<CanvasGroup>();
+  private void Awake() {
+    _canvasGroup = GetComponent<CanvasGroup>()
+                   ?? gameObject.AddComponent<CanvasGroup>();
+
+    DependencyContainer.Instance.InjectDependencies(this);
   }
 
-  public override void SetData(Thought data)
-  {
-    base.SetData(data);
-    UpdateVisual();
+  // ─── Сброс ───────────────────────────────────────────────────────────────
+
+  private void OnDisable() {
+    SourceBag = null;
+    SourceArtifact = null;
+    SlotIndex = -1;
+    ArtifactSlotIndex = -1;
   }
 
-  private void UpdateVisual()
-  {
-    if (data != null)
-    {
+  // ─── Drag & Drop ─────────────────────────────────────────────────────────
+
+  public void OnBeginDrag(PointerEventData eventData) {
+    if (data == null || _dragDropManager == null) return;
+
+    _dragDropManager.StartDrag(this, eventData);
+    _canvasGroup.alpha = 0.4f;
+    _canvasGroup.blocksRaycasts = false;
+  }
+
+  public void OnDrag(PointerEventData eventData) {
+    _dragDropManager?.OnDrag(eventData);
+  }
+
+  // IDropHandler нужен для корректной работы EventSystem:
+  // когда blocksRaycasts источника выключен, цель должна иметь IDropHandler,
+  // чтобы eventData.pointerEnter указывал на неё.
+  public void OnDrop(PointerEventData eventData) {
+  }
+
+  public void OnEndDrag(PointerEventData eventData) {
+    _dragDropManager?.EndDrag(eventData);
+    _canvasGroup.alpha = 1f;
+    _canvasGroup.blocksRaycasts = true;
+  }
+
+  // ─── Данные ──────────────────────────────────────────────────────────────
+
+  public override void SetData(Thought thought) {
+    base.SetData(thought);
+    RefreshVisual();
+  }
+
+  public void Clear() {
+    SetData(null);
+  }
+
+  private void RefreshVisual() {
+    // Компонент Image ВСЕГДА включён — иначе пустой слот не принимает дроп,
+    // так как Raycast не проходит через отключённый Image.
+    if (data != null) {
       iconImage.sprite = data.InventoryIcon;
-      iconImage.enabled = true;
+      iconImage.color = Color.white;
     }
-    else
-    {
-      iconImage.enabled = false;
-      // backgroundImage.color = Color.gray;
+    else {
+      iconImage.sprite = emptySlotSprite;
+      iconImage.color = emptySlotSprite != null ? Color.white : Color.clear;
     }
-  }
-
-  public void Clear() => SetData(null);
-
-  public void OnBeginDrag(PointerEventData eventData)
-  {
-    if (data == null) return;
-    DragDropManager.Instance.StartDrag(this, eventData);
-    canvasGroup.alpha = 0.6f;
-    canvasGroup.blocksRaycasts = false;
-  }
-
-  public void OnDrag(PointerEventData eventData) => DragDropManager.Instance.OnDrag(eventData);
-
-  public void OnEndDrag(PointerEventData eventData)
-  {
-    DragDropManager.Instance.EndDrag(eventData);
-    canvasGroup.alpha = 1f;
-    canvasGroup.blocksRaycasts = true;
   }
 }

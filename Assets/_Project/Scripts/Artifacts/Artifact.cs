@@ -34,6 +34,8 @@ public abstract class Artifact : ScriptableObject {
   }
 
   public void EquipThought(Thought thought, int slotIndex) {
+    Debug.Log($"[Artifact] Equip {thought?.name} to {artifactName} slot {slotIndex}");
+
     if (slotIndex < 0 || slotIndex >= slotsCount) return;
 
     if (!thought.HasRightType(this) || HasThought(thought)) return;

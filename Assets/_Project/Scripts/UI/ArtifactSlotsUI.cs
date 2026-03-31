@@ -1,51 +1,40 @@
 using UnityEngine;
-using UnityEngine.UI;
-using System.Collections.Generic;
 
-public class ArtifactSlotsUI : MonoBehaviour
-{
-  [SerializeField] private ThoughtSlotUI[] slots; // загрузить слоты из инспектора
-  private Artifact artifact;
+public class ArtifactSlotsUI : MonoBehaviour {
+  [SerializeField] private ThoughtSlotUI[] slots;
 
-  public void Initialize(Artifact artifact)
-  {
-    this.artifact = artifact;
-    // Убедимся, что количество слотов совпадает с артефактом
-    for (int i = 0; i < slots.Length && i < artifact.SlotsCount; ++i)
-    {
-      slots[i].SourceArtifact = artifact;
-      slots[i].ArtifactSlotIndex = i;
-      UpdateSlot(i);
+  private Artifact _artifact;
+
+  public void Initialize(Artifact artifact) {
+    _artifact = artifact;
+
+    var count = Mathf.Min(slots.Length, artifact.SlotsCount);
+    for (var i = 0; i < count; ++i) {
+      var slot = slots[i];
+      slot.SourceBag = null;
+      slot.SourceArtifact = artifact;
+      slot.ArtifactSlotIndex = i;
+      slot.SetData(artifact.GetThoughtAtSlot(i));
     }
 
-    artifact.OnThoughtEquipped += OnThoughtEquipped;
-    artifact.OnThoughtUnequipped += OnThoughtUnequipped;
+    _artifact.OnThoughtEquipped += HandleThoughtEquipped;
+    _artifact.OnThoughtUnequipped += HandleThoughtUnequipped;
   }
 
-  private void OnThoughtEquipped(int slotIndex, Thought thought)
-  {
+  private void OnDestroy() {
+    if (_artifact == null) return;
+
+    _artifact.OnThoughtEquipped -= HandleThoughtEquipped;
+    _artifact.OnThoughtUnequipped -= HandleThoughtUnequipped;
+  }
+
+  private void HandleThoughtEquipped(int slotIndex, Thought thought) {
     if (slotIndex < slots.Length)
       slots[slotIndex].SetData(thought);
   }
 
-  private void OnThoughtUnequipped(int slotIndex)
-  {
+  private void HandleThoughtUnequipped(int slotIndex) {
     if (slotIndex < slots.Length)
       slots[slotIndex].Clear();
-  }
-
-  private void UpdateSlot(int slotIndex)
-  {
-    var thought = artifact.GetThoughtAtSlot(slotIndex);
-    slots[slotIndex].SetData(thought);
-  }
-
-  private void OnDestroy()
-  {
-    if (artifact != null)
-    {
-      artifact.OnThoughtEquipped -= OnThoughtEquipped;
-      artifact.OnThoughtUnequipped -= OnThoughtUnequipped;
-    }
   }
 }

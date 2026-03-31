@@ -2,8 +2,7 @@ using CherryFramework.DependencyManager;
 using CherryFramework.UI.InteractiveElements.Presenters;
 using UnityEngine;
 
-public class ThoughtEquipmentPresenter : PresenterBase
-{
+public class ThoughtEquipmentPresenter : PresenterBase {
   [SerializeField] private ArtifactSlotsUI weaponSlots;
   [SerializeField] private ArtifactSlotsUI heartSlots;
   [SerializeField] private ArtifactSlotsUI accessorySlots;
@@ -11,8 +10,7 @@ public class ThoughtEquipmentPresenter : PresenterBase
   [Inject] private PlayerAccessor _playerAccessor;
   private PlayerEquipment playerEquipment;
 
-  protected override void OnPresenterInitialized()
-  {
+  protected override void OnPresenterInitialized() {
     base.OnPresenterInitialized();
     playerEquipment = _playerAccessor.Equipment;
 
