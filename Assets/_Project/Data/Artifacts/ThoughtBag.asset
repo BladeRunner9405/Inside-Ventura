@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ThoughtBag
   m_EditorClassIdentifier: Assembly-CSharp::ThoughtBag
   thoughts: []
-  maxSize: 99
+  maxSize: 10
