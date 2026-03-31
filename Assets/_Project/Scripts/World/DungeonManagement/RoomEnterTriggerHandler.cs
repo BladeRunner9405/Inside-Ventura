@@ -1,21 +1,21 @@
 using UnityEngine;
 
 public class RoomEnterTriggerHandler : MonoBehaviour {
-  private RoomManager roomManager;
+  private RoomManagerBase _roomManagerBase;
 
   public void Start() {
-    roomManager = transform.parent.parent.gameObject.GetComponent<RoomManager>();
+    _roomManagerBase = transform.parent.parent.gameObject.GetComponent<RoomManagerBase>();
   }
 
   public void OnTriggerEnter2D(Collider2D otherCollider) {
     if (otherCollider.gameObject.CompareTag("Player")) {
-      roomManager?.OnRoomEnter(otherCollider.gameObject);
+      _roomManagerBase?.OnRoomEnter(otherCollider.gameObject);
     }
   }
 
   public void OnTriggerExit2D(Collider2D otherCollider) {
     if (otherCollider.gameObject.CompareTag("Player")) {
-      roomManager?.OnRoomLeave(otherCollider.gameObject);
+      _roomManagerBase?.OnRoomLeave(otherCollider.gameObject);
     }
   }
 }

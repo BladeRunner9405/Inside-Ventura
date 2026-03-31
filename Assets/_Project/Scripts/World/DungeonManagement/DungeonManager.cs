@@ -3,15 +3,18 @@ using System.Diagnostics;
 using Edgar.Unity;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using Debug = UnityEngine.Debug;
 
 public class DungeonManager : MonoBehaviour {
   public System.Random Random { get; private set; }
+  public static DungeonManager Instance;
 
   [SerializeField]
   private InputActionAsset inputActions;
+  private InputAction restartAction;
 
-  public static DungeonManager Instance;
+  private DungeonGeneratorGrid2D generator;
 
   private void OnEnable() {
     Debug.Log("Enabling input actions...");
@@ -30,11 +33,19 @@ public class DungeonManager : MonoBehaviour {
       Instance = this;
     }
 
+    restartAction = InputSystem.actions.FindAction("RestartLevel");
+
     // Find the generator runner
-    var generator = GameObject.Find("Dungeon Generator").GetComponent<DungeonGeneratorGrid2D>();
+    generator = GameObject.Find("Dungeon Generator").GetComponent<DungeonGeneratorGrid2D>();
 
     // Start the generator coroutine
     StartCoroutine(GeneratorCoroutine(generator));
+  }
+
+  private void Update() {
+    if (restartAction.triggered) {
+      SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex,LoadSceneMode.Single);
+    }
   }
 
   /// <summary>
