@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Chest
   outline: {fileID: 8119080435599757954}
-  maxSpawnDistance: 1
+  maxSpawnDistance: 1.5
   itemsToSpawn:
   - {fileID: 1631135601703695119, guid: 22648fd89888168418ae65f7ba4b307e, type: 3}
   - {fileID: 1631135601703695119, guid: 2ca9f0717d90e4a4c8122af2e7773715, type: 3}

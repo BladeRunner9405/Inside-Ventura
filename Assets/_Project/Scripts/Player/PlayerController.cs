@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour {
   }
 
   private void Update() {
+    if (player.IsDead) return;
+
     m_moveAmt = m_moveAction.ReadValue<Vector2>();
     m_lookAmt = Camera.main.ScreenToWorldPoint(m_lookAction.ReadValue<Vector2>());
 
@@ -38,6 +40,8 @@ public class PlayerController : MonoBehaviour {
   }
 
   private void FixedUpdate() {
+    if (player.IsDead) return;
+
     Walking();
     Looking();
   }
