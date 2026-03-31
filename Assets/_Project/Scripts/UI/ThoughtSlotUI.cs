@@ -26,13 +26,6 @@ public class ThoughtSlotUI : PopulatorElementBase<Thought>,
     DependencyContainer.Instance.InjectDependencies(this);
   }
 
-  private void OnDisable() {
-    SourceBag = null;
-    SourceArtifact = null;
-    SlotIndex = -1;
-    ArtifactSlotIndex = -1;
-  }
-
   public void OnBeginDrag(PointerEventData eventData) {
     if (data == null || _dragDropManager == null) return;
 
@@ -67,6 +60,10 @@ public class ThoughtSlotUI : PopulatorElementBase<Thought>,
     if (data != null) {
       iconImage.sprite = data.InventoryIcon;
       iconImage.color = Color.white;
+    }
+    else {
+      iconImage.sprite = null;
+      iconImage.color = Color.clear;
     }
   }
 }
