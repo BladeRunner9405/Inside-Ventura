@@ -1,12 +1,17 @@
+using CherryFramework.BaseClasses;
+using CherryFramework.DependencyManager;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : BehaviourBase {
   [SerializeField] private Player player;
 
   [SerializeField] private PlayerEquipment playerEquipment;
 
   [SerializeField] private AimTarget playerAim;
+
+  [Inject] private DungeonAccessor _dungeonAccessor;
+
   private InputAction m_abilityAction;
 
   private InputAction m_attackAction;
@@ -14,6 +19,7 @@ public class PlayerController : MonoBehaviour {
   private InputAction m_lookAction;
   private Vector2 m_lookAmt; // в координатах мира, используя основную камеру
 
+  private InputAction _restartAction;
   private InputAction m_moveAction;
   private Vector2 m_moveAmt;
 
@@ -24,6 +30,7 @@ public class PlayerController : MonoBehaviour {
 
     m_attackAction = InputSystem.actions.FindAction("Attack");
     m_abilityAction = InputSystem.actions.FindAction("UseAbility");
+    _restartAction = InputSystem.actions.FindAction("RestartLevel");
   }
 
   private void Update() {
@@ -35,6 +42,10 @@ public class PlayerController : MonoBehaviour {
     if (m_attackAction.WasPressedThisFrame()) Attack();
 
     if (m_abilityAction.WasPressedThisFrame()) UseAbility();
+
+    if (_restartAction.triggered) {
+      _dungeonAccessor.Restart();
+    }
   }
 
   private void FixedUpdate() {

@@ -5,18 +5,23 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using Debug = UnityEngine.Debug;
+using CherryFramework.BaseClasses;
+using CherryFramework.DependencyManager;
 
-public class DungeonManager : MonoBehaviour {
+public class DungeonManager : BehaviourBase {
   public System.Random Random { get; private set; }
-  public static DungeonManager Instance;
 
   [SerializeField]
   private InputActionAsset inputActions;
-  private InputAction restartAction;
 
-  private DungeonGeneratorGrid2D generator;
+  [Inject] private DungeonAccessor _dungeonAccessor;
 
-  private void OnEnable() {
+  private DungeonGeneratorGrid2D _generator;
+
+  protected override void OnEnable() {
+    base.OnEnable();
+    _dungeonAccessor.RegisterDungeon(this);
+
     Debug.Log("Enabling input actions...");
     inputActions.Enable();
   }
@@ -29,23 +34,15 @@ public class DungeonManager : MonoBehaviour {
   public void Awake() {
     Random = new();
 
-    if (Instance == null) {
-      Instance = this;
-    }
-
-    restartAction = InputSystem.actions.FindAction("RestartLevel");
-
     // Find the generator runner
-    generator = GameObject.Find("Dungeon Generator").GetComponent<DungeonGeneratorGrid2D>();
+    _generator = GameObject.Find("Dungeon Generator").GetComponent<DungeonGeneratorGrid2D>();
 
     // Start the generator coroutine
-    StartCoroutine(GeneratorCoroutine(generator));
+    StartCoroutine(GeneratorCoroutine(_generator));
   }
 
-  private void Update() {
-    if (restartAction.triggered) {
-      SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex,LoadSceneMode.Single);
-    }
+  public void RestartLevel() {
+    SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex,LoadSceneMode.Single);
   }
 
   /// <summary>
@@ -68,4 +65,20 @@ public class DungeonManager : MonoBehaviour {
 
     stopwatch.Stop();
   }
+}
+
+public class DungeonAccessor : IDungeon {
+  private DungeonManager _instance;
+
+  public void RegisterDungeon(DungeonManager dungeon) {
+    _instance = dungeon;
+  }
+
+  public void Restart() {
+    _instance.RestartLevel();
+  }
+}
+
+public interface IDungeon {
+  void Restart();
 }

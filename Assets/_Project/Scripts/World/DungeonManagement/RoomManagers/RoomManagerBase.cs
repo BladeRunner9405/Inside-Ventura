@@ -6,11 +6,6 @@ using UnityEngine.AI;
 
 public class RoomManagerBase : MonoBehaviour {
   /// <summary>
-  /// Use the shared Random instance so that the results are properly seeded.
-  /// </summary>
-  protected static System.Random Random => DungeonManager.Instance.Random;
-
-  /// <summary>
   /// Room instance of the corresponding room.
   /// </summary>
   protected RoomInstanceGrid2D RoomInstance;

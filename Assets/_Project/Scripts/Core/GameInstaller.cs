@@ -24,5 +24,6 @@ public class GameInstaller : InstallerBehaviourBase {
     BindAsSingleton(modelService);*/
 
     BindAsSingleton(new PlayerAccessor());
+    BindAsSingleton(new DungeonAccessor());
   }
 }
