@@ -15,23 +15,13 @@ MonoBehaviour:
   artifactName: "\u041A\u0430\u0440\u0430\u0442\u0435\u043B\u044C\u043D\u0430\u044F
     \u0422\u0435\u0440\u0430\u043F\u0438\u044F"
   slotsCount: 3
-  equippedThoughts: []
-  damage:
-    _value: 3
-  attackSpeed:
-    _value: 0.2
-  chainCount:
-    _value: 4
-  chainSpeedMultiplier:
-    _value: 1.2
-  chainSpeedAddition:
-    _value: 0.2
-  comboWindow:
-    _value: 0.5
-  critChance:
-    _value: 0.05
-  critMultiplier:
-    _value: 1.2
+  initialThoughts: []
+  baseDamage: 10
+  baseAttackSpeed: 0.1
+  baseChainCount: 3
+  baseComboWindow: 0.5
+  baseCritChance: 0.1
+  baseCritMultiplier: 1.5
   sectorAttackPrefab: {fileID: 2462862026025648702, guid: 1f5f4e86c05ebe64bbdcc71104438f4e, type: 3}
   normalAngle: 90
   normalRange: 2
@@ -40,8 +30,7 @@ MonoBehaviour:
     m_Bits: 320
   specialAngle: 30
   specialRange: 5
-  specialDamage:
-    _value: 4
+  baseSpecialDamage: 25
   lungeDistance: 1
   lungeDuration: 0.1
   hitboxActiveTime: 0.1

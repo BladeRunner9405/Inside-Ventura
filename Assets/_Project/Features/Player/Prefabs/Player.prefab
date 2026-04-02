@@ -555,6 +555,7 @@ GameObject:
   - component: {fileID: 4856137141599547314}
   - component: {fileID: 7098316057293861836}
   - component: {fileID: 8784012674413471974}
+  - component: {fileID: -2377509926864990093}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -694,9 +695,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   health:
-    _value: 0
+    _value: 100
   maxHealth:
-    _value: 0
+    _value: 100
   moveSpeed:
     _value: 5
   dodgeChance:
@@ -811,3 +812,18 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!114 &-2377509926864990093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8131152870917328023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e2926b68e090b46a9581991cd0c29c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityVisuals
+  entity: {fileID: 2290521665905086042}
+  spriteRenderer: {fileID: 2129517524628729781}
+  damageFlashDuration: 0.1

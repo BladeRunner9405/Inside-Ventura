@@ -3,10 +3,12 @@ using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(TextMeshProUGUI))]
-public class TooltipText : InjectMonoBehaviour {
+public class TooltipText : InjectMonoBehaviour
+{
   private TextMeshProUGUI _text;
 
-  protected override void OnEnable() {
+  protected override void OnEnable()
+  {
     base.OnEnable();
     _text = GetComponent<TextMeshProUGUI>();
 
@@ -15,5 +17,6 @@ public class TooltipText : InjectMonoBehaviour {
   }
 
   public void SetText(string text) => _text.text = text;
+
   public void Clear() => _text.text = string.Empty;
 }

@@ -1,32 +1,37 @@
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "Inside-Ventura/Effects/Modify Stat")]
-public class ModifyStatEffect : Effect 
+public class ModifyStatEffect : Effect
 {
-    [SerializeField] private StatName statName;
-    [SerializeField] private StatOperationType operationType;
-    [SerializeField] private float value;
+  [SerializeField]
+  private StatName statName;
 
-    public override void OnEquipThought(ArtifactInstance artifactInstance) 
-    {
-        var stat = artifactInstance.GetStat(statName);
-        if (stat is ModifiableStat modifiableStat) 
-        {
-            // Передаем `this` как источник модификатора
-            var modifier = new StatModifier(operationType, value, this); 
-            modifiableStat.AddModifier(modifier);
-            Debug.Log($"Добавлен модификатор на {statName}: {value}");
-        }
-    }
+  [SerializeField]
+  private StatOperationType operationType;
 
-    public override void OnUnequipThought(ArtifactInstance artifactInstance) 
+  [SerializeField]
+  private float value;
+
+  public override void OnEquipThought(ArtifactInstance artifactInstance)
+  {
+    var stat = artifactInstance.GetStat(statName);
+    if (stat is ModifiableStat modifiableStat)
     {
-        var stat = artifactInstance.GetStat(statName);
-        if (stat is ModifiableStat modifiableStat) 
-        {
-            // Удаляем все модификаторы, которые были добавлены именно ЭТИМ эффектом
-            modifiableStat.RemoveModifiersFromSource(this);
-            Debug.Log($"Снят модификатор с {statName}");
-        }
+      // Передаем `this` как источник модификатора
+      var modifier = new StatModifier(operationType, value, this);
+      modifiableStat.AddModifier(modifier);
+      Debug.Log($"Добавлен модификатор на {statName}: {value}");
     }
+  }
+
+  public override void OnUnequipThought(ArtifactInstance artifactInstance)
+  {
+    var stat = artifactInstance.GetStat(statName);
+    if (stat is ModifiableStat modifiableStat)
+    {
+      // Удаляем все модификаторы, которые были добавлены именно ЭТИМ эффектом
+      modifiableStat.RemoveModifiersFromSource(this);
+      Debug.Log($"Снят модификатор с {statName}");
+    }
+  }
 }

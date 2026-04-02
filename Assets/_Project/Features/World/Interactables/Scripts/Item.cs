@@ -1,14 +1,17 @@
-public abstract class Item : InteractableObject {
-  protected virtual void OnPickup() {
-  }
+public abstract class Item : InteractableObject
+{
+  protected virtual void OnPickup() { }
 
-  protected virtual bool CanPickUp() {
+  protected virtual bool CanPickUp()
+  {
     // хватает ли места и т. п.
     return true;
   }
 
-  public override void OnInteract() {
-    if (!CanPickUp()) return;
+  public override void OnInteract()
+  {
+    if (!CanPickUp())
+      return;
 
     OnPickup();
     base.OnInteract();

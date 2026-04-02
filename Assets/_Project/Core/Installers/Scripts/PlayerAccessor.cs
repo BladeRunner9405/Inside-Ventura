@@ -1,6 +1,7 @@
 using UnityEngine;
 
-public class PlayerAccessor : IPlayerData {
+public class PlayerAccessor : IPlayerData
+{
   private Player _player;
   public Transform Transform => _player?.transform;
 
@@ -8,30 +9,36 @@ public class PlayerAccessor : IPlayerData {
   public PlayerEquipment Equipment => _player?.Equipment;
   public PlayerStats Stats => _player?.Stats;
 
-  public void RegisterPlayer(Player player) {
+  public void RegisterPlayer(Player player)
+  {
     _player = player;
   }
 
-  public void UnregisterPlayer(Player player) {
+  public void UnregisterPlayer(Player player)
+  {
     if (_player == player)
       _player = null;
   }
 
-  public Stat GetStat(StatName statName) {
+  public Stat GetStat(StatName statName)
+  {
     // return _player?.GetStat(statName);
     return null;
   }
 
-  public void Dash(Vector2 direction, float distance, float duration) {
+  public void Dash(Vector2 direction, float distance, float duration)
+  {
     _player?.Dash(direction, distance, duration);
   }
 
-  public void TakeDamage(float amount) {
+  public void TakeDamage(float amount)
+  {
     _player?.TakeDamage(amount);
   }
 }
 
-public interface IPlayerData {
+public interface IPlayerData
+{
   Transform Transform { get; }
   PlayerInventory Inventory { get; }
   PlayerEquipment Equipment { get; }

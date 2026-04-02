@@ -1,10 +1,11 @@
+using System.Collections.Generic; // Для работы со списками
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic; // Для работы со списками
 
 public class ObjectToggler : MonoBehaviour
 {
-  [SerializeField] private List<GameObject> objectsToToggle; // Список объектов, активность которых будем переключать
+  [SerializeField]
+  private List<GameObject> objectsToToggle; // Список объектов, активность которых будем переключать
   private Button button; // Ссылка на компонент Button
 
   private void Start()
@@ -31,7 +32,8 @@ public class ObjectToggler : MonoBehaviour
   private void ToggleObjects()
   {
     // Если список не задан, ничего не делаем
-    if (objectsToToggle == null) return;
+    if (objectsToToggle == null)
+      return;
 
     // Перебираем все объекты в списке и переключаем их активность
     foreach (GameObject obj in objectsToToggle)

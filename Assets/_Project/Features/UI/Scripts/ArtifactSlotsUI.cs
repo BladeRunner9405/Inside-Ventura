@@ -1,16 +1,21 @@
 using UnityEngine;
 
-public class ArtifactSlotsUI : MonoBehaviour {
-  [SerializeField] private ThoughtSlotUI[] slots;
+public class ArtifactSlotsUI : MonoBehaviour
+{
+  [SerializeField]
+  private ThoughtSlotUI[] slots;
 
   private ArtifactInstance _artifactInstance;
 
-  public void Initialize(ArtifactInstance artifactInstance) {
+  public void Initialize(ArtifactInstance artifactInstance)
+  {
     // Защита: если мы уже инициализированы этим артефактом, ничего не делаем
-    if (_artifactInstance == artifactInstance) return; 
+    if (_artifactInstance == artifactInstance)
+      return;
 
     // Защита: отписываемся от старого артефакта, если он был
-    if (_artifactInstance != null) {
+    if (_artifactInstance != null)
+    {
       _artifactInstance.OnThoughtEquipped -= HandleThoughtEquipped;
       _artifactInstance.OnThoughtUnequipped -= HandleThoughtUnequipped;
     }
@@ -18,7 +23,8 @@ public class ArtifactSlotsUI : MonoBehaviour {
     _artifactInstance = artifactInstance;
 
     var count = Mathf.Min(slots.Length, artifactInstance.BaseData.SlotsCount);
-    for (var i = 0; i < count; ++i) {
+    for (var i = 0; i < count; ++i)
+    {
       var slot = slots[i];
       slot.SourceBag = null;
       slot.SourceArtifactInstance = artifactInstance;
@@ -30,19 +36,23 @@ public class ArtifactSlotsUI : MonoBehaviour {
     _artifactInstance.OnThoughtUnequipped += HandleThoughtUnequipped;
   }
 
-  private void OnDestroy() {
-    if (_artifactInstance == null) return;
+  private void OnDestroy()
+  {
+    if (_artifactInstance == null)
+      return;
 
     _artifactInstance.OnThoughtEquipped -= HandleThoughtEquipped;
     _artifactInstance.OnThoughtUnequipped -= HandleThoughtUnequipped;
   }
 
-  private void HandleThoughtEquipped(int slotIndex, Thought thought) {
+  private void HandleThoughtEquipped(int slotIndex, Thought thought)
+  {
     if (slotIndex < slots.Length)
       slots[slotIndex].SetData(thought);
   }
 
-  private void HandleThoughtUnequipped(int slotIndex) {
+  private void HandleThoughtUnequipped(int slotIndex)
+  {
     if (slotIndex < slots.Length)
       slots[slotIndex].Clear();
   }

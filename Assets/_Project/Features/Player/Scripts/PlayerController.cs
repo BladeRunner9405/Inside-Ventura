@@ -1,12 +1,16 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour {
-  [SerializeField] private Player player;
+public class PlayerController : MonoBehaviour
+{
+  [SerializeField]
+  private Player player;
 
-  [SerializeField] private PlayerEquipment playerEquipment;
+  [SerializeField]
+  private PlayerEquipment playerEquipment;
 
-  [SerializeField] private AimTarget playerAim;
+  [SerializeField]
+  private AimTarget playerAim;
   private InputAction m_abilityAction;
 
   private InputAction m_attackAction;
@@ -17,7 +21,8 @@ public class PlayerController : MonoBehaviour {
   private InputAction m_moveAction;
   private Vector2 m_moveAmt;
 
-  private void Awake() {
+  private void Awake()
+  {
     m_moveAction = InputSystem.actions.FindAction("Move");
     m_lookAction = InputSystem.actions.FindAction("Look");
     m_interactAction = InputSystem.actions.FindAction("Interact");
@@ -26,54 +31,76 @@ public class PlayerController : MonoBehaviour {
     m_abilityAction = InputSystem.actions.FindAction("UseAbility");
   }
 
-  private void Update() {
-    if (player.IsDead) return;
+  private void Update()
+  {
+    if (player.IsDead)
+      return;
 
     m_moveAmt = m_moveAction.ReadValue<Vector2>();
     m_lookAmt = Camera.main.ScreenToWorldPoint(m_lookAction.ReadValue<Vector2>());
 
-    if (m_interactAction.WasPressedThisFrame()) Interact();
+    if (m_interactAction.WasPressedThisFrame())
+      Interact();
 
-    if (m_attackAction.WasPressedThisFrame()) Attack();
+    if (m_attackAction.WasPressedThisFrame())
+      Attack();
 
-    if (m_abilityAction.WasPressedThisFrame()) UseAbility();
+    if (m_abilityAction.WasPressedThisFrame())
+      UseAbility();
   }
 
-  private void FixedUpdate() {
-    if (player.IsDead) return;
+  private void FixedUpdate()
+  {
+    if (player.IsDead)
+      return;
 
     Walking();
     Looking();
   }
 
-  private void Interact() {
+  private void Interact()
+  {
     player.TryToInteract();
   }
 
-  private void Attack() {
-    if (playerEquipment) {
-      var direction = (m_lookAmt - (Vector2)player.transform.position).normalized;
-      playerEquipment.TryToAttack(direction);
+  private void Attack()
+  {
+    if (playerEquipment)
+    {
+      var direction = m_lookAmt - (Vector2)player.transform.position;
+      if (direction == Vector2.zero)
+        direction = Vector2.right; // Страховка
+
+      playerEquipment.TryToAttack(direction.normalized);
     }
   }
 
-  private void UseAbility() {
-    if (playerEquipment) {
+  private void UseAbility()
+  {
+    if (playerEquipment)
+    {
       Vector2 direction;
       if (m_moveAmt != Vector2.zero)
-        direction = m_moveAmt.normalized;
+        direction = m_moveAmt;
       else
-        direction = (m_lookAmt - (Vector2)player.transform.position).normalized;
-      playerEquipment.TryToUseAbility(direction);
+        direction = m_lookAmt - (Vector2)player.transform.position;
+
+      if (direction == Vector2.zero)
+        direction = Vector2.right; // Страховка
+
+      playerEquipment.TryToUseAbility(direction.normalized);
     }
   }
 
-  private void Walking() {
-    if (player.IsDashing) return;
+  private void Walking()
+  {
+    if (player.IsDashing)
+      return;
     player.Move(m_moveAmt);
   }
 
-  private void Looking() {
+  private void Looking()
+  {
     playerAim.aimAt(m_lookAmt);
   }
 }

@@ -1,7 +1,8 @@
 using System;
 using UnityEngine;
 
-public enum StatName {
+public enum StatName
+{
   // модфифицируемые статы:
   Cooldown,
   Damage,
@@ -16,20 +17,26 @@ public enum StatName {
 
   // динамические (=> немодифицируемые) статы:
   Health,
-  Mana
+  Mana,
 }
 
 [Serializable]
-public class Stat {
-  [SerializeField] private float _value;
+public class Stat
+{
+  [SerializeField]
+  private float _value;
 
-  public float Value {
+  public float Value
+  {
     get => _value;
     set => _value = value;
   }
 
-  public void Change(StatOperationType type, float coefficient) {
-    if (type == StatOperationType.Add) Value += coefficient;
-    else if (type == StatOperationType.Multiply) Value *= coefficient;
+  public void Change(StatOperationType type, float coefficient)
+  {
+    if (type == StatOperationType.Add)
+      Value += coefficient;
+    else if (type == StatOperationType.Multiply)
+      Value *= coefficient;
   }
 }

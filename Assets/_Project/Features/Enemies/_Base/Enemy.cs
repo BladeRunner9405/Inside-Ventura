@@ -4,15 +4,20 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(NavMeshAgent))]
-public class Enemy : Entity {
-  [Header("Enemy stuff")] public int damage;
+public class Enemy : Entity
+{
+  [Header("Enemy stuff")]
+  public int damage;
 
   public bool isBoss;
   protected NavMeshAgent Agent;
 
-  [Inject] protected PlayerAccessor PlayerAccessor;
+  [Inject]
+  protected PlayerAccessor PlayerAccessor;
 
-  protected void Start() {
+  protected override void Start()
+  {
+    base.Start();
     Agent = GetComponent<NavMeshAgent>();
 
     // Otherwise the enemy gets teleported after being spawned.
@@ -22,21 +27,23 @@ public class Enemy : Entity {
     Agent.updateUpAxis = false;
     Agent.speed = MoveSpeed;
 
-    Health = MaxHealth;
-
     var playerTransform = PlayerAccessor.Transform;
-    // TargetTo(playerTransform);
+    TargetTo(playerTransform);
   }
 
-  private void Update() {
-    if (Agent.enabled) Agent.SetDestination(target.position);
+  private void Update()
+  {
+    if (Agent.enabled)
+      Agent.SetDestination(target.position);
   }
 
-  private void EnableAI() {
+  private void EnableAI()
+  {
     Agent.enabled = true;
   }
 
-  protected override IEnumerator DashCoroutine(Vector2 direction, float distance, float duration) {
+  protected override IEnumerator DashCoroutine(Vector2 direction, float distance, float duration)
+  {
     var originalAgentStatus = Agent.enabled;
 
     Agent.enabled = false;

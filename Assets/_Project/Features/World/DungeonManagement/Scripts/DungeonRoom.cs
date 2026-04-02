@@ -4,7 +4,8 @@ using Edgar.Unity;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class DungeonRoom : RoomBase {
+public class DungeonRoom : RoomBase
+{
   public DungeonRoomType type;
 
   /// <summary>
@@ -19,28 +20,29 @@ public class DungeonRoom : RoomBase {
   [FormerlySerializedAs("RoomTemplateSets")]
   public List<RoomTemplatesSet> roomTemplateSets = new List<RoomTemplatesSet>();
 
-  public override List<GameObject> GetRoomTemplates() {
+  public override List<GameObject> GetRoomTemplates()
+  {
     return individualRoomTemplates
-      .Union(roomTemplateSets
-        .Where(x => x != null)
-        .SelectMany(x => x.RoomTemplates)
-      )
+      .Union(roomTemplateSets.Where(x => x != null).SelectMany(x => x.RoomTemplates))
       .Distinct()
       .ToList();
   }
 
-  public override string GetDisplayName() {
+  public override string GetDisplayName()
+  {
     // Use the type of the room as its display name.
     return type.ToString();
   }
 
-  public override RoomEditorStyle GetEditorStyle(bool isFocused) {
+  public override RoomEditorStyle GetEditorStyle(bool isFocused)
+  {
     var style = base.GetEditorStyle(isFocused);
 
     var backgroundColor = style.BackgroundColor;
 
     // Use different colors for different types of rooms
-    switch (type) {
+    switch (type)
+    {
       case DungeonRoomType.Spawn:
         backgroundColor = new Color(38 / 256f, 115 / 256f, 38 / 256f);
         break;
@@ -61,7 +63,8 @@ public class DungeonRoom : RoomBase {
     style.BackgroundColor = backgroundColor;
 
     // Darken the color when focused
-    if (isFocused) {
+    if (isFocused)
+    {
       style.BackgroundColor = Color.Lerp(style.BackgroundColor, Color.black, 0.7f);
     }
 

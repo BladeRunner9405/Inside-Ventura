@@ -4,7 +4,8 @@ using Edgar.Unity;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class RoomManagerBase : MonoBehaviour {
+public class RoomManagerBase : MonoBehaviour
+{
   /// <summary>
   /// Use the shared Random instance so that the results are properly seeded.
   /// </summary>
@@ -15,8 +16,8 @@ public class RoomManagerBase : MonoBehaviour {
   /// </summary>
   protected RoomInstanceGrid2D RoomInstance;
 
-  public virtual void Init(Collider2D floorCollider,
-    RoomInstanceGrid2D roomInstance) {
+  public virtual void Init(Collider2D floorCollider, RoomInstanceGrid2D roomInstance)
+  {
     RoomInstance = roomInstance;
   }
 
@@ -24,19 +25,24 @@ public class RoomManagerBase : MonoBehaviour {
   /// Gets called when a player enters the room.
   /// </summary>
   /// <param name="player"></param>
-  public virtual void OnRoomEnter(GameObject player) {
-    if (RoomInstance == null) return;
+  public virtual void OnRoomEnter(GameObject player)
+  {
+    if (RoomInstance == null)
+      return;
 
     Debug.Log(
-      $"Room enter. Room name: {RoomInstance.Room.GetDisplayName()}, Room template: {RoomInstance.RoomTemplatePrefab.name}");
+      $"Room enter. Room name: {RoomInstance.Room.GetDisplayName()}, Room template: {RoomInstance.RoomTemplatePrefab.name}"
+    );
   }
 
   /// <summary>
   /// Gets called when a player leaves the room.
   /// </summary>
   /// <param name="player"></param>
-  public virtual void OnRoomLeave(GameObject player) {
-    if (RoomInstance != null) {
+  public virtual void OnRoomLeave(GameObject player)
+  {
+    if (RoomInstance != null)
+    {
       Debug.Log($"Room leave {RoomInstance.Room.GetDisplayName()}");
     }
   }

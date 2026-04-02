@@ -5,8 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewThoughtBag", menuName = "Inside-Ventura/ThoughtBag")]
 public class ThoughtBag : ScriptableObject
 {
-  [SerializeField] private List<Thought> thoughts = new();
-  [SerializeField] private int maxSize = 20;
+  [SerializeField]
+  private List<Thought> thoughts = new();
+
+  [SerializeField]
+  private int maxSize = 20;
 
   public IReadOnlyList<Thought> Thoughts => thoughts;
   public int MaxSize => maxSize;
@@ -19,11 +22,14 @@ public class ThoughtBag : ScriptableObject
 
   public void AddThought(Thought thought)
   {
-    if (!thought) return;
+    if (!thought)
+      return;
 
     if (thoughts.Contains(thought))
     {
-      Debug.LogWarning($"[ThoughtBag] Мысль «{thought.name}» уже в инвентаре — добавление отменено.");
+      Debug.LogWarning(
+        $"[ThoughtBag] Мысль «{thought.name}» уже в инвентаре — добавление отменено."
+      );
       return;
     }
 
@@ -40,13 +46,15 @@ public class ThoughtBag : ScriptableObject
   public bool RemoveThought(Thought thought)
   {
     var removed = thoughts.Remove(thought);
-    if (removed) OnThoughtsChanged?.Invoke();
+    if (removed)
+      OnThoughtsChanged?.Invoke();
     return removed;
   }
 
   public bool RemoveThoughtAt(int index)
   {
-    if (index < 0 || index >= thoughts.Count) return false;
+    if (index < 0 || index >= thoughts.Count)
+      return false;
     thoughts.RemoveAt(index);
     OnThoughtsChanged?.Invoke();
     return true;

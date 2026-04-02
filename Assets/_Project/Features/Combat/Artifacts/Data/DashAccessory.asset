@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DashAccessory
   artifactName: "\u041F\u043E\u043B\u0451\u0442 \u0424\u0430\u043D\u0442\u0430\u0437\u0438\u0438"
   slotsCount: 3
-  equippedThoughts: []
-  cooldown:
-    _value: 3
-  distance: 2.2
+  initialThoughts: []
+  baseCooldown: 0.2
+  distance: 20
   duration: 0.2

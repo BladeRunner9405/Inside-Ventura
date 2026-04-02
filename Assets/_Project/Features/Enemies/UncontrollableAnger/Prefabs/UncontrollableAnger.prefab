@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2182938281337733922}
   - component: {fileID: -8294682954759355791}
   - component: {fileID: 16143170943355698}
+  - component: {fileID: -4641155556989161375}
   m_Layer: 8
   m_Name: UncontrollableAnger
   m_TagString: Untagged
@@ -98,10 +99,10 @@ MonoBehaviour:
     _value: 0
   maxHealth:
     _value: 36
-  dodgeChance:
-    _value: 0
   moveSpeed:
     _value: 3.75
+  dodgeChance:
+    _value: 0
   target: {fileID: 0}
   damage: 1
   isBoss: 0
@@ -158,7 +159,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: -222208283
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 3408796811291790921, guid: 0f656d53ad2436040a834b0b0d17a0a3, type: 3}
@@ -256,3 +257,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-4641155556989161375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8773438717478118405}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e2926b68e090b46a9581991cd0c29c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityVisuals
+  entity: {fileID: 4840389292566636189}
+  spriteRenderer: {fileID: 8637480919781026495}
+  damageFlashDuration: 0.1

@@ -3,124 +3,170 @@ using System.Collections;
 using CherryFramework.DependencyManager;
 using UnityEngine;
 
-public abstract class Entity : InjectMonoBehaviour {
-    private const float ShellDistance = 0.01f;
+public abstract class Entity : InjectMonoBehaviour
+{
+  private const float ShellDistance = 0.01f;
 
-    [Header("Stats")] 
-    [SerializeField] private Stat health;
-    [SerializeField] private ModifiableStat maxHealth;
-    [SerializeField] private ModifiableStat moveSpeed;
-    [SerializeField] private ModifiableStat dodgeChance;
+  [Header("Stats")]
+  [SerializeField]
+  private Stat health;
 
-    [Header("Target")] public Transform target;
+  [SerializeField]
+  private ModifiableStat maxHealth;
 
-    private readonly RaycastHit2D[] _hitBuffer = new RaycastHit2D[16];
-    private ContactFilter2D _contactFilter;
-    private Collider2D _col;
-    private Rigidbody2D _rb;
+  [SerializeField]
+  private ModifiableStat moveSpeed;
 
-    // События для визуализации и систем
-    public event Action<float> OnTakeDamage;
-    public event Action OnDeath;
-    public event Action<Vector2> OnMove; // Для аниматора
+  [SerializeField]
+  private ModifiableStat dodgeChance;
 
-    public float Health {
-        get => health.Value;
-        set => health.Value = Mathf.Clamp(value, 0, MaxHealth);
+  [Header("Target")]
+  public Transform target;
+
+  private readonly RaycastHit2D[] _hitBuffer = new RaycastHit2D[16];
+  private ContactFilter2D _contactFilter;
+  private Collider2D _col;
+  private Rigidbody2D _rb;
+
+  // События для визуализации и систем
+  public event Action<float> OnTakeDamage;
+  public event Action OnDeath;
+  public event Action<Vector2> OnMove; // Для аниматора
+
+  public virtual float Health
+  {
+    get => health.Value;
+    set => health.Value = Mathf.Clamp(value, 0, MaxHealth);
+  }
+  public virtual float MaxHealth => maxHealth.ModifiedValue;
+  public bool IsDead { get; private set; }
+  public float MoveSpeed => moveSpeed.ModifiedValue;
+  public bool IsDashing { get; private set; }
+
+  public int InvulnerabilityProcCount { get; set; } = 0;
+  public bool IsInvulnerable => InvulnerabilityProcCount > 0;
+
+  protected virtual void Awake()
+  {
+    _rb = GetComponent<Rigidbody2D>();
+    _col = GetComponent<Collider2D>();
+
+    _contactFilter.useTriggers = false;
+    _contactFilter.SetLayerMask(LayerMask.GetMask("Obstacle"));
+    _contactFilter.useLayerMask = true;
+  }
+
+  protected virtual void Start()
+  {
+    Health = MaxHealth;
+  }
+
+  protected void TargetTo(Transform _target)
+  {
+    target = _target;
+  }
+
+  public void TakeDamage(float amount)
+  {
+    if (IsDead || IsInvulnerable || amount <= 0)
+      return;
+
+    var hasDodged = UnityEngine.Random.value <= (dodgeChance.ModifiedValue);
+    if (hasDodged)
+    {
+      OnTakeDamage?.Invoke(0f);
+      return;
     }
-    public float MaxHealth => maxHealth.ModifiedValue;
-    public bool IsDead { get; private set; }
-    public float MoveSpeed => moveSpeed.ModifiedValue;
-    public bool IsDashing { get; private set; }
-    
-    public int InvulnerabilityProcCount { get; set; } = 0;
-    public bool IsInvulnerable => InvulnerabilityProcCount > 0;
 
-    protected virtual void Awake() {
-        _rb = GetComponent<Rigidbody2D>();
-        _col = GetComponent<Collider2D>();
-        
-        _contactFilter.useTriggers = false;
-        _contactFilter.SetLayerMask(LayerMask.GetMask("Obstacle"));
-        _contactFilter.useLayerMask = true;
-    }
+    Health -= amount;
+    OnTakeDamage?.Invoke(amount);
 
-    public void TakeDamage(float amount) {
-        if (IsDead || IsInvulnerable || amount <= 0) return;
+    if (Health <= 0)
+      Die();
+  }
 
-        var hasDodged = UnityEngine.Random.value <= (dodgeChance.ModifiedValue);
-        if (hasDodged) {
-            OnTakeDamage?.Invoke(0f);
-            return;
-        }
+  protected virtual void Die()
+  {
+    if (IsDead)
+      return;
+    IsDead = true;
+    Health = 0;
+    OnDeath?.Invoke();
+  }
 
-        Health -= amount;
-        OnTakeDamage?.Invoke(amount);
+  public void Move(Vector2 direction)
+  {
+    if (direction.sqrMagnitude < 0.001f)
+      return;
 
-        if (Health <= 0) Die();
-    }
+    var deltaMove = direction * MoveSpeed * Time.fixedDeltaTime;
 
-    protected virtual void Die() {
-        if (IsDead) return;
-        IsDead = true;
-        Health = 0;
-        OnDeath?.Invoke();
-    }
+    ResolveOverlap(); // проверка уже внутри стены
 
-    public void Move(Vector2 direction) {
-      if (direction.sqrMagnitude < 0.001f) return;
+    var maxIterations = 4;
+    for (var i = 0; i < maxIterations; i++)
+    {
+      var distance = deltaMove.magnitude;
+      if (distance < 0.0001f)
+        break;
 
-      var deltaMove = direction * MoveSpeed * Time.fixedDeltaTime;
+      var count = _col.Cast(
+        deltaMove.normalized,
+        _contactFilter,
+        _hitBuffer,
+        distance + ShellDistance
+      );
 
-      ResolveOverlap(); // проверка уже внутри стены
+      if (count > 0)
+      {
+        var hit = _hitBuffer[0];
 
-      var maxIterations = 4;
-      for (var i = 0; i < maxIterations; i++) {
-        var distance = deltaMove.magnitude;
-        if (distance < 0.0001f) break;
+        var safeDistance = Mathf.Max(0, hit.distance - ShellDistance);
+        _rb.position += deltaMove.normalized * safeDistance;
 
-        var count = _col.Cast(deltaMove.normalized, _contactFilter, _hitBuffer, distance + ShellDistance);
+        var remainingDelta = deltaMove.normalized * (distance - safeDistance);
+        deltaMove = remainingDelta - Vector2.Dot(remainingDelta, hit.normal) * hit.normal;
 
-        if (count > 0) {
-          var hit = _hitBuffer[0];
-
-          var safeDistance = Mathf.Max(0, hit.distance - ShellDistance);
-          _rb.position += deltaMove.normalized * safeDistance;
-
-          var remainingDelta = deltaMove.normalized * (distance - safeDistance);
-          deltaMove = remainingDelta - Vector2.Dot(remainingDelta, hit.normal) * hit.normal;
-
-          if (Vector2.Dot(deltaMove, direction) <= 0) deltaMove = Vector2.zero;
-        }
-        else {
-          _rb.position += deltaMove;
-          break;
-        }
+        if (Vector2.Dot(deltaMove, direction) <= 0)
+          deltaMove = Vector2.zero;
+      }
+      else
+      {
+        _rb.position += deltaMove;
+        break;
       }
     }
+  }
 
-    private void ResolveOverlap() {
-      var results = new Collider2D[5];
-      var count = _col.Overlap(_contactFilter, results);
+  private void ResolveOverlap()
+  {
+    var results = new Collider2D[5];
+    var count = _col.Overlap(_contactFilter, results);
 
-      for (var i = 0; i < count; i++) {
-        var dist = _col.Distance(results[i]);
-        if (dist.isOverlapped) _rb.position += dist.normal * dist.distance;
-      }
+    for (var i = 0; i < count; i++)
+    {
+      var dist = _col.Distance(results[i]);
+      if (dist.isOverlapped)
+        _rb.position += dist.normal * dist.distance;
     }
+  }
 
-    public void Dash(Vector2 direction, float distance, float duration) {
-        if (!IsDashing) StartCoroutine(DashCoroutine(direction, distance, duration));
-    }
+  public void Dash(Vector2 direction, float distance, float duration)
+  {
+    if (!IsDashing)
+      StartCoroutine(DashCoroutine(direction, distance, duration));
+  }
 
-    protected virtual IEnumerator DashCoroutine(Vector2 direction, float distance, float duration) {
-        IsDashing = true;
-        float elapsed = 0;
-        while (elapsed < duration) {
-            Move(direction);
-            elapsed += Time.fixedDeltaTime;
-            yield return new WaitForFixedUpdate();
-        }
-        IsDashing = false;
+  protected virtual IEnumerator DashCoroutine(Vector2 direction, float distance, float duration)
+  {
+    IsDashing = true;
+    float elapsed = 0;
+    while (elapsed < duration)
+    {
+      Move(direction);
+      elapsed += Time.fixedDeltaTime;
+      yield return new WaitForFixedUpdate();
     }
+    IsDashing = false;
+  }
 }

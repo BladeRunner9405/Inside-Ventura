@@ -3,31 +3,43 @@ using CherryFramework.DependencyManager;
 using DG.Tweening;
 using UnityEngine;
 
-public class UAAttackField : InjectMonoBehaviour {
-  [HideInInspector] public int damage;
+public class UAAttackField : InjectMonoBehaviour
+{
+  [HideInInspector]
+  public int damage;
 
-  [SerializeField] private List<BoxCollider2D> hitboxes = new();
-  [SerializeField] private float attackWaveDuration = 0.5F;
+  [SerializeField]
+  private List<BoxCollider2D> hitboxes = new();
+
+  [SerializeField]
+  private float attackWaveDuration = 0.5F;
 
   private int _curHitbox = -1;
   private int _lastHitbox = -1;
 
-  [Inject] protected PlayerAccessor PlayerAccessor;
+  [Inject]
+  protected PlayerAccessor PlayerAccessor;
 
-  private void Start() {
+  private void Start()
+  {
     _curHitbox = 0;
     Debug.Log(hitboxes.Count);
-    DOTween.Sequence()
+    DOTween
+      .Sequence()
       .Append(DOTween.To(() => _curHitbox, UpdateHitbox, 3, attackWaveDuration))
-      .AppendCallback(() => {
+      .AppendCallback(() =>
+      {
         _curHitbox = -1;
         // Debug.Log("Wave sequence ended");
         Destroy(gameObject);
-      }).PlayForward();
+      })
+      .PlayForward();
   }
 
-  private void OnDrawGizmos() {
-    if (_curHitbox != -1) {
+  private void OnDrawGizmos()
+  {
+    if (_curHitbox != -1)
+    {
       var curCollider = hitboxes[_curHitbox];
       Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, Vector3.one);
       Gizmos.color = Color.red;
@@ -35,8 +47,10 @@ public class UAAttackField : InjectMonoBehaviour {
     }
   }
 
-  private void UpdateHitbox(int newVal) {
-    if (newVal == _lastHitbox) return;
+  private void UpdateHitbox(int newVal)
+  {
+    if (newVal == _lastHitbox)
+      return;
 
     // Debug.Log($"Updating hitbox with new index {newVal}");
     _curHitbox = newVal;

@@ -3,7 +3,8 @@ using System.Linq;
 using Edgar.Unity;
 using UnityEngine;
 
-public class NormalRoomManager : RoomManagerBase {
+public class NormalRoomManager : RoomManagerBase
+{
   private List<GameObject> _doors;
 
   private int _waveCount;
@@ -19,18 +20,21 @@ public class NormalRoomManager : RoomManagerBase {
   /// </summary>
   private bool _enemiesSpawned;
 
-  public override void Init(Collider2D floorCollider, RoomInstanceGrid2D roomInstance) {
+  public override void Init(Collider2D floorCollider, RoomInstanceGrid2D roomInstance)
+  {
     base.Init(floorCollider, roomInstance);
     _doors = DetectDoors(roomInstance);
 
     _chest = transform.Find("Chest")?.gameObject;
-    if (_chest == null) {
+    if (_chest == null)
+    {
       Debug.Log("No chest inside the room, are you sure?");
     }
     _chest?.SetActive(false);
 
     var wavesRoot = transform.Find("Waves")?.gameObject;
-    if (wavesRoot == null) {
+    if (wavesRoot == null)
+    {
       Debug.Log("No Waves inside the room, are you sure?");
       _enemiesSpawned = true;
       return;
@@ -39,10 +43,12 @@ public class NormalRoomManager : RoomManagerBase {
     wavesRoot.SetActive(true);
 
     // Detect waves.
-    while (true) {
+    while (true)
+    {
       var newWave = wavesRoot.transform.Find((_waveCount + 1).ToString());
 
-      if (newWave == null) {
+      if (newWave == null)
+      {
         break;
       }
 
@@ -52,9 +58,11 @@ public class NormalRoomManager : RoomManagerBase {
     }
   }
 
-  private static List<GameObject> DetectDoors(RoomInstanceGrid2D roomInstance) {
+  private static List<GameObject> DetectDoors(RoomInstanceGrid2D roomInstance)
+  {
     List<GameObject> res = new List<GameObject>();
-    foreach (var door in roomInstance.Doors) {
+    foreach (var door in roomInstance.Doors)
+    {
       // Get the room instance of the room that is connected via this door
       var corridorRoom = door.ConnectedRoomInstance;
 
@@ -64,11 +72,13 @@ public class NormalRoomManager : RoomManagerBase {
       // Find the door game object by its name
       var doorsGameObject = corridorGameObject.transform.Find("Door")?.gameObject;
 
-      if (doorsGameObject != null) {
+      if (doorsGameObject != null)
+      {
         doorsGameObject.SetActive(false);
         res.Add(doorsGameObject);
       }
-      else {
+      else
+      {
         Debug.Log("No doors in the corridor, are you sure?");
       }
     }
@@ -76,20 +86,25 @@ public class NormalRoomManager : RoomManagerBase {
     return res;
   }
 
-  public override void OnRoomEnter(GameObject player) {
-    if (RoomInstance == null) return;
+  public override void OnRoomEnter(GameObject player)
+  {
+    if (RoomInstance == null)
+      return;
     base.OnRoomEnter(player);
 
-    if (_enemiesSpawned) return;
+    if (_enemiesSpawned)
+      return;
 
     Debug.Log("Spawning enemies and closing all doors...");
     DoorsSetActive(true);
     AdvanceWave();
   }
 
-  private void AdvanceWave() {
+  private void AdvanceWave()
+  {
     _curWave++;
-    if (_curWave == _waveCount) {
+    if (_curWave == _waveCount)
+    {
       SpawnChest();
       DoorsSetActive(false);
       _enemiesSpawned = true;
@@ -101,24 +116,30 @@ public class NormalRoomManager : RoomManagerBase {
 
     var enemies = nextWave.GetComponentsInChildren<Enemy>();
     _remainingEnemiesCount = enemies.Length;
-    foreach (var enemy in enemies) {
+    foreach (var enemy in enemies)
+    {
       enemy.gameObject.SetActive(true);
-      enemy.OnDeath += () => {
+      enemy.OnDeath += () =>
+      {
         _remainingEnemiesCount--;
-        if (_remainingEnemiesCount == 0) {
+        if (_remainingEnemiesCount == 0)
+        {
           AdvanceWave();
         }
       };
     }
   }
 
-  private void DoorsSetActive(bool active) {
-    foreach (var door in _doors) {
+  private void DoorsSetActive(bool active)
+  {
+    foreach (var door in _doors)
+    {
       door.SetActive(active);
     }
   }
 
-  private void SpawnChest() {
+  private void SpawnChest()
+  {
     _chest.SetActive(true);
   }
 }

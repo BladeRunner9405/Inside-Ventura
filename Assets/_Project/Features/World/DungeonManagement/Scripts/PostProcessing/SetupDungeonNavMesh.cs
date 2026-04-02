@@ -3,10 +3,13 @@ using NavMeshPlus.Components;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class NavMeshPostProcessing : DungeonGeneratorPostProcessingComponentGrid2D {
-  [SerializeField] private NavMeshSurface surface2D;
+public class NavMeshPostProcessing : DungeonGeneratorPostProcessingComponentGrid2D
+{
+  [SerializeField]
+  private NavMeshSurface surface2D;
 
-  public override void Run(DungeonGeneratorLevelGrid2D level) {
+  public override void Run(DungeonGeneratorLevelGrid2D level)
+  {
     AddFloorNavigation(level);
     AddWallsNavigation(level);
 
@@ -14,13 +17,15 @@ public class NavMeshPostProcessing : DungeonGeneratorPostProcessingComponentGrid
     Invoke(nameof(BuildNavMesh), 0.5F);
   }
 
-  private static void AddFloorNavigation(DungeonGeneratorLevelGrid2D level) {
+  private static void AddFloorNavigation(DungeonGeneratorLevelGrid2D level)
+  {
     var floor = level.GetSharedTilemaps().Find(tilemap => tilemap.name == "Floor").gameObject;
     floor.AddComponent<NavMeshModifier>();
     floor.AddComponent<NavMeshModifierTilemap>();
   }
 
-  private static void AddWallsNavigation(DungeonGeneratorLevelGrid2D level) {
+  private static void AddWallsNavigation(DungeonGeneratorLevelGrid2D level)
+  {
     var walls = level.GetSharedTilemaps().Find(tilemap => tilemap.name == "Walls").gameObject;
     var wallsModifier = walls.AddComponent<NavMeshModifier>();
     walls.AddComponent<NavMeshModifierTilemap>();
@@ -29,7 +34,8 @@ public class NavMeshPostProcessing : DungeonGeneratorPostProcessingComponentGrid
     wallsModifier.area = notWalkableArea;
   }
 
-  private void BuildNavMesh() {
+  private void BuildNavMesh()
+  {
     surface2D.BuildNavMesh();
   }
 }

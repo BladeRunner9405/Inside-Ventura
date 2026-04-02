@@ -3,14 +3,21 @@ using Edgar.Unity;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class GenerationPostProcessing : DungeonGeneratorPostProcessingComponentGrid2D {
-  public override void Run(DungeonGeneratorLevelGrid2D level) {
-    level.GetSharedTilemaps().ForEach(x => {
-      if (x.gameObject.name == "Walls") x.gameObject.layer = 3;
-    });
+public class GenerationPostProcessing : DungeonGeneratorPostProcessingComponentGrid2D
+{
+  public override void Run(DungeonGeneratorLevelGrid2D level)
+  {
+    level
+      .GetSharedTilemaps()
+      .ForEach(x =>
+      {
+        if (x.gameObject.name == "Walls")
+          x.gameObject.layer = 3;
+      });
 
     Debug.Log("Setting up dungeon rooms...");
-    foreach (var roomInstance in level.RoomInstances) {
+    foreach (var roomInstance in level.RoomInstances)
+    {
       var roomTemplateInstance = roomInstance.RoomTemplateInstance;
 
       // Find floor tilemap layer
@@ -31,9 +38,14 @@ public class GenerationPostProcessing : DungeonGeneratorPostProcessingComponentG
     Debug.Log("Done setting up dungeon rooms");
   }
 
-  private RoomManagerBase AddRoomManager(GameObject roomTemplateInstance, RoomInstanceGrid2D roomInstance) {
+  private RoomManagerBase AddRoomManager(
+    GameObject roomTemplateInstance,
+    RoomInstanceGrid2D roomInstance
+  )
+  {
     var dungeonRoom = roomInstance.Room as DungeonRoom;
-    switch (dungeonRoom.type) {
+    switch (dungeonRoom.type)
+    {
       case DungeonRoomType.Normal:
         return roomTemplateInstance.AddComponent<NormalRoomManager>();
       default:
@@ -41,10 +53,10 @@ public class GenerationPostProcessing : DungeonGeneratorPostProcessingComponentG
     }
   }
 
-  private void AddFloorCollider(GameObject floor) {
+  private void AddFloorCollider(GameObject floor)
+  {
     var tilemapCollider2D = floor.AddComponent<TilemapCollider2D>();
     tilemapCollider2D.compositeOperation = Collider2D.CompositeOperation.Merge;
-
 
     var compositeCollider2D = floor.AddComponent<CompositeCollider2D>();
     compositeCollider2D.geometryType = CompositeCollider2D.GeometryType.Polygons;
