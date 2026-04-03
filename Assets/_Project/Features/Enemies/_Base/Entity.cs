@@ -94,12 +94,27 @@ public abstract class Entity : InjectMonoBehaviour
     OnDeath?.Invoke();
   }
 
-  public void Move(Vector2 direction)
-  {
-    if (direction.sqrMagnitude < 0.001f)
-      return;
+  public Vector2 CurrentMoveDirection { get; private set; }
 
-    var deltaMove = direction * MoveSpeed * Time.fixedDeltaTime;
+  public void Move(Vector2 direction, float speedBoost = 1)
+  {
+    // Если мертв — обнуляем направление и выходим
+    if (IsDead) 
+    {
+        CurrentMoveDirection = Vector2.zero;
+        return;
+    }
+
+    // Сохраняем направление (даже если оно нулевое)
+    CurrentMoveDirection = direction;
+
+    if (direction.sqrMagnitude < 0.001f)
+        return;
+
+    // Вызываем событие (оно у тебя уже было в коде, теперь мы его реально используем)
+    OnMove?.Invoke(direction);
+
+    var deltaMove = direction * MoveSpeed * Time.fixedDeltaTime * speedBoost;
 
     ResolveOverlap(); // проверка уже внутри стены
 
@@ -158,14 +173,14 @@ public abstract class Entity : InjectMonoBehaviour
   }
 
   protected virtual IEnumerator DashCoroutine(Vector2 direction, float distance, float duration)
-  {
+{
     IsDashing = true;
     float elapsed = 0;
     while (elapsed < duration)
     {
-      Move(direction);
-      elapsed += Time.fixedDeltaTime;
-      yield return new WaitForFixedUpdate();
+        Move(direction, distance);
+        elapsed += Time.fixedDeltaTime;
+        yield return new WaitForFixedUpdate();
     }
     IsDashing = false;
   }

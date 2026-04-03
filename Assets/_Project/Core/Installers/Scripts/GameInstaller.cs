@@ -28,12 +28,19 @@ public class GameInstaller : InstallerBehaviourBase
   [SerializeField]
   private List<AudioEventsCollection> _audioCollections;
 
+  [Header("World Settings")]
+  [SerializeField] private InsideVentura.World.DungeonManager _dungeonManager;
+
   protected override void Install()
   {
+    Debug.Log($"[GameInstaller] Install called on {gameObject.name}", gameObject);
     // 1. Core Services
+    Ticker _ticker = new Ticker();
+    BindAsSingleton(_ticker);
     BindAsSingleton(new SaveGameManager(new PlayerPrefsData(), true));
-    BindAsSingleton(new StateService(true));
-    BindAsSingleton(new Ticker());
+    BindAsSingleton(new StateService(_ticker, true));
+
+    // 
 
     // 2. Audio
     if (_audioSettings != null)
@@ -53,6 +60,17 @@ public class GameInstaller : InstallerBehaviourBase
 
     // 5. Project Specific
     BindAsSingleton(new PlayerAccessor());
+
+    // РЕГИСТРАЦИЯ DUNGEON MANAGER:
+    if (_dungeonManager != null)
+    {
+      BindAsSingleton(_dungeonManager);
+      Debug.Log("[GameInstaller] DungeonManager успешно зарегистрирован как синглтон.");
+    }
+    else
+    {
+      Debug.LogError("[GameInstaller] ОШИБКА: DungeonManager не назначен в инспекторе!");
+    }
 
     // 6. 100% надежная регистрация Drag & Drop
     if (_dragDropManager != null)

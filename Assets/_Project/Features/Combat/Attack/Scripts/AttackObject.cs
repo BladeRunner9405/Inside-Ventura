@@ -23,11 +23,14 @@ public abstract class AttackObject : InjectMonoBehaviour
       Despawn();
   }
 
-  public virtual void Initialize(float damage, LayerMask layer, float timeToLive)
+  public virtual void Initialize(float damage, LayerMask layer, float timeToLive=-1f)
   {
     currentDamage = damage;
     targetLayer = layer;
-    lifeTime = timeToLive;
+    if (timeToLive != -1) {
+      lifeTime = timeToLive;
+    }
+    
     spawnTime = Time.time;
 
     hitEntities.Clear();

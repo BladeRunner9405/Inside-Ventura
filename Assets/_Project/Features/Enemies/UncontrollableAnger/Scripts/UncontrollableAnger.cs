@@ -1,161 +1,70 @@
-using UnityEditor;
 using UnityEngine;
+using InsideVentura.AI;
 
-[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(EnemyBrain))]
 public class UncontrollableAnger : Enemy
 {
-  [SerializeField]
-  private float playerDistance = 2.7F;
+    // Поле visualData УДАЛЕНО - оно больше здесь не нужно!
+    private SimpleEnemyAnimator _view;
 
-  [SerializeField]
-  private float retreatDistance = 2F;
+    [Header("Distances")]
+    public float playerDistance = 2.7f;
+    public float retreatDistance = 2f;
 
-  [SerializeField]
-  private float cooldownDuration = 3F;
+    [Header("Attack Settings")]
+    public float cooldownDuration = 3f;
+    [SerializeField] private AttackObject waveAttackPrefab;
 
-  [Header("Attack")]
-  [SerializeField]
-  private float hitboxWidth = 1F;
+    private float _curCooldown;
+    public bool IsAttackReady => _curCooldown <= 0;
 
-  [SerializeField]
-  private float hitboxesHeight = 1.2F;
-
-  // [SerializeField] private GameObject attackField;
-  [SerializeField]
-  private AttackObject waveAttackPrefab;
-
-  [Header("Advanced")]
-  [SerializeField]
-  [Tooltip("Distance that enemy uses to find a place to retreat")]
-  private float retreatLookupDistance = 0.2f;
-
-  private Animator _animator;
-  private float _curCooldown;
-
-  private State _state = State.Walking;
-
-  protected new void Start()
-  {
-    base.Start();
-    _animator = GetComponent<Animator>();
-  }
-
-  private void Update()
-  {
-    if (!Agent.enabled)
-      return;
-    _curCooldown -= Time.deltaTime;
-
-    switch (_state)
+    protected override void Awake()
     {
-      case State.Walking:
-        Agent.isStopped = false;
-        Agent.SetDestination(target.position);
-        ResolveWalkingDirection();
-        TryAttack();
-        break;
-
-      case State.Idle:
-        Agent.isStopped = true;
-        ResolveWalkingDirection();
-        TryAttack();
-        break;
-
-      case State.Retreating:
-        Agent.isStopped = false;
-        var dir = (transform.position - target.position).normalized;
-        Agent.SetDestination(transform.position + dir * retreatLookupDistance);
-        ResolveWalkingDirection();
-        TryAttack();
-        break;
-      case State.Attacking:
-        Agent.SetDestination(transform.position);
-        Agent.isStopped = true;
-        break;
-    }
-  }
-
-  private void OnDrawGizmos()
-  {
-    if (_curCooldown > 0.0F)
-      Handles.Label(transform.position, $"Cooldown:  {_curCooldown}\nState: {_state}");
-  }
-
-  private void OnDrawGizmosSelected()
-  {
-    Gizmos.color = Color.white;
-    Gizmos.DrawWireSphere(transform.position, playerDistance);
-
-    if (target != null)
-    {
-      Gizmos.color = Color.yellow;
-      var dir = (transform.position - target.position).normalized;
-      Gizmos.DrawLine(transform.position, transform.position + dir * retreatLookupDistance * 5);
+        base.Awake();
+        _view = GetComponentInChildren<SimpleEnemyAnimator>();
     }
 
-    Gizmos.DrawWireSphere(transform.position, retreatDistance);
-  }
+    protected override void Start()
+    {
+        base.Start();
+        Brain.Init(this, new UA_ChaseState());
+    }
 
-  private void TryAttack()
-  {
-    var dist = Vector3.Distance(target.position, transform.position);
-    if (dist > playerDistance || _curCooldown > 0.0F)
-      return;
+    private void Update()
+    {
+        if (IsDead) return;
+        if (_curCooldown > 0) _curCooldown -= Time.deltaTime;
+    }
 
-    _state = State.Attacking;
-    _animator.SetTrigger("StartAttacking");
-  }
+    // Метод начала атаки, который вызовет наше состояние
+    public void StartAttackSequence()
+    {
+        // Просто просим аниматор сыграть атаку
+        _view.PlayAttack(UADoDamage, UAStartCooldown);
+    }
 
-  // ReSharper disable once InconsistentNaming
-  // Called from UA animation clip. Spawn the attack field.
+    private void UADoDamage()
+    {
+        if (target == null) return;
+        Vector2 diff = (target.position - transform.position).normalized;
+        float rotZ = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+        Quaternion rot = Quaternion.Euler(0f, 0f, rotZ - 90f);
 
-  private void UADoDamage()
-  {
-    var diff = target.position - transform.position;
-    var rotZ = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-    var rot = Quaternion.Euler(0f, 0f, rotZ - 90f);
+        var attackObj = GamePools.Hitboxes.Get(waveAttackPrefab, transform.position, rot);
+        attackObj.gameObject.SetActive(true);
+        attackObj.Initialize(damage, LayerMask.GetMask("Player"), 0f);
+    }
 
-    // Берем из пула Cherry Framework
-    var attackObj = GamePools.Hitboxes.Get(waveAttackPrefab, transform.position, rot);
+    private void UAStartCooldown()
+    {
+        _curCooldown = cooldownDuration;
+        Brain.ChangeState(new UA_ChaseState());
+    }
 
-    // Включаем
-    attackObj.gameObject.SetActive(true);
-
-    // Инициализируем
-    attackObj.Initialize(damage, LayerMask.GetMask("Player"), 0f);
-  }
-
-  // ReSharper disable once InconsistentNaming
-  // Called from UA animation clip.
-  private void UAStartCooldown()
-  {
-    _curCooldown = cooldownDuration;
-    ResolveWalkingDirection();
-  }
-
-  private void ResolveWalkingDirection()
-  {
-    var dist = Vector3.Distance(target.position, transform.position);
-    _state =
-      dist > playerDistance ? State.Walking
-      : dist < retreatDistance ? State.Retreating
-      : State.Idle;
-  }
-
-  private enum State
-  {
-    Walking,
-    Attacking,
-    Retreating,
-    Idle,
-  }
-
-  protected override void Die()
-  {
-    base.Die();
-
-    // видимо заглушка:
-    Agent.enabled = false;
-    _animator.enabled = false;
-  }
+    protected override void Die()
+    {
+        base.Die();
+        Brain.enabled = false;
+        enabled = false;
+    }
 }
