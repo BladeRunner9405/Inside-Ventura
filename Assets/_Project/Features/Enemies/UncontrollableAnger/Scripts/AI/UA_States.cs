@@ -59,7 +59,10 @@ public class UA_AttackState : EnemyState
 {
     public override void Enter()
     {
-        // Вместо Animator.SetTrigger:
-        ((UncontrollableAnger)EnemyInstance).StartAttackSequence();
+        // Вычисляем направление к игроку
+        Vector2 dir = (EnemyInstance.target.position - EnemyInstance.transform.position).normalized;
+        
+        // Вызываем базовый метод!
+        EnemyInstance.Attack(dir); 
     }
 }

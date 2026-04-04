@@ -9,6 +9,7 @@ namespace InsideVentura.World
     {
         [Header("Settings")]
         [SerializeField] private GameObject chestPrefab;
+        [SerializeField] private RoomBuilder builder;
 
         // Состояние боя
         private EncounterData _currentEncounter;
@@ -84,7 +85,7 @@ namespace InsideVentura.World
                 // ИСПОЛЬЗУЕМ ПУЛ ВМЕСТО INSTANTIATE
                 Enemy enemyInstance = _enemyPool.Get(enemySample, randomSpawnPoint.position, Quaternion.identity);
                 enemyInstance.gameObject.SetActive(true); 
-                
+                enemyInstance.ResetEntity();
                 _activeEnemies.Add(enemyInstance);
                 _allSpawnedEnemies.Add(enemyInstance); // Запоминаем для очистки трупов позже
                 
@@ -131,11 +132,13 @@ namespace InsideVentura.World
 
         private void SpawnReward()
         {
-            // Ищем точку награды через RoomBuilder
-            var builder = FindObjectOfType<RoomBuilder>();
             if (builder != null && builder.RewardPoint != null && chestPrefab != null)
             {
-                Instantiate(chestPrefab, builder.RewardPoint.position, Quaternion.identity);
+                var chest = Instantiate(chestPrefab, builder.RewardPoint.position, Quaternion.identity);
+                
+                // РЕГИСТРИРУЕМ СУНДУК В КОМНАТЕ
+                DungeonManager.Instance.RegisterRoomObject(chest); 
+                
                 Debug.Log("<color=yellow>[Encounter]</color> Сундук появился!");
             }
         }

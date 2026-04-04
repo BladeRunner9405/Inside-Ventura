@@ -1,106 +1,85 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class PlayerController : MonoBehaviour
 {
-  [SerializeField]
-  private Player player;
+    [SerializeField] private Player player;
 
-  [SerializeField]
-  private PlayerEquipment playerEquipment;
+    private InputAction m_moveAction;
+    private InputAction m_lookAction;
+    private InputAction m_interactAction;
+    private InputAction m_attackAction;
+    private InputAction m_abilityAction;
 
-  [SerializeField]
-  private AimTarget playerAim;
-  private InputAction m_abilityAction;
+    private Vector2 m_moveAmt;
+    private Vector2 m_lookWorldPos;
 
-  private InputAction m_attackAction;
-  private InputAction m_interactAction;
-  private InputAction m_lookAction;
-  private Vector2 m_lookAmt; // в координатах мира, используя основную камеру
-
-  private InputAction m_moveAction;
-  private Vector2 m_moveAmt;
-
-  private void Awake()
-  {
-    m_moveAction = InputSystem.actions.FindAction("Move");
-    m_lookAction = InputSystem.actions.FindAction("Look");
-    m_interactAction = InputSystem.actions.FindAction("Interact");
-
-    m_attackAction = InputSystem.actions.FindAction("Attack");
-    m_abilityAction = InputSystem.actions.FindAction("UseAbility");
-  }
-
-  private void Update()
-  {
-    if (player.IsDead)
-      return;
-
-    m_moveAmt = m_moveAction.ReadValue<Vector2>();
-    m_lookAmt = Camera.main.ScreenToWorldPoint(m_lookAction.ReadValue<Vector2>());
-
-    if (m_interactAction.WasPressedThisFrame())
-      Interact();
-
-    if (m_attackAction.WasPressedThisFrame())
-      Attack();
-
-    if (m_abilityAction.WasPressedThisFrame())
-      UseAbility();
-  }
-
-  private void FixedUpdate()
-  {
-    if (player.IsDead)
-      return;
-
-    Walking();
-    Looking();
-  }
-
-  private void Interact()
-  {
-    player.TryToInteract();
-  }
-
-  private void Attack()
-  {
-    if (playerEquipment)
+    private void Awake()
     {
-      var direction = m_lookAmt - (Vector2)player.transform.position;
-      if (direction == Vector2.zero)
-        direction = Vector2.right; // Страховка
-
-      playerEquipment.TryToAttack(direction.normalized);
+        // Кэшируем действия из InputSystem
+        m_moveAction = InputSystem.actions.FindAction("Move");
+        m_lookAction = InputSystem.actions.FindAction("Look");
+        m_interactAction = InputSystem.actions.FindAction("Interact");
+        m_attackAction = InputSystem.actions.FindAction("Attack");
+        m_abilityAction = InputSystem.actions.FindAction("UseAbility");
     }
-  }
 
-  private void UseAbility()
-  {
-    if (playerEquipment)
+    private void Update()
     {
-      Vector2 direction;
-      if (m_moveAmt != Vector2.zero)
-        direction = m_moveAmt;
-      else
-        direction = m_lookAmt - (Vector2)player.transform.position;
+        if (player == null || player.IsDead) return;
 
-      if (direction == Vector2.zero)
-        direction = Vector2.right; // Страховка
+        // Сбор данных ввода
+        m_moveAmt = m_moveAction.ReadValue<Vector2>();
+        
+        // Перевод экранных координат мыши в мировые
+        Vector2 screenPos = m_lookAction.ReadValue<Vector2>();
+        m_lookWorldPos = Camera.main.ScreenToWorldPoint(screenPos);
 
-      playerEquipment.TryToUseAbility(direction.normalized);
+        // Обработка нажатий
+        if (m_interactAction.WasPressedThisFrame())
+            player.TryToInteract();
+
+        if (m_attackAction.WasPressedThisFrame())
+            ExecuteAttack();
+
+        if (m_abilityAction.WasPressedThisFrame())
+            ExecuteAbility();
     }
-  }
 
-  private void Walking()
-  {
-    if (player.IsDashing)
-      return;
-    player.Move(m_moveAmt);
-  }
+    private void FixedUpdate()
+    {
+        if (player == null || player.IsDead) return;
 
-  private void Looking()
-  {
-    playerAim.aimAt(m_lookAmt);
-  }
+        // Движение
+        if (!player.IsDashing)
+        {
+            player.Move(m_moveAmt);
+        }
+
+        // Прицеливание (визуальный поворот оружия/персонажа)
+        player.LookAt(m_lookWorldPos);
+    }
+
+    private void ExecuteAttack()
+    {
+        Vector2 direction = GetDirectionToMouse();
+        player.Attack(direction);
+    }
+
+    private void ExecuteAbility()
+    {
+        // Приоритет направления: если движемся — используем вектор движения, иначе — вектор к мыши
+        Vector2 direction = (m_moveAmt != Vector2.zero) 
+            ? m_moveAmt.normalized 
+            : GetDirectionToMouse();
+
+        player.UseAbility(direction);
+    }
+
+    private Vector2 GetDirectionToMouse()
+    {
+        Vector2 direction = m_lookWorldPos - (Vector2)player.transform.position;
+        return direction == Vector2.zero ? Vector2.right : direction.normalized;
+    }
 }

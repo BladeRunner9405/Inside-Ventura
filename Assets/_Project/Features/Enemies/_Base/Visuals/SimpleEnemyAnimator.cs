@@ -107,4 +107,21 @@ public class SimpleEnemyAnimator : MonoBehaviour
             spriteRenderer.flipX = _enemy.CurrentMoveDirection.x < 0;
         }
     }
+
+    public void ResetToIdle()
+    {
+        _isPlayingAction = false;
+        _onDamageFrameReached = null;
+        _onAnimationEnded = null;
+        
+        _timer = 0f;
+        _currentFrame = 0;
+        
+        // Возвращаем дефолтные спрайты
+        if (data != null && data.idleSprites.Length > 0)
+        {
+            _activeSprites = data.idleSprites;
+            spriteRenderer.sprite = _activeSprites[0];
+        }
+    }
 }

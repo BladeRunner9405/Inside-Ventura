@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 139226878814988356}
   - component: {fileID: 5082482304728084474}
   - component: {fileID: 3065860956137818966}
+  - component: {fileID: -2225100922654447214}
   m_Layer: 8
   m_Name: UA
   m_TagString: Untagged
@@ -125,10 +126,11 @@ MonoBehaviour:
   maxHealth:
     _value: 100
   moveSpeed:
-    _value: 1
+    _value: 0.2
   dodgeChance:
     _value: 0
   target: {fileID: 0}
+  _view: {fileID: 139226878814988356}
   damage: 10
   isBoss: 0
   detectionRadius: 1.5
@@ -137,6 +139,7 @@ MonoBehaviour:
     m_Bits: 8
   raysCount: 8
   steeringLerpSpeed: 10
+  Brain: {fileID: 7517003494791358381}
   playerDistance: 2.7
   retreatDistance: 2
   cooldownDuration: 3
@@ -228,3 +231,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &-2225100922654447214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7545988898748453450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e2926b68e090b46a9581991cd0c29c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityVisuals
+  entity: {fileID: 5857819720384768810}
+  spriteRenderer: {fileID: 7293520111826285576}
+  damageFlashDuration: 0.1

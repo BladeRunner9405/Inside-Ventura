@@ -16,4 +16,17 @@ namespace InsideVentura.AI
         public virtual void FixedUpdate() { }
         public virtual void Exit() { }
     }
+
+    public class EnemyState_Dead : EnemyState
+    {
+        public override void Enter()
+        {
+            
+        }
+
+        public override void Update()
+        {
+            
+        }
+    }
 }

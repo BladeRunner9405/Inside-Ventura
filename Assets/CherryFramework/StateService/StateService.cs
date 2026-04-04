@@ -8,7 +8,7 @@ namespace CherryFramework.StateService
 {
     public class StateService : GeneralClassBase, ILateTickable
     {
-        protected readonly Ticker Ticker =  new Ticker();
+        protected readonly Ticker Ticker;
         
         private StateAccessor _stateAccessor;
 
@@ -27,8 +27,9 @@ namespace CherryFramework.StateService
         private bool _updateNeeded;
         private bool _debugMessages;
         
-        public StateService(bool debugMessages)
+        public StateService(Ticker _ticker, bool debugMessages)
         {
+            Ticker = _ticker;
             Ticker.Register(this);
             _stateAccessor = new StateAccessor(this);
             _debugMessages = debugMessages;

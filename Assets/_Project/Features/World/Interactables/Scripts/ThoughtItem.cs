@@ -1,5 +1,7 @@
 using UnityEngine;
 
+namespace InsideVentura.World
+{
 public class ThoughtItem : Item
 {
   [SerializeField]
@@ -20,4 +22,5 @@ public class ThoughtItem : Item
 
     PlayerAccessor.Inventory.AddThoughtToBag(thoughtData);
   }
+}
 }

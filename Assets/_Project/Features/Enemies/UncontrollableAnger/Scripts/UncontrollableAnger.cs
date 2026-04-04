@@ -4,9 +4,6 @@ using InsideVentura.AI;
 [RequireComponent(typeof(EnemyBrain))]
 public class UncontrollableAnger : Enemy
 {
-    // Поле visualData УДАЛЕНО - оно больше здесь не нужно!
-    private SimpleEnemyAnimator _view;
-
     [Header("Distances")]
     public float playerDistance = 2.7f;
     public float retreatDistance = 2f;
@@ -21,7 +18,6 @@ public class UncontrollableAnger : Enemy
     protected override void Awake()
     {
         base.Awake();
-        _view = GetComponentInChildren<SimpleEnemyAnimator>();
     }
 
     protected override void Start()
@@ -37,34 +33,30 @@ public class UncontrollableAnger : Enemy
     }
 
     // Метод начала атаки, который вызовет наше состояние
-    public void StartAttackSequence()
+    // Замени StartAttackSequence на это:
+    public override void Attack(Vector2 direction)
     {
-        // Просто просим аниматор сыграть атаку
+        // Врагу направление пока не особо нужно (он сам смотрит на target в UADoDamage),
+        // но мы соблюдаем контракт Entity.
         _view.PlayAttack(UADoDamage, UAStartCooldown);
     }
 
     private void UADoDamage()
     {
         if (target == null) return;
-        Vector2 diff = (target.position - transform.position).normalized;
-        float rotZ = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-        Quaternion rot = Quaternion.Euler(0f, 0f, rotZ - 90f);
+        Vector2 dir = (target.position - transform.position).normalized;
 
-        var attackObj = GamePools.Hitboxes.Get(waveAttackPrefab, transform.position, rot);
+        // СТАВИМ Quaternion.identity! Никаких Atan2!
+        var attackObj = GamePools.Hitboxes.Get(waveAttackPrefab, transform.position, Quaternion.identity);
         attackObj.gameObject.SetActive(true);
-        attackObj.Initialize(damage, LayerMask.GetMask("Player"), 0f);
+        
+        // Вызываем новый Initialize, передавая dir
+        attackObj.Initialize(damage, LayerMask.GetMask("Player"), dir);
     }
 
     private void UAStartCooldown()
     {
         _curCooldown = cooldownDuration;
         Brain.ChangeState(new UA_ChaseState());
-    }
-
-    protected override void Die()
-    {
-        base.Die();
-        Brain.enabled = false;
-        enabled = false;
     }
 }

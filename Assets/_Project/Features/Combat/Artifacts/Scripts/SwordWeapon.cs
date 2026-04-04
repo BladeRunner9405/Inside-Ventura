@@ -33,10 +33,6 @@ public class SwordWeapon : Weapon
   [SerializeField]
   private float lungeDuration = 0.1f; // Изменил 1f на 0.1f (рывок не должен длиться секунду)
 
-  [Tooltip("Время жизни хитбокса в секундах. 0 = мгновенно")]
-  [SerializeField]
-  private float hitboxActiveTime = 0.1f;
-
   public override void ExecuteAttack(
     WeaponInstance instance,
     Vector2 direction,
@@ -61,7 +57,7 @@ public class SwordWeapon : Weapon
       GamePools.Hitboxes.Get(sectorAttackPrefab, playerPosition, Quaternion.identity);
     attackObj.gameObject.SetActive(true);
 
-    attackObj.Initialize(finalDamage, enemyLayer, hitboxActiveTime, angle, range, dir);
+    attackObj.Initialize(finalDamage, enemyLayer, dir, angle, range);
 
     if (isSpecial)
     {

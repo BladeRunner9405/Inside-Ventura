@@ -21,7 +21,8 @@ public class Enemy : Entity
     private Vector2 _currentSteeringVelocity;
 
     [Inject] protected PlayerAccessor PlayerAccessor;
-    
+
+    [SerializeField]
     protected EnemyBrain Brain;
 
     private Vector2[] _rayDirections;
@@ -31,7 +32,6 @@ public class Enemy : Entity
     protected override void Awake()
     {
         base.Awake();
-        Brain = GetComponent<EnemyBrain>(); // Инициализируем один раз здесь
         InitializeSteering();
     }
 
@@ -129,5 +129,15 @@ public class Enemy : Entity
         _currentSteeringVelocity = Vector2.Lerp(_currentSteeringVelocity, outputDirection, Time.deltaTime * steeringLerpSpeed);
 
         Move(_currentSteeringVelocity);
+    }
+
+    public override void ResetEntity()
+    {
+        base.ResetEntity();
+        Brain.ResetBrain(); 
+
+        // Находим аниматор и глушим незаконченные атаки!
+
+        _view.ResetToIdle();
     }
 }

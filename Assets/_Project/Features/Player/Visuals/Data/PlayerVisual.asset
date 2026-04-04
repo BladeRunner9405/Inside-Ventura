@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3863bcce7c729c545ba3c92552a73307, type: 3}
+  m_Name: PlayerVisual
+  m_EditorClassIdentifier: Assembly-CSharp::InsideVentura.Player.PlayerVisualData
+  idleSprites:
+  - {fileID: -6367560908665664636, guid: ae42a35010954e440bef7e8f83e9430c, type: 3}
+  - {fileID: -6056987297122131021, guid: ae42a35010954e440bef7e8f83e9430c, type: 3}
+  - {fileID: 8416797952724722639, guid: ae42a35010954e440bef7e8f83e9430c, type: 3}
+  - {fileID: 4883129791460916795, guid: ae42a35010954e440bef7e8f83e9430c, type: 3}
+  - {fileID: 4278371960119211202, guid: ae42a35010954e440bef7e8f83e9430c, type: 3}
+  - {fileID: 8644832591467991550, guid: ae42a35010954e440bef7e8f83e9430c, type: 3}
+  - {fileID: -7152759390613953277, guid: ae42a35010954e440bef7e8f83e9430c, type: 3}
+  - {fileID: 6456874251884481089, guid: ae42a35010954e440bef7e8f83e9430c, type: 3}
+  - {fileID: -2526832996998184344, guid: ae42a35010954e440bef7e8f83e9430c, type: 3}
+  - {fileID: 4392827059107796345, guid: ae42a35010954e440bef7e8f83e9430c, type: 3}
+  - {fileID: -1363835404106015672, guid: ae42a35010954e440bef7e8f83e9430c, type: 3}
+  walkSprites:
+  - {fileID: 7166236263522030466, guid: 5dce6ffe9ff142c4e904cefcf3fb192e, type: 3}
+  - {fileID: 2470319409956435798, guid: 5dce6ffe9ff142c4e904cefcf3fb192e, type: 3}
+  - {fileID: -4540918584354326388, guid: 5dce6ffe9ff142c4e904cefcf3fb192e, type: 3}
+  - {fileID: -4455822056875728695, guid: 5dce6ffe9ff142c4e904cefcf3fb192e, type: 3}
+  - {fileID: -5364790588639958657, guid: 5dce6ffe9ff142c4e904cefcf3fb192e, type: 3}
+  - {fileID: -1512656188830553638, guid: 5dce6ffe9ff142c4e904cefcf3fb192e, type: 3}
+  - {fileID: -2754230144694611447, guid: 5dce6ffe9ff142c4e904cefcf3fb192e, type: 3}
+  - {fileID: -2419971920513260168, guid: 5dce6ffe9ff142c4e904cefcf3fb192e, type: 3}
+  - {fileID: 1843850012483549754, guid: 5dce6ffe9ff142c4e904cefcf3fb192e, type: 3}
+  - {fileID: 241620830004830169, guid: 5dce6ffe9ff142c4e904cefcf3fb192e, type: 3}
+  - {fileID: -362971539341918764, guid: 5dce6ffe9ff142c4e904cefcf3fb192e, type: 3}
+  - {fileID: 2178398316516280758, guid: 5dce6ffe9ff142c4e904cefcf3fb192e, type: 3}
+  dashSprites:
+  - {fileID: -9101230857065804138, guid: 00d3bf074e3878843ab0f8af6f31e9c7, type: 3}
+  - {fileID: -6204479477933590408, guid: 00d3bf074e3878843ab0f8af6f31e9c7, type: 3}
+  - {fileID: 7040038629683462113, guid: 00d3bf074e3878843ab0f8af6f31e9c7, type: 3}
+  - {fileID: 781615245368611544, guid: 00d3bf074e3878843ab0f8af6f31e9c7, type: 3}
+  - {fileID: -3939753913355333839, guid: 00d3bf074e3878843ab0f8af6f31e9c7, type: 3}
+  - {fileID: 6301718139250434432, guid: 00d3bf074e3878843ab0f8af6f31e9c7, type: 3}
+  deathSprite: {fileID: -953560442851353963, guid: 7ddd9a84fb6102e498ee7aafafd4876b, type: 3}
+  animationSpeed: 0.1

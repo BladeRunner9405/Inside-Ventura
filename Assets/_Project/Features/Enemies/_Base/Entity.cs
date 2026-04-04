@@ -31,7 +31,10 @@ public abstract class Entity : InjectMonoBehaviour
   // События для визуализации и систем
   public event Action<float> OnTakeDamage;
   public event Action OnDeath;
+  public event Action OnAppear;
   public event Action<Vector2> OnMove; // Для аниматора
+  [SerializeField]
+  protected SimpleEnemyAnimator _view;
 
   public virtual float Health
   {
@@ -39,7 +42,7 @@ public abstract class Entity : InjectMonoBehaviour
     set => health.Value = Mathf.Clamp(value, 0, MaxHealth);
   }
   public virtual float MaxHealth => maxHealth.ModifiedValue;
-  public bool IsDead { get; private set; }
+  public bool IsDead { get; protected set; }
   public float MoveSpeed => moveSpeed.ModifiedValue;
   public bool IsDashing { get; private set; }
 
@@ -59,6 +62,7 @@ public abstract class Entity : InjectMonoBehaviour
   protected virtual void Start()
   {
     Health = MaxHealth;
+    IsDead = false;
   }
 
   protected void TargetTo(Transform _target)
@@ -93,6 +97,14 @@ public abstract class Entity : InjectMonoBehaviour
     Health = 0;
     OnDeath?.Invoke();
   }
+
+  public virtual void ResetEntity()
+    {
+        IsDead = false;
+        Health = MaxHealth;
+        InvulnerabilityProcCount = 0; // Сбрасываем неуязвимость
+        OnAppear?.Invoke();
+    }
 
   public Vector2 CurrentMoveDirection { get; private set; }
 
@@ -151,6 +163,12 @@ public abstract class Entity : InjectMonoBehaviour
         break;
       }
     }
+  }
+
+  public virtual void Attack(Vector2 direction)
+  {
+      // Базовая реализация пуста. 
+      // Player и конкретные враги будут её переопределять.
   }
 
   private void ResolveOverlap()

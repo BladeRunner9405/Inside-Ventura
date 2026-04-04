@@ -1,4 +1,8 @@
-public abstract class Item : InteractableObject
+using Unity.VisualScripting;
+
+namespace InsideVentura.World
+{
+  public abstract class Item : InteractableObject
 {
   protected virtual void OnPickup() { }
 
@@ -6,6 +10,11 @@ public abstract class Item : InteractableObject
   {
     // хватает ли места и т. п.
     return true;
+  }
+
+  protected override void OnEnable() {
+    base.OnEnable();
+    DungeonManager.Instance.RegisterRoomObject(this.gameObject);
   }
 
   public override void OnInteract()
@@ -16,4 +25,5 @@ public abstract class Item : InteractableObject
     OnPickup();
     base.OnInteract();
   }
+}
 }
