@@ -154,34 +154,144 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InsideVentura.World.RoomBuilder
   floorTilemap: {fileID: 377216279}
   wallTilemap: {fileID: 1687359148}
-  floorTile: {fileID: -1898413550708495540, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
-  defaultWallTile: {fileID: -1027136755823630038, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
+  floorTile: {fileID: -4016265883589072086, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
+  defaultWallTile: {fileID: 8632147320129119443, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
   cellMappings:
-  - note: Wall
+  - note: HorizontalWallTopPaited1
     id: 1
     behavior: 1
-    tile: {fileID: -6274217992692880071, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
+    tile: {fileID: -3768511608664136740, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
+    prefab: {fileID: 0}
+  - note: HorizontalWallTopPaited2
+    id: 2
+    behavior: 1
+    tile: {fileID: -6498390063148489233, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
+    prefab: {fileID: 0}
+  - note: HorizontalWallTopPaited3
+    id: 3
+    behavior: 1
+    tile: {fileID: -3937174229914954346, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
+    prefab: {fileID: 0}
+  - note: HorizontalWallTop
+    id: 4
+    behavior: 1
+    tile: {fileID: -8112857822469687503, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
+    prefab: {fileID: 0}
+  - note: HorizontalWallDownPaited1
+    id: 5
+    behavior: 1
+    tile: {fileID: 2657016126852687108, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
+    prefab: {fileID: 0}
+  - note: HorizontalWallDownPaited2
+    id: 6
+    behavior: 1
+    tile: {fileID: 7669355641647484077, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
+    prefab: {fileID: 0}
+  - note: HorizontalWallDownPaited3
+    id: 7
+    behavior: 1
+    tile: {fileID: -2720159903303447826, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
+    prefab: {fileID: 0}
+  - note: HorizontalWallDown
+    id: 8
+    behavior: 1
+    tile: {fileID: -7736827862019936775, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
+    prefab: {fileID: 0}
+  - note: VerticalWallLeftPainted1
+    id: 9
+    behavior: 1
+    tile: {fileID: 263036663045076644, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
+    prefab: {fileID: 0}
+  - note: VerticalWallLeftPainted2
+    id: 10
+    behavior: 1
+    tile: {fileID: 620887615238107504, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
+    prefab: {fileID: 0}
+  - note: VerticalWallLeftPainted3
+    id: 11
+    behavior: 1
+    tile: {fileID: -6959727038048204601, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
+    prefab: {fileID: 0}
+  - note: VerticalWallLeft
+    id: 12
+    behavior: 1
+    tile: {fileID: 3599203236733666177, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
+    prefab: {fileID: 0}
+  - note: VerticalWallRightPainted1
+    id: 13
+    behavior: 1
+    tile: {fileID: 2835657496781917141, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
+    prefab: {fileID: 0}
+  - note: VerticalWallRightPainted2
+    id: 14
+    behavior: 1
+    tile: {fileID: 8073075942688418675, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
+    prefab: {fileID: 0}
+  - note: VerticalWallRightPainted3
+    id: 15
+    behavior: 1
+    tile: {fileID: -2583828583125921756, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
+    prefab: {fileID: 0}
+  - note: VerticalWallRight
+    id: 16
+    behavior: 1
+    tile: {fileID: -6303312942086561642, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
+    prefab: {fileID: 0}
+  - note: Floor
+    id: 17
+    behavior: 0
+    tile: {fileID: -4016265883589072086, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
+    prefab: {fileID: 0}
+  - note: Wall
+    id: 18
+    behavior: 1
+    tile: {fileID: 8632147320129119443, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
     prefab: {fileID: 0}
   - note: Door
-    id: 5
+    id: 19
     behavior: 3
     tile: {fileID: 0}
     prefab: {fileID: 6107313788416963637, guid: 5bb62d13277c2c04d90fe6f11d14066f, type: 3}
-  - note: Reward
-    id: 8
-    behavior: 5
-    tile: {fileID: 0}
-    prefab: {fileID: 3791626637372268971, guid: 9655fa713d6861f49be5419dc8e3071c, type: 3}
-  - note: Enemy Spawner
-    id: 9
-    behavior: 6
-    tile: {fileID: 0}
-    prefab: {fileID: 0}
-  - note: Player Start
-    id: 2
+  - note: PlayerStart
+    id: 20
     behavior: 4
     tile: {fileID: 0}
-    prefab: {fileID: 0}
+    prefab: {fileID: 6107313788416963637, guid: 5bb62d13277c2c04d90fe6f11d14066f, type: 3}
+  - note: Reward Point
+    id: 21
+    behavior: 5
+    tile: {fileID: 0}
+    prefab: {fileID: 6107313788416963637, guid: 5bb62d13277c2c04d90fe6f11d14066f, type: 3}
+  - note: Enemy Spawner
+    id: 22
+    behavior: 6
+    tile: {fileID: 0}
+    prefab: {fileID: 6107313788416963637, guid: 5bb62d13277c2c04d90fe6f11d14066f, type: 3}
+  - note: Exit
+    id: 22
+    behavior: 7
+    tile: {fileID: 0}
+    prefab: {fileID: 6107313788416963637, guid: 5bb62d13277c2c04d90fe6f11d14066f, type: 3}
+  - note: DownLeft
+    id: 23
+    behavior: 1
+    tile: {fileID: 7296351548120206358, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
+    prefab: {fileID: 6107313788416963637, guid: 5bb62d13277c2c04d90fe6f11d14066f, type: 3}
+  - note: DownRight
+    id: 24
+    behavior: 1
+    tile: {fileID: 2724468214032159610, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
+    prefab: {fileID: 6107313788416963637, guid: 5bb62d13277c2c04d90fe6f11d14066f, type: 3}
+  - note: TopLeft
+    id: 25
+    behavior: 1
+    tile: {fileID: -932066881398076806, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
+    prefab: {fileID: 6107313788416963637, guid: 5bb62d13277c2c04d90fe6f11d14066f, type: 3}
+  - note: TopRight
+    id: 26
+    behavior: 1
+    tile: {fileID: -8109354908865854504, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
+    prefab: {fileID: 6107313788416963637, guid: 5bb62d13277c2c04d90fe6f11d14066f, type: 3}
   cameraBoundsCollider: {fileID: 77819167}
 --- !u!156049354 &77819163
 Grid:
@@ -225,14 +335,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InsideVentura.World.DungeonManager
   builder: {fileID: 77819162}
-  targetRoomCount: 8
-  safeRoomTemplate: {fileID: 11400000, guid: a1cd2ffcc75b85548a71e5656b60f117, type: 2}
-  normalRoomTemplates:
-  - {fileID: 11400000, guid: be99c1b34636812418026e2517429c2e, type: 2}
-  - {fileID: 11400000, guid: 57f9a7aa03cfb2b48be641b835ee50c4, type: 2}
-  - {fileID: 11400000, guid: ab6a9869e58bde94abdd714482ab7ea9, type: 2}
-  - {fileID: 11400000, guid: 6cb687fbe3c23a841b779f51342859ea, type: 2}
   encounterManager: {fileID: 77819166}
+  targetRoomCount: 8
+  safeRoomTemplate: {fileID: 11400000, guid: e288769f607ed184491971d136646b91, type: 2}
+  normalRoomTemplates:
+  - {fileID: 11400000, guid: 1cfdeff8aa0268542813bed91691ecba, type: 2}
+  - {fileID: 11400000, guid: f5b9158fb7c643947ae60ff18e805b0e, type: 2}
+  - {fileID: 11400000, guid: e04775114e3a828469167c295968e8ad, type: 2}
+  - {fileID: 11400000, guid: 173ec819feb2f3949853b15c4dc6e309, type: 2}
   encounterPool:
   - {fileID: 11400000, guid: 230a948e3ce5ea646a1bfb1834df5298, type: 2}
   playerPrefab: {fileID: 8131152870917328023, guid: 3f1e84e6511bb483cba095ce3ebb694f, type: 3}
@@ -250,6 +360,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InsideVentura.World.EncounterManager
   chestPrefab: {fileID: 3791626637372268971, guid: 9655fa713d6861f49be5419dc8e3071c, type: 3}
+  builder: {fileID: 77819162}
 --- !u!60 &77819167
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -845,9 +956,9 @@ MonoBehaviour:
   Damping: 0
   SlowingDistance: 15
   OversizeWindow:
-    Enabled: 0
+    Enabled: 1
     MaxWindowSize: 0
-    Padding: 0
+    Padding: 100
   m_LegacyMaxWindowSize: -2
 --- !u!114 &682866573
 MonoBehaviour:

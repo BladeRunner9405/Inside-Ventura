@@ -1,13 +1,13 @@
 namespace InsideVentura.World
 {
-public class MoneyItem : Item
-{
-  protected override void OnPickup()
+  public class MoneyItem : Item
   {
-    //if (!PlayerAccessor.Stats)
-    //  return;
+    protected override void OnPickup()
+    {
+      //if (!PlayerAccessor.Stats)
+      //  return;
 
-    // PlayerAccessor.Stats.Money += 1;
+      // PlayerAccessor.Stats.Money += 1;
+    }
   }
-}
 }

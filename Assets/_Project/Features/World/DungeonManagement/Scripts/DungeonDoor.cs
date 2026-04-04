@@ -1,15 +1,47 @@
+using CherryFramework.DependencyManager;
 using UnityEngine;
-using CherryFramework.DependencyManager; // Добавляем пространство имен
 
 namespace InsideVentura.World
 {
-    public enum DoorDirection { North, South, East, West }
+    public enum DoorDirection
+    {
+        North, // Индекс 0
+        South, // Индекс 1
+        East,  // Индекс 2
+        West,  // Индекс 3
+    }
 
-    // InteractableObject уже наследуется от InjectMonoBehaviour, так что [Inject] сработает
     public class DungeonDoor : InteractableObject
     {
         public DoorDirection direction;
-        [Inject] private DungeonManager _dungeonManager;
+
+        [Header("Sprites (0: North, 1: South, 2: East, 3: West)")]
+        [SerializeField] private Sprite[] closedDoors = new Sprite[4];
+        [SerializeField] private Sprite[] openedDoors = new Sprite[4];
+        
+        [Space]
+        [SerializeField] private SpriteRenderer spriteRenderer;
+
+        [Inject]
+        private DungeonManager _dungeonManager;
+
+        public void SetClosed() 
+        {
+            if (closedDoors.Length > (int)direction)
+            {
+              Debug.Log(direction);
+              spriteRenderer.sprite = closedDoors[(int)direction];
+            }
+        }
+
+        public void SetOpen() 
+        {
+            if (openedDoors.Length > (int)direction)
+            {
+                Debug.Log(direction);
+                spriteRenderer.sprite = openedDoors[(int)direction];
+            }
+        }
 
         public override void OnInteract()
         {

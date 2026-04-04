@@ -4,73 +4,79 @@ using UnityEngine;
 
 public abstract class AttackObject : InjectMonoBehaviour
 {
-    [Header("Visuals")]
-    [SerializeField] protected AttackAnimator animator; // ПЕРЕНЕСЛИ СЮДА!
+  [Header("Visuals")]
+  [SerializeField]
+  protected AttackAnimator animator; // ПЕРЕНЕСЛИ СЮДА!
 
-    [Header("Debug Info")]
-    [SerializeField] protected float currentDamage;
-    [SerializeField] protected LayerMask targetLayer;
-    [SerializeField] protected float lifeTime;
-    
-    public Vector2 Direction { get; protected set; }
+  [Header("Debug Info")]
+  [SerializeField]
+  protected float currentDamage;
 
-    protected HashSet<Entity> hitEntities = new();
-    protected float spawnTime;
+  [SerializeField]
+  protected LayerMask targetLayer;
 
-    protected virtual void Update()
+  [SerializeField]
+  protected float lifeTime;
+
+  public Vector2 Direction { get; protected set; }
+
+  protected HashSet<Entity> hitEntities = new();
+  protected float spawnTime;
+
+  protected virtual void Update()
+  {
+    if (lifeTime > 0 && Time.time - spawnTime >= lifeTime)
+      Despawn();
+  }
+
+  public virtual void Initialize(float damage, LayerMask layer, Vector2 direction)
+  {
+    currentDamage = damage;
+    targetLayer = layer;
+
+    Direction = direction.normalized;
+    spawnTime = Time.time;
+    hitEntities.Clear();
+
+    // БАЗА САМА РЕШАЕТ, КАК ЗАПУСКАТЬ АТАКУ
+    if (animator != null)
     {
-        if (lifeTime > 0 && Time.time - spawnTime >= lifeTime)
-            Despawn();
+      // PerformAttack вызовется на нужном кадре анимации
+      animator.Play(PerformAttack, Despawn, Direction);
     }
-
-    public virtual void Initialize(float damage, LayerMask layer, Vector2 direction)
+    else
     {
-        currentDamage = damage;
-        targetLayer = layer;
-        
-        Direction = direction.normalized;
-        spawnTime = Time.time;
-        hitEntities.Clear();
-
-        // БАЗА САМА РЕШАЕТ, КАК ЗАПУСКАТЬ АТАКУ
-        if (animator != null)
-        {
-            // PerformAttack вызовется на нужном кадре анимации
-            animator.Play(PerformAttack, Despawn, Direction);
-        }
-        else
-        {
-            // Если аниматора нет (например, у спавнера), просто выполняем логику
-            PerformAttack();
-        }
+      // Если аниматора нет (например, у спавнера), просто выполняем логику
+      PerformAttack();
     }
+  }
 
-    // НОВЫЙ МЕТОД: Дочерние классы пишут геометрию атаки здесь
-    protected virtual void PerformAttack() 
-    { 
-        // По умолчанию ничего не делает.
-    }
+  // НОВЫЙ МЕТОД: Дочерние классы пишут геометрию атаки здесь
+  protected virtual void PerformAttack()
+  {
+    // По умолчанию ничего не делает.
+  }
 
-    protected virtual void TryDealDamage(Collider2D col)
+  protected virtual void TryDealDamage(Collider2D col)
+  {
+    if (((1 << col.gameObject.layer) & targetLayer) == 0)
+      return;
+
+    if (col.TryGetComponent<Entity>(out var entity))
     {
-        if (((1 << col.gameObject.layer) & targetLayer) == 0)
-            return;
-
-        if (col.TryGetComponent<Entity>(out var entity))
-        {
-            if (!hitEntities.Contains(entity))
-            {
-                entity.TakeDamage(currentDamage);
-                hitEntities.Add(entity);
-                OnEntityHit(entity);
-            }
-        }
+      if (!hitEntities.Contains(entity))
+      {
+        entity.TakeDamage(currentDamage);
+        hitEntities.Add(entity);
+        OnEntityHit(entity);
+      }
     }
+  }
 
-    protected virtual void OnEntityHit(Entity entity) { }
+  protected virtual void OnEntityHit(Entity entity) { }
 
-    protected virtual void Despawn()
-    {
-        gameObject.SetActive(false);
-    }
+  protected virtual void Despawn()
+  {
+    gameObject.SetActive(false);
+  }
 }

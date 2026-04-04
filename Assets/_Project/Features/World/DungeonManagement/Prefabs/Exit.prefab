@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4127662919314648719}
   - component: {fileID: 1303901524821425261}
-  - component: {fileID: 3682914072674058092}
   - component: {fileID: 4707214546161029027}
   - component: {fileID: -5294856797021346971}
+  - component: {fileID: 4233488004498155817}
   m_Layer: 3
-  m_Name: Door
+  m_Name: Exit
   m_TagString: InteractableObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300414, guid: 8549e9d156f682f48af963ea4d9ddd9b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -95,31 +95,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &3682914072674058092
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6107313788416963637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ea43784e7ba8a940bf277b401c87c5a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InsideVentura.World.DungeonDoor
-  outline: {fileID: 6806291987732391911}
-  direction: 1
-  closedDoors:
-  - {fileID: 4926690488720467547, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
-  - {fileID: -4459242302801765432, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
-  - {fileID: 5594709293934572448, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
-  - {fileID: -7804352592317285363, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
-  openedDoors:
-  - {fileID: 6093501207413879511, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
-  - {fileID: 8171807788780982681, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
-  - {fileID: -6816347957073725147, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
-  - {fileID: 3210481795424400651, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
-  spriteRenderer: {fileID: 1303901524821425261}
 --- !u!61 &4707214546161029027
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -193,6 +168,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4233488004498155817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6107313788416963637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91017645584155e4b9378968d3d5889b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InsideVentura.World.NextLevelInteractable
+  outline: {fileID: 0}
 --- !u!1 &6806291987732391911
 GameObject:
   m_ObjectHideFlags: 0

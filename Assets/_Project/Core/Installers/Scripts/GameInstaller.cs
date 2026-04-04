@@ -29,7 +29,8 @@ public class GameInstaller : InstallerBehaviourBase
   private List<AudioEventsCollection> _audioCollections;
 
   [Header("World Settings")]
-  [SerializeField] private InsideVentura.World.DungeonManager _dungeonManager;
+  [SerializeField]
+  private InsideVentura.World.DungeonManager _dungeonManager;
 
   protected override void Install()
   {
@@ -40,7 +41,7 @@ public class GameInstaller : InstallerBehaviourBase
     BindAsSingleton(new SaveGameManager(new PlayerPrefsData(), true));
     BindAsSingleton(new StateService(_ticker, true));
 
-    // 
+    //
 
     // 2. Audio
     if (_audioSettings != null)

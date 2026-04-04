@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 using System.Text;
+using System.Collections.Generic;
 
 namespace InsideVentura.World.Editor
 {
@@ -19,42 +20,31 @@ namespace InsideVentura.World.Editor
 
         private void OnGUI()
         {
-            GUILayout.Label("Import DungeonRoomData from text file", EditorStyles.boldLabel);
+            GUILayout.Label("Import DungeonRoomData (Space-separated 2-digit)", EditorStyles.boldLabel);
 
             EditorGUILayout.Space();
 
             // Выбор TXT файла
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField("TXT File:", GUILayout.Width(60));
-            EditorGUILayout.TextField(txtFilePath);
+            txtFilePath = EditorGUILayout.TextField(txtFilePath);
             if (GUILayout.Button("Browse", GUILayout.Width(80)))
             {
                 string path = EditorUtility.OpenFilePanel("Select level layout TXT", "", "txt");
-                if (!string.IsNullOrEmpty(path))
-                {
-                    txtFilePath = path;
-                }
+                if (!string.IsNullOrEmpty(path)) txtFilePath = path;
             }
             EditorGUILayout.EndHorizontal();
 
-            // Папка для сохранения Asset
+            // Папка для сохранения
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField("Output Folder:", GUILayout.Width(80));
-            EditorGUILayout.TextField(outputFolder);
+            outputFolder = EditorGUILayout.TextField(outputFolder);
             if (GUILayout.Button("Browse", GUILayout.Width(80)))
             {
                 string folder = EditorUtility.OpenFolderPanel("Select output folder", "Assets", "");
-                if (!string.IsNullOrEmpty(folder))
+                if (!string.IsNullOrEmpty(folder) && folder.StartsWith(Application.dataPath))
                 {
-                    // Преобразуем абсолютный путь в относительный (относительно проекта)
-                    if (folder.StartsWith(Application.dataPath))
-                    {
-                        outputFolder = "Assets" + folder.Substring(Application.dataPath.Length);
-                    }
-                    else
-                    {
-                        EditorUtility.DisplayDialog("Error", "Folder must be inside Assets folder", "OK");
-                    }
+                    outputFolder = "Assets" + folder.Substring(Application.dataPath.Length);
                 }
             }
             EditorGUILayout.EndHorizontal();
@@ -63,106 +53,87 @@ namespace InsideVentura.World.Editor
 
             if (GUILayout.Button("Create RoomData Asset"))
             {
-                if (string.IsNullOrEmpty(txtFilePath))
+                if (string.IsNullOrEmpty(txtFilePath) || !File.Exists(txtFilePath))
                 {
-                    EditorUtility.DisplayDialog("Error", "Please select a TXT file", "OK");
+                    EditorUtility.DisplayDialog("Error", "Invalid TXT file path", "OK");
                     return;
                 }
-
-                if (!File.Exists(txtFilePath))
-                {
-                    EditorUtility.DisplayDialog("Error", "TXT file does not exist", "OK");
-                    return;
-                }
-
                 CreateRoomDataFromTxt(txtFilePath, outputFolder);
             }
         }
 
         private static void CreateRoomDataFromTxt(string txtPath, string outputFolderPath)
         {
-            // Чтение всех строк файла
             string[] lines = File.ReadAllLines(txtPath, Encoding.UTF8);
-            
-            // Удаляем пустые строки
-            var nonEmptyLines = System.Array.FindAll(lines, line => !string.IsNullOrWhiteSpace(line));
-            if (nonEmptyLines.Length == 0)
+
+            // Фильтруем пустые строки
+            List<string> nonEmptyLines = new List<string>();
+            foreach (var line in lines)
             {
-                EditorUtility.DisplayDialog("Error", "TXT file contains no data", "OK");
+                if (!string.IsNullOrWhiteSpace(line)) nonEmptyLines.Add(line.Trim());
+            }
+
+            if (nonEmptyLines.Count == 0)
+            {
+                EditorUtility.DisplayDialog("Error", "TXT file is empty", "OK");
                 return;
             }
 
-            int height = nonEmptyLines.Length;
-            int width = nonEmptyLines[0].Trim().Length;
-            
-            // Проверяем, что все строки одинаковой длины
-            for (int i = 1; i < height; i++)
-            {
-                int len = nonEmptyLines[i].Trim().Length;
-                if (len != width)
-                {
-                    EditorUtility.DisplayDialog("Error", 
-                        $"Line {i + 1} has length {len}, but expected {width}. All lines must have equal length.", 
-                        "OK");
-                    return;
-                }
-            }
+            int height = nonEmptyLines.Count;
+            // Определяем ширину по первой строке (считаем количество чисел через пробел)
+            string[] firstRowElements = nonEmptyLines[0].Split(new char[] { ' ' }, System.StringSplitOptions.RemoveEmptyEntries);
+            int width = firstRowElements.Length;
 
-            // Создаём одномерный массив layout
-            int totalCells = width * height;
-            int[] layout = new int[totalCells];
-            
+            int[] layout = new int[width * height];
+
             for (int y = 0; y < height; y++)
             {
-                string line = nonEmptyLines[y].Trim();
+                // Разбиваем строку по пробелам, игнорируя лишние пробелы между числами
+                string[] elements = nonEmptyLines[y].Split(new char[] { ' ' }, System.StringSplitOptions.RemoveEmptyEntries);
+
+                if (elements.Length != width)
+                {
+                    EditorUtility.DisplayDialog("Error", $"Row {y + 1} has {elements.Length} elements, expected {width}.", "OK");
+                    return;
+                }
+
                 for (int x = 0; x < width; x++)
                 {
-                    char c = line[x];
-                    if (!char.IsDigit(c))
+                    if (int.TryParse(elements[x], out int value))
                     {
-                        EditorUtility.DisplayDialog("Error", 
-                            $"Invalid character '{c}' at line {y + 1}, position {x + 1}. Only digits allowed.", 
-                            "OK");
+                        layout[y * width + x] = value;
+                    }
+                    else
+                    {
+                        EditorUtility.DisplayDialog("Error", $"Invalid number '{elements[x]}' at row {y + 1}, col {x + 1}", "OK");
                         return;
                     }
-                    int value = c - '0';
-                    // Можно добавить проверку допустимого диапазона, если нужно
-                    // if (value < 0 || value > 4) ...
-                    layout[y * width + x] = value;
                 }
             }
 
-            // Создаём ScriptableObject
+            // Создание ассета
             DungeonRoomData roomData = ScriptableObject.CreateInstance<DungeonRoomData>();
             roomData.width = width;
             roomData.height = height;
             roomData.layout = layout;
 
-            // Формируем имя файла из имени исходного txt файла
-            string baseName = Path.GetFileNameWithoutExtension(txtPath);
-            string assetName = baseName + ".asset";
-            
-            // Убедимся, что выходная папка существует
             if (!AssetDatabase.IsValidFolder(outputFolderPath))
             {
                 Directory.CreateDirectory(outputFolderPath);
                 AssetDatabase.Refresh();
             }
 
-            string fullAssetPath = Path.Combine(outputFolderPath, assetName);
-            // Убираем дублирование "Assets" если оно уже есть в outputFolderPath
-            fullAssetPath = fullAssetPath.Replace("\\", "/");
-            
-            // Создаём Asset
-            AssetDatabase.CreateAsset(roomData, fullAssetPath);
+            string baseName = Path.GetFileNameWithoutExtension(txtPath);
+            string fullPath = Path.Combine(outputFolderPath, baseName + ".asset").Replace("\\", "/");
+
+            AssetDatabase.CreateAsset(roomData, fullPath);
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
-            
-            EditorUtility.DisplayDialog("Success", $"RoomData created at:\n{fullAssetPath}", "OK");
-            
-            // Выделяем созданный ассет в Project окне
+
             EditorUtility.FocusProjectWindow();
             Selection.activeObject = roomData;
+            
+            Debug.Log($"<color=green>[Importer]</color> Room '{baseName}' imported. Size: {width}x{height}");
         }
     }
 }

@@ -33,6 +33,7 @@ public abstract class Entity : InjectMonoBehaviour
   public event Action OnDeath;
   public event Action OnAppear;
   public event Action<Vector2> OnMove; // Для аниматора
+
   [SerializeField]
   protected SimpleEnemyAnimator _view;
 
@@ -99,29 +100,29 @@ public abstract class Entity : InjectMonoBehaviour
   }
 
   public virtual void ResetEntity()
-    {
-        IsDead = false;
-        Health = MaxHealth;
-        InvulnerabilityProcCount = 0; // Сбрасываем неуязвимость
-        OnAppear?.Invoke();
-    }
+  {
+    IsDead = false;
+    Health = MaxHealth;
+    InvulnerabilityProcCount = 0; // Сбрасываем неуязвимость
+    OnAppear?.Invoke();
+  }
 
   public Vector2 CurrentMoveDirection { get; private set; }
 
   public void Move(Vector2 direction, float speedBoost = 1)
   {
     // Если мертв — обнуляем направление и выходим
-    if (IsDead) 
+    if (IsDead)
     {
-        CurrentMoveDirection = Vector2.zero;
-        return;
+      CurrentMoveDirection = Vector2.zero;
+      return;
     }
 
     // Сохраняем направление (даже если оно нулевое)
     CurrentMoveDirection = direction;
 
     if (direction.sqrMagnitude < 0.001f)
-        return;
+      return;
 
     // Вызываем событие (оно у тебя уже было в коде, теперь мы его реально используем)
     OnMove?.Invoke(direction);
@@ -167,8 +168,8 @@ public abstract class Entity : InjectMonoBehaviour
 
   public virtual void Attack(Vector2 direction)
   {
-      // Базовая реализация пуста. 
-      // Player и конкретные враги будут её переопределять.
+    // Базовая реализация пуста.
+    // Player и конкретные враги будут её переопределять.
   }
 
   private void ResolveOverlap()
@@ -191,14 +192,14 @@ public abstract class Entity : InjectMonoBehaviour
   }
 
   protected virtual IEnumerator DashCoroutine(Vector2 direction, float distance, float duration)
-{
+  {
     IsDashing = true;
     float elapsed = 0;
     while (elapsed < duration)
     {
-        Move(direction, distance);
-        elapsed += Time.fixedDeltaTime;
-        yield return new WaitForFixedUpdate();
+      Move(direction, distance);
+      elapsed += Time.fixedDeltaTime;
+      yield return new WaitForFixedUpdate();
     }
     IsDashing = false;
   }

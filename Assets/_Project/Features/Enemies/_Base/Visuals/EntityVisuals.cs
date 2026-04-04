@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class EntityVisuals : BehaviourBase
 {
-  [SerializeField] private Entity entity;
-  [SerializeField] private SpriteRenderer spriteRenderer;
-  [SerializeField] private float damageFlashDuration = 0.1f;
+  [SerializeField]
+  private Entity entity;
+
+  [SerializeField]
+  private SpriteRenderer spriteRenderer;
+
+  [SerializeField]
+  private float damageFlashDuration = 0.1f;
 
   private Color _originalColor;
   private Sequence _damageSequence;
@@ -14,19 +19,19 @@ public class EntityVisuals : BehaviourBase
   // 1. Запоминаем цвет один раз при создании префаба
   protected virtual void Awake()
   {
-      // Проверка на null, если spriteRenderer не назначен в инспекторе
-      if (spriteRenderer != null) 
-      {
-          _originalColor = spriteRenderer.color;
-      }
+    // Проверка на null, если spriteRenderer не назначен в инспекторе
+    if (spriteRenderer != null)
+    {
+      _originalColor = spriteRenderer.color;
+    }
   }
 
   protected override void OnEnable()
   {
     base.OnEnable();
-    
+
     // 2. Мгновенно возвращаем нормальный цвет при доставании из пула
-    spriteRenderer.color = _originalColor; 
+    spriteRenderer.color = _originalColor;
 
     // Подписываемся на события
     entity.OnTakeDamage += PlayDamageEffect;
@@ -40,14 +45,15 @@ public class EntityVisuals : BehaviourBase
     entity.OnTakeDamage -= PlayDamageEffect;
     entity.OnDeath -= PlayDeathEffect;
     entity.OnAppear -= PlayAppearEffect;
-    
+
     // Убиваем анимацию, если объект выключили во время получения урона
-    _damageSequence?.Kill(); 
+    _damageSequence?.Kill();
   }
 
   private void PlayDamageEffect(float damage)
   {
-    if (damage <= 0) return;
+    if (damage <= 0)
+      return;
 
     _damageSequence?.Kill();
     _damageSequence = DOTween.Sequence();
