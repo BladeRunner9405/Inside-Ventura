@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewSwordWeapon", menuName = "Inside-Ventura/Artifacts/Weapon/Sword")]
+[CreateAssetMenu(fileName = "NewSwordWeapon", menuName = "InsideVentura/Artifacts/Weapon/Sword")]
 public class SwordWeapon : Weapon
 {
   [Header("Hitbox Prefab")]

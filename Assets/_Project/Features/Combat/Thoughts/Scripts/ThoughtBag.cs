@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewThoughtBag", menuName = "Inside-Ventura/ThoughtBag")]
+[CreateAssetMenu(fileName = "NewThoughtBag", menuName = "InsideVentura/ThoughtBag")]
 public class ThoughtBag : ScriptableObject
 {
   [SerializeField]

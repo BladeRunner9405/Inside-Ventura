@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Inside-Ventura/Effects/Modify Stat")]
+[CreateAssetMenu(menuName = "InsideVentura/Effects/Modify Stat")]
 public class ModifyStatEffect : Effect
 {
   [SerializeField]

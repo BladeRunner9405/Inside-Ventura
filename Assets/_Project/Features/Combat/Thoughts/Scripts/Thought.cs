@@ -10,7 +10,7 @@ public enum ThoughtType
   Absolute, // Абсолютный тип — любой артефакт, эффект всегда один и тот же
 }
 
-[CreateAssetMenu(fileName = "NewThought", menuName = "Inside-Ventura/Thought")]
+[CreateAssetMenu(fileName = "NewThought", menuName = "InsideVentura/Thought")]
 public class Thought : ScriptableObject
 {
   [SerializeField]

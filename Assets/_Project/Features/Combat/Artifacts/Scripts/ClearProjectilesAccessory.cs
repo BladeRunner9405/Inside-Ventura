@@ -2,7 +2,7 @@ using UnityEngine;
 
 [CreateAssetMenu(
   fileName = "NewClearProjectilesAccessory",
-  menuName = "Inside-Ventura/Artifacts/Accessory/ClearProjectiles"
+  menuName = "InsideVentura/Artifacts/Accessory/ClearProjectiles"
 )]
 public class ClearProjectilesAccessory : Accessory
 {

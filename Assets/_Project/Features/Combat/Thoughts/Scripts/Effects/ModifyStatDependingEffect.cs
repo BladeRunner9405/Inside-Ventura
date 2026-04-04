@@ -2,7 +2,7 @@ using UnityEngine;
 
 [CreateAssetMenu(
   fileName = "ModifyStatDependingEffect",
-  menuName = "Inside-Ventura/Effects/ModifyStatDependingEffect"
+  menuName = "InsideVentura/Effects/ModifyStatDependingEffect"
 )]
 public class ModifyStatDependingEffect : Effect
 {

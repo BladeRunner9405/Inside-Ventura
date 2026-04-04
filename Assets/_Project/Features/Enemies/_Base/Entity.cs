@@ -97,11 +97,13 @@ public abstract class Entity : InjectMonoBehaviour
     IsDead = true;
     Health = 0;
     OnDeath?.Invoke();
+    _col.enabled = false;
   }
 
   public virtual void ResetEntity()
   {
     IsDead = false;
+    _col.enabled = true;
     Health = MaxHealth;
     InvulnerabilityProcCount = 0; // Сбрасываем неуязвимость
     OnAppear?.Invoke();

@@ -2,7 +2,7 @@ using UnityEngine;
 
 [CreateAssetMenu(
   fileName = "ChangeStatOnceEffect",
-  menuName = "Inside-Ventura/Effects/ChangeStatOnceEffect"
+  menuName = "InsideVentura/Effects/ChangeStatOnceEffect"
 )]
 public class ChangeStatOnceEffect : Effect
 {

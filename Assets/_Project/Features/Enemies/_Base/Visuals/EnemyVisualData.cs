@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewEnemyVisual", menuName = "Inside-Ventura/EnemyVisual")]
+[CreateAssetMenu(fileName = "NewEnemyVisual", menuName = "InsideVentura/EnemyVisual")]
 public class EnemyVisualData : ScriptableObject
 {
   public Sprite[] idleSprites;

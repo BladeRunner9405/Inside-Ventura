@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewHeart", menuName = "Inside-Ventura/Artifacts/Heart")]
+[CreateAssetMenu(fileName = "NewHeart", menuName = "InsideVentura/Artifacts/Heart")]
 public class Heart : Artifact
 {
   // Здесь могут быть только БАЗОВЫЕ настройки Сердца (если они есть)

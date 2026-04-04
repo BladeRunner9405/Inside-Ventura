@@ -2,7 +2,7 @@ using UnityEngine;
 
 [CreateAssetMenu(
   fileName = "NewDashAccessory",
-  menuName = "Inside-Ventura/Artifacts/Accessory/Dash"
+  menuName = "InsideVentura/Artifacts/Accessory/Dash"
 )]
 public class DashAccessory : Accessory
 {

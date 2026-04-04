@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewAttackVisual", menuName = "Inside-Ventura/AttackVisual")]
+[CreateAssetMenu(fileName = "NewAttackVisual", menuName = "InsideVentura/AttackVisual")]
 public class AttackVisualData : ScriptableObject
 {
   public Sprite[] frames;

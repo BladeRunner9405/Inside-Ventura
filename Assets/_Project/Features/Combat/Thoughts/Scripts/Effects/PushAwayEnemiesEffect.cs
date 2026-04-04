@@ -2,7 +2,7 @@ using UnityEngine;
 
 [CreateAssetMenu(
   fileName = "PushAwayEnemiesEffect",
-  menuName = "Inside-Ventura/Effects/PushAwayEnemiesEffect"
+  menuName = "InsideVentura/Effects/PushAwayEnemiesEffect"
 )]
 public class PushAwayEnemiesEffect : Effect
 {

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "NewWeapon", menuName = "Inside-Ventura/Artifacts/Weapon")]
+[CreateAssetMenu(fileName = "NewWeapon", menuName = "InsideVentura/Artifacts/Weapon")]
 public abstract class Weapon : Artifact
 {
   // Это БАЗОВЫЕ значения. Они не модифицируются.
