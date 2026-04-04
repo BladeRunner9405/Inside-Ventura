@@ -14,8 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InsideVentura.World.EncounterData
   waves:
   - enemies:
+    - enemyPrefab: {fileID: 7545988898748453450, guid: 3aa49c372089c204dbbd3629a2c2d222, type: 3}
+      count: 3
     - enemyPrefab: {fileID: 7545988898748453450, guid: d4cff6db5a8cb214990b23920e2e9da9, type: 3}
-      count: 10
+      count: 3
+    - enemyPrefab: {fileID: 7545988898748453450, guid: 3aa49c372089c204dbbd3629a2c2d222, type: 3}
+      count: 3
   - enemies:
     - enemyPrefab: {fileID: 7545988898748453450, guid: d4cff6db5a8cb214990b23920e2e9da9, type: 3}
       count: 5
