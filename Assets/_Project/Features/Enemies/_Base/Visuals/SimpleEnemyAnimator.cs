@@ -75,7 +75,6 @@ public class SimpleEnemyAnimator : MonoBehaviour
     {
       _timer = 0;
       _currentFrame++;
-
       // Проверка кадра урона
       if (_isPlayingAction && _currentFrame == data.attackDamageFrame)
         _onDamageFrameReached?.Invoke();
