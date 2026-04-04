@@ -16,4 +16,7 @@ MonoBehaviour:
   - enemies:
     - enemyPrefab: {fileID: 7545988898748453450, guid: d4cff6db5a8cb214990b23920e2e9da9, type: 3}
       count: 10
-  maxConcurrentEnemies: 5
+  - enemies:
+    - enemyPrefab: {fileID: 7545988898748453450, guid: d4cff6db5a8cb214990b23920e2e9da9, type: 3}
+      count: 5
+  maxConcurrentEnemies: 6
