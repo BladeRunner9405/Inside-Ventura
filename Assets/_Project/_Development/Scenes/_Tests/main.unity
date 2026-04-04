@@ -158,42 +158,42 @@ MonoBehaviour:
   defaultWallTile: {fileID: 8632147320129119443, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
   cellMappings:
   - note: HorizontalWallTopPaited1
-    id: 1
+    id: 5
     behavior: 1
     tile: {fileID: -3768511608664136740, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
     prefab: {fileID: 0}
   - note: HorizontalWallTopPaited2
-    id: 2
+    id: 6
     behavior: 1
     tile: {fileID: -6498390063148489233, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
     prefab: {fileID: 0}
   - note: HorizontalWallTopPaited3
-    id: 3
+    id: 7
     behavior: 1
     tile: {fileID: -3937174229914954346, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
     prefab: {fileID: 0}
   - note: HorizontalWallTop
-    id: 4
+    id: 8
     behavior: 1
     tile: {fileID: -8112857822469687503, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
     prefab: {fileID: 0}
   - note: HorizontalWallDownPaited1
-    id: 5
+    id: 1
     behavior: 1
     tile: {fileID: 2657016126852687108, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
     prefab: {fileID: 0}
   - note: HorizontalWallDownPaited2
-    id: 6
+    id: 2
     behavior: 1
     tile: {fileID: 7669355641647484077, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
     prefab: {fileID: 0}
   - note: HorizontalWallDownPaited3
-    id: 7
+    id: 3
     behavior: 1
     tile: {fileID: -2720159903303447826, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
     prefab: {fileID: 0}
   - note: HorizontalWallDown
-    id: 8
+    id: 4
     behavior: 1
     tile: {fileID: -7736827862019936775, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
     prefab: {fileID: 0}
@@ -268,7 +268,7 @@ MonoBehaviour:
     tile: {fileID: 0}
     prefab: {fileID: 6107313788416963637, guid: 5bb62d13277c2c04d90fe6f11d14066f, type: 3}
   - note: Exit
-    id: 22
+    id: 27
     behavior: 7
     tile: {fileID: 0}
     prefab: {fileID: 6107313788416963637, guid: 5bb62d13277c2c04d90fe6f11d14066f, type: 3}

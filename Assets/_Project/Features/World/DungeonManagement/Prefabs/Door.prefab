@@ -115,8 +115,8 @@ MonoBehaviour:
   - {fileID: 5594709293934572448, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
   - {fileID: -7804352592317285363, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
   openedDoors:
-  - {fileID: 6093501207413879511, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
   - {fileID: 8171807788780982681, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
+  - {fileID: 6093501207413879511, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
   - {fileID: -6816347957073725147, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
   - {fileID: 3210481795424400651, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
   spriteRenderer: {fileID: 1303901524821425261}

@@ -126,7 +126,7 @@ MonoBehaviour:
   maxHealth:
     _value: 100
   moveSpeed:
-    _value: 0.2
+    _value: 0.6
   dodgeChance:
     _value: 0
   target: {fileID: 0}
@@ -137,6 +137,9 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 8
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 256
   raysCount: 8
   steeringLerpSpeed: 10
   Brain: {fileID: 7517003494791358381}

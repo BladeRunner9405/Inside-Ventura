@@ -149,6 +149,7 @@ namespace InsideVentura.World
       Debug.Log("<color=cyan>[Encounter]</color> БОЙ ОКОНЧЕН!");
 
       SpawnReward();
+      builder.ApplyDoorState(true);
       _onEncounterCleared?.Invoke();
     }
 
@@ -179,7 +180,6 @@ namespace InsideVentura.World
         }
       }
       _allSpawnedEnemies.Clear();
-      Debug.Log("<color=gray>[Encounter]</color> Трупы убраны в пул.");
     }
   }
 }

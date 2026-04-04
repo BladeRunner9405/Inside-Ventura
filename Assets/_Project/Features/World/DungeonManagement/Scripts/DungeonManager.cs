@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq; // Добавлено для удобства поиска
 using Unity.Cinemachine;
 using UnityEngine;
 
@@ -25,6 +26,13 @@ namespace InsideVentura.World
     [SerializeField]
     private List<DungeonRoomData> normalRoomTemplates;
 
+    // НОВОЕ: Шаблон и энкаунтер для босса
+    [SerializeField]
+    private DungeonRoomData bossRoomTemplate;
+
+    [SerializeField]
+    private EncounterData bossEncounter;
+
     [SerializeField]
     private List<EncounterData> encounterPool;
 
@@ -34,6 +42,7 @@ namespace InsideVentura.World
 
     [SerializeField]
     private CinemachineCamera _playerCamera;
+    private CinemachineConfiner2D _confiner;
 
     private GameObject _activePlayer;
     private Dictionary<Vector2Int, RoomInstance> _dungeonMap =
@@ -53,10 +62,9 @@ namespace InsideVentura.World
     {
       GenerateDungeon();
       LoadRoom(_currentCoords);
-
-      CinemachineConfiner2D confiner = _playerCamera.GetComponent<CinemachineConfiner2D>();
-      if (confiner != null)
-        confiner.InvalidateBoundingShapeCache();
+      _confiner = _playerCamera.GetComponent<CinemachineConfiner2D>();
+      if (_confiner != null)
+        _confiner.InvalidateBoundingShapeCache();
 
       InitialPlayerPlacement();
     }
@@ -111,7 +119,7 @@ namespace InsideVentura.World
           builder.SpawnPoints,
           () =>
           {
-            _dungeonMap[_currentCoords].IsCleared = true;
+            _dungeonMap[coords].IsCleared = true; // Исправлено: используем coords из параметров
           }
         );
       }
@@ -119,7 +127,6 @@ namespace InsideVentura.World
 
     public void MoveToRoom(DoorDirection doorDir)
     {
-      // Скрываем объекты старой комнаты
       if (_dungeonMap.TryGetValue(_currentCoords, out RoomInstance oldRoom))
       {
         oldRoom.RoomObjects.RemoveAll(item => item == null);
@@ -154,7 +161,6 @@ namespace InsideVentura.World
         LoadRoom(_currentCoords);
         TeleportPlayer(doorDir);
 
-        // Показываем объекты новой комнаты
         if (_dungeonMap.TryGetValue(_currentCoords, out RoomInstance newRoom))
         {
           newRoom.RoomObjects.RemoveAll(item => item == null);
@@ -195,7 +201,20 @@ namespace InsideVentura.World
               break;
           }
 
-          _activePlayer.transform.position = door.transform.position + offset;
+          // Запоминаем позицию ДО телепортации для вычисления дельты
+          Vector3 oldPos = _activePlayer.transform.position;
+          Vector3 newPos = door.transform.position + offset;
+
+          // 1. Телепортируем игрока
+          _activePlayer.transform.position = newPos;
+
+          // 2. Телепортируем камеру (OnTargetObjectWarped)
+          // Параметры: (Трансформ цели, вектор смещения)
+          _playerCamera.OnTargetObjectWarped(_activePlayer.transform, newPos - oldPos);
+
+          if (_confiner != null)
+            _confiner.InvalidateBoundingShapeCache();
+
           return;
         }
       }
@@ -205,9 +224,13 @@ namespace InsideVentura.World
     {
       _dungeonMap.Clear();
       Vector2Int currentPos = Vector2Int.zero;
+
+      // 1. Создаем стартовую комнату
       _dungeonMap.Add(currentPos, new RoomInstance(safeRoomTemplate, RoomType.Safe, true));
 
       int roomsCreated = 1;
+
+      // 2. Генерируем обычные комнаты
       while (roomsCreated < targetRoomCount)
       {
         Vector2Int dir = GetRandomDirectionVector();
@@ -226,6 +249,34 @@ namespace InsideVentura.World
           roomsCreated++;
         }
         currentPos = newPos;
+      }
+
+      // 3. ФИНАЛИЗАЦИЯ: Ищем самую дальнюю комнату для БОССА
+      Vector2Int bossCoords = Vector2Int.zero;
+      float maxDistance = -1f;
+
+      foreach (var kvp in _dungeonMap)
+      {
+        // Считаем расстояние от старта (0,0)
+        float dist = kvp.Key.sqrMagnitude;
+        if (dist > maxDistance)
+        {
+          maxDistance = dist;
+          bossCoords = kvp.Key;
+        }
+      }
+
+      // 4. Заменяем самую дальнюю комнату на комнату босса
+      if (bossCoords != Vector2Int.zero)
+      {
+        // Если Boss Room Template не задан, используем обычный, но меняем тип
+        var template = bossRoomTemplate != null ? bossRoomTemplate : _dungeonMap[bossCoords].Data;
+
+        _dungeonMap[bossCoords] = new RoomInstance(template, RoomType.Boss, false, bossEncounter);
+
+        Debug.Log(
+          $"<color=red>[Dungeon]</color> Комната Босса создана на координатах {bossCoords}"
+        );
       }
     }
 
@@ -250,6 +301,9 @@ namespace InsideVentura.World
 
       if (_activePlayer != null && builder.PlayerStartPoint != null)
         _activePlayer.transform.position = builder.PlayerStartPoint.position;
+
+      if (_confiner != null)
+        _confiner.InvalidateBoundingShapeCache();
     }
 
     private Vector2Int GetRandomDirectionVector()

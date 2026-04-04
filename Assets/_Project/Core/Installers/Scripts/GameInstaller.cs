@@ -34,7 +34,6 @@ public class GameInstaller : InstallerBehaviourBase
 
   protected override void Install()
   {
-    Debug.Log($"[GameInstaller] Install called on {gameObject.name}", gameObject);
     // 1. Core Services
     Ticker _ticker = new Ticker();
     BindAsSingleton(_ticker);
@@ -66,7 +65,6 @@ public class GameInstaller : InstallerBehaviourBase
     if (_dungeonManager != null)
     {
       BindAsSingleton(_dungeonManager);
-      Debug.Log("[GameInstaller] DungeonManager успешно зарегистрирован как синглтон.");
     }
     else
     {

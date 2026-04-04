@@ -18,6 +18,9 @@ public class Enemy : Entity
   [SerializeField]
   private LayerMask obstacleLayer;
 
+  [SerializeField]
+  private LayerMask enemyLayer; // Слой врагов
+
   [SerializeField, Range(1, 16)]
   private int raysCount = 8;
 
@@ -88,7 +91,7 @@ public class Enemy : Entity
         rayOrigin,
         _rayDirections[i],
         detectionRadius,
-        obstacleLayer
+        obstacleLayer | enemyLayer
       );
 
       bool isHit = hit.collider != null;

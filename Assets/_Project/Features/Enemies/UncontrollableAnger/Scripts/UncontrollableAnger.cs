@@ -17,6 +17,8 @@ public class UncontrollableAnger : Enemy
   private float _curCooldown;
   public bool IsAttackReady => _curCooldown <= 0;
 
+  private Vector2 _attackDir;
+
   protected override void Awake()
   {
     base.Awake();
@@ -42,6 +44,7 @@ public class UncontrollableAnger : Enemy
   {
     // Врагу направление пока не особо нужно (он сам смотрит на target в UADoDamage),
     // но мы соблюдаем контракт Entity.
+    _attackDir = (target.position - transform.position).normalized;
     _view.PlayAttack(UADoDamage, UAStartCooldown);
   }
 
@@ -49,7 +52,6 @@ public class UncontrollableAnger : Enemy
   {
     if (target == null)
       return;
-    Vector2 dir = (target.position - transform.position).normalized;
 
     // СТАВИМ Quaternion.identity! Никаких Atan2!
     var attackObj = GamePools.Hitboxes.Get(
@@ -60,7 +62,7 @@ public class UncontrollableAnger : Enemy
     attackObj.gameObject.SetActive(true);
 
     // Вызываем новый Initialize, передавая dir
-    attackObj.Initialize(damage, LayerMask.GetMask("Player"), dir);
+    attackObj.Initialize(damage, LayerMask.GetMask("Player"), _attackDir);
   }
 
   private void UAStartCooldown()
