@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4494217334801912798}
   - component: {fileID: 7293520111826285576}
+  - component: {fileID: 717833066828019056}
   - component: {fileID: 7517003494791358381}
   - component: {fileID: 139226878814988356}
   - component: {fileID: 5082482304728084474}
@@ -83,8 +84,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -222208283
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7166236263522030466, guid: 4848cf1d92353ed4583da3b5723fdc3f, type: 3}
@@ -97,6 +98,18 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &717833066828019056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7545988898748453450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6502c4f2e8f40f4187973c8e2b3ac42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpritesSorting
 --- !u!114 &7517003494791358381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,7 +173,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 2, y: 2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5

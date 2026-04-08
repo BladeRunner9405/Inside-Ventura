@@ -572,6 +572,7 @@ MonoBehaviour:
   dodgeChance:
     _value: 0
   target: {fileID: 1066906017858410233}
+  _view: {fileID: 0}
   itemPickup: {fileID: 3745830094519559823}
   inventory: {fileID: 2006968051814620889}
   equipment: {fileID: 5668263648549799090}
@@ -680,7 +681,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.5}
   m_Radius: 0.5
 --- !u!114 &-2377509926864990093
 MonoBehaviour:
