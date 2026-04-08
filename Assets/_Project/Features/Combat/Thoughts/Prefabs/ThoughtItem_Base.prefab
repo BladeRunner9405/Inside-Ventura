@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 208175663639969996}
   - component: {fileID: 2181728676970122155}
   m_Layer: 0
-  m_Name: 6_SafetyThoughtItem
+  m_Name: ThoughtItem_Base
   m_TagString: InteractableObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 1
-  m_Sprite: {fileID: -5747040690771386366, guid: e1237efb1f01a7c43b45981e0a6a6d1d, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -95,7 +95,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
 --- !u!331 &923978490319445994
 SpriteMask:
@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ThoughtItem
   outline: {fileID: 4458220301563253481}
-  thoughtData: {fileID: 11400000, guid: d4b3892ed89d0a54bbd1d8713562ebfd, type: 2}
+  thoughtData: {fileID: 0}
 --- !u!61 &208175663639969996
 BoxCollider2D:
   m_ObjectHideFlags: 0
