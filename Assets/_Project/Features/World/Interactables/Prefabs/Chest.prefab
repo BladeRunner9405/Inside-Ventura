@@ -123,19 +123,16 @@ MonoBehaviour:
   outline: {fileID: 8119080435599757954}
   maxSpawnDistance: 1.5
   itemsToSpawn:
-  - {fileID: 1631135601703695119, guid: 22648fd89888168418ae65f7ba4b307e, type: 3}
-  - {fileID: 1631135601703695119, guid: 2ca9f0717d90e4a4c8122af2e7773715, type: 3}
-  - {fileID: 1631135601703695119, guid: 0dfc65b46a072ec4da635a90a3b89f10, type: 3}
-  - {fileID: 1631135601703695119, guid: 25a55a11ffce433479f8124616057382, type: 3}
-  - {fileID: 1631135601703695119, guid: e4babb3402b962a4dbf4a3e9934a50ea, type: 3}
-  - {fileID: 1631135601703695119, guid: 293125c3414772e45ad6aef325d2bd57, type: 3}
-  - {fileID: 1631135601703695119, guid: 1ce0be89c7cf3554f8c4b8ddaadfd030, type: 3}
-  - {fileID: 1631135601703695119, guid: 1ce0be89c7cf3554f8c4b8ddaadfd030, type: 3}
-  - {fileID: 1631135601703695119, guid: 1ce0be89c7cf3554f8c4b8ddaadfd030, type: 3}
-  - {fileID: 1631135601703695119, guid: 1ce0be89c7cf3554f8c4b8ddaadfd030, type: 3}
-  - {fileID: 1631135601703695119, guid: 1ce0be89c7cf3554f8c4b8ddaadfd030, type: 3}
   - {fileID: 1631135601703695119, guid: 1ce0be89c7cf3554f8c4b8ddaadfd030, type: 3}
   quantity: 6
+  thoughtItemPrefab: {fileID: 1631135601703695119, guid: 1a7c29cb97ba4b34bbe2653dfd40abac, type: 3}
+  possibleThoughts:
+  - {fileID: 11400000, guid: 1599944266bf5f34b88f65be7e12f146, type: 2}
+  - {fileID: 11400000, guid: 4226a9a5faebde8479e53fab2e04cb6e, type: 2}
+  - {fileID: 11400000, guid: ff98e578b9b01e346b3440a0a8ef3bde, type: 2}
+  - {fileID: 11400000, guid: 1a8de9b8c77d4c64ea7c73777c15c3ba, type: 2}
+  - {fileID: 11400000, guid: 8c9334e017d74254fa691fbdea5f9889, type: 2}
+  - {fileID: 11400000, guid: d4b3892ed89d0a54bbd1d8713562ebfd, type: 2}
 --- !u!61 &5034061477902459261
 BoxCollider2D:
   m_ObjectHideFlags: 0
