@@ -7,6 +7,7 @@ namespace InsideVentura.World
     [SerializeField]
     private Thought thoughtData;
 
+    [SerializeField]
     private SpriteRenderer spriteRenderer;
 
     private void Start()
@@ -22,8 +23,6 @@ namespace InsideVentura.World
 
     private void UpdateVisual()
     {
-      spriteRenderer = GetComponent<SpriteRenderer>();
-
       if (spriteRenderer != null && thoughtData != null && thoughtData.InventoryIcon != null)
       {
         spriteRenderer.sprite = thoughtData.InventoryIcon;
