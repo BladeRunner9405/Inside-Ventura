@@ -16,9 +16,11 @@ public class ThoughtBag : ScriptableObject
 
   public event Action OnThoughtsChanged;
 
-  public void Initialize() => Clear();
-
   public bool CanAddThought() => thoughts.Count < maxSize;
+
+  public void Initialize() {
+    // Clear();
+  }
 
   public void AddThought(Thought thought)
   {

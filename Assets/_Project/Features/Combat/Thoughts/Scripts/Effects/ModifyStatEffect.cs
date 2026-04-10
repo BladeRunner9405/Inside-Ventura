@@ -14,7 +14,11 @@ public class ModifyStatEffect : Effect
 
   public override void OnEquipThought(ArtifactInstance artifactInstance)
   {
-    var stat = artifactInstance.GetStat(statName);
+    var stat = GetStat(statName, artifactInstance);
+    if (stat == null) {
+      Debug.LogWarning($"Стата {statName} не найдена. Её никто не возвращает");
+    }
+
     if (stat is ModifiableStat modifiableStat)
     {
       // Передаем `this` как источник модификатора
@@ -26,7 +30,7 @@ public class ModifyStatEffect : Effect
 
   public override void OnUnequipThought(ArtifactInstance artifactInstance)
   {
-    var stat = artifactInstance.GetStat(statName);
+    var stat = GetStat(statName, artifactInstance);
     if (stat is ModifiableStat modifiableStat)
     {
       // Удаляем все модификаторы, которые были добавлены именно ЭТИМ эффектом

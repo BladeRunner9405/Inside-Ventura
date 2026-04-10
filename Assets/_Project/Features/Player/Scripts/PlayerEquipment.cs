@@ -2,6 +2,8 @@ using System;
 using CherryFramework.DependencyManager;
 using UnityEngine;
 
+[DefaultExecutionOrder(1)] // это чтобы Instances инициализировались позже PlayerDataModel.
+                           // В частности, HeartInstance меняет статы оттуда
 public class PlayerEquipment : InjectMonoBehaviour
 {
   [Header("Static Data (Scriptable Objects)")]

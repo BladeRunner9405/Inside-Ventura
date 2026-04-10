@@ -181,7 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ThoughtItem
   outline: {fileID: 4458220301563253481}
-  thoughtData: {fileID: 0}
+  thoughtData: {fileID: 11400000, guid: d4b3892ed89d0a54bbd1d8713562ebfd, type: 2}
 --- !u!61 &208175663639969996
 BoxCollider2D:
   m_ObjectHideFlags: 0

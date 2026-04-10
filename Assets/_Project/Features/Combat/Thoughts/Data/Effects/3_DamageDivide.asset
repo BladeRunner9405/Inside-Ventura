@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ModifyStatEffect
   description: x0.66 DMG
   statName: 1
-  modifierType: 1
-  coefficient: 0.66
+  operationType: 1
+  value: 0.66

@@ -15,29 +15,26 @@ public class ChangeStatOnceEffect : Effect
   [SerializeField]
   private float coefficient = 5f;
 
-  public override void OnEquipThought(ArtifactInstance artifactInstance)
-  {
-    var stat = GetStat(statName, artifactInstance);
+  private bool _wasEquipped;
 
-    if (stat is ModifiableStat modifiableStat)
-    {
-      // Привязываем this как источник
-      modifiableStat.AddModifier(new StatModifier(operationType, coefficient, this));
-    }
-    else if (stat != null)
-    {
-      // Для обычных статов, у которых остался метод Change (например, деньги)
-      stat.Change(operationType, coefficient);
-    }
+  private void OnEnable() {
+    _wasEquipped = false;
   }
 
-  public override void OnUnequipThought(ArtifactInstance artifactInstance)
-  {
-    var stat = GetStat(statName, artifactInstance);
+  public override void OnEquipThought(ArtifactInstance artifactInstance) {
+    if (_wasEquipped) return;
 
-    if (stat is ModifiableStat modifiableStat)
-    {
-      modifiableStat.RemoveModifiersFromSource(this);
-    }
+    var stat = GetStat(statName, artifactInstance);
+    if (stat == null) return;
+
+    var oldValue = stat.Value; // чисто для дебага
+    stat.Change(operationType, coefficient);
+    Debug.Log($"Изменен {statName}: был {oldValue}, стал {stat.Value}");
+
+    _wasEquipped = true;
+  }
+
+  public override void OnUnequipThought(ArtifactInstance artifactInstance) {
+    Debug.Log($"Снят модификатор с {statName}");
   }
 }

@@ -25,6 +25,10 @@ public class ModifyStatDependingEffect : Effect
   public override void OnEquipThought(ArtifactInstance artifactInstance)
   {
     var sourceStat = GetStat(sourceStatName, artifactInstance);
+    if (sourceStat == null) {
+      Debug.LogWarning($"Стата {sourceStatName} не найдена. Её никто не возвращает");
+    }
+
     if (sourceStat is not ModifiableStat modifiableSourceStat)
       return;
 
@@ -36,9 +40,13 @@ public class ModifyStatDependingEffect : Effect
         : sourceValue + sourceCoefficient;
 
     var stat = GetStat(statName, artifactInstance);
+    if (stat == null) {
+      Debug.LogWarning($"Стата {statName} не найдена. Её никто не возвращает");
+    }
     if (stat is ModifiableStat modifiableStat)
     {
       modifiableStat.AddModifier(new StatModifier(operationType, finalValue, this));
+      Debug.Log($"Добавлен модификатор на {statName}: {finalValue}");
     }
   }
 
@@ -49,5 +57,6 @@ public class ModifyStatDependingEffect : Effect
     {
       modifiableStat.RemoveModifiersFromSource(this);
     }
+    Debug.Log($"Снят модификатор с {statName}");
   }
 }

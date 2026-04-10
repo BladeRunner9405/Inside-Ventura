@@ -15,4 +15,4 @@ MonoBehaviour:
   description: -0.10 SPD
   statName: 7
   operationType: 0
-  coefficient: -0.1
+  value: -0.1

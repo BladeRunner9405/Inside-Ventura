@@ -11,11 +11,21 @@ public abstract class Weapon : Artifact
   [SerializeField]
   public float baseAttackSpeed = 1f;
 
+  [Header("Combo Stats")]
+  [SerializeField]
+  public float baseComboDamage = 25f;
+
   [SerializeField]
   public int baseChainCount = 3;
 
   [SerializeField]
   public float baseComboWindow = 0.5f;
+
+  [SerializeField]
+  public float baseChainSpeedMultiplier = 1.2f;
+
+  [SerializeField]
+  public float baseChainSpeedAddition = 0f;
 
   [Header("Critical Hit")]
   [SerializeField]
