@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6502c4f2e8f40f4187973c8e2b3ac42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpritesSorting
+  pivot: {fileID: 0}
 --- !u!114 &7517003494791358381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -257,6 +258,7 @@ MonoBehaviour:
     m_Bits: 256
   raysCount: 8
   steeringLerpSpeed: 10
+  floatingDamagePrefab: {fileID: 5299727460215697226, guid: ad3d7c92ac5b2563da66f3935d833e76, type: 3}
   Brain: {fileID: 7517003494791358381}
   attackDistance: 1.1
   attackCooldown: 0.8
