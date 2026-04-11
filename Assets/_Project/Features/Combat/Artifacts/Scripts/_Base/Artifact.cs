@@ -6,6 +6,11 @@ public abstract class Artifact : ScriptableObject
 {
   [SerializeField]
   public string artifactName;
+  [SerializeField]
+  public string artifactDescription;
+
+  public string ArtifactName => artifactName;
+  public string Description => artifactDescription;
 
   [SerializeField]
   protected int slotsCount = 3;

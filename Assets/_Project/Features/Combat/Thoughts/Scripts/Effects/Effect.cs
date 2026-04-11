@@ -1,8 +1,19 @@
 using UnityEngine;
 
+public enum EffectType
+{
+  Positive,
+  Negative,
+  Neutral
+}
+
 public abstract class Effect : ScriptableObject
 {
   [SerializeField] private string description;
+  [SerializeField] private EffectType type;
+
+  public string Description => description;
+  public EffectType Type => type;
 
   // Изменили сигнатуры! Теперь принимают ArtifactInstance.
   public abstract void OnEquipThought(ArtifactInstance artifactInstance);

@@ -15,6 +15,8 @@ public class ThoughtSlotUI
   private Image iconImage;
   [SerializeField]
   private Image mask;
+  [SerializeField]
+  private GameObject outline;
 
   private CanvasGroup _canvasGroup;
 
@@ -32,6 +34,8 @@ public class ThoughtSlotUI
 
   // Текущая мысль (берет значение data из базового класса PopulatorElementBase)
   public Thought CurrentThought => data;
+
+  public GameObject Outline => outline;
 
   private void Awake()
   {
