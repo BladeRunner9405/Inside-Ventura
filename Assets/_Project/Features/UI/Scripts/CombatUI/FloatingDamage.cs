@@ -10,6 +10,10 @@ public class FloatingDamage : MonoBehaviour {
   [SerializeField] private float upMoveAmount = 1;
 
   public void Initialize(float damage) {
+    if (text == null) {
+      Debug.LogWarning("FloatingDamage text is null!");
+    }
+
     text.text = damage.ToString(CultureInfo.InvariantCulture);
     text.alpha = 1;
 
