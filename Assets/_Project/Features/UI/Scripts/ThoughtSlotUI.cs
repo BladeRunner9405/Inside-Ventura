@@ -13,6 +13,8 @@ public class ThoughtSlotUI
 {
   [SerializeField]
   private Image iconImage;
+  [SerializeField]
+  private Image mask;
 
   private CanvasGroup _canvasGroup;
 
@@ -82,11 +84,13 @@ public class ThoughtSlotUI
     {
       iconImage.sprite = data.InventoryIcon;
       iconImage.color = Color.white;
+      if (mask) mask.color = Color.white;
     }
     else
     {
       iconImage.sprite = null;
       iconImage.color = Color.clear;
+      if (mask) mask.color = Color.clear;
     }
   }
 }

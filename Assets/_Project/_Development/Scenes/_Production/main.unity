@@ -809,17 +809,17 @@ MonoBehaviour:
   m_MoveRepeatDelay: 0.5
   m_MoveRepeatRate: 0.1
   m_XRTrackingOrigin: {fileID: 0}
-  m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_RightClickAction: {fileID: -4090225696740746782, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_ScrollWheelAction: {fileID: 6240969308177333660, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDevicePositionAction: {fileID: 6564999863303420839, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_TrackedDeviceOrientationAction: {fileID: 7970375526676320489, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_ActionsAsset: {fileID: -944628639613478452, guid: 4c5b8a31591a89243aaf7fa0544b91f5, type: 3}
+  m_PointAction: {fileID: -666814284858001262, guid: 4c5b8a31591a89243aaf7fa0544b91f5, type: 3}
+  m_MoveAction: {fileID: -454961224246268130, guid: 4c5b8a31591a89243aaf7fa0544b91f5, type: 3}
+  m_SubmitAction: {fileID: -4592127492306407967, guid: 4c5b8a31591a89243aaf7fa0544b91f5, type: 3}
+  m_CancelAction: {fileID: 2689866672737466552, guid: 4c5b8a31591a89243aaf7fa0544b91f5, type: 3}
+  m_LeftClickAction: {fileID: -562008745845893329, guid: 4c5b8a31591a89243aaf7fa0544b91f5, type: 3}
+  m_MiddleClickAction: {fileID: -5568784220686536617, guid: 4c5b8a31591a89243aaf7fa0544b91f5, type: 3}
+  m_RightClickAction: {fileID: 6213188521196029686, guid: 4c5b8a31591a89243aaf7fa0544b91f5, type: 3}
+  m_ScrollWheelAction: {fileID: -2554658922250707370, guid: 4c5b8a31591a89243aaf7fa0544b91f5, type: 3}
+  m_TrackedDevicePositionAction: {fileID: -6291751336072581899, guid: 4c5b8a31591a89243aaf7fa0544b91f5, type: 3}
+  m_TrackedDeviceOrientationAction: {fileID: -4070583428195406779, guid: 4c5b8a31591a89243aaf7fa0544b91f5, type: 3}
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
@@ -1423,6 +1423,6 @@ SceneRoots:
   - {fileID: 2041783611}
   - {fileID: 1096880061}
   - {fileID: 682866576}
-  - {fileID: 1447008304}
   - {fileID: 365026524}
+  - {fileID: 1447008304}
   - {fileID: 4883224941565303336}

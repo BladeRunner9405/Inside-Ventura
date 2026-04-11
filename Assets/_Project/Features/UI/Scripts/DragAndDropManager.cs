@@ -8,16 +8,14 @@ public class DragAndDropManager : InjectMonoBehaviour
   [SerializeField]
   private Canvas rootCanvas;
 
+  [SerializeField]
+  private GameObject dragVisualPrefab;
+
   private Thought _draggedThought;
 
   private GameObject _dragVisual;
   private RectTransform _dragVisualRect;
   private ThoughtSlotUI _sourceSlot;
-
-  protected override void OnEnable()
-  {
-    base.OnEnable();
-  }
 
   public void StartDrag(ThoughtSlotUI sourceSlot, PointerEventData eventData)
   {
@@ -38,16 +36,48 @@ public class DragAndDropManager : InjectMonoBehaviour
     if (_sourceSlot == null)
       return;
 
-    ThoughtSlotUI targetSlot = null;
-
-    var entered = eventData.pointerEnter;
-    if (entered != null)
-      targetSlot = entered.GetComponentInParent<ThoughtSlotUI>();
+    ThoughtSlotUI targetSlot = FindNearestValidSlot(eventData);
 
     if (targetSlot != null && targetSlot != _sourceSlot)
       TryTransferThought(_sourceSlot, targetSlot);
 
     CleanUp();
+  }
+
+  private ThoughtSlotUI FindNearestValidSlot(PointerEventData eventData)
+  {
+    ThoughtSlotUI[] allSlots = FindObjectsByType<ThoughtSlotUI>(FindObjectsSortMode.None);
+    ThoughtSlotUI nearest = null;
+    float minSqrDistance = float.MaxValue;
+    Vector2 screenPos = eventData.position;
+
+    foreach (var slot in allSlots)
+    {
+      if (slot == _sourceSlot) continue;
+      if (!slot.gameObject.activeInHierarchy) continue;
+      if (!CanPlaceThought(slot, _draggedThought)) continue;
+
+      RectTransform rect = slot.GetComponent<RectTransform>();
+      Vector2 slotScreenPos = RectTransformUtility.WorldToScreenPoint(eventData.pressEventCamera, rect.position);
+      float sqrDist = (slotScreenPos - screenPos).sqrMagnitude;
+      if (sqrDist < minSqrDistance)
+      {
+        minSqrDistance = sqrDist;
+        nearest = slot;
+      }
+    }
+    return nearest;
+  }
+
+  private bool CanPlaceThought(ThoughtSlotUI targetSlot, Thought thought)
+  {
+    if (targetSlot.SourceBag != null)
+      return true;
+
+    if (targetSlot.SourceArtifactInstance != null)
+      return IsCompatible(thought, targetSlot.SourceArtifactInstance);
+
+    return false;
   }
 
   private bool TryTransferThought(ThoughtSlotUI source, ThoughtSlotUI target)
@@ -117,16 +147,21 @@ public class DragAndDropManager : InjectMonoBehaviour
 
   private void CreateDragVisual(ThoughtSlotUI sourceSlot)
   {
-    _dragVisual = new GameObject("DragVisual_Thought");
-    _dragVisual.transform.SetParent(rootCanvas.transform, false);
+    _dragVisual = Instantiate(dragVisualPrefab, rootCanvas.transform, false);
     _dragVisual.transform.SetAsLastSibling();
 
-    var img = _dragVisual.AddComponent<Image>();
-    img.sprite = _draggedThought.InventoryIcon;
-    img.raycastTarget = false;
+    var img = _dragVisual.transform.GetChild(0).GetChild(0).GetComponent<Image>(); // некрасиво
+    if (img != null)
+    {
+      img.sprite = _draggedThought.InventoryIcon;
+      img.raycastTarget = false;
+    }
 
     _dragVisualRect = _dragVisual.GetComponent<RectTransform>();
-    _dragVisualRect.sizeDelta = sourceSlot.GetComponent<RectTransform>().sizeDelta;
+    if (_dragVisualRect != null)
+    {
+      _dragVisualRect.sizeDelta = sourceSlot.GetComponent<RectTransform>().sizeDelta;
+    }
   }
 
   private void MoveDragVisual(PointerEventData eventData)
@@ -148,6 +183,7 @@ public class DragAndDropManager : InjectMonoBehaviour
   {
     if (_dragVisual != null)
       Destroy(_dragVisual);
+
     _dragVisual = null;
     _dragVisualRect = null;
     _sourceSlot = null;

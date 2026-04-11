@@ -29,12 +29,12 @@ public class ThoughtInventoryPresenter : PresenterBase
     base.OnPresenterInitialized();
 
     _bag = _playerAccessor.Inventory.ThoughtBag;
-    var slotCount = _bag.MaxSize; // Убедись, что свойство MaxSize есть в ThoughtBag
+    var slotCount = _bag.MaxSize;
 
     _slots = new ThoughtSlotUI[slotCount];
     for (var i = 0; i < slotCount; ++i)
     {
-      var slot = Instantiate(slotPrefab, slotsRoot);
+      var slot = Instantiate(slotPrefab, slotsRoot, true);
       slot.SourceBag = _bag;
 
       // ИСПОЛЬЗУЕМ НОВЫЕ ИМЕНА СВОЙСТВ

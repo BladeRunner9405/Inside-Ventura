@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DragDropManager
   rootCanvas: {fileID: 0}
+  dragVisualPrefab: {fileID: 6899186520313650796, guid: 14e3211321a5e9e41a6b956f2e39732e, type: 3}
