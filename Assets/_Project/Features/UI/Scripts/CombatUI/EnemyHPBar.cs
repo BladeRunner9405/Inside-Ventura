@@ -1,16 +1,12 @@
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class NewMonoBehaviourScript : MonoBehaviour
-{
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+public class NewMonoBehaviourScript : MonoBehaviour {
+  [SerializeField] private Enemy enemy;
+  [SerializeField] private Slider slider;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  private void Awake() {
+    enemy.OnTakeDamage += _ => { slider.value = enemy.Health / enemy.MaxHealth; };
+  }
 }
