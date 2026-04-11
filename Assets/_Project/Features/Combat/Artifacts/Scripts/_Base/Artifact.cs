@@ -9,7 +9,7 @@ public abstract class Artifact : ScriptableObject
   [SerializeField]
   public string artifactDescription;
 
-  public string ArtifactName => artifactName;
+  public string Name => artifactName;
   public string Description => artifactDescription;
 
   [SerializeField]

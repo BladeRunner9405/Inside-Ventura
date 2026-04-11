@@ -36,11 +36,11 @@ public class ThoughtEquipmentPresenter : PresenterBase
       return;
     }
 
-    if (weaponSlots != null && equipment.Weapon != null)
+    if (equipment.Weapon != null)
       weaponSlots.Initialize(equipment.Weapon);
-    if (heartSlots != null && equipment.Heart != null)
+    if (equipment.Heart != null)
       heartSlots.Initialize(equipment.Heart);
-    if (accessorySlots != null && equipment.Accessory != null)
+    if (equipment.Accessory != null)
       accessorySlots.Initialize(equipment.Accessory);
   }
 }

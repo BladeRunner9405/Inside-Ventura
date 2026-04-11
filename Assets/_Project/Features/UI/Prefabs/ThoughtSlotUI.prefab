@@ -91,6 +91,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ThoughtTooltip
   tooltip: {fileID: 6275575298638842992}
   tooltipBackground: {fileID: 1121674145833926310}
+  outline: {fileID: 3441661744354214970}
 --- !u!1 &1626355206946153561
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,7 +522,6 @@ MonoBehaviour:
   data: {fileID: 0}
   iconImage: {fileID: 8103914615071410756}
   mask: {fileID: 396905337048557732}
-  outline: {fileID: 3441661744354214970}
 --- !u!1 &8877700539488343185
 GameObject:
   m_ObjectHideFlags: 0

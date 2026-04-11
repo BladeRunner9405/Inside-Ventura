@@ -1,33 +1,23 @@
-using CherryFramework.DependencyManager;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
-public class ThoughtTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class ThoughtTooltip : TooltipBase
 {
-  [Inject]
-  private TooltipText _globalTooltip;
-
   private ThoughtSlotUI _slot;
 
-  [SerializeField]
-  private TooltipText tooltip;
-  [SerializeField]
-  private Image tooltipBackground;
-
-  private void Awake()
+  protected override void Awake()
   {
     _slot = GetComponentInParent<ThoughtSlotUI>();
-    DependencyContainer.Instance.InjectDependencies(this);
+    base.Awake();
   }
 
-  public void OnPointerEnter(PointerEventData eventData)
+  public override void OnPointerEnter(PointerEventData eventData)
   {
     if (_globalTooltip == null || _slot.CurrentThought == null)
       return;
 
-    if (_slot.Outline != null)
-      _slot.Outline.SetActive(true);
+    if (outline != null)
+      outline.SetActive(true);
 
     var thought = _slot.CurrentThought;
 
@@ -36,16 +26,6 @@ public class ThoughtTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     tooltip?.SetText(tooltipText);
 
     _globalTooltip.SetText($"<b><u>{thought.Name}</u></b>\n{thought.Description}");
-  }
-
-  public void OnPointerExit(PointerEventData eventData)
-  {
-    if (_slot.Outline != null)
-      _slot.Outline.SetActive(false);
-
-    tooltipBackground.color = Color.clear;
-    tooltip?.Clear();
-    _globalTooltip?.Clear();
   }
 
   private string BuildTooltipText(Thought thought)

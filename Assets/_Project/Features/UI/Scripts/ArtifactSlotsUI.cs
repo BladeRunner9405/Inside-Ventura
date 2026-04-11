@@ -4,6 +4,8 @@ public class ArtifactSlotsUI : MonoBehaviour
 {
   [SerializeField]
   private ThoughtSlotUI[] slots;
+  [SerializeField]
+  private ArtifactTooltip artifactTooltip;
 
   private ArtifactInstance _artifactInstance;
 
@@ -21,6 +23,9 @@ public class ArtifactSlotsUI : MonoBehaviour
     }
 
     _artifactInstance = artifactInstance;
+
+    if (artifactTooltip != null)
+      artifactTooltip.Initialize(artifactInstance);
 
     var count = Mathf.Min(slots.Length, artifactInstance.BaseData.SlotsCount);
     for (var i = 0; i < count; ++i)
