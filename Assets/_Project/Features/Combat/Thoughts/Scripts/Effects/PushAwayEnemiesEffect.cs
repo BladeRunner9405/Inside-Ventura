@@ -20,6 +20,7 @@ public class PushAwayEnemiesEffect : Effect
     if (artifactInstance is AccessoryInstance accessory)
     {
       accessory.OnAbilityUsed += OnAccessoryUsed;
+      Debug.Log("Отталкивание врагов подписалось на применение аксессуара");
     }
   }
 
@@ -28,6 +29,7 @@ public class PushAwayEnemiesEffect : Effect
     if (artifactInstance is AccessoryInstance accessory)
     {
       accessory.OnAbilityUsed -= OnAccessoryUsed;
+      Debug.Log("Отталкивание врагов отписалось от применения аксессуара");
     }
   }
 
@@ -39,7 +41,7 @@ public class PushAwayEnemiesEffect : Effect
     foreach (var col in colliders)
     {
       var enemy = col.GetComponent<Enemy>();
-      if (enemy != null && !enemy.IsDead)
+      if (enemy && !enemy.IsDead)
       {
         var pushDirection = ((Vector2)enemy.transform.position - playerPos).normalized;
         if (pushDirection == Vector2.zero)

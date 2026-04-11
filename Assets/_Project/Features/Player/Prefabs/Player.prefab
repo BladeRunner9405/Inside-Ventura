@@ -564,9 +564,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Player
   health:
-    _value: 100
+    _value: 0
   maxHealth:
-    _value: 100
+    _value: 0
   moveSpeed:
     _value: 5
   dodgeChance:

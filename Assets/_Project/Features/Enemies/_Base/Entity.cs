@@ -205,4 +205,15 @@ public abstract class Entity : InjectMonoBehaviour
     }
     IsDashing = false;
   }
+
+  public Stat GetStat(StatName statName) {
+    switch (statName)
+    {
+      case StatName.MaxHealth: return maxHealth;
+      case StatName.DodgeChance:   return dodgeChance;
+      case StatName.MoveSpeed:   return moveSpeed;
+      case StatName.Health:   return health;
+      default: return null;
+    }
+  }
 }

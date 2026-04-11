@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ModifyStatEffect
   description: +4 Max WP
   statName: 5
-  modifierType: 0
-  coefficient: 4
+  operationType: 0
+  value: 4

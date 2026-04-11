@@ -17,15 +17,12 @@ public class SwordWeapon : Weapon
   [SerializeField]
   private LayerMask enemyLayer;
 
-  [Header("Special Attack")]
+  [Header("Combo Attack")]
   [SerializeField]
-  private float specialAngle = 30f;
+  private float comboAngle = 30f;
 
   [SerializeField]
-  private float specialRange = 5f;
-
-  [SerializeField]
-  public float baseSpecialDamage = 25f; // Теперь это базовое число, а не ModifiableStat
+  private float comboRange = 5f;
 
   [SerializeField]
   private float lungeDistance = 3f;
@@ -39,15 +36,15 @@ public class SwordWeapon : Weapon
     float normalFinalDamage
   )
   {
-    var isSpecial =
+    var isCombo =
       instance.CurrentChainCount == Mathf.RoundToInt(instance.ChainCount.ModifiedValue);
 
-    var angle = isSpecial ? specialAngle : normalAngle;
-    var range = isSpecial ? specialRange : normalRange;
+    var angle = isCombo ? comboAngle : normalAngle;
+    var range = isCombo ? comboRange : normalRange;
 
     // Если удар специальный, считаем крит от базового спец-урона
-    var finalDamage = isSpecial
-      ? instance.GetDamageWithCritChance(baseSpecialDamage)
+    var finalDamage = isCombo
+      ? instance.GetDamageWithCritChance(baseComboDamage)
       : normalFinalDamage;
 
     Vector2 playerPosition = instance.PlayerAccessor.Transform.position;
@@ -59,7 +56,7 @@ public class SwordWeapon : Weapon
 
     attackObj.Initialize(finalDamage, enemyLayer, dir, angle, range);
 
-    if (isSpecial)
+    if (isCombo)
     {
       instance.PlayerAccessor.Dash(dir, lungeDistance, lungeDuration);
       instance.ResetChainCount(); // Сбрасываем комбо после спец удара

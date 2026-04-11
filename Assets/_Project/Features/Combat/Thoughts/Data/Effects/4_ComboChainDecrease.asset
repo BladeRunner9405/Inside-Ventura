@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ModifyStatEffect
   description: -1 Combo Chain
   statName: 2
-  modifierType: 0
-  coefficient: -1
+  operationType: 0
+  value: -1

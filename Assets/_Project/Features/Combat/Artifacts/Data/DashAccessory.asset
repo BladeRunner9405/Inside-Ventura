@@ -15,6 +15,6 @@ MonoBehaviour:
   artifactName: "\u041F\u043E\u043B\u0451\u0442 \u0424\u0430\u043D\u0442\u0430\u0437\u0438\u0438"
   slotsCount: 3
   initialThoughts: []
-  baseCooldown: 1
+  baseCooldown: 3
   distance: 1.7
-  duration: 0.4
+  duration: 0.3

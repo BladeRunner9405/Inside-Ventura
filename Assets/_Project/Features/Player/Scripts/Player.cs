@@ -52,10 +52,9 @@ public class Player : Entity
 
   #region Health & Stats Logic
 
-  public override float MaxHealth
+  /*public override float MaxHealth
   {
-    get
-    {
+    get {
       // Динамический расчет: База + Бонус от экипированного сердца
       float heartBonus =
         (Equipment != null && Equipment.Heart != null)
@@ -63,11 +62,11 @@ public class Player : Entity
           : 0f;
       return base.MaxHealth + heartBonus;
     }
-  }
+  }*/
 
   public override float Health
   {
-    get => Stats != null ? Stats.CurrentHealth : base.Health;
+    get => Stats != null ? Stats.CurrentHealth.Value : base.Health;
     set
     {
       if (Stats == null)
@@ -76,7 +75,15 @@ public class Player : Entity
         return;
       }
       // Ограничиваем здоровье текущим динамическим максимумом
-      Stats.CurrentHealth = Mathf.Clamp(value, 0, MaxHealth);
+      Stats.CurrentHealth.Value = Mathf.Clamp(value, 0, MaxHealth);
+    }
+  }
+
+  public Stat GetStat(StatName statName) {
+    switch (statName)
+    {
+      case StatName.Health: return Stats.CurrentHealth;
+      default: return base.GetStat(statName);
     }
   }
 
