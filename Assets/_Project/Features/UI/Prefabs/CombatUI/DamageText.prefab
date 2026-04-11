@@ -285,3 +285,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FloatingDamage
   text: {fileID: 1115957887964142840}
+  duration: 1
+  upMoveAmount: 1
