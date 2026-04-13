@@ -13,6 +13,8 @@ public class ThoughtInventoryPresenter : PresenterBase
 
   [SerializeField]
   private TextMeshProUGUI bagCapacityText;
+  [SerializeField]
+  private InventoryTooltip inventoryTooltip;
 
   private ThoughtBag _bag;
 
@@ -49,6 +51,9 @@ public class ThoughtInventoryPresenter : PresenterBase
 
       _slots[i] = slot;
     }
+
+    if (inventoryTooltip != null)
+      inventoryTooltip.Initialize(_bag);
 
     _bag.OnThoughtsChanged += RefreshDisplay;
     RefreshDisplay();

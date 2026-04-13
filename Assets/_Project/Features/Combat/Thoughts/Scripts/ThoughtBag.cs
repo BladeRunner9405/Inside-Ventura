@@ -6,7 +6,9 @@ using UnityEngine;
 public class ThoughtBag : ScriptableObject
 {
   [SerializeField]
-  private string description;
+  private string inventoryName;
+  [SerializeField]
+  private string inventoryDescription;
 
   [SerializeField]
   private Thought[] thoughts;
@@ -14,7 +16,8 @@ public class ThoughtBag : ScriptableObject
   [SerializeField]
   private int maxSize = 20;
 
-  public string Description => description;
+  public string Name => inventoryName;
+  public string Description => inventoryDescription;
   public IReadOnlyList<Thought> Thoughts => Array.AsReadOnly(thoughts);
   public int MaxSize => maxSize;
 
