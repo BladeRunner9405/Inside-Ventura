@@ -16,6 +16,7 @@ namespace InsideVentura.World
     public RoomType Type;
     public bool IsCleared;
     public EncounterData Encounter;
+    public bool Visited;
 
     // ДОБАВЛЕНО: Рюкзак для сундуков, монеток и предметов
     public List<GameObject> RoomObjects = new List<GameObject>();
@@ -31,6 +32,7 @@ namespace InsideVentura.World
       Type = type;
       IsCleared = isCleared;
       Encounter = encounter;
+      Visited = false;
     }
   }
 }

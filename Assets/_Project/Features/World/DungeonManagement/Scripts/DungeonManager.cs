@@ -110,8 +110,8 @@ namespace InsideVentura.World
       bool hasEast = _dungeonMap.ContainsKey(coords + Vector2Int.right);
       bool hasWest = _dungeonMap.ContainsKey(coords + Vector2Int.left);
 
-      builder.Build(instance.Data, instance.IsCleared, hasNorth, hasSouth, hasEast, hasWest);
-
+      builder.Build(instance.Data, instance.IsCleared, instance.Visited, hasNorth, hasSouth, hasEast, hasWest);
+      instance.Visited = true;
       if (!instance.IsCleared && instance.Type != RoomType.Safe)
       {
         encounterManager.StartEncounter(
