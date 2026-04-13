@@ -4,7 +4,7 @@ using UnityEngine;
 // --- СОСТОЯНИЕ ПОГОНИ ---
 public class UA_ChaseState : EnemyState
 {
-  public override void Update()
+  public override void FixedUpdate()
   {
     var ua = (UncontrollableAnger)EnemyInstance;
     float dist = Vector2.Distance(ua.transform.position, ua.target.position);

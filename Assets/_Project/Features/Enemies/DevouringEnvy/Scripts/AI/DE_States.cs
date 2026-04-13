@@ -4,7 +4,7 @@ using UnityEngine;
 // --- СОСТОЯНИЕ ПОГОНИ (АГРЕССИВНОЕ) ---
 public class Envy_ChaseState : EnemyState
 {
-    public override void Update()
+    public override void FixedUpdate()
     {
         var envy = (DevouringEnvy)EnemyInstance;
         if (envy.target == null) return;
@@ -41,10 +41,10 @@ public class Envy_AttackState : EnemyState
     {
         // Вычисляем направление укуса в момент начала анимации
         Vector2 dir = (EnemyInstance.target.position - EnemyInstance.transform.position).normalized;
-        
+
         // Останавливаем врага на мгновение, чтобы он зафиксировал позицию для укуса
         EnemyInstance.Move(Vector2.zero);
-        
+
         EnemyInstance.Attack(dir);
     }
 }
