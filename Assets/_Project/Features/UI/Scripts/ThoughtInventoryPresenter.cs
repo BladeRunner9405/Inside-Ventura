@@ -35,6 +35,7 @@ public class ThoughtInventoryPresenter : PresenterBase
     for (var i = 0; i < slotCount; ++i)
     {
       var slot = Instantiate(slotPrefab, slotsRoot, true);
+      slot.transform.localScale = slotPrefab.transform.localScale;
       slot.SourceBag = _bag;
 
       // ИСПОЛЬЗУЕМ НОВЫЕ ИМЕНА СВОЙСТВ

@@ -21,6 +21,8 @@ public class ThoughtSlotUI
 
   [Inject]
   private DragAndDropManager _dragDropManager;
+  [Inject]
+  private ThoughtsCompatibilityManager _thoughtsCompatibilityManager;
 
   // Ссылка на инвентарь (мешок), если слот принадлежит мешку
   public ThoughtBag SourceBag { get; set; }
@@ -44,9 +46,34 @@ public class ThoughtSlotUI
     DependencyContainer.Instance.InjectDependencies(this);
   }
 
+  private void OnEnable()
+  {
+    base.OnEnable();
+
+    _thoughtsCompatibilityManager.OnActiveArtifactChanged += OnActiveArtifactChanged;
+    RefreshVisual();
+  }
+
+  private void OnDisable()
+  {
+    _thoughtsCompatibilityManager.OnActiveArtifactChanged -= OnActiveArtifactChanged;
+  }
+
+  private void OnActiveArtifactChanged(ArtifactInstance artifact) => RefreshVisual();
+
+  public bool IsCompatibleWithArtifact()
+  {
+    if (!SourceBag || !data) return true;
+
+    var activeArtifact = _thoughtsCompatibilityManager.ActiveArtifact;
+    if (activeArtifact == null) return true;
+
+    return data.HasRightType(activeArtifact.BaseData);
+  }
+
   public void OnBeginDrag(PointerEventData eventData)
   {
-    if (data == null || _dragDropManager == null)
+    if (!data || !_dragDropManager || !IsCompatibleWithArtifact())
       return;
 
     _dragDropManager.StartDrag(this, eventData);
@@ -84,10 +111,10 @@ public class ThoughtSlotUI
 
   private void RefreshVisual()
   {
-    if (data != null)
+    if (data)
     {
       iconImage.sprite = data.InventoryIcon;
-      iconImage.color = Color.white;
+      iconImage.color = IsCompatibleWithArtifact() ? Color.white : new Color(1, 1, 1, 0.3f);
       if (mask) mask.color = Color.white;
     }
     else

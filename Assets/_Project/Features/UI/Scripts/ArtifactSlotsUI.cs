@@ -1,11 +1,15 @@
+using CherryFramework.DependencyManager;
 using UnityEngine;
 
-public class ArtifactSlotsUI : MonoBehaviour
+public class ArtifactSlotsUI : InjectMonoBehaviour
 {
   [SerializeField]
   private ThoughtSlotUI[] slots;
   [SerializeField]
   private ArtifactTooltip artifactTooltip;
+
+  [Inject]
+  private ThoughtsCompatibilityManager _thoughtsCompatibilityManager;
 
   private ArtifactInstance _artifactInstance;
 
@@ -48,6 +52,19 @@ public class ArtifactSlotsUI : MonoBehaviour
 
     _artifactInstance.OnThoughtEquipped -= HandleThoughtEquipped;
     _artifactInstance.OnThoughtUnequipped -= HandleThoughtUnequipped;
+  }
+
+  protected override void OnEnable()
+  {
+    base.OnEnable();
+
+    _thoughtsCompatibilityManager.SetActiveArtifact(_artifactInstance);
+  }
+
+  protected void OnDisable()
+  {
+    if (_thoughtsCompatibilityManager.ActiveArtifact == _artifactInstance)
+      _thoughtsCompatibilityManager.ClearActiveArtifact();
   }
 
   private void HandleThoughtEquipped(int slotIndex, Thought thought)

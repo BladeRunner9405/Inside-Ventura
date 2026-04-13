@@ -20,6 +20,8 @@ public class GameInstaller : InstallerBehaviourBase
   // ДОБАВИЛИ ПРЯМУЮ ССЫЛКУ:
   [SerializeField]
   private DragAndDropManager _dragDropManager;
+  [SerializeField]
+  private ThoughtsCompatibilityManager _thoughtsCompatibilityManager;
 
   [Header("Audio Settings")]
   [SerializeField]
@@ -79,6 +81,15 @@ public class GameInstaller : InstallerBehaviourBase
     else
     {
       Debug.LogError("[GameInstaller] ОШИБКА: DragAndDropManager не назначен в инспекторе!");
+    }
+
+    if (_thoughtsCompatibilityManager != null)
+    {
+      BindAsSingleton(_thoughtsCompatibilityManager);
+    }
+    else
+    {
+      Debug.LogWarning("[GameInstaller] ПРЕДУПРЕЖДЕНИЕ: ThoughtsCompatibilityManager не назначен в инспекторе!");
     }
   }
 }

@@ -13,7 +13,7 @@ public class ThoughtTooltip : TooltipBase
 
   public override void OnPointerEnter(PointerEventData eventData)
   {
-    if (_globalTooltip == null || _slot.CurrentThought == null)
+    if (_globalTooltip == null || _slot.CurrentThought == null || !_slot.IsCompatibleWithArtifact())
       return;
 
     if (outline != null)
