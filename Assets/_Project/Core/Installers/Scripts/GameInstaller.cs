@@ -22,6 +22,8 @@ public class GameInstaller : InstallerBehaviourBase
   private DragAndDropManager _dragDropManager;
   [SerializeField]
   private ThoughtsCompatibilityManager _thoughtsCompatibilityManager;
+  [SerializeField]
+  private ThoughtItemTooltip _thoughtItemTooltip;
 
   [Header("Audio Settings")]
   [SerializeField]
@@ -91,5 +93,14 @@ public class GameInstaller : InstallerBehaviourBase
     {
       Debug.LogWarning("[GameInstaller] ПРЕДУПРЕЖДЕНИЕ: ThoughtsCompatibilityManager не назначен в инспекторе!");
     }
+    if (_thoughtItemTooltip != null)
+    {
+      BindAsSingleton(_thoughtItemTooltip);
+    }
+    else
+    {
+      Debug.LogWarning("[GameInstaller] ПРЕДУПРЕЖДЕНИЕ: ThoughtItemTooltip не назначен в инспекторе!");
+    }
+
   }
 }

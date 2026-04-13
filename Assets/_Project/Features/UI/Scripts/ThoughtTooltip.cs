@@ -28,28 +28,19 @@ public class ThoughtTooltip : TooltipBase
     _globalTooltip.SetText($"<b><u>{thought.Name}</u></b>\n{thought.Description}");
   }
 
-  private string BuildTooltipText(Thought thought)
+  public static string BuildTooltipText(Thought thought)
   {
     string result = $"<b><u><color=white>{thought.Name}</color></u></b>\n";
 
     foreach (var effect in thought.Effects)
     {
-      string color;
-      switch (effect.Type)
+      string color = effect.Type switch
       {
-        case EffectType.Positive:
-          color = "green";
-          break;
-        case EffectType.Negative:
-          color = "red";
-          break;
-        case EffectType.Neutral:
-          color = "grey";
-          break;
-        default:
-          color = "white";
-          break;
-      }
+        EffectType.Positive => "green",
+        EffectType.Negative => "red",
+        EffectType.Neutral => "grey",
+        _ => "white"
+      };
       result += $"<color={color}>{effect.Description}</color>\n";
     }
 
