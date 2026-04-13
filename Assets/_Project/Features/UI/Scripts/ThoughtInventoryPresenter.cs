@@ -39,7 +39,8 @@ public class ThoughtInventoryPresenter : PresenterBase
 
       // ИСПОЛЬЗУЕМ НОВЫЕ ИМЕНА СВОЙСТВ
       slot.SourceArtifactInstance = null;
-      slot.ArtifactSlotIndex = i;
+      slot.ArtifactSlotIndex = -1;
+      slot.BagSlotIndex = i;
 
       _slots[i] = slot;
     }

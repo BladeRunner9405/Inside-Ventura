@@ -13,6 +13,7 @@ public class ThoughtSlotUI
 {
   [SerializeField]
   private Image iconImage;
+
   [SerializeField]
   private Image mask;
 
@@ -29,6 +30,9 @@ public class ThoughtSlotUI
 
   // Индекс слота в артефакте
   public int ArtifactSlotIndex { get; set; } = -1;
+
+  // Индекс слота в инвентаре
+  public int BagSlotIndex { get; set; } = -1;
 
   // Текущая мысль (берет значение data из базового класса PopulatorElementBase)
   public Thought CurrentThought => data;

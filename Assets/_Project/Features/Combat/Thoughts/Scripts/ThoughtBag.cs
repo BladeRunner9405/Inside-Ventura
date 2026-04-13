@@ -6,65 +6,83 @@ using UnityEngine;
 public class ThoughtBag : ScriptableObject
 {
   [SerializeField]
-  private List<Thought> thoughts = new();
+  private string description;
+
+  [SerializeField]
+  private Thought[] thoughts;
 
   [SerializeField]
   private int maxSize = 20;
 
-  public IReadOnlyList<Thought> Thoughts => thoughts;
+  public string Description => description;
+  public IReadOnlyList<Thought> Thoughts => Array.AsReadOnly(thoughts);
   public int MaxSize => maxSize;
 
   public event Action OnThoughtsChanged;
 
-  public bool CanAddThought() => thoughts.Count < maxSize;
+  public bool CanAddThought() => Array.IndexOf(thoughts, null) != -1;
+
+  private void OnEnable()
+  {
+    if (thoughts == null || thoughts.Length != maxSize)
+    {
+      thoughts = new Thought[maxSize];
+    }
+  }
 
   public void Initialize() {
     // Clear();
   }
 
-  public void AddThought(Thought thought)
+  public void SetThoughtAt(int index, Thought thought)
   {
-    if (!thought)
-      return;
+    if (index < 0 || index >= maxSize) return;
+    thoughts[index] = thought;
+    OnThoughtsChanged?.Invoke();
+  }
 
-    if (thoughts.Contains(thought))
-    {
-      Debug.LogWarning(
-        $"[ThoughtBag] Мысль «{thought.name}» уже в инвентаре — добавление отменено."
-      );
-      return;
-    }
+  public bool AddThought(Thought thought)
+  {
+    if (thought == null) return false;
 
-    if (!CanAddThought())
+    int emptyIndex = Array.IndexOf(thoughts, null);
+    if (emptyIndex == -1)
     {
       Debug.LogWarning("[ThoughtBag] Инвентарь переполнен.");
-      return;
+      return false;
     }
 
-    thoughts.Add(thought);
+    thoughts[emptyIndex] = thought;
     OnThoughtsChanged?.Invoke();
+
+    return true;
   }
 
   public bool RemoveThought(Thought thought)
   {
-    var removed = thoughts.Remove(thought);
-    if (removed)
-      OnThoughtsChanged?.Invoke();
-    return removed;
+    int index = Array.IndexOf(thoughts, thought);
+    if (index == -1) return false;
+
+    thoughts[index] = null;
+    OnThoughtsChanged?.Invoke();
+
+    return true;
   }
 
   public bool RemoveThoughtAt(int index)
   {
-    if (index < 0 || index >= thoughts.Count)
-      return false;
-    thoughts.RemoveAt(index);
+    if (index < 0 || index >= maxSize) return false;
+    if (thoughts[index] == null) return false;
+
+    thoughts[index] = null;
     OnThoughtsChanged?.Invoke();
+
     return true;
   }
 
   public void Clear()
   {
-    thoughts.Clear();
+    Array.Clear(thoughts, 0, thoughts.Length);
     OnThoughtsChanged?.Invoke();
   }
 }
