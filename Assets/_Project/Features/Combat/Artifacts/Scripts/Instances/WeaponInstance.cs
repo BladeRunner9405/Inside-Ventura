@@ -7,9 +7,12 @@ public class WeaponInstance : ArtifactInstance
 
   public ModifiableStat Damage { get; private set; }
   public ModifiableStat AttackSpeed { get; private set; }
+  public ModifiableStat ComboDamage { get; private set; }
   public ModifiableStat CritChance { get; private set; }
   public ModifiableStat ChainCount { get; private set; }
   public ModifiableStat ComboWindow { get; private set; }
+  public ModifiableStat ChainSpeedMultiplier { get; private set; }
+  public ModifiableStat ChainSpeedAddition { get; private set; }
 
   private float _lastAttackTime;
   private int _currentChainCount;
@@ -25,13 +28,28 @@ public class WeaponInstance : ArtifactInstance
     return isCritical ? baseDamage * WeaponData.baseCritMultiplier : baseDamage;
   }
 
-  private void ExecuteAttack(Vector2 direction)
+  private void UpdateCombo()
   {
-    if (Time.time > _lastAttackTime + ComboWindow.ModifiedValue)
+    var tooLateForCombo = Time.time > _lastAttackTime + ComboWindow.ModifiedValue;
+
+    if (tooLateForCombo)
     {
       ResetChainCount();
     }
-    CurrentChainCount++;
+
+    ++CurrentChainCount;
+
+    if (CurrentChainCount == Mathf.RoundToInt(ChainCount.ModifiedValue))
+      _currentCooldown = AttackSpeed.ModifiedValue * ChainSpeedMultiplier.ModifiedValue + ChainSpeedAddition.ModifiedValue;
+    else if (tooLateForCombo)
+      _currentCooldown = AttackSpeed.ModifiedValue * ChainSpeedMultiplier.ModifiedValue;
+    else
+      _currentCooldown = AttackSpeed.ModifiedValue;
+  }
+
+  private void ExecuteAttack(Vector2 direction)
+  {
+    UpdateCombo();
 
     float finalDamage = GetDamageWithCritChance(Damage.ModifiedValue);
 
@@ -50,25 +68,14 @@ public class WeaponInstance : ArtifactInstance
     // Инициализируем "живые" статы
     Damage = new ModifiableStat(baseData.baseDamage);
     AttackSpeed = new ModifiableStat(baseData.baseAttackSpeed);
+    ComboDamage = new ModifiableStat(baseData.baseComboDamage);
     CritChance = new ModifiableStat(baseData.baseCritChance);
     ChainCount = new ModifiableStat(baseData.baseChainCount);
     ComboWindow = new ModifiableStat(baseData.baseComboWindow);
+    ChainSpeedMultiplier = new ModifiableStat(baseData.baseChainSpeedMultiplier);
+    ChainSpeedAddition = new ModifiableStat(baseData.baseChainSpeedAddition);
 
     _lastAttackTime = -AttackSpeed.ModifiedValue;
-  }
-
-  // Переопределяем метод для поиска статов по имени
-  public override Stat GetStat(StatName statName)
-  {
-    if (statName == StatName.Damage)
-      return Damage;
-    if (statName == StatName.AttackSpeed)
-      return AttackSpeed;
-    if (statName == StatName.CritChance)
-      return CritChance;
-    if (statName == StatName.ChainCount)
-      return ChainCount;
-    return base.GetStat(statName);
   }
 
   public void TryAttack(Vector2 direction)
@@ -78,5 +85,20 @@ public class WeaponInstance : ArtifactInstance
 
     ExecuteAttack(direction);
     _lastAttackTime = Time.time;
+  }
+
+  // Переопределяем метод для поиска статов по имени
+  public override Stat GetStat(StatName statName)
+  {
+    switch (statName)
+    {
+      case StatName.Damage: return Damage;
+      case StatName.AttackSpeed:   return AttackSpeed;
+      case StatName.ComboDamage:   return ComboDamage;
+      case StatName.CritChance:   return CritChance;
+      case StatName.ChainCount:   return ChainCount;
+      case StatName.ChainSpeedAddition:   return ChainSpeedAddition;
+      default: return base.GetStat(statName);
+    }
   }
 }

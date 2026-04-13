@@ -239,16 +239,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DevouringEnvy
   health:
-    _value: 100
+    _value: 12
   maxHealth:
-    _value: 100
+    _value: 12
   moveSpeed:
-    _value: 2
+    _value: 6
   dodgeChance:
     _value: 0
   target: {fileID: 0}
   _view: {fileID: 139226878814988356}
-  damage: 10
+  damage: 1
   isBoss: 0
   detectionRadius: 1.5
   obstacleLayer:

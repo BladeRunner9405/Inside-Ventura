@@ -8,7 +8,7 @@ public enum StatName
   Damage,
   ChainCount,
   ChainSpeedAddition,
-  SpecialDamage,
+  ComboDamage,
   MaxHealth,
   DodgeChance,
   MoveSpeed,
@@ -26,7 +26,7 @@ public class Stat
   [SerializeField]
   private float _value;
 
-  public float Value
+  public virtual float Value
   {
     get => _value;
     set => _value = value;

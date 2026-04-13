@@ -33,4 +33,13 @@ public class AccessoryInstance : ArtifactInstance
 
     _lastUseTime = Time.time;
   }
+
+  public override Stat GetStat(StatName statName)
+  {
+    switch (statName)
+    {
+      case StatName.Cooldown: return Cooldown;
+      default: return base.GetStat(statName);
+    }
+  }
 }

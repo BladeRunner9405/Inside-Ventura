@@ -22,7 +22,19 @@ public class PlayerAccessor : IPlayerData
 
   public Stat GetStat(StatName statName)
   {
-    // return _player?.GetStat(statName);
+    var stat = _player?.GetStat(statName);
+    if (stat != null) return stat;
+
+    stat = Stats.GetStat(statName);
+    if (stat != null) return stat;
+
+    stat = Equipment.Accessory.GetStat(statName);
+    if (stat != null) return stat;
+    stat = Equipment.Heart.GetStat(statName);
+    if (stat != null) return stat;
+    stat = Equipment.Weapon.GetStat(statName);
+    if (stat != null) return stat;
+
     return null;
   }
 
