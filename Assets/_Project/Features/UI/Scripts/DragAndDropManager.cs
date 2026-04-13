@@ -89,15 +89,83 @@ public class DragAndDropManager : InjectMonoBehaviour
             return;
         }
 
-        if (source.SourceBag != null)
-            source.SourceBag.SetThoughtAt(source.BagSlotIndex, targetThought);
-        else if (source.SourceArtifactInstance != null)
-            source.SourceArtifactInstance.EquipThought(targetThought, source.ArtifactSlotIndex);
+        // Если двигаем из артефакта в инвентарь
+        if (source.SourceArtifactInstance != null && target.SourceBag != null)
+        {
+          // Если двигаем в слот с мыслью
+          if (targetThought != null) {
+            // Если эта мысль совместима с артефактом
+            if (IsCompatible(targetThought, source.SourceArtifactInstance)) {
+              SwapThoughts(source, target);
+              return;
+            }
+            MoveThoughtFromArtifactToUncompatible(source, target);
+            return;
+          }
+          MoveThoughtFromArtifactToEmpty(source, target);
+          return;
+        }
 
-        if (target.SourceBag != null)
-            target.SourceBag.SetThoughtAt(target.BagSlotIndex, sourceThought);
-        else if (target.SourceArtifactInstance != null)
-            target.SourceArtifactInstance.EquipThought(sourceThought, target.ArtifactSlotIndex);
+        SwapThoughts(source, target);
+    }
+
+    private void MoveThoughtFromArtifactToEmpty(ThoughtSlotUI source, ThoughtSlotUI target) {
+      Thought sourceThought = source.CurrentThought;
+
+      ThoughtBag bag = target.SourceBag;
+      int targetIndex = target.BagSlotIndex;
+
+      bag.SetThoughtAt(targetIndex, sourceThought);
+      source.SourceArtifactInstance.UnequipThought(source.ArtifactSlotIndex);
+    }
+
+    private void MoveThoughtFromArtifactToUncompatible(ThoughtSlotUI source, ThoughtSlotUI target) {
+      Thought sourceThought = source.CurrentThought;
+      Thought targetThought = target.CurrentThought;
+
+      ThoughtBag bag = target.SourceBag;
+      int targetIndex = target.BagSlotIndex;
+
+      int nearestFreeIndex = -1;
+      int minDistance = int.MaxValue;
+      for (int i = 0; i < bag.MaxSize; ++i)
+      {
+        if (bag.Thoughts[i] == null)
+        {
+          int distance = Mathf.Abs(i - targetIndex);
+          if (distance < minDistance)
+          {
+            minDistance = distance;
+            nearestFreeIndex = i;
+          }
+        }
+      }
+
+      if (nearestFreeIndex != -1)
+      {
+        bag.SetThoughtAt(nearestFreeIndex, targetThought);
+        bag.SetThoughtAt(targetIndex, sourceThought);
+        source.SourceArtifactInstance.UnequipThought(source.ArtifactSlotIndex);
+      }
+      else
+      {
+        Debug.LogWarning("[DragDrop] Нет свободных ячеек в инвентаре для сдвига!");
+      }
+    }
+
+    private void SwapThoughts(ThoughtSlotUI source, ThoughtSlotUI target) {
+      Thought sourceThought = source.CurrentThought;
+      Thought targetThought = target.CurrentThought;
+
+      if (source.SourceBag != null)
+        source.SourceBag.SetThoughtAt(source.BagSlotIndex, targetThought);
+      else if (source.SourceArtifactInstance != null)
+        source.SourceArtifactInstance.EquipThought(targetThought, source.ArtifactSlotIndex);
+
+      if (target.SourceBag != null)
+        target.SourceBag.SetThoughtAt(target.BagSlotIndex, sourceThought);
+      else if (target.SourceArtifactInstance != null)
+        target.SourceArtifactInstance.EquipThought(sourceThought, target.ArtifactSlotIndex);
     }
 
     private static bool IsCompatible(Thought thought, ArtifactInstance artifact)
