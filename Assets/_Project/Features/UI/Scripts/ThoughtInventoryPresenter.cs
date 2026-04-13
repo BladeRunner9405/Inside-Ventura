@@ -1,5 +1,6 @@
 using CherryFramework.DependencyManager;
 using CherryFramework.UI.InteractiveElements.Presenters;
+using TMPro;
 using UnityEngine;
 
 public class ThoughtInventoryPresenter : PresenterBase
@@ -9,6 +10,9 @@ public class ThoughtInventoryPresenter : PresenterBase
 
   [SerializeField]
   private Transform slotsRoot;
+
+  [SerializeField]
+  private TextMeshProUGUI bagCapacityText;
 
   private ThoughtBag _bag;
 
@@ -55,5 +59,15 @@ public class ThoughtInventoryPresenter : PresenterBase
     var thoughts = _bag.Thoughts;
     for (var i = 0; i < _slots.Length; ++i)
       _slots[i].SetData(i < thoughts.Count ? thoughts[i] : null);
+
+    if (bagCapacityText != null)
+    {
+      int occupied = 0;
+      for (int i = 0; i < thoughts.Count; ++i)
+      {
+        if (thoughts[i] != null) ++occupied;
+      }
+      bagCapacityText.text = $"{occupied}/{_bag.MaxSize}";
+    }
   }
 }
