@@ -1403,7 +1403,7 @@ MonoBehaviour:
     id: 7
     behavior: 8
     tile: {fileID: 0}
-    prefab: {fileID: 3791626637372268971, guid: 9655fa713d6861f49be5419dc8e3071c, type: 3}
+    prefab: {fileID: 3791626637372268971, guid: c9e5db640d03431e4b492fd34289c3d3, type: 3}
   cameraBoundsCollider: {fileID: 1543992764154763129}
 --- !u!4 &8644672285238552411
 Transform:
