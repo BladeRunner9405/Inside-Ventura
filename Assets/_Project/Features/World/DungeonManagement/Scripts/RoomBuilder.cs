@@ -15,6 +15,7 @@ namespace InsideVentura.World
     RewardPoint,
     EnemySpawner,
     NextLevel,
+    SavedStatePrefab, // These objects are saved when traveling between rooms.
   }
 
   [Serializable]
@@ -85,7 +86,7 @@ namespace InsideVentura.World
     private List<GameObject> _spawnedObjects = new List<GameObject>();
     private List<DungeonDoor> _dungeonDoors = new List<DungeonDoor>();
     private DungeonRoomData _currentData;
-
+    private bool _isVisited;
     public Transform PlayerStartPoint { get; private set; }
     public Transform RewardPoint { get; private set; }
     public List<Transform> SpawnPoints { get; private set; } = new List<Transform>();
@@ -102,6 +103,7 @@ namespace InsideVentura.World
     public void Build(
       DungeonRoomData data,
       bool isCleared,
+      bool isVisited,
       bool hasNorth,
       bool hasSouth,
       bool hasEast,
@@ -111,6 +113,7 @@ namespace InsideVentura.World
       if (data == null)
         return;
       _currentData = data;
+      _isVisited = isVisited;
       Clear();
 
       int centerX = data.width / 2;
@@ -264,6 +267,16 @@ namespace InsideVentura.World
           break;
         case CellBehavior.NextLevel:
           Spawn(mapping.prefab, tilePos);
+          break;
+        case CellBehavior.SavedStatePrefab:
+          if (_isVisited || mapping.prefab == null) {
+            break;
+          }
+
+          Vector3 worldPos = floorTilemap.GetCellCenterWorld(tilePos);
+          var obj = Instantiate(mapping.prefab, worldPos, Quaternion.identity, transform);
+          DungeonManager.Instance.RegisterRoomObject(obj);
+
           break;
       }
     }

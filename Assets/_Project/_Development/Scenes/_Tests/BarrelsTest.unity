@@ -1320,7 +1320,7 @@ MonoBehaviour:
   bossRoomTemplate: {fileID: 11400000, guid: da810569b1fe32c439d210b8b4d4859e, type: 2}
   bossEncounter: {fileID: 0}
   encounterPool:
-  - {fileID: 11400000, guid: 230a948e3ce5ea646a1bfb1834df5298, type: 2}
+  - {fileID: 11400000, guid: 427cff6e468d23dba95e8fcbb94cd51d, type: 2}
   playerPrefab: {fileID: 8131152870917328023, guid: 3f1e84e6511bb483cba095ce3ebb694f, type: 3}
   _playerCamera: {fileID: 682866571}
 --- !u!114 &7713474869672849459
