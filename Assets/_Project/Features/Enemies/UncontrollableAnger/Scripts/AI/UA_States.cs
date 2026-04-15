@@ -42,7 +42,7 @@ public class UA_ChaseState : EnemyState
 // --- СОСТОЯНИЕ ОТСТУПЛЕНИЯ ---
 public class UA_RetreatState : EnemyState
 {
-  public override void Update()
+  public override void FixedUpdate()
   {
     var ua = (UncontrollableAnger)EnemyInstance;
     float dist = Vector2.Distance(ua.transform.position, ua.target.position);
