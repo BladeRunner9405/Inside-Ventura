@@ -36,7 +36,7 @@ public abstract class InteractableObject : InjectMonoBehaviour
     return isActive;
   }
 
-  public void SetFocused(bool active)
+  public virtual void SetFocused(bool active)
   {
     // срабатывает, если игрок стоит рядом с предметом и готов его взять.
     if (outline.activeSelf != active)

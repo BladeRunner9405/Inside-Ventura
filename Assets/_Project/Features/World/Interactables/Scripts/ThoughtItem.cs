@@ -1,3 +1,4 @@
+using CherryFramework.DependencyManager;
 using UnityEngine;
 
 namespace InsideVentura.World
@@ -9,6 +10,9 @@ namespace InsideVentura.World
 
     [SerializeField]
     private SpriteRenderer spriteRenderer;
+
+    [Inject]
+    private ThoughtItemTooltip _worldTooltip;
 
     private void Start()
     {
@@ -43,6 +47,24 @@ namespace InsideVentura.World
         return;
 
       PlayerAccessor.Inventory.AddThoughtToBag(thoughtData);
+      _worldTooltip.Hide();
+    }
+
+    public override void SetFocused(bool active)
+    {
+      base.SetFocused(active);
+
+      if (_worldTooltip == null || thoughtData == null)
+        return;
+
+      if (active)
+      {
+        _worldTooltip.Show(thoughtData, transform.position);
+      }
+      else
+      {
+        _worldTooltip.Hide();
+      }
     }
   }
 }

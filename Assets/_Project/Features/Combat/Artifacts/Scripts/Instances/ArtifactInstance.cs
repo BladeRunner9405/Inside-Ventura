@@ -29,16 +29,16 @@ public abstract class ArtifactInstance
     }
   }
 
-  public void EquipThought(Thought thought, int slotIndex)
+  public bool EquipThought(Thought thought, int slotIndex)
   {
     if (slotIndex < 0 || slotIndex >= EquippedThoughts.Length)
-      return;
+      return false;
     if (thought == null || EquippedThoughts[slotIndex] == thought)
-      return;
+      return false;
 
     // Проверка типа: подходит ли мысль этому артефакту?
     if (!thought.HasRightType(BaseData))
-      return;
+      return false;
 
     UnequipThought(slotIndex); // Снимаем старую мысль
 
@@ -48,16 +48,18 @@ public abstract class ArtifactInstance
     thought.OnEquip(this);
 
     OnThoughtEquipped?.Invoke(slotIndex, thought);
+
+    return true;
   }
 
-  public void UnequipThought(int slotIndex)
+  public bool UnequipThought(int slotIndex)
   {
     if (
       slotIndex < 0
       || slotIndex >= EquippedThoughts.Length
       || EquippedThoughts[slotIndex] == null
     )
-      return;
+      return false;
 
     var thought = EquippedThoughts[slotIndex];
 
@@ -65,6 +67,8 @@ public abstract class ArtifactInstance
 
     EquippedThoughts[slotIndex] = null;
     OnThoughtUnequipped?.Invoke(slotIndex);
+
+    return true;
   }
 
   // Вспомогательный метод для получения статов (по аналогии с твоим старым GetStat)

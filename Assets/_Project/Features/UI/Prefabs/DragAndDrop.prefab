@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3393670219704094787}
   - component: {fileID: 4248757984702906947}
+  - component: {fileID: 7358964757760468825}
   m_Layer: 0
   m_Name: DragAndDrop
   m_TagString: Untagged
@@ -45,3 +46,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DragDropManager
   rootCanvas: {fileID: 0}
+  dragVisualPrefab: {fileID: 6899186520313650796, guid: 14e3211321a5e9e41a6b956f2e39732e, type: 3}
+--- !u!114 &7358964757760468825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2073779164012293094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad2084c694e583a45bf83d652550a7e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ThoughtsCompatibilityManager

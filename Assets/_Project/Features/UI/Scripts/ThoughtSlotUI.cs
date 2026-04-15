@@ -14,10 +14,15 @@ public class ThoughtSlotUI
   [SerializeField]
   private Image iconImage;
 
+  [SerializeField]
+  private Image mask;
+
   private CanvasGroup _canvasGroup;
 
   [Inject]
   private DragAndDropManager _dragDropManager;
+  [Inject]
+  private ThoughtsCompatibilityManager _thoughtsCompatibilityManager;
 
   // Ссылка на инвентарь (мешок), если слот принадлежит мешку
   public ThoughtBag SourceBag { get; set; }
@@ -27,6 +32,9 @@ public class ThoughtSlotUI
 
   // Индекс слота в артефакте
   public int ArtifactSlotIndex { get; set; } = -1;
+
+  // Индекс слота в инвентаре
+  public int BagSlotIndex { get; set; } = -1;
 
   // Текущая мысль (берет значение data из базового класса PopulatorElementBase)
   public Thought CurrentThought => data;
@@ -38,9 +46,34 @@ public class ThoughtSlotUI
     DependencyContainer.Instance.InjectDependencies(this);
   }
 
+  protected override void OnEnable()
+  {
+    base.OnEnable();
+
+    _thoughtsCompatibilityManager.OnActiveArtifactChanged += OnActiveArtifactChanged;
+    RefreshVisual();
+  }
+
+  private void OnDisable()
+  {
+    _thoughtsCompatibilityManager.OnActiveArtifactChanged -= OnActiveArtifactChanged;
+  }
+
+  private void OnActiveArtifactChanged(ArtifactInstance artifact) => RefreshVisual();
+
+  public bool IsCompatibleWithArtifact()
+  {
+    if (!SourceBag || !data) return true;
+
+    var activeArtifact = _thoughtsCompatibilityManager.ActiveArtifact;
+    if (activeArtifact == null) return true;
+
+    return data.HasRightType(activeArtifact.BaseData);
+  }
+
   public void OnBeginDrag(PointerEventData eventData)
   {
-    if (data == null || _dragDropManager == null)
+    if (!data || !_dragDropManager || !IsCompatibleWithArtifact())
       return;
 
     _dragDropManager.StartDrag(this, eventData);
@@ -78,15 +111,17 @@ public class ThoughtSlotUI
 
   private void RefreshVisual()
   {
-    if (data != null)
+    if (data)
     {
       iconImage.sprite = data.InventoryIcon;
-      iconImage.color = Color.white;
+      iconImage.color = IsCompatibleWithArtifact() ? Color.white : new Color(1, 1, 1, 0.3f);
+      if (mask) mask.color = Color.white;
     }
     else
     {
       iconImage.sprite = null;
       iconImage.color = Color.clear;
+      if (mask) mask.color = Color.clear;
     }
   }
 }

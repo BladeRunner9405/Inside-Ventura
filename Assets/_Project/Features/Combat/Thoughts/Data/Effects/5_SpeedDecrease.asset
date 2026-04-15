@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 5_SpeedDecrease
   m_EditorClassIdentifier: Assembly-CSharp::ModifyStatEffect
   description: -0.10 SPD
+  type: 1
   statName: 7
   operationType: 0
   value: -0.1

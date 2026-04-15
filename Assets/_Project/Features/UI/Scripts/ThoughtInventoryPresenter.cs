@@ -1,5 +1,6 @@
 using CherryFramework.DependencyManager;
 using CherryFramework.UI.InteractiveElements.Presenters;
+using TMPro;
 using UnityEngine;
 
 public class ThoughtInventoryPresenter : PresenterBase
@@ -9,6 +10,11 @@ public class ThoughtInventoryPresenter : PresenterBase
 
   [SerializeField]
   private Transform slotsRoot;
+
+  [SerializeField]
+  private TextMeshProUGUI bagCapacityText;
+  [SerializeField]
+  private InventoryTooltip inventoryTooltip;
 
   private ThoughtBag _bag;
 
@@ -29,20 +35,25 @@ public class ThoughtInventoryPresenter : PresenterBase
     base.OnPresenterInitialized();
 
     _bag = _playerAccessor.Inventory.ThoughtBag;
-    var slotCount = _bag.MaxSize; // Убедись, что свойство MaxSize есть в ThoughtBag
+    var slotCount = _bag.MaxSize;
 
     _slots = new ThoughtSlotUI[slotCount];
     for (var i = 0; i < slotCount; ++i)
     {
-      var slot = Instantiate(slotPrefab, slotsRoot);
+      var slot = Instantiate(slotPrefab, slotsRoot, true);
+      slot.transform.localScale = slotPrefab.transform.localScale;
       slot.SourceBag = _bag;
 
       // ИСПОЛЬЗУЕМ НОВЫЕ ИМЕНА СВОЙСТВ
       slot.SourceArtifactInstance = null;
-      slot.ArtifactSlotIndex = i;
+      slot.ArtifactSlotIndex = -1;
+      slot.BagSlotIndex = i;
 
       _slots[i] = slot;
     }
+
+    if (inventoryTooltip != null)
+      inventoryTooltip.Initialize(_bag);
 
     _bag.OnThoughtsChanged += RefreshDisplay;
     RefreshDisplay();
@@ -53,5 +64,15 @@ public class ThoughtInventoryPresenter : PresenterBase
     var thoughts = _bag.Thoughts;
     for (var i = 0; i < _slots.Length; ++i)
       _slots[i].SetData(i < thoughts.Count ? thoughts[i] : null);
+
+    if (bagCapacityText != null)
+    {
+      int occupied = 0;
+      for (int i = 0; i < thoughts.Count; ++i)
+      {
+        if (thoughts[i] != null) ++occupied;
+      }
+      bagCapacityText.text = $"{occupied}/{_bag.MaxSize}";
+    }
   }
 }

@@ -1,163 +1,225 @@
 using CherryFramework.DependencyManager;
+using InsideVentura.World;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class DragAndDropManager : InjectMonoBehaviour
 {
-  [SerializeField]
-  private Canvas rootCanvas;
+    [SerializeField]
+    private Canvas rootCanvas;
 
-  private Thought _draggedThought;
+    [SerializeField]
+    private GameObject dragVisualPrefab;
 
-  private GameObject _dragVisual;
-  private RectTransform _dragVisualRect;
-  private ThoughtSlotUI _sourceSlot;
+    [SerializeField]
+    private EncounterManager encounterManager;
 
-  protected override void OnEnable()
-  {
-    base.OnEnable();
-  }
+    private Thought _draggedThought;
 
-  public void StartDrag(ThoughtSlotUI sourceSlot, PointerEventData eventData)
-  {
-    _sourceSlot = sourceSlot;
-    _draggedThought = sourceSlot.CurrentThought;
+    private GameObject _dragVisual;
+    private RectTransform _dragVisualRect;
+    private ThoughtSlotUI _sourceSlot;
 
-    CreateDragVisual(sourceSlot);
-    MoveDragVisual(eventData);
-  }
-
-  public void OnDrag(PointerEventData eventData)
-  {
-    MoveDragVisual(eventData);
-  }
-
-  public void EndDrag(PointerEventData eventData)
-  {
-    if (_sourceSlot == null)
-      return;
-
-    ThoughtSlotUI targetSlot = null;
-
-    var entered = eventData.pointerEnter;
-    if (entered != null)
-      targetSlot = entered.GetComponentInParent<ThoughtSlotUI>();
-
-    if (targetSlot != null && targetSlot != _sourceSlot)
-      TryTransferThought(_sourceSlot, targetSlot);
-
-    CleanUp();
-  }
-
-  private bool TryTransferThought(ThoughtSlotUI source, ThoughtSlotUI target)
-  {
-    if (_draggedThought == null)
+    public void StartDrag(ThoughtSlotUI sourceSlot, PointerEventData eventData)
     {
-      Debug.LogWarning("[DragDrop] Кешированная мысль null.");
-      return false;
+      if (encounterManager.IsEncounterActive)
+      {
+        return;
+      }
+
+      _sourceSlot = sourceSlot;
+      _draggedThought = sourceSlot.CurrentThought;
+
+      CreateDragVisual(sourceSlot);
+      MoveDragVisual(eventData);
     }
 
-    // Проверяем совместимость через инстанс
-    if (
-      target.SourceArtifactInstance != null
-      && !IsCompatible(_draggedThought, target.SourceArtifactInstance)
-    )
+    public void OnDrag(PointerEventData eventData) => MoveDragVisual(eventData);
+
+    public void EndDrag(PointerEventData eventData)
     {
-      Debug.Log("[DragDrop] Мысль несовместима с артефактом.");
-      return false;
+        if (_sourceSlot == null)
+          return;
+
+        ThoughtSlotUI targetSlot = FindNearestValidSlot(eventData);
+
+        if (targetSlot != null && targetSlot != _sourceSlot)
+            TryTransferThought(_sourceSlot, targetSlot);
+
+        CleanUp();
     }
 
-    var swapThought = target.CurrentThought;
+    private ThoughtSlotUI FindNearestValidSlot(PointerEventData eventData)
+    {
+        ThoughtSlotUI[] allSlots = FindObjectsByType<ThoughtSlotUI>(FindObjectsSortMode.None);
+        ThoughtSlotUI nearest = null;
+        float minSqrDistance = float.MaxValue;
+        Vector2 screenPos = eventData.position;
 
-    RemoveFromSource(source, _draggedThought);
+        foreach (var slot in allSlots)
+        {
+            if (slot == _sourceSlot) continue;
+            if (!slot.gameObject.activeInHierarchy) continue;
+            if (!CanPlaceThought(slot, _draggedThought)) continue;
 
-    if (!AddToTarget(target, _draggedThought))
-      return false;
+            RectTransform rect = slot.GetComponent<RectTransform>();
+            Vector2 slotScreenPos = RectTransformUtility.WorldToScreenPoint(eventData.pressEventCamera, rect.position);
+            float sqrDist = (slotScreenPos - screenPos).sqrMagnitude;
+            if (sqrDist < minSqrDistance)
+            {
+                minSqrDistance = sqrDist;
+                nearest = slot;
+            }
+        }
+        return nearest;
+    }
 
-    if (swapThought != null)
-      AddToSource(source, swapThought);
+    private bool CanPlaceThought(ThoughtSlotUI targetSlot, Thought thought)
+    {
+        if (targetSlot.SourceBag != null)
+          return true;
 
-    return true;
-  }
+        if (targetSlot.SourceArtifactInstance != null)
+          return thought.HasRightType(targetSlot.SourceArtifactInstance.BaseData);
+        return false;
+    }
 
-  private void RemoveFromSource(ThoughtSlotUI source, Thought thought)
-  {
-    if (source.SourceBag != null)
-      source.SourceBag.RemoveThought(thought);
-    else if (source.SourceArtifactInstance != null)
+    private void TryTransferThought(ThoughtSlotUI source, ThoughtSlotUI target)
+    {
+        if (_draggedThought == null) return;
+
+        Thought sourceThought = source.CurrentThought;
+        Thought targetThought = target.CurrentThought;
+
+        if (target.SourceArtifactInstance != null && !IsCompatible(sourceThought, target.SourceArtifactInstance))
+        {
+            Debug.Log("[DragDrop] Мысль несовместима с артефактом.");
+            return;
+        }
+
+        // Если двигаем из артефакта в инвентарь
+        if (source.SourceArtifactInstance != null && target.SourceBag != null)
+        {
+          // Если двигаем в слот с мыслью
+          if (targetThought != null) {
+            // Если эта мысль совместима с артефактом
+            if (IsCompatible(targetThought, source.SourceArtifactInstance)) {
+              SwapThoughts(source, target);
+              return;
+            }
+            MoveThoughtFromArtifactToUncompatible(source, target);
+            return;
+          }
+          MoveThoughtFromArtifactToEmpty(source, target);
+          return;
+        }
+
+        SwapThoughts(source, target);
+    }
+
+    private void MoveThoughtFromArtifactToEmpty(ThoughtSlotUI source, ThoughtSlotUI target) {
+      Thought sourceThought = source.CurrentThought;
+
+      ThoughtBag bag = target.SourceBag;
+      int targetIndex = target.BagSlotIndex;
+
+      bag.SetThoughtAt(targetIndex, sourceThought);
       source.SourceArtifactInstance.UnequipThought(source.ArtifactSlotIndex);
-  }
-
-  private bool AddToTarget(ThoughtSlotUI target, Thought thought)
-  {
-    if (target.SourceBag != null)
-    {
-      target.SourceBag.AddThought(thought);
-      return true;
     }
 
-    if (target.SourceArtifactInstance != null)
-    {
-      target.SourceArtifactInstance.EquipThought(thought, target.ArtifactSlotIndex);
-      return true;
+    private void MoveThoughtFromArtifactToUncompatible(ThoughtSlotUI source, ThoughtSlotUI target) {
+      Thought sourceThought = source.CurrentThought;
+      Thought targetThought = target.CurrentThought;
+
+      ThoughtBag bag = target.SourceBag;
+      int targetIndex = target.BagSlotIndex;
+
+      int nearestFreeIndex = -1;
+      int minDistance = int.MaxValue;
+      for (int i = 0; i < bag.MaxSize; ++i)
+      {
+        if (bag.Thoughts[i] == null)
+        {
+          int distance = Mathf.Abs(i - targetIndex);
+          if (distance < minDistance)
+          {
+            minDistance = distance;
+            nearestFreeIndex = i;
+          }
+        }
+      }
+
+      if (nearestFreeIndex != -1)
+      {
+        bag.SetThoughtAt(nearestFreeIndex, targetThought);
+        bag.SetThoughtAt(targetIndex, sourceThought);
+        source.SourceArtifactInstance.UnequipThought(source.ArtifactSlotIndex);
+      }
+      else
+      {
+        Debug.LogWarning("[DragDrop] Нет свободных ячеек в инвентаре для сдвига!");
+      }
     }
 
-    Debug.LogError("[DragDrop] У цели нет ни мешка, ни артефакта.");
-    return false;
-  }
+    private void SwapThoughts(ThoughtSlotUI source, ThoughtSlotUI target) {
+      Thought sourceThought = source.CurrentThought;
+      Thought targetThought = target.CurrentThought;
 
-  private void AddToSource(ThoughtSlotUI source, Thought thought)
-  {
-    if (source.SourceBag != null)
-      source.SourceBag.AddThought(thought);
-    else if (source.SourceArtifactInstance != null)
-      source.SourceArtifactInstance.EquipThought(thought, source.ArtifactSlotIndex);
-  }
+      if (source.SourceBag != null)
+        source.SourceBag.SetThoughtAt(source.BagSlotIndex, targetThought);
+      else if (source.SourceArtifactInstance != null)
+        source.SourceArtifactInstance.EquipThought(targetThought, source.ArtifactSlotIndex);
 
-  private void CreateDragVisual(ThoughtSlotUI sourceSlot)
-  {
-    _dragVisual = new GameObject("DragVisual_Thought");
-    _dragVisual.transform.SetParent(rootCanvas.transform, false);
-    _dragVisual.transform.SetAsLastSibling();
+      if (target.SourceBag != null)
+        target.SourceBag.SetThoughtAt(target.BagSlotIndex, sourceThought);
+      else if (target.SourceArtifactInstance != null)
+        target.SourceArtifactInstance.EquipThought(sourceThought, target.ArtifactSlotIndex);
+    }
 
-    var img = _dragVisual.AddComponent<Image>();
-    img.sprite = _draggedThought.InventoryIcon;
-    img.raycastTarget = false;
+    private static bool IsCompatible(Thought thought, ArtifactInstance artifact)
+        => thought.HasRightType(artifact.BaseData);
 
-    _dragVisualRect = _dragVisual.GetComponent<RectTransform>();
-    _dragVisualRect.sizeDelta = sourceSlot.GetComponent<RectTransform>().sizeDelta;
-  }
+    private void CreateDragVisual(ThoughtSlotUI sourceSlot)
+    {
+        _dragVisual = Instantiate(dragVisualPrefab, rootCanvas.transform, false);
+        _dragVisual.transform.SetAsLastSibling();
 
-  private void MoveDragVisual(PointerEventData eventData)
-  {
-    if (_dragVisual == null)
-      return;
+        var img = _dragVisual.transform.GetChild(0).GetChild(0).GetComponent<Image>(); // некрасиво
+        if (img != null)
+        {
+            img.sprite = _draggedThought.InventoryIcon;
+            img.raycastTarget = false;
+        }
 
-    RectTransformUtility.ScreenPointToLocalPointInRectangle(
-      rootCanvas.transform as RectTransform,
-      eventData.position,
-      eventData.pressEventCamera,
-      out var localPoint
-    );
+        _dragVisualRect = _dragVisual.GetComponent<RectTransform>();
+        if (_dragVisualRect != null)
+            _dragVisualRect.sizeDelta = sourceSlot.GetComponent<RectTransform>().sizeDelta;
+    }
 
-    _dragVisualRect.anchoredPosition = localPoint;
-  }
+    private void MoveDragVisual(PointerEventData eventData)
+    {
+        if (_dragVisual == null)
+          return;
 
-  private void CleanUp()
-  {
-    if (_dragVisual != null)
-      Destroy(_dragVisual);
-    _dragVisual = null;
-    _dragVisualRect = null;
-    _sourceSlot = null;
-    _draggedThought = null;
-  }
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            rootCanvas.transform as RectTransform,
+            eventData.position,
+            eventData.pressEventCamera,
+            out var localPoint
+        );
 
-  // Обновленный метод проверки совместимости
-  private static bool IsCompatible(Thought thought, ArtifactInstance artifactInstance)
-  {
-    // Делегируем логику проверки самому классу Thought, проверяя базовые данные артефакта
-    return thought.HasRightType(artifactInstance.BaseData);
-  }
+        _dragVisualRect.anchoredPosition = localPoint;
+    }
+
+    private void CleanUp()
+    {
+        if (_dragVisual != null)
+          Destroy(_dragVisual);
+
+        _dragVisual = null;
+        _dragVisualRect = null;
+        _sourceSlot = null;
+        _draggedThought = null;
+    }
 }

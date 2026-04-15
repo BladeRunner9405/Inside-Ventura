@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: 3_DamageDivide
   m_EditorClassIdentifier: Assembly-CSharp::ModifyStatEffect
   description: x0.66 DMG
+  type: 1
   statName: 1
   operationType: 1
   value: 0.66
