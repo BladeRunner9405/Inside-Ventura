@@ -21,6 +21,8 @@ public class ItemChancesData : ScriptableObject
   [Header("Особые варианты предмета (заменяют стандартный с указанным шансом)")]
   public SpecialItemVariant[] specialVariants;
 
+  public static ItemChancesData Never => CreateInstance<ItemChancesData>();
+
   public int Roll()
   {
     int count = Random.Range(baseMin, baseMax + 1);

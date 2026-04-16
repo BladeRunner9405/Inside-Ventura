@@ -12,9 +12,9 @@ public class RoomChancesData
 
   public RoomChancesData(ItemChancesData money, ItemChancesData health, ItemChancesData thoughts)
   {
-    Money = money;
-    Health = health;
-    Thoughts = thoughts;
+    Money = money ?? ItemChancesData.Never;
+    Health = health ?? ItemChancesData.Never;
+    Thoughts = thoughts ?? ItemChancesData.Never;
   }
 }
 

@@ -15,7 +15,7 @@ MonoBehaviour:
   SafeRoomChances:
     Money: {fileID: 11400000, guid: a350674341c36194692a9621854582f0, type: 2}
     Health: {fileID: 11400000, guid: f91159f6b98f6a842989a892a8d9cd71, type: 2}
-    Thoughts: {fileID: 11400000, guid: 0e8683e1378765042b684bd54a3a44a0, type: 2}
+    Thoughts: {fileID: 11400000, guid: 57b0aa4ff42676a49ac7ed36447ad627, type: 2}
   NormalRank1Chances:
     Money: {fileID: 11400000, guid: a350674341c36194692a9621854582f0, type: 2}
     Health: {fileID: 11400000, guid: f91159f6b98f6a842989a892a8d9cd71, type: 2}
