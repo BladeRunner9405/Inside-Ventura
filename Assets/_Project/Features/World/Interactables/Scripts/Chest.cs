@@ -1,4 +1,5 @@
 using System;
+using CherryFramework.DependencyManager;
 using InsideVentura.World;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -12,10 +13,12 @@ public class Chest : InteractableObject
   //[SerializeField] private GameObject manaItemPrefab;
   [SerializeField] private GameObject healthItemPrefab;
   [SerializeField] private GameObject thoughtItemPrefab;
-  [SerializeField] private Thought[]  possibleThoughts;
 
   [Header("Chances data")]
   [SerializeField] private LevelChancesData levelChances;
+
+  [Inject]
+  private ThoughtsAvaliabilityManager thoughtsAvaliabilityManager;
 
   public override void OnInteract()
   {
@@ -47,14 +50,15 @@ public class Chest : InteractableObject
 
   private void SpawnThoughts(ItemChancesData chances)
   {
-    if (thoughtItemPrefab == null || possibleThoughts == null || possibleThoughts.Length == 0)
+    if (thoughtItemPrefab == null)
       return;
 
     int count = chances.Roll();
     for (int i = 0; i < count; i++)
     {
-      // TODO: вычеркивать выбранную мысль из списка, чтобы не повторялась
-      var randomThought = possibleThoughts[Random.Range(0, possibleThoughts.Length)];
+      Thought randomThought = thoughtsAvaliabilityManager.GetRandomThought();
+      if (randomThought == null) continue;
+
       var newThought    = Instantiate(thoughtItemPrefab, GetNewSpawnPosition(), transform.rotation);
 
       newThought.GetComponent<ThoughtItem>().Setup(randomThought);
