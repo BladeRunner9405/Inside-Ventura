@@ -4,10 +4,7 @@ namespace InsideVentura.World
   {
     protected override void OnPickup()
     {
-      //if (!PlayerAccessor.Stats)
-      //  return;
-
-      // PlayerAccessor.Stats.Money += 1;
+      PlayerAccessor.Stats.Money.Change(StatOperationType.Add, 1);
     }
   }
 }
