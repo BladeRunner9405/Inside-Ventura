@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerAccessor : IPlayerData
@@ -9,9 +10,12 @@ public class PlayerAccessor : IPlayerData
   public PlayerEquipment Equipment => _player?.Equipment;
   public PlayerStats Stats => _player?.Stats;
 
+  public event Action<Player> OnPlayerRegistered;
+
   public void RegisterPlayer(Player player)
   {
     _player = player;
+    OnPlayerRegistered?.Invoke(player);
   }
 
   public void UnregisterPlayer(Player player)
@@ -25,15 +29,19 @@ public class PlayerAccessor : IPlayerData
     var stat = _player?.GetStat(statName);
     if (stat != null) return stat;
 
-    stat = Stats.GetStat(statName);
-    if (stat != null) return stat;
+    if (Stats) {
+      stat = Stats.GetStat(statName);
+      if (stat != null) return stat;
+    }
 
-    stat = Equipment.Accessory.GetStat(statName);
-    if (stat != null) return stat;
-    stat = Equipment.Heart.GetStat(statName);
-    if (stat != null) return stat;
-    stat = Equipment.Weapon.GetStat(statName);
-    if (stat != null) return stat;
+    if (Equipment) {
+      stat = Equipment.Accessory.GetStat(statName);
+      if (stat != null) return stat;
+      stat = Equipment.Heart.GetStat(statName);
+      if (stat != null) return stat;
+      stat = Equipment.Weapon.GetStat(statName);
+      if (stat != null) return stat;
+    }
 
     return null;
   }

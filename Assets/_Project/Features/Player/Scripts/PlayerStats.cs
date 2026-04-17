@@ -60,7 +60,7 @@ public class PlayerStats : BehaviourBase
     switch (statName)
     {
       case StatName.Health: return CurrentHealth;
-      case StatName.Mana:   return Mana;
+      case StatName.Mana: return Mana;
       default: return null;
     }
   }
