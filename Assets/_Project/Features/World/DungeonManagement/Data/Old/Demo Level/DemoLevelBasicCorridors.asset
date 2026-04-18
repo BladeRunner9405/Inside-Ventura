@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc0feb0fe3ca387448cff6947dd58ed6, type: 3}
+  m_Name: DemoLevelBasicCorridors
+  m_EditorClassIdentifier: Edgar.Unity::Edgar.Unity.RoomTemplatesSet
+  RoomTemplates:
+  - {fileID: 8411853151689980096, guid: 7943d14a927fd91babbf3d713868f49e, type: 3}
+  - {fileID: 8106449215217301676, guid: 0ea4f28ea132b1f62aa7b22e9e8eb5ce, type: 3}
+  - {fileID: 7228749262884133912, guid: 68d2072ef9cb2ea54ab0d07e9cdce54d, type: 3}
+  - {fileID: 4871752877431281383, guid: a671303c28f06e157bd562d4dff56d81, type: 3}
