@@ -15,14 +15,6 @@ public class DungeonManager : BehaviourBase {
   [SerializeField] private CinemachineCamera playerCamera;
   [SerializeField] private DungeonGeneratorGrid2D generator;
 
-  [Inject] private PlayerAccessor _activePlayer;
-  [Inject] private DungeonAccessor _dungeonAccessor;
-
-  protected override void OnEnable() {
-    base.OnEnable();
-    _dungeonAccessor.RegisterDungeon(this);
-  }
-
   public void Awake() {
     Random = new();
 
@@ -53,10 +45,6 @@ public class DungeonManager : BehaviourBase {
     yield return null;
 
     stopwatch.Stop();
-
-    Debug.Log("Updating CinemachineCamra Follow");
-    var entity = _activePlayer.Transform.GetComponent<Entity>();
-    playerCamera.Follow = entity != null ? entity.target : _activePlayer.Transform;
   }
 }
 
