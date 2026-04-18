@@ -23,8 +23,13 @@ public class DragAndDropManager : InjectMonoBehaviour
 
     public void StartDrag(ThoughtSlotUI sourceSlot, PointerEventData eventData)
     {
-      if (encounterManager.IsEncounterActive)
-      {
+      // DEPRECATED.
+      // if (encounterManager.IsEncounterActive)
+      // {
+      //   return;
+      // }
+
+      if (EncounterStatus.Active) {
         return;
       }
 

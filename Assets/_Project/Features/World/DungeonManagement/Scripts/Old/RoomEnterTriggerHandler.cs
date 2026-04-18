@@ -8,13 +8,7 @@ public class RoomEnterTriggerHandler : MonoBehaviour {
   }
 
   public void OnTriggerEnter2D(Collider2D otherCollider) {
-    if (_roomManagerBase == null) {
-      Debug.Log("Ya pidoras");
-    }
-
-
     if (otherCollider.gameObject.CompareTag("Player")) {
-      Debug.Log("jfdksljfsdkljfkljklj");
       _roomManagerBase?.OnRoomEnter(otherCollider.gameObject);
     }
   }

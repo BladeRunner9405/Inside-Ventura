@@ -7,38 +7,27 @@ using UnityEngine.SceneManagement;
 using Debug = UnityEngine.Debug;
 using CherryFramework.BaseClasses;
 using CherryFramework.DependencyManager;
+using Unity.Cinemachine;
 
 public class DungeonManager : BehaviourBase {
   public System.Random Random { get; private set; }
 
-  [SerializeField]
-  private InputActionAsset inputActions;
+  [SerializeField] private CinemachineCamera playerCamera;
+  [SerializeField] private DungeonGeneratorGrid2D generator;
 
+  [Inject] private PlayerAccessor _activePlayer;
   [Inject] private DungeonAccessor _dungeonAccessor;
-
-  private DungeonGeneratorGrid2D _generator;
 
   protected override void OnEnable() {
     base.OnEnable();
     _dungeonAccessor.RegisterDungeon(this);
-
-    Debug.Log("Enabling input actions...");
-    inputActions.Enable();
-  }
-
-  private void OnDisable() {
-    Debug.Log("Disabling input actions...");
-    inputActions.Disable();
   }
 
   public void Awake() {
     Random = new();
 
-    // Find the generator runner
-    _generator = GameObject.Find("Dungeon Generator").GetComponent<DungeonGeneratorGrid2D>();
-
     // Start the generator coroutine
-    StartCoroutine(GeneratorCoroutine(_generator));
+    StartCoroutine(GeneratorCoroutine(generator));
   }
 
   public void RestartLevel() {
@@ -64,6 +53,10 @@ public class DungeonManager : BehaviourBase {
     yield return null;
 
     stopwatch.Stop();
+
+    Debug.Log("Updating CinemachineCamra Follow");
+    var entity = _activePlayer.Transform.GetComponent<Entity>();
+    playerCamera.Follow = entity != null ? entity.target : _activePlayer.Transform;
   }
 }
 

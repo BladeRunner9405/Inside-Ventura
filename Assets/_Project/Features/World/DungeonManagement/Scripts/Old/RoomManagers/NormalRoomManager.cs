@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Edgar.Unity;
+using InsideVentura.World;
 using UnityEngine;
 
 public class NormalRoomManager : RoomManagerBase {
@@ -84,6 +85,7 @@ public class NormalRoomManager : RoomManagerBase {
 
     Debug.Log("Spawning enemies and closing all doors...");
     DoorsSetActive(true);
+    EncounterStatus.Active = true;
     AdvanceWave();
   }
 
@@ -93,6 +95,7 @@ public class NormalRoomManager : RoomManagerBase {
       SpawnChest();
       DoorsSetActive(false);
       _enemiesSpawned = true;
+      EncounterStatus.Active = false;
       return;
     }
 

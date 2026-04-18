@@ -78,6 +78,7 @@ namespace InsideVentura.World
           builder.PlayerStartPoint.position,
           Quaternion.identity
         );
+
         var entity = _activePlayer.GetComponent<Entity>();
         _playerCamera.Follow = entity != null ? entity.target : _activePlayer.transform;
       }
