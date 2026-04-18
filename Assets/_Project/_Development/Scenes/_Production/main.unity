@@ -1261,7 +1261,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7330905539847839026, guid: 05ad525941d09c44cb86a125d67c2543, type: 3}
       propertyPath: m_Name
-      value: CanvasItemTooltip
+      value: CanvasHUD
       objectReference: {fileID: 0}
     - target: {fileID: 8872134014147528618, guid: 05ad525941d09c44cb86a125d67c2543, type: 3}
       propertyPath: m_Pivot.x
