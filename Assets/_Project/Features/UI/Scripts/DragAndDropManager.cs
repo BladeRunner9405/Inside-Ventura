@@ -12,8 +12,8 @@ public class DragAndDropManager : InjectMonoBehaviour
     [SerializeField]
     private GameObject dragVisualPrefab;
 
-    [SerializeField]
-    private EncounterManager encounterManager;
+    // [SerializeField]
+    // private EncounterManager encounterManager;
 
     private Thought _draggedThought;
 
