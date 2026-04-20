@@ -59,7 +59,7 @@ public class DragAndDropManager : InjectMonoBehaviour
 
         foreach (var slot in allSlots)
         {
-            if (slot == _sourceSlot) continue;
+            // if (slot == _sourceSlot) continue;
             if (!slot.gameObject.activeInHierarchy) continue;
             if (!CanPlaceThought(slot, _draggedThought)) continue;
 
@@ -168,7 +168,6 @@ public class DragAndDropManager : InjectMonoBehaviour
 
       if (source.SourceBag != null)
       {
-        source.SourceBag.RemoveThought(sourceThought);
         source.SourceBag.SetThoughtAt(source.BagSlotIndex, targetThought);
       }
       else if (source.SourceArtifactInstance != null)
@@ -179,7 +178,6 @@ public class DragAndDropManager : InjectMonoBehaviour
 
       if (target.SourceBag != null)
       {
-        target.SourceBag.RemoveThought(targetThought);
         target.SourceBag.SetThoughtAt(target.BagSlotIndex, sourceThought);
       }
       else if (target.SourceArtifactInstance != null) {

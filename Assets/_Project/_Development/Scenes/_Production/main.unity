@@ -152,6 +152,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanvasMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 3290773116864761124, guid: b387098fa40b10b48840d3f9502b7ee7, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3290773116864761124, guid: b387098fa40b10b48840d3f9502b7ee7, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3290773116864761124, guid: b387098fa40b10b48840d3f9502b7ee7, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3290773116864761124, guid: b387098fa40b10b48840d3f9502b7ee7, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3290773116864761124, guid: b387098fa40b10b48840d3f9502b7ee7, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3290773116864761124, guid: b387098fa40b10b48840d3f9502b7ee7, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5534698162448899885, guid: b387098fa40b10b48840d3f9502b7ee7, type: 3}
       propertyPath: encounterManager
       value: 

@@ -1,19 +1,39 @@
 using System;
+using System.Collections.Generic;
 using CherryFramework.DependencyManager;
+using UnityEngine;
 
 public class ThoughtsCompatibilityManager : InjectMonoBehaviour
 {
-  private ArtifactInstance _activeArtifact;
-  public ArtifactInstance ActiveArtifact => _activeArtifact;
+  private HashSet<ArtifactInstance> _activeArtifacts = new();
+  public IReadOnlyCollection<ArtifactInstance> ActiveArtifacts => _activeArtifacts;
 
-  public event Action<ArtifactInstance> OnActiveArtifactChanged;
+  public event Action<ArtifactInstance> OnActiveArtifactsChanged;
 
-  public void SetActiveArtifact(ArtifactInstance artifact)
+  public void AddActiveArtifact(ArtifactInstance artifact)
   {
-    if (_activeArtifact == artifact) return;
-    _activeArtifact = artifact;
-    OnActiveArtifactChanged?.Invoke(_activeArtifact);
+    _activeArtifacts.Add(artifact);
+    OnActiveArtifactsChanged?.Invoke(artifact);
   }
 
-  public void ClearActiveArtifact() => SetActiveArtifact(null);
+  public void RemoveActiveArtifact(ArtifactInstance artifact) {
+    _activeArtifacts.Remove(artifact);
+    OnActiveArtifactsChanged?.Invoke(artifact);
+  }
+
+  public bool ContainsArtifact(ArtifactInstance artifact) {
+    return _activeArtifacts.Contains(artifact);
+  }
+
+  public bool IfNoActiveArtifacts() {
+    return _activeArtifacts.Count == 0;
+  }
+
+  /*public void ActivateForThought(ThoughtType thoughtType) {
+    if (thoughtType == ThoughtType.Absolute || thoughtType == ThoughtType.Fluid) {
+      return;
+    }
+
+    //...
+  }*/
 }

@@ -59,14 +59,14 @@ public class ArtifactSlotsUI : InjectMonoBehaviour
   public void ToggleActivity() => _pinned = !_pinned;
 
   public void SetAsActive() {
-    if (_thoughtsCompatibilityManager.ActiveArtifact == null)
-      _thoughtsCompatibilityManager.SetActiveArtifact(ArtifactInstance);
+    if (_thoughtsCompatibilityManager.IfNoActiveArtifacts())
+      _thoughtsCompatibilityManager.AddActiveArtifact(ArtifactInstance);
   }
 
   public void UnsetAsActive()
   {
-    if (!_pinned && _thoughtsCompatibilityManager.ActiveArtifact == ArtifactInstance)
-      _thoughtsCompatibilityManager.ClearActiveArtifact();
+    if (!_pinned && _thoughtsCompatibilityManager.ContainsArtifact(ArtifactInstance))
+      _thoughtsCompatibilityManager.RemoveActiveArtifact(ArtifactInstance);
   }
 
   private void HandleThoughtEquipped(int slotIndex, Thought thought)

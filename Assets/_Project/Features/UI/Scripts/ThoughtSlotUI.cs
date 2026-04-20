@@ -53,30 +53,34 @@ public class ThoughtSlotUI
   {
     base.OnEnable();
 
-    _thoughtsCompatibilityManager.OnActiveArtifactChanged += OnActiveArtifactChanged;
+    _thoughtsCompatibilityManager.OnActiveArtifactsChanged += OnActiveArtifactChanged;
     RefreshVisual();
   }
 
   private void OnDisable()
   {
-    _thoughtsCompatibilityManager.OnActiveArtifactChanged -= OnActiveArtifactChanged;
+    _thoughtsCompatibilityManager.OnActiveArtifactsChanged -= OnActiveArtifactChanged;
   }
 
   private void OnActiveArtifactChanged(ArtifactInstance artifact) => RefreshVisual();
 
-  public bool IsCompatibleWithActiveArtifact()
+  public bool IsCompatibleWithActiveArtifacts()
   {
-    if (!SourceBag || !data) return true;
+    if (!data) return true;
 
-    var activeArtifact = _thoughtsCompatibilityManager.ActiveArtifact;
-    if (activeArtifact == null) return true;
+    if (_thoughtsCompatibilityManager.IfNoActiveArtifacts()) return true;
 
-    return data.HasRightType(activeArtifact.BaseData);
+    foreach (var activeArtifact in _thoughtsCompatibilityManager.ActiveArtifacts) {
+      if (data.HasRightType(activeArtifact.BaseData)) {
+        return true;
+      }
+    }
+    return false;
   }
 
   public void OnBeginDrag(PointerEventData eventData)
   {
-    if (!data || !_dragDropManager || !IsCompatibleWithActiveArtifact())
+    if (!data || !_dragDropManager || !IsCompatibleWithActiveArtifacts())
       return;
 
     _dragDropManager.StartDrag(this, eventData);
@@ -117,7 +121,7 @@ public class ThoughtSlotUI
     if (data)
     {
       iconImage.sprite = data.InventoryIcon;
-      iconImage.color = IsCompatibleWithActiveArtifact() ? Color.white : new Color(1, 1, 1, 0.3f);
+      iconImage.color = IsCompatibleWithActiveArtifacts() ? Color.white : new Color(1, 1, 1, 0.3f);
       if (mask) mask.color = Color.white;
 
       tooltip.raycastTarget = true;
@@ -131,4 +135,10 @@ public class ThoughtSlotUI
       tooltip.raycastTarget = false;
     }
   }
+
+  /*public void ToggleArtifacts() {
+    if (!data) return;
+
+    _thoughtsCompatibilityManager.ActivateForThought(data.Type);
+  }*/
 }

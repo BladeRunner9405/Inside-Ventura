@@ -20,11 +20,11 @@ public class ArtifactActivityToggler : InjectMonoBehaviour
   }
 
   private void Start() {
-    _thoughtsCompatibilityManager.OnActiveArtifactChanged += Toggle;
+    _thoughtsCompatibilityManager.OnActiveArtifactsChanged += Toggle;
   }
 
   private void Toggle(ArtifactInstance artifactInstance) {
-    if (_thoughtsCompatibilityManager.ActiveArtifact == null) {
+    if (_thoughtsCompatibilityManager.IfNoActiveArtifacts()) {
       _button.interactable = true;
       _trigger.enabled = true;
       return;

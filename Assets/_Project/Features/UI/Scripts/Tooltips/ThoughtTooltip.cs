@@ -13,7 +13,7 @@ public class ThoughtTooltip : TooltipBase
 
   public override void ShowTooltip()
   {
-    if (_globalTooltip == null || _slot.CurrentThought == null || !_slot.IsCompatibleWithActiveArtifact())
+    if (_globalTooltip == null || _slot.CurrentThought == null || !_slot.IsCompatibleWithActiveArtifacts())
       return;
 
     if (outline != null)
