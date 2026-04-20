@@ -1,7 +1,7 @@
 using CherryFramework.DependencyManager;
 using UnityEngine;
 
-namespace InsideVentura.World
+namespace InsideVentura.World.v1
 {
   public class ThoughtItem : Item
   {

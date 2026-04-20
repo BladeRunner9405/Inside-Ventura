@@ -1,4 +1,4 @@
-using InsideVentura.World;
+using InsideVentura.World.v1;
 using TMPro;
 using UnityEngine;
 

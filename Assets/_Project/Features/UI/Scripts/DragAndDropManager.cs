@@ -1,5 +1,5 @@
 using CherryFramework.DependencyManager;
-using InsideVentura.World;
+using InsideVentura.World.v1;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;

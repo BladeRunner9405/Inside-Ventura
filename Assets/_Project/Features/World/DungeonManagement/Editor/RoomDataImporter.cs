@@ -5,7 +5,7 @@ using System.IO;
 using System.Text;
 using System.Collections.Generic;
 
-namespace InsideVentura.World.Editor
+namespace InsideVentura.World.v1.Editor
 {
   public class RoomDataImporter : EditorWindow
   {

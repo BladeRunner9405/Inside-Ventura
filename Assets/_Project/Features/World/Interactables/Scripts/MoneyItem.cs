@@ -1,4 +1,4 @@
-namespace InsideVentura.World
+namespace InsideVentura.World.v1
 {
   public class MoneyItem : Item
   {
