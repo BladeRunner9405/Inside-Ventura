@@ -7,10 +7,13 @@ public class TooltipText : InjectMonoBehaviour
 {
   private TextMeshProUGUI _text;
 
+  private void Awake() {
+    _text = GetComponent<TextMeshProUGUI>();
+  }
+
   protected override void OnEnable()
   {
     base.OnEnable();
-    _text = GetComponent<TextMeshProUGUI>();
 
     if (!DependencyContainer.Instance.HasDependency<TooltipText>())
       DependencyContainer.Instance.BindAsSingleton(this);
@@ -18,5 +21,8 @@ public class TooltipText : InjectMonoBehaviour
 
   public void SetText(string text) => _text.text = text;
 
-  public void Clear() => _text.text = string.Empty;
+  public void Clear() {
+    if (!_text) return;
+    _text.text = string.Empty;
+  }
 }

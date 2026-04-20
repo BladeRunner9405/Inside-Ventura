@@ -61,11 +61,12 @@ public class ThoughtSlotUI
 
   private void OnActiveArtifactChanged(ArtifactInstance artifact) => RefreshVisual();
 
-  public bool IsCompatibleWithArtifact()
+  public bool IsCompatibleWithActiveArtifact()
   {
     if (!SourceBag || !data) return true;
 
     var activeArtifact = _thoughtsCompatibilityManager.ActiveArtifact;
+    Debug.Log(activeArtifact);
     if (activeArtifact == null) return true;
 
     return data.HasRightType(activeArtifact.BaseData);
@@ -73,7 +74,7 @@ public class ThoughtSlotUI
 
   public void OnBeginDrag(PointerEventData eventData)
   {
-    if (!data || !_dragDropManager || !IsCompatibleWithArtifact())
+    if (!data || !_dragDropManager || !IsCompatibleWithActiveArtifact())
       return;
 
     _dragDropManager.StartDrag(this, eventData);
@@ -114,7 +115,7 @@ public class ThoughtSlotUI
     if (data)
     {
       iconImage.sprite = data.InventoryIcon;
-      iconImage.color = IsCompatibleWithArtifact() ? Color.white : new Color(1, 1, 1, 0.3f);
+      iconImage.color = IsCompatibleWithActiveArtifact() ? Color.white : new Color(1, 1, 1, 0.3f);
       if (mask) mask.color = Color.white;
     }
     else

@@ -167,14 +167,25 @@ public class DragAndDropManager : InjectMonoBehaviour
       Thought targetThought = target.CurrentThought;
 
       if (source.SourceBag != null)
+      {
+        source.SourceBag.RemoveThought(sourceThought);
         source.SourceBag.SetThoughtAt(source.BagSlotIndex, targetThought);
+      }
       else if (source.SourceArtifactInstance != null)
+      {
+        source.SourceArtifactInstance.UnequipThought(source.ArtifactSlotIndex);
         source.SourceArtifactInstance.EquipThought(targetThought, source.ArtifactSlotIndex);
+      }
 
       if (target.SourceBag != null)
+      {
+        target.SourceBag.RemoveThought(targetThought);
         target.SourceBag.SetThoughtAt(target.BagSlotIndex, sourceThought);
-      else if (target.SourceArtifactInstance != null)
+      }
+      else if (target.SourceArtifactInstance != null) {
+        target.SourceArtifactInstance.UnequipThought(target.ArtifactSlotIndex);
         target.SourceArtifactInstance.EquipThought(sourceThought, target.ArtifactSlotIndex);
+      }
     }
 
     private static bool IsCompatible(Thought thought, ArtifactInstance artifact)

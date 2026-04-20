@@ -678,7 +678,6 @@ GameObject:
   - component: {fileID: 1804965346525422389}
   - component: {fileID: 2117982702547862490}
   - component: {fileID: 2020847766555715305}
-  - component: {fileID: 8960851103067054146}
   m_Layer: 5
   m_Name: CanvasHUD
   m_TagString: Untagged
@@ -772,25 +771,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &8960851103067054146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7330905539847839026}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7134af294c591934c80c23a5edd5b73d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HUDManager
-  moneyText: {fileID: 3896814390375389320}
-  heartsContainer: {fileID: 8496005188018616012}
-  cooldownFillImage: {fileID: 3619348919853713597}
-  heartPrefab: {fileID: 3767363348292876967, guid: c5cced69d1e104443aa78154da2675c2, type: 3}
-  cooldownActiveColor: {r: 1, g: 0, b: 0, a: 1}
-  cooldownReadyColor: {r: 0.58431375, g: 0.85098046, b: 0.854902, a: 1}
-  readyFlashDuration: 0.3
 --- !u!1 &7439240200925581948
 GameObject:
   m_ObjectHideFlags: 0

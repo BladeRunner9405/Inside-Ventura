@@ -10,6 +10,7 @@ public class PlayerAccessor : IPlayerData
   public PlayerEquipment Equipment => _player?.Equipment;
   public PlayerStats Stats => _player?.Stats;
 
+  public bool HasPlayer => _player != null;
   public event Action<Player> OnPlayerRegistered;
 
   public void RegisterPlayer(Player player)

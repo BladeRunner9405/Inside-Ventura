@@ -58,13 +58,13 @@ public class ArtifactSlotsUI : InjectMonoBehaviour
   {
     base.OnEnable();
 
-    _thoughtsCompatibilityManager.SetActiveArtifact(_artifactInstance);
+    //_thoughtsCompatibilityManager.SetActiveArtifact(_artifactInstance);
   }
 
   protected void OnDisable()
   {
-    if (_thoughtsCompatibilityManager.ActiveArtifact == _artifactInstance)
-      _thoughtsCompatibilityManager.ClearActiveArtifact();
+    //if (_thoughtsCompatibilityManager.ActiveArtifact == _artifactInstance)
+    //  _thoughtsCompatibilityManager.ClearActiveArtifact();
   }
 
   private void HandleThoughtEquipped(int slotIndex, Thought thought)

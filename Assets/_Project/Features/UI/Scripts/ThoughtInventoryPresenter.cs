@@ -27,6 +27,8 @@ public class ThoughtInventoryPresenter : PresenterBase
     if (_bag != null)
       _bag.OnThoughtsChanged -= RefreshDisplay;
 
+    _playerAccessor.OnPlayerRegistered -= OnPlayerRegistered;
+
     base.OnDestroy();
   }
 
@@ -34,6 +36,12 @@ public class ThoughtInventoryPresenter : PresenterBase
   {
     base.OnPresenterInitialized();
 
+    _playerAccessor.OnPlayerRegistered += OnPlayerRegistered;
+
+    if (_playerAccessor.HasPlayer) OnPlayerRegistered(null);
+  }
+
+  private void OnPlayerRegistered(Player player) {
     _bag = _playerAccessor.Inventory.ThoughtBag;
     var slotCount = _bag.MaxSize;
 

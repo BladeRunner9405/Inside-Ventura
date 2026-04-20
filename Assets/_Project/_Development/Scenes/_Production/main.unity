@@ -135,6 +135,11 @@ Canvas:
   m_CorrespondingSourceObject: {fileID: 6889775766776634431, guid: b387098fa40b10b48840d3f9502b7ee7, type: 3}
   m_PrefabInstance: {fileID: 365026524}
   m_PrefabAsset: {fileID: 0}
+--- !u!224 &189847828 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 8496005188018616012, guid: 05ad525941d09c44cb86a125d67c2543, type: 3}
+  m_PrefabInstance: {fileID: 6348218497971151294}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &365026524
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -147,14 +152,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanvasMenu
       objectReference: {fileID: 0}
-    - target: {fileID: 4836405020602751043, guid: b387098fa40b10b48840d3f9502b7ee7, type: 3}
-      propertyPath: m_Interactable
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5534698162448899885, guid: b387098fa40b10b48840d3f9502b7ee7, type: 3}
       propertyPath: encounterManager
       value: 
       objectReference: {fileID: 2114132546952618894}
+    - target: {fileID: 5920310730956470844, guid: b387098fa40b10b48840d3f9502b7ee7, type: 3}
+      propertyPath: 'objectsToToggle.Array.data[3]'
+      value: 
+      objectReference: {fileID: 1563811706}
     - target: {fileID: 5920310730956470844, guid: b387098fa40b10b48840d3f9502b7ee7, type: 3}
       propertyPath: 'objectsToToggle.Array.data[5]'
       value: 
@@ -237,10 +242,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7824407142371358878, guid: b387098fa40b10b48840d3f9502b7ee7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8089035020848930472, guid: b387098fa40b10b48840d3f9502b7ee7, type: 3}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -428,7 +429,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2073779164012293094, guid: 891ea0f14e6ef5242af27e2b48516685, type: 3}
       propertyPath: m_Name
-      value: DragAndDrop
+      value: UIManagers
       objectReference: {fileID: 0}
     - target: {fileID: 3393670219704094787, guid: 891ea0f14e6ef5242af27e2b48516685, type: 3}
       propertyPath: m_LocalPosition.x
@@ -486,6 +487,18 @@ PrefabInstance:
       propertyPath: tooltipBackground
       value: 
       objectReference: {fileID: 1083378932}
+    - target: {fileID: 8096889020437098053, guid: 891ea0f14e6ef5242af27e2b48516685, type: 3}
+      propertyPath: moneyText
+      value: 
+      objectReference: {fileID: 1201109505}
+    - target: {fileID: 8096889020437098053, guid: 891ea0f14e6ef5242af27e2b48516685, type: 3}
+      propertyPath: heartsContainer
+      value: 
+      objectReference: {fileID: 189847828}
+    - target: {fileID: 8096889020437098053, guid: 891ea0f14e6ef5242af27e2b48516685, type: 3}
+      propertyPath: cooldownFillImage
+      value: 
+      objectReference: {fileID: 1040229775}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -652,6 +665,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1040229775 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3619348919853713597, guid: 05ad525941d09c44cb86a125d67c2543, type: 3}
+  m_PrefabInstance: {fileID: 6348218497971151294}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
 --- !u!114 &1079559157 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 762032024894316809, guid: 05ad525941d09c44cb86a125d67c2543, type: 3}
@@ -844,6 +868,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1201109505 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3896814390375389320, guid: 05ad525941d09c44cb86a125d67c2543, type: 3}
+  m_PrefabInstance: {fileID: 6348218497971151294}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!114 &1329443118 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8291694797438841532, guid: 05ad525941d09c44cb86a125d67c2543, type: 3}
@@ -1263,6 +1298,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanvasHUD
       objectReference: {fileID: 0}
+    - target: {fileID: 7330905539847839026, guid: 05ad525941d09c44cb86a125d67c2543, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8872134014147528618, guid: 05ad525941d09c44cb86a125d67c2543, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1343,7 +1382,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8960851103067054146, guid: 05ad525941d09c44cb86a125d67c2543, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

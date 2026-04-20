@@ -20,6 +20,17 @@ public class ThoughtEquipmentPresenter : PresenterBase
   protected override void OnEnable()
   {
     base.OnEnable();
+
+    _playerAccessor.OnPlayerRegistered += OnPlayerRegistered;
+    
+    if (_playerAccessor.HasPlayer) OnPlayerRegistered(null);
+  }
+
+  protected void OnDisable() {
+    _playerAccessor.OnPlayerRegistered -= OnPlayerRegistered;
+  }
+
+  private void OnPlayerRegistered(Player player) {
     RefreshSlots();
   }
 

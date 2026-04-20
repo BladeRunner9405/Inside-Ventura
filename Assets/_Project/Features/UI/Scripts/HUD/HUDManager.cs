@@ -46,6 +46,7 @@ public class HUDManager : BehaviourBase {
 
   protected void OnDisable() {
     Bindings.ReleaseAllBindings();
+    _playerAccessor.OnPlayerRegistered -= OnPlayerRegistered;
   }
 
   private void OnPlayerRegistered(Player player) {
