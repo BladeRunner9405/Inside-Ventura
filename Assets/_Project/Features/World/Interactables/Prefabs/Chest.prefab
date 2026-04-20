@@ -53,14 +53,7 @@ MonoBehaviour:
   moneyItemPrefab: {fileID: 1631135601703695119, guid: 1ce0be89c7cf3554f8c4b8ddaadfd030, type: 3}
   healthItemPrefab: {fileID: 1631135601703695119, guid: d445976fb0e63e24c96ed529fc0b05d3, type: 3}
   thoughtItemPrefab: {fileID: 1631135601703695119, guid: 1a7c29cb97ba4b34bbe2653dfd40abac, type: 3}
-  possibleThoughts:
-  - {fileID: 11400000, guid: 1599944266bf5f34b88f65be7e12f146, type: 2}
-  - {fileID: 11400000, guid: 4226a9a5faebde8479e53fab2e04cb6e, type: 2}
-  - {fileID: 11400000, guid: ff98e578b9b01e346b3440a0a8ef3bde, type: 2}
-  - {fileID: 11400000, guid: 1a8de9b8c77d4c64ea7c73777c15c3ba, type: 2}
-  - {fileID: 11400000, guid: 8c9334e017d74254fa691fbdea5f9889, type: 2}
-  - {fileID: 11400000, guid: d4b3892ed89d0a54bbd1d8713562ebfd, type: 2}
-  levelChances: {fileID: 11400000, guid: 74321fad4fabe99499974e71925d7aa2, type: 2}
+  levelChances: {fileID: 11400000, guid: e6b69bc59dd4abc48b34725475abb716, type: 2}
 --- !u!61 &5034061477902459261
 BoxCollider2D:
   m_ObjectHideFlags: 0
