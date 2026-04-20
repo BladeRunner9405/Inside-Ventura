@@ -125,9 +125,6 @@ public class NormalRoomManager : RoomManagerBase {
         door.SetOpen();
       }
     }
-    // foreach (var door in _doors) {
-    //   door.SetActive(active);
-    // }
   }
 
   private void SpawnChest() {

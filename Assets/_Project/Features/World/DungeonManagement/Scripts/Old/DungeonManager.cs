@@ -2,17 +2,12 @@
 using System.Diagnostics;
 using Edgar.Unity;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using Debug = UnityEngine.Debug;
 using CherryFramework.BaseClasses;
-using CherryFramework.DependencyManager;
-using Unity.Cinemachine;
 
 public class DungeonManager : BehaviourBase {
   public System.Random Random { get; private set; }
 
-  [SerializeField] private CinemachineCamera playerCamera;
   [SerializeField] private DungeonGeneratorGrid2D generator;
 
   public void Awake() {

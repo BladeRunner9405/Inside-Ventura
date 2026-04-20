@@ -938,7 +938,7 @@ GameObject:
   - component: {fileID: 1915803139702524789}
   - component: {fileID: 2967677336134829665}
   - component: {fileID: 8976659332460837726}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3178,7 +3178,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5562937006458292782, guid: 9655fa713d6861f49be5419dc8e3071c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.35
+      value: 1.45
       objectReference: {fileID: 0}
     - target: {fileID: 5562937006458292782, guid: 9655fa713d6861f49be5419dc8e3071c, type: 3}
       propertyPath: m_LocalPosition.z

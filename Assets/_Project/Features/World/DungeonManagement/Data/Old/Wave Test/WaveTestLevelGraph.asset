@@ -62,8 +62,7 @@ MonoBehaviour:
   - {fileID: -7809479690454347115}
   - {fileID: -4469288184064544373}
   CorridorIndividualRoomTemplates: []
-  CorridorRoomTemplateSets:
-  - {fileID: 11400000, guid: 04070c089613f78e9bc52f20037c5dc9, type: 2}
+  CorridorRoomTemplateSets: []
   DefaultIndividualRoomTemplates: []
   DefaultRoomTemplateSets: []
   Rooms:

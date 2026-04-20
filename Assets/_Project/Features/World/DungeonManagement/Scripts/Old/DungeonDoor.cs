@@ -49,10 +49,18 @@ public class DungeonDoor : InteractableObject {
   public override void OnInteract() {
     if (!_locked) {
       // Find the position to teleport the player, hide this door and show the other.
+      var player = PlayerAccessor.Transform;
+
       Vector2Int dir = _doorInstance.FacingDirection * 2;
-      PlayerAccessor.Transform.position = transform.position + new Vector3(dir.x, dir.y, 0);
-      _doorInstance.ConnectedRoomInstance.RoomTemplateInstance.gameObject.SetActive(true);
-      transform.parent.gameObject.SetActive(false);
+      player.position = transform.position + new Vector3(dir.x, dir.y, 0);
+
+      var otherTemplate = _doorInstance.ConnectedRoomInstance.RoomTemplateInstance;
+      otherTemplate.gameObject.SetActive(true);
+      otherTemplate.GetComponent<RoomManagerBase>().OnRoomEnter(player.gameObject);
+
+      var thisRoomManager = transform.parent.GetComponent<RoomManagerBase>();
+      thisRoomManager.OnRoomLeave(player.gameObject);
+      thisRoomManager.gameObject.SetActive(false);
     }
     else {
       Debug.Log("<color=red>Дверь заперта!</color> Нужно победить всех врагов.");
