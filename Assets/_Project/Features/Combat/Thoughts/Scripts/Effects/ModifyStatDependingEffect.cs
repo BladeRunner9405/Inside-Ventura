@@ -46,6 +46,8 @@ public class ModifyStatDependingEffect : Effect
     if (stat is ModifiableStat modifiableStat)
     {
       modifiableStat.AddModifier(new StatModifier(operationType, finalValue, this));
+
+      artifactInstance.PlayerAccessor?.NotifyStatModified(statName);
       Debug.Log($"Добавлен модификатор на {statName}: {finalValue}");
     }
   }
@@ -57,6 +59,7 @@ public class ModifyStatDependingEffect : Effect
     {
       modifiableStat.RemoveModifiersFromSource(this);
     }
+    artifactInstance.PlayerAccessor?.NotifyStatModified(statName);
     Debug.Log($"Снят модификатор с {statName}");
   }
 }

@@ -24,6 +24,8 @@ public class ModifyStatEffect : Effect
       // Передаем `this` как источник модификатора
       var modifier = new StatModifier(operationType, value, this);
       modifiableStat.AddModifier(modifier);
+
+      artifactInstance.PlayerAccessor?.NotifyStatModified(statName);
       Debug.Log($"Добавлен модификатор на {statName}: {value}");
     }
   }
@@ -35,6 +37,8 @@ public class ModifyStatEffect : Effect
     {
       // Удаляем все модификаторы, которые были добавлены именно ЭТИМ эффектом
       modifiableStat.RemoveModifiersFromSource(this);
+
+      artifactInstance.PlayerAccessor?.NotifyStatModified(statName);
       Debug.Log($"Снят модификатор с {statName}");
     }
   }

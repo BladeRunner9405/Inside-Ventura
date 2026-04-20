@@ -11,23 +11,20 @@ public class HeartView : MonoBehaviour {
   [SerializeField] private Sprite fullSprite;
   [SerializeField] private Sprite halfSprite;
   [SerializeField] private Sprite emptySprite;
-  private Image _image;
-
-  private void Awake() {
-    _image = GetComponent<Image>();
-  }
+  [SerializeField] private Image image;
 
   public void SetState(HeartState state) {
-    if (_image == null) return;
+    if (image == null)
+      return;
     switch (state) {
       case HeartState.Full:
-        _image.sprite = fullSprite;
+        image.sprite = fullSprite;
         break;
       case HeartState.Half:
-        _image.sprite = halfSprite;
+        image.sprite = halfSprite;
         break;
       case HeartState.Empty:
-        _image.sprite = emptySprite;
+        image.sprite = emptySprite;
         break;
     }
   }

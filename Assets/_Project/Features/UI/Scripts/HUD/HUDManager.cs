@@ -22,7 +22,7 @@ public class HUDManager : BehaviourBase {
   [SerializeField] private float readyFlashDuration = 0.3f;
 
   private Accessor<float> _healthAccessor;
-  private float _lastMaxHealth = -1f;
+  private float _lastMaxHealth;
 
   [Inject] private ModelService _modelService;
   private Accessor<float> _moneyAccessor;
@@ -64,6 +64,18 @@ public class HUDManager : BehaviourBase {
       Bindings.CreateBinding(_healthAccessor, UpdateHealthUI);
       UpdateHealthUI(_healthAccessor.Value);
     }
+
+    _playerAccessor.OnStatModified += OnPlayerStatModified;
+  }
+
+  private void OnPlayerStatModified(StatName statName)
+  {
+    switch (statName)
+    {
+      case StatName.MaxHealth:
+        UpdateHealthUI(_healthAccessor.Value);
+        break;
+    }
   }
 
   private void UpdateMoneyUI(float money) {
@@ -71,51 +83,61 @@ public class HUDManager : BehaviourBase {
       moneyText.text = Mathf.FloorToInt(money).ToString();
   }
 
-  private void UpdateHealthUI(float currentHealth) {
-    var maxHealth = GetMaxHealth();
-    UpdateHearts(currentHealth, maxHealth);
+  private float GetMaxHealth() {
+    return _playerAccessor.GetStatValue(StatName.MaxHealth);
   }
 
-  private float GetMaxHealth() {
-    return _playerAccessor.GetStat(StatName.MaxHealth).Value;
+  private void UpdateHealthUI(float currentHealth) {
+    UpdateHearts(currentHealth, GetMaxHealth());
   }
 
   private void UpdateHearts(float currentHealth, float maxHealth) {
     if (heartsContainer == null || heartPrefab == null) return;
 
-    if (Math.Abs(_lastMaxHealth - maxHealth) > 0.01f) {
-      _lastMaxHealth = maxHealth;
-      RebuildHearts();
-    }
+    RebuildHearts(maxHealth);
 
-    var totalHearts = heartsContainer.childCount;
-    if (totalHearts == 0) return;
-
-    var healthPerHeart = maxHealth / totalHearts;
-    for (var i = 0; i < totalHearts; ++i) {
+    for (var i = 0; i < maxHealth; ++i) {
       var heart = heartsContainer.GetChild(i);
       var heartImage = heart.GetComponent<Image>();
       if (heartImage == null) continue;
 
-      var heartStartHealth = i * healthPerHeart;
-      var heartEndHealth = (i + 1) * healthPerHeart;
-      var heartHealth = Mathf.Clamp(currentHealth - heartStartHealth, 0, healthPerHeart);
+      var heartHealth = Mathf.Clamp(currentHealth - i, 0f, 1f);
 
       if (heartHealth <= 0)
         SetHeartSprite(heartImage, HeartState.Empty);
-      else if (heartHealth >= healthPerHeart)
+      else if (heartHealth >= 1)
         SetHeartSprite(heartImage, HeartState.Full);
       else
         SetHeartSprite(heartImage, HeartState.Half);
     }
   }
 
-  private void RebuildHearts() {
-    foreach (Transform child in heartsContainer)
-      Destroy(child.gameObject);
+  private void RebuildHearts(float maxHealth) {
+    var lastHeartsCount = Mathf.CeilToInt(_lastMaxHealth);
+    var heartsCount = Mathf.CeilToInt(maxHealth);
 
-    var heartCount = Mathf.CeilToInt(_lastMaxHealth);
-    for (var i = 0; i < heartCount; ++i) Instantiate(heartPrefab, heartsContainer);
+    if (lastHeartsCount == heartsCount) return;
+
+    if (lastHeartsCount > heartsCount) {
+      Debug.Log(1);
+      for (var i = 0; i < lastHeartsCount - heartsCount; ++i) {
+        var heart = heartsContainer.GetChild(heartsCount + i);
+        heart.gameObject.SetActive(false);
+      }
+    }
+    else if (lastHeartsCount < heartsCount) {
+      for (var i = 0; i < heartsCount - lastHeartsCount; ++i) {
+        if (heartsContainer.childCount - lastHeartsCount - i > 0) {
+          var heart = heartsContainer.GetChild(lastHeartsCount + i);
+          heart.gameObject.SetActive(true);
+        }
+        else {
+          Instantiate(heartPrefab, heartsContainer);
+        }
+      }
+    }
+
+    _lastMaxHealth = maxHealth;
   }
 
   private void SetHeartSprite(Image image, HeartState state) {

@@ -11,6 +11,7 @@ public class PlayerAccessor : IPlayerData
   public PlayerStats Stats => _player?.Stats;
 
   public event Action<Player> OnPlayerRegistered;
+  public event Action<StatName> OnStatModified;
 
   public void RegisterPlayer(Player player)
   {
@@ -44,6 +45,17 @@ public class PlayerAccessor : IPlayerData
     }
 
     return null;
+  }
+
+  public float GetStatValue(StatName statName) {
+    if (GetStat(statName) is ModifiableStat modifiableStat) return modifiableStat.ModifiedValue;
+    if (GetStat(statName) is DataModelStat dataModelStat) return dataModelStat.Value;
+    return GetStat(statName).Value;
+  }
+
+  public void NotifyStatModified(StatName statName)
+  {
+    OnStatModified?.Invoke(statName);
   }
 
   public void Dash(Vector2 direction, float distance, float duration)
