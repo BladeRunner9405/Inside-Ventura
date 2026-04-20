@@ -25,7 +25,9 @@ public abstract class Entity : InjectMonoBehaviour
 
   private readonly RaycastHit2D[] _hitBuffer = new RaycastHit2D[16];
   private ContactFilter2D _contactFilter;
-  private Collider2D _col;
+  [Tooltip("Это коллайдер для обработки столкновений со стенами")]
+  [SerializeField] private Collider2D collider;
+  [SerializeField] private Collider2D hitbox;
   private Rigidbody2D _rb;
 
   // События для визуализации и систем
@@ -92,7 +94,6 @@ public abstract class Entity : InjectMonoBehaviour
   protected virtual void Awake()
   {
     _rb = GetComponent<Rigidbody2D>();
-    _col = GetComponent<Collider2D>();
 
     _contactFilter.useTriggers = false;
     _contactFilter.SetLayerMask(LayerMask.GetMask("Obstacle"));
@@ -112,44 +113,64 @@ public abstract class Entity : InjectMonoBehaviour
 
   public virtual void TakeDamage(float amount)
   {
-    if (IsDead || IsInvulnerable || amount <= 0)
-      return;
+      if (IsDead || IsInvulnerable || amount <= 0)
+        return;
 
-    var hasDodged = UnityEngine.Random.value <= (dodgeChance.ModifiedValue);
-    if (hasDodged)
-    {
-      OnTakeDamage?.Invoke(0f);
-      return;
-    }
+      var hasDodged = UnityEngine.Random.value <= (dodgeChance.ModifiedValue);
+      if (hasDodged)
+      {
+        OnTakeDamage?.Invoke(0f);
+        return;
+      }
 
-    Health -= amount;
-    OnTakeDamage?.Invoke(amount);
+      Health -= amount;
+      OnTakeDamage?.Invoke(amount);
 
-    if (_animator != null) _animator.SetTrigger(animHit);
-
-    if (Health <= 0)
-      Die();
+      // ИСПРАВЛЕНИЕ: Разделяем логику боли и смерти
+      if (Health <= 0)
+      {
+          Die(); // Если умерли - только смерть
+      }
+      else
+      {
+          if (_animator != null) _animator.SetTrigger(animHit); // Если выжили - играем анимацию попадания
+      }
   }
 
   protected virtual void Die()
   {
-    if (IsDead)
-      return;
-    IsDead = true;
-    Health = 0;
-    OnDeath?.Invoke();
-    _col.enabled = false;
+      if (IsDead)
+        return;
+      IsDead = true;
+      Health = 0;
+      OnDeath?.Invoke();
+      collider.enabled = false;
+      hitbox.enabled = false;
 
-    if (_animator != null) _animator.SetTrigger(animDie);
+      if (_animator != null) 
+      {
+          // ИСПРАВЛЕНИЕ: Сбрасываем мусорные триггеры, чтобы они не перебили смерть
+          _animator.ResetTrigger(animAttack);
+          _animator.ResetTrigger(animHit);
+          _animator.SetTrigger(animDie);
+      }
   }
 
   public virtual void ResetEntity()
   {
-    IsDead = false;
-    _col.enabled = true;
-    Health = MaxHealth;
-    InvulnerabilityProcCount = 0; // Сбрасываем неуязвимость
-    OnAppear?.Invoke();
+      IsDead = false;
+      collider.enabled = true;
+      Health = MaxHealth;
+      InvulnerabilityProcCount = 0; 
+      OnAppear?.Invoke();
+
+      // ИСПРАВЛЕНИЕ: Критически важно для Object Pooling!
+      // При воскрешении врага сбрасываем Аниматор в исходное состояние (Idle)
+      if (_animator != null)
+      {
+          _animator.Rebind();
+          _animator.Update(0f); 
+      }
   }
 
   public Vector2 CurrentMoveDirection { get; private set; }
@@ -183,7 +204,7 @@ public abstract class Entity : InjectMonoBehaviour
       if (distance < 0.0001f)
         break;
 
-      var count = _col.Cast(
+      var count = collider.Cast(
         deltaMove.normalized,
         _contactFilter,
         _hitBuffer,
@@ -214,11 +235,11 @@ public abstract class Entity : InjectMonoBehaviour
   private void ResolveOverlap()
   {
     var results = new Collider2D[5];
-    var count = _col.Overlap(_contactFilter, results);
+    var count = collider.Overlap(_contactFilter, results);
 
     for (var i = 0; i < count; i++)
     {
-      var dist = _col.Distance(results[i]);
+      var dist = collider.Distance(results[i]);
       if (dist.isOverlapped)
         _rb.position += dist.normal * dist.distance;
     }

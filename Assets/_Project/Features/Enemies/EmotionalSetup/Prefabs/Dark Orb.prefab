@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5515444261893580038}
   - component: {fileID: 555731093770137184}
   - component: {fileID: -8699830387717236528}
-  - component: {fileID: 7606861938245755927}
+  - component: {fileID: 2178211331523002525}
   m_Layer: 0
   m_Name: Dark Orb
   m_TagString: Untagged
@@ -191,7 +191,7 @@ MonoBehaviour:
     m_Bits: 0
   lifeTime: 0
   speed: 0.7
---- !u!95 &7606861938245755927
+--- !u!95 &2178211331523002525
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0

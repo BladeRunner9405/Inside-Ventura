@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -2225100922654447214}
   - component: {fileID: 1298777834043117319}
   - component: {fileID: 8389783169846516483}
+  - component: {fileID: 1955962900051767801}
   m_Layer: 8
   m_Name: DE
   m_TagString: Untagged
@@ -89,12 +90,12 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7166236263522030466, guid: 4848cf1d92353ed4583da3b5723fdc3f, type: 3}
+  m_Sprite: {fileID: -8804577451312863447, guid: aba24f18f080ab248bc08f7fd62a4e6b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.15625, y: 0.96875}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -161,14 +162,14 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
-    oldSize: {x: 2, y: 2}
-    newSize: {x: 1, y: 1}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.3125, y: 1.9375}
+    newSize: {x: 1.15625, y: 0.96875}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
 --- !u!50 &3065860956137818966
 Rigidbody2D:
@@ -233,10 +234,13 @@ MonoBehaviour:
   dodgeChance:
     _value: 0
   target: {fileID: 0}
+  collider: {fileID: 1955962900051767801}
+  hitbox: {fileID: 5082482304728084474}
   _animator: {fileID: 8389783169846516483}
   _spriteRenderer: {fileID: 7293520111826285576}
   damage: 1
   isBoss: 0
+  attackCooldown: 0.8
   detectionRadius: 1.5
   obstacleLayer:
     serializedVersion: 2
@@ -249,7 +253,6 @@ MonoBehaviour:
   floatingDamagePrefab: {fileID: 5299727460215697226, guid: ad3d7c92ac5b2563da66f3935d833e76, type: 3}
   Brain: {fileID: 7517003494791358381}
   attackDistance: 1.1
-  attackCooldown: 0.8
   biteAttackPrefab: {fileID: 4264498667369742361, guid: 796a734dfd463a84aa780d06802cde0a, type: 3}
 --- !u!95 &8389783169846516483
 Animator:
@@ -273,6 +276,42 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!58 &1955962900051767801
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7545988898748453450}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_Radius: 0.5
 --- !u!1001 &1111095229020859589
 PrefabInstance:
   m_ObjectHideFlags: 0

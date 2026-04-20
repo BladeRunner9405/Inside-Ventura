@@ -573,6 +573,8 @@ MonoBehaviour:
   dodgeChance:
     _value: 0
   target: {fileID: 1066906017858410233}
+  collider: {fileID: 8784012674413471974}
+  hitbox: {fileID: 0}
   _animator: {fileID: 6609665487728436787}
   _spriteRenderer: {fileID: 2129517524628729781}
   itemPickup: {fileID: 3745830094519559823}

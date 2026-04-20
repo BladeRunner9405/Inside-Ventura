@@ -5,40 +5,19 @@ using UnityEngine;
 public class EmotionalSetup : Enemy
 {
     [Header("Setup Attack Settings")]
-    public float attackCooldown = 2f;
     public float orbSpeed = 0.7f;
     
     [SerializeField] 
     private AttackObject darkOrbPrefab;
 
-    private float _curCooldown;
-    public bool IsAttackReady => _curCooldown <= 0;
-
     protected override void Start()
     {
         base.Start();
-        // Враг не двигается, поэтому инициализируем его сразу в состоянии покоя
         Brain.Init(this, new ES_IdleState());
     }
     
-    private void Update()
-    {
-        if (IsDead) return;
+    // Update и Attack удалены!
 
-        // Таймер перезарядки
-        if (_curCooldown > 0)
-            _curCooldown -= Time.deltaTime;
-    }
-
-    public override void Attack(Vector2 direction)
-    {
-        // Запускаем анимацию стрельбы
-        if (_animator != null) _animator.SetTrigger(animAttack);
-    }
-
-    // --- ANIMATION EVENTS ---
-
-    // 1. Вызывается Unity Animator'ом на кадре выстрела
     public override void OnAnimationEvent_Impact()
     {
         if (IsDead) return;
@@ -63,12 +42,11 @@ public class EmotionalSetup : Enemy
         }
     }
 
-    // 2. Вызывается Unity Animator'ом в конце анимации
     public override void OnAnimationEvent_End()
     {
         if (IsDead) return;
 
-        _curCooldown = attackCooldown;
+        ResetCooldown();
         Brain.ChangeState(new ES_IdleState());
     }
 }
