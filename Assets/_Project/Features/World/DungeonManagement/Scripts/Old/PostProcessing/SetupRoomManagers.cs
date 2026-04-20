@@ -4,7 +4,7 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class GenerationPostProcessing : DungeonGeneratorPostProcessingComponentGrid2D {
+public class SetupRoomManagers : DungeonGeneratorPostProcessingComponentGrid2D {
   public override void Run(DungeonGeneratorLevelGrid2D level) {
     level.GetSharedTilemaps().ForEach(x => {
       if (x.gameObject.name == "Walls") x.gameObject.layer = 3;
