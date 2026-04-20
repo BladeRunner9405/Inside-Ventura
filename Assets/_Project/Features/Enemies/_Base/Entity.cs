@@ -34,9 +34,6 @@ public abstract class Entity : InjectMonoBehaviour
   public event Action OnAppear;
   public event Action<Vector2> OnMove; // Для аниматора
 
-  [SerializeField]
-  protected SimpleEnemyAnimator _view;
-
   public virtual float Health
   {
     get => health.Value;
@@ -49,6 +46,48 @@ public abstract class Entity : InjectMonoBehaviour
 
   public int InvulnerabilityProcCount { get; set; } = 0;
   public bool IsInvulnerable => InvulnerabilityProcCount > 0;
+
+  [Header("Visuals")]
+  [SerializeField] protected Animator _animator;
+  [SerializeField] protected SpriteRenderer _spriteRenderer;
+
+  protected readonly int animSpeed = Animator.StringToHash("Speed");
+  protected readonly int animHit = Animator.StringToHash("Hit");
+  protected readonly int animDie = Animator.StringToHash("Die");
+  protected readonly int animAttack = Animator.StringToHash("Attack");
+
+  protected virtual void Update()
+  {
+      if (IsDead || _animator == null) return;
+
+      // Автоматически передаем скорость в Аниматор. 
+      // В Animator Controller нужно настроить переход из Idle в Run, если Speed > 0.01
+      _animator.SetFloat(animSpeed, CurrentMoveDirection.sqrMagnitude);
+
+      HandleFlip(CurrentMoveDirection);
+  }
+
+  // Универсальный метод поворота
+  public virtual void HandleFlip(Vector2 direction)
+  {
+      if (_spriteRenderer == null) return;
+
+      // Используем порог 0.01f, чтобы не флипать из-за микро-колебаний джойстика
+      if (direction.x > 0.01f)
+      {
+          _spriteRenderer.flipX = false; // Смотрит вправо (если исходный спрайт нарисован вправо)
+      }
+      else if (direction.x < -0.01f)
+      {
+          _spriteRenderer.flipX = true;  // Смотрит влево
+      }
+  }
+
+  public virtual void Attack(Vector2 direction)
+  {
+      // Когда сущность атакует, она должна резко повернуться в сторону атаки!
+      HandleFlip(direction);
+  }
 
   protected virtual void Awake()
   {
@@ -86,6 +125,8 @@ public abstract class Entity : InjectMonoBehaviour
     Health -= amount;
     OnTakeDamage?.Invoke(amount);
 
+    if (_animator != null) _animator.SetTrigger(animHit);
+
     if (Health <= 0)
       Die();
   }
@@ -98,6 +139,8 @@ public abstract class Entity : InjectMonoBehaviour
     Health = 0;
     OnDeath?.Invoke();
     _col.enabled = false;
+
+    if (_animator != null) _animator.SetTrigger(animDie);
   }
 
   public virtual void ResetEntity()
@@ -168,12 +211,6 @@ public abstract class Entity : InjectMonoBehaviour
     }
   }
 
-  public virtual void Attack(Vector2 direction)
-  {
-    // Базовая реализация пуста.
-    // Player и конкретные враги будут её переопределять.
-  }
-
   private void ResolveOverlap()
   {
     var results = new Collider2D[5];
@@ -216,4 +253,9 @@ public abstract class Entity : InjectMonoBehaviour
       default: return null;
     }
   }
+
+  public virtual void OnAnimationEvent_Impact() { }
+
+  // Вызывается в самом конце анимации атаки
+  public virtual void OnAnimationEvent_End() { }
 }

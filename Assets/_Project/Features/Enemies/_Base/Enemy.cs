@@ -132,10 +132,6 @@ public class Enemy : Entity {
   public override void ResetEntity() {
     base.ResetEntity();
     Brain.ResetBrain();
-
-    // Находим аниматор и глушим незаконченные атаки!
-
-    _view.ResetToIdle();
   }
 
   public override void TakeDamage(float amount) {

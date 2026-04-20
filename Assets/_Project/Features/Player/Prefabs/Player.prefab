@@ -427,7 +427,7 @@ GameObject:
   - component: {fileID: 7098316057293861836}
   - component: {fileID: 8784012674413471974}
   - component: {fileID: -2377509926864990093}
-  - component: {fileID: -2093638155421174807}
+  - component: {fileID: 6609665487728436787}
   m_Layer: 9
   m_Name: Player
   m_TagString: Player
@@ -538,6 +538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6502c4f2e8f40f4187973c8e2b3ac42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpritesSorting
+  pivot: {fileID: 0}
 --- !u!114 &2171512460722450120
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -572,7 +573,8 @@ MonoBehaviour:
   dodgeChance:
     _value: 0
   target: {fileID: 1066906017858410233}
-  _view: {fileID: 0}
+  _animator: {fileID: 6609665487728436787}
+  _spriteRenderer: {fileID: 2129517524628729781}
   itemPickup: {fileID: 3745830094519559823}
   inventory: {fileID: 2006968051814620889}
   equipment: {fileID: 5668263648549799090}
@@ -698,17 +700,25 @@ MonoBehaviour:
   entity: {fileID: 2290521665905086042}
   spriteRenderer: {fileID: 2129517524628729781}
   damageFlashDuration: 0.1
---- !u!114 &-2093638155421174807
-MonoBehaviour:
+--- !u!95 &6609665487728436787
+Animator:
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8131152870917328023}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e33bbe2af2cdb6a4384c002d560f09c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::InsideVentura.Player.PlayerAnimator
-  data: {fileID: 11400000, guid: 876a11e061594444191808cf6da56e16, type: 2}
-  spriteRenderer: {fileID: 2129517524628729781}
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1e5680815836cc9479dc3eb2a33b1674, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

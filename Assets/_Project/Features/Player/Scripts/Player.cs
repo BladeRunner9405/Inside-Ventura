@@ -34,6 +34,8 @@ public class Player : Entity
   public PlayerEquipment Equipment => equipment;
   public PlayerStats Stats => stats;
 
+  protected readonly int animDash = Animator.StringToHash("Dash");
+
   protected override void OnEnable()
   {
     base.OnEnable();
@@ -99,12 +101,16 @@ public class Player : Entity
 
   public override void Attack(Vector2 direction)
   {
-    if (Equipment != null)
-    {
-      Equipment.TryToAttack(direction);
-    }
-  }
+      base.Attack(direction);
+      // 1. Говорим телу игрока проиграть анимацию взмаха
+      if (_animator != null) _animator.SetTrigger(animAttack);
 
+      // 2. Передаем команду в экипировку (спавн самого меча/эффекта)
+      if (Equipment != null)
+      {
+          Equipment.TryToAttack(direction);
+      }
+  }
   public void UseAbility(Vector2 direction)
   {
     if (Equipment != null)
@@ -149,11 +155,17 @@ public class Player : Entity
   }
 
   protected override IEnumerator DashCoroutine(Vector2 direction, float distance, float duration)
-  {
-    ++InvulnerabilityProcCount;
-    yield return base.DashCoroutine(direction, distance, duration);
-    --InvulnerabilityProcCount;
-  }
+    {
+        // Включаем неуязвимость
+        ++InvulnerabilityProcCount;
+        
+        // Запускаем анимацию рывка (кувырок, скольжение и т.д.)
+        if (_animator != null) _animator.SetTrigger(animDash);
+
+        yield return base.DashCoroutine(direction, distance, duration);
+        
+        --InvulnerabilityProcCount;
+    }
 
   #endregion
 }

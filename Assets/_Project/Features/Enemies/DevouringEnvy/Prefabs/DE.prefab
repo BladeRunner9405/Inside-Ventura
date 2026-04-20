@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 7293520111826285576}
   - component: {fileID: 717833066828019056}
   - component: {fileID: 7517003494791358381}
-  - component: {fileID: 139226878814988356}
   - component: {fileID: 5082482304728084474}
   - component: {fileID: 3065860956137818966}
   - component: {fileID: -2225100922654447214}
   - component: {fileID: 1298777834043117319}
+  - component: {fileID: 8389783169846516483}
   m_Layer: 8
   m_Name: DE
   m_TagString: Untagged
@@ -124,20 +124,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71d0796ca4a92a549adbee816330774b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InsideVentura.AI.EnemyBrain
---- !u!114 &139226878814988356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7545988898748453450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10bf1d5dd3c73b9469be0e15f9f9d4c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SimpleEnemyAnimator
-  data: {fileID: 11400000, guid: 856daa84fd404d44296912ad6e96943b, type: 2}
-  spriteRenderer: {fileID: 7293520111826285576}
 --- !u!61 &5082482304728084474
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -247,7 +233,8 @@ MonoBehaviour:
   dodgeChance:
     _value: 0
   target: {fileID: 0}
-  _view: {fileID: 139226878814988356}
+  _animator: {fileID: 8389783169846516483}
+  _spriteRenderer: {fileID: 7293520111826285576}
   damage: 1
   isBoss: 0
   detectionRadius: 1.5
@@ -264,6 +251,28 @@ MonoBehaviour:
   attackDistance: 1.1
   attackCooldown: 0.8
   biteAttackPrefab: {fileID: 4264498667369742361, guid: 796a734dfd463a84aa780d06802cde0a, type: 3}
+--- !u!95 &8389783169846516483
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7545988898748453450}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5b3f7656f5c737148b113f7d9b76a788, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1111095229020859589
 PrefabInstance:
   m_ObjectHideFlags: 0

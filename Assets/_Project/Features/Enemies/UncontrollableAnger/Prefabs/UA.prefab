@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 7293520111826285576}
   - component: {fileID: 7517003494791358381}
   - component: {fileID: 5857819720384768810}
-  - component: {fileID: 139226878814988356}
   - component: {fileID: 5082482304728084474}
   - component: {fileID: 3065860956137818966}
   - component: {fileID: -2225100922654447214}
   - component: {fileID: 1463688623852082360}
+  - component: {fileID: 5970913380662848226}
   m_Layer: 8
   m_Name: UA
   m_TagString: Untagged
@@ -94,7 +94,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.6875, y: 2.25}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -132,7 +132,8 @@ MonoBehaviour:
   dodgeChance:
     _value: 0
   target: {fileID: 0}
-  _view: {fileID: 139226878814988356}
+  _animator: {fileID: 5970913380662848226}
+  _spriteRenderer: {fileID: 7293520111826285576}
   damage: 1
   isBoss: 0
   detectionRadius: 1.5
@@ -150,20 +151,6 @@ MonoBehaviour:
   retreatDistance: 2
   cooldownDuration: 3
   waveAttackPrefab: {fileID: 6016825522121415406, guid: 14115f0fa5311d14399fd178239b0b96, type: 3}
---- !u!114 &139226878814988356
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7545988898748453450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10bf1d5dd3c73b9469be0e15f9f9d4c9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SimpleEnemyAnimator
-  data: {fileID: 11400000, guid: af3170c8003fed64089cbb0705681442, type: 2}
-  spriteRenderer: {fileID: 7293520111826285576}
 --- !u!61 &5082482304728084474
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -203,7 +190,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
     oldSize: {x: 1.6875, y: 2.25}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1.6875, y: 2.25}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -265,6 +252,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpritesSorting
   pivot: {fileID: 0}
+--- !u!95 &5970913380662848226
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7545988898748453450}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 12b370cf987b34647902d6579717e0aa, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &3991877424212251080
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -39,11 +39,9 @@ public class Envy_AttackState : EnemyState
 {
     public override void Enter()
     {
-        // Вычисляем направление укуса в момент начала анимации
-        Vector2 dir = (EnemyInstance.target.position - EnemyInstance.transform.position).normalized;
+        EnemyInstance.MoveWithSteering(Vector2.zero);
 
-        // Останавливаем врага на мгновение, чтобы он зафиксировал позицию для укуса
-        EnemyInstance.Move(Vector2.zero);
+        Vector2 dir = (EnemyInstance.target.position - EnemyInstance.transform.position).normalized;
 
         EnemyInstance.Attack(dir);
     }

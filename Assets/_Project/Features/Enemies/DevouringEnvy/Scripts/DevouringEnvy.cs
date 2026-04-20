@@ -26,8 +26,9 @@ public class DevouringEnvy : Enemy
         Brain.Init(this, new Envy_ChaseState());
     }
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         if (IsDead) return;
 
         if (_curCooldown > 0)
@@ -38,30 +39,23 @@ public class DevouringEnvy : Enemy
     {
         _attackDir = direction;
         // Зависть кусает часто, анимация должна быть быстрой
-        _view.PlayAttack(PerformBite, StartCooldown);
+        _animator.SetTrigger(animAttack);
     }
 
-    private void PerformBite()
+    public override void OnAnimationEvent_Impact()
     {
-        if (target == null) return;
+        if (target == null || IsDead) return;
 
-        // Создаем круговой хитбокс укуса
-        var attackObj = GamePools.Hitboxes.Get(
-            biteAttackPrefab,
-            transform.position,
-            Quaternion.identity
-        );
-        
+        var attackObj = GamePools.Hitboxes.Get(biteAttackPrefab, transform.position, Quaternion.identity);
         attackObj.gameObject.SetActive(true);
-
-        // Передаем урон, слой игрока и направление укуса
         attackObj.Initialize(damage, LayerMask.GetMask("Player"), _attackDir);
     }
 
-    private void StartCooldown()
+    public override void OnAnimationEvent_End()
     {
+        if (IsDead) return;
+
         _curCooldown = attackCooldown;
-        // После укуса Зависть сразу возвращается в погоню, чтобы "прилипнуть" к игроку
         Brain.ChangeState(new Envy_ChaseState());
     }
 }
