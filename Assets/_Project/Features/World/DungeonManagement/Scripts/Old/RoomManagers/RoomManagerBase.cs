@@ -10,9 +10,15 @@ public class RoomManagerBase : MonoBehaviour {
   /// </summary>
   protected RoomInstanceGrid2D RoomInstance;
 
-  public virtual void Init(Collider2D floorCollider,
-    RoomInstanceGrid2D roomInstance) {
+  protected List<DungeonDoor> Doors;
+
+  public virtual void Init(RoomInstanceGrid2D roomInstance) {
     RoomInstance = roomInstance;
+
+    Doors = GetComponentsInChildren<DungeonDoor>().ToList();
+    foreach (var door in Doors) {
+      door.SetOpen();
+    }
   }
 
   /// <summary>

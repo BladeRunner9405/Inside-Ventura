@@ -26,7 +26,7 @@ public class SetupRoomManagers : DungeonGeneratorPostProcessingComponentGrid2D {
 
       // Add the room manager component
       RoomManagerBase roomManager = AddRoomManager(roomTemplateInstance, roomInstance);
-      roomManager.Init(floor.GetComponent<CompositeCollider2D>(), roomInstance);
+      roomManager.Init(roomInstance);
     }
 
     Debug.Log("Done setting up dungeon rooms");

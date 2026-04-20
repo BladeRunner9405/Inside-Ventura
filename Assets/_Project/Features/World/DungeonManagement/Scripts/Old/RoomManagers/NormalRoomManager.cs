@@ -20,14 +20,15 @@ public class NormalRoomManager : RoomManagerBase {
   /// </summary>
   private bool _enemiesSpawned;
 
-  public override void Init(Collider2D floorCollider, RoomInstanceGrid2D roomInstance) {
-    base.Init(floorCollider, roomInstance);
-    _doors = DetectDoors(roomInstance);
+  public override void Init(RoomInstanceGrid2D roomInstance) {
+    base.Init(roomInstance);
+    // _doors = DetectDoors(roomInstance);
 
     _chest = transform.Find("Chest")?.gameObject;
     if (_chest == null) {
       Debug.Log("No chest inside the room, are you sure?");
     }
+
     _chest?.SetActive(false);
 
     var wavesRoot = transform.Find("Waves")?.gameObject;
@@ -84,7 +85,7 @@ public class NormalRoomManager : RoomManagerBase {
     if (_enemiesSpawned) return;
 
     Debug.Log("Spawning enemies and closing all doors...");
-    DoorsSetActive(true);
+    DoorsSetLocked(true);
     EncounterStatus.Active = true;
     AdvanceWave();
   }
@@ -93,7 +94,7 @@ public class NormalRoomManager : RoomManagerBase {
     _curWave++;
     if (_curWave == _waveCount) {
       SpawnChest();
-      DoorsSetActive(false);
+      DoorsSetLocked(false);
       _enemiesSpawned = true;
       EncounterStatus.Active = false;
       return;
@@ -115,10 +116,18 @@ public class NormalRoomManager : RoomManagerBase {
     }
   }
 
-  private void DoorsSetActive(bool active) {
-    foreach (var door in _doors) {
-      door.SetActive(active);
+  private void DoorsSetLocked(bool locked) {
+    foreach (var door in Doors) {
+      if (locked) {
+        door.SetClosed();
+      }
+      else {
+        door.SetOpen();
+      }
     }
+    // foreach (var door in _doors) {
+    //   door.SetActive(active);
+    // }
   }
 
   private void SpawnChest() {
