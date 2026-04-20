@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -8447274598904960351, guid: 833ea2c429858dc42a31ac22e1f677f9, type: 3}
+  m_Sprite: {fileID: -5831969902899257843, guid: 833ea2c429858dc42a31ac22e1f677f9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -91,3 +91,4 @@ MonoBehaviour:
   fullSprite: {fileID: -8447274598904960351, guid: 833ea2c429858dc42a31ac22e1f677f9, type: 3}
   halfSprite: {fileID: 2765655783878706876, guid: 833ea2c429858dc42a31ac22e1f677f9, type: 3}
   emptySprite: {fileID: -5831969902899257843, guid: 833ea2c429858dc42a31ac22e1f677f9, type: 3}
+  image: {fileID: 5188917802399354627}
