@@ -6,7 +6,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(EnemyBrain))] // Гарантируем наличие мозга
 public class Enemy : Entity {
-  [Header("Enemy Base Stats")] public int damage;
+  [Header("Enemy Base Stats")] public float damage;
   public bool isBoss;
 
   [Header("Context Steering Settings")] [SerializeField]

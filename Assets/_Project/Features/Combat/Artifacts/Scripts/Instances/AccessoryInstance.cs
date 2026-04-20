@@ -10,6 +10,8 @@ public class AccessoryInstance : ArtifactInstance
   // Событие для PushAwayEnemiesEffect
   public event Action<AccessoryInstance, Vector2> OnAbilityUsed;
 
+  public float LastUseTime => _lastUseTime;
+
   public AccessoryInstance(Accessory baseData, PlayerAccessor playerAccessor)
     : base(baseData, playerAccessor)
   {

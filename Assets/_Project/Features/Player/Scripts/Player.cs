@@ -79,7 +79,7 @@ public class Player : Entity
     }
   }
 
-  public Stat GetStat(StatName statName) {
+  public override Stat GetStat(StatName statName) {
     switch (statName)
     {
       case StatName.Health: return Stats.CurrentHealth;
