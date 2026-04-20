@@ -4,7 +4,7 @@ using UnityEngine;
 namespace InsideVentura.World.v1
 {
   public abstract class Item : InteractableObject {
-    [Inject] private DungeonManagerOld _dungeonManager;
+    [Inject] private World.DungeonManager _dungeonManager;
 
     private void Start() {
       _dungeonManager.RegisterRoomObject(gameObject);

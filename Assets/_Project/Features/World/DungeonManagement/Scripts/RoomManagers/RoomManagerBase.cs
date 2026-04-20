@@ -14,7 +14,7 @@ namespace InsideVentura.World {
 
     protected List<DungeonDoor> Doors;
 
-    [Inject] private DungeonManagerOld _dungeonManager;
+    [Inject] private DungeonManager _dungeonManager;
 
     public virtual void Init(RoomInstanceGrid2D roomInstance) {
       RoomInstance = roomInstance;

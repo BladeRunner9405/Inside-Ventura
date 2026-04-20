@@ -7,7 +7,7 @@ using CherryFramework.BaseClasses;
 using Debug = UnityEngine.Debug;
 
 namespace InsideVentura.World {
-  public class DungeonManagerOld : BehaviourBase {
+  public class DungeonManager : BehaviourBase {
     public System.Random Random { get; private set; }
 
     [SerializeField] private DungeonGeneratorGrid2D generator;

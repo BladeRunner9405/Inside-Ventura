@@ -6,7 +6,7 @@ namespace InsideVentura.World.v1
   public class NextLevelInteractable : InteractableObject
   {
     [Inject]
-    private DungeonManagerOld _dungeonManager;
+    private World.DungeonManager _dungeonManager;
 
     public override void OnInteract()
     {

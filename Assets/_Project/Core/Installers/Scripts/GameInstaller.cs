@@ -8,6 +8,7 @@ using CherryFramework.StateService;
 using CherryFramework.TickDispatcher;
 using CherryFramework.UI.Views;
 using CherryFramework.Utils.PlayerPrefsWrapper;
+using InsideVentura.World;
 using UnityEngine;
 
 [DefaultExecutionOrder(-10000)]
@@ -34,7 +35,7 @@ public class GameInstaller : InstallerBehaviourBase
 
   [Header("World Settings")]
   [SerializeField]
-  private DungeonManagerOld _dungeonManager;
+  private DungeonManager _dungeonManager;
 
   protected override void Install()
   {
