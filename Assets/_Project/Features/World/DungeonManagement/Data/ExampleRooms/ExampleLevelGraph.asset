@@ -14,6 +14,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: Edgar.Unity::Edgar.Unity.Connection
   From: {fileID: 5285161534663789096}
   To: {fileID: -4885061016151264925}
+--- !u!114 &-6660809770202785577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44c8014d31544667085426dbe52eeab8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InsideVentura.World.DungeonRoom
+  Position: {x: 496, y: 320}
+  type: 1
+  individualRoomTemplates:
+  - {fileID: 4938271001061371832, guid: 355ba92795a26023094ff5dd44d8f6f2, type: 3}
+  roomTemplateSets: []
 --- !u!114 &-4885061016151264925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45,6 +62,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Edgar.Unity::Edgar.Unity.Connection
   From: {fileID: -4885061016151264925}
   To: {fileID: 6896466753481673565}
+--- !u!114 &-4181317971080093463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Edgar.Unity::Edgar.Unity.Connection
+  From: {fileID: 2295331113537441066}
+  To: {fileID: -6660809770202785577}
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,6 +92,7 @@ MonoBehaviour:
   - {fileID: 9043679050618725029}
   - {fileID: -7809479690454347115}
   - {fileID: -4469288184064544373}
+  - {fileID: -4181317971080093463}
   CorridorIndividualRoomTemplates: []
   CorridorRoomTemplateSets: []
   DefaultIndividualRoomTemplates: []
@@ -70,10 +102,11 @@ MonoBehaviour:
   - {fileID: 5285161534663789096}
   - {fileID: -4885061016151264925}
   - {fileID: 6896466753481673565}
+  - {fileID: -6660809770202785577}
   EditorData:
-    PanOffset: {x: 801.8029, y: 577.7983}
-    Zoom: 0.4431968
-  RoomType: DungeonRoom
+    PanOffset: {x: 113.75458, y: 80.50931}
+    Zoom: 1.0822676
+  RoomType: InsideVentura.World.DungeonRoom
   ConnectionType: Edgar.Unity.Connection
 --- !u!114 &2295331113537441066
 MonoBehaviour:
