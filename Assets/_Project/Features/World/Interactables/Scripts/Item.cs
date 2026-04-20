@@ -1,9 +1,15 @@
-using Unity.VisualScripting;
+using CherryFramework.DependencyManager;
+using UnityEngine;
 
 namespace InsideVentura.World
 {
-  public abstract class Item : InteractableObject
-  {
+  public abstract class Item : InteractableObject {
+    [Inject] private DungeonManagerOld _dungeonManager;
+
+    private void Start() {
+      _dungeonManager.RegisterRoomObject(gameObject);
+    }
+
     protected virtual void OnPickup() { }
 
     protected virtual bool CanPickUp()
@@ -15,7 +21,6 @@ namespace InsideVentura.World
     protected override void OnEnable()
     {
       base.OnEnable();
-      DungeonManager.Instance.RegisterRoomObject(this.gameObject);
     }
 
     public override void OnInteract()

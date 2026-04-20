@@ -34,7 +34,7 @@ public class GameInstaller : InstallerBehaviourBase
 
   [Header("World Settings")]
   [SerializeField]
-  private InsideVentura.World.DungeonManager _dungeonManager;
+  private DungeonManagerOld _dungeonManager;
 
   protected override void Install()
   {

@@ -4,11 +4,14 @@ using Edgar.Unity;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using CherryFramework.BaseClasses;
+using Debug = UnityEngine.Debug;
 
-public class DungeonManager : BehaviourBase {
+public class DungeonManagerOld : BehaviourBase {
   public System.Random Random { get; private set; }
 
   [SerializeField] private DungeonGeneratorGrid2D generator;
+
+  public RoomManagerBase CurrentRoom { get; set; }
 
   public void Awake() {
     Random = new();
@@ -41,20 +44,10 @@ public class DungeonManager : BehaviourBase {
 
     stopwatch.Stop();
   }
-}
 
-public class DungeonAccessor : IDungeon {
-  private DungeonManager _instance;
-
-  public void RegisterDungeon(DungeonManager dungeon) {
-    _instance = dungeon;
+  public void RegisterRoomObject(GameObject obj)
+  {
+    Debug.Log("Registering room object " + obj.name);
+    obj.transform.SetParent(CurrentRoom.transform);
   }
-
-  public void Restart() {
-    _instance.RestartLevel();
-  }
-}
-
-public interface IDungeon {
-  void Restart();
 }

@@ -3767,6 +3767,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2033804719}
     m_Modifications:
+    - target: {fileID: 274202606340600693, guid: 056e50e33373b484caddfa36896c57a6, type: 3}
+      propertyPath: generator
+      value: 
+      objectReference: {fileID: 963980219}
     - target: {fileID: 2230160839145156290, guid: 056e50e33373b484caddfa36896c57a6, type: 3}
       propertyPath: _rootUI
       value: 
@@ -3774,7 +3778,7 @@ PrefabInstance:
     - target: {fileID: 2230160839145156290, guid: 056e50e33373b484caddfa36896c57a6, type: 3}
       propertyPath: _dungeonManager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 467760603}
     - target: {fileID: 2230160839145156290, guid: 056e50e33373b484caddfa36896c57a6, type: 3}
       propertyPath: _dragDropManager
       value: 
@@ -3837,6 +3841,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7167868847961534036, guid: 056e50e33373b484caddfa36896c57a6, type: 3}
   m_PrefabInstance: {fileID: 467760601}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &467760603 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 274202606340600693, guid: 056e50e33373b484caddfa36896c57a6, type: 3}
+  m_PrefabInstance: {fileID: 467760601}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae0219cd78fbeccd49207cb695a38d64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonManager
 --- !u!1 &477625304
 GameObject:
   m_ObjectHideFlags: 0
@@ -19506,7 +19521,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2033804719}
-  - component: {fileID: 2033804720}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -19531,20 +19545,6 @@ Transform:
   - {fileID: 86854808}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2033804720
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2033804718}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae0219cd78fbeccd49207cb695a38d64, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DungeonManager
-  playerCamera: {fileID: 369862364}
-  generator: {fileID: 963980219}
 --- !u!1 &2086148462
 GameObject:
   m_ObjectHideFlags: 0

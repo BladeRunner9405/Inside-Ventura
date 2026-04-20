@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7167868847961534036}
   - component: {fileID: 2230160839145156290}
   - component: {fileID: 6847371418170386650}
+  - component: {fileID: 274202606340600693}
   m_Layer: 0
   m_Name: Game Root
   m_TagString: Untagged
@@ -46,11 +47,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameInstaller
   _rootUI: {fileID: 0}
+  _dragDropManager: {fileID: 0}
+  _thoughtsCompatibilityManager: {fileID: 0}
+  _thoughtItemTooltip: {fileID: 0}
   _audioSettings: {fileID: 11400000, guid: 18f7cc9e9d26cea4193f178d708611ab, type: 2}
   _audioCollections:
   - {fileID: 11400000, guid: 0dfdd65881b26e24db53ed64c44097da, type: 2}
   - {fileID: 11400000, guid: eef768af624cf9a409732d7845f00fd8, type: 2}
   - {fileID: 11400000, guid: eb6c2c6717cd7ec45b430f0eed74d40e, type: 2}
+  _dungeonManager: {fileID: 274202606340600693}
 --- !u!114 &6847371418170386650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,3 +72,16 @@ MonoBehaviour:
   onApplicationLostFocus: 0
   onApplicationPause: 0
   onApplicationQuit: 1
+--- !u!114 &274202606340600693
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2596529627649865198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae0219cd78fbeccd49207cb695a38d64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonManager
+  generator: {fileID: 0}

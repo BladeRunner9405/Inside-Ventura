@@ -1,16 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using CherryFramework.BaseClasses;
+using CherryFramework.DependencyManager;
 using Edgar.Unity;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class RoomManagerBase : MonoBehaviour {
+public class RoomManagerBase : BehaviourBase {
   /// <summary>
   /// Room instance of the corresponding room.
   /// </summary>
   protected RoomInstanceGrid2D RoomInstance;
 
   protected List<DungeonDoor> Doors;
+
+  [Inject] private  DungeonManagerOld _dungeonManager;
 
   public virtual void Init(RoomInstanceGrid2D roomInstance) {
     RoomInstance = roomInstance;
@@ -30,6 +33,7 @@ public class RoomManagerBase : MonoBehaviour {
 
     Debug.Log(
       $"Room enter. Room name: {RoomInstance.Room.GetDisplayName()}, Room template: {RoomInstance.RoomTemplatePrefab.name}");
+    _dungeonManager.CurrentRoom = this;
   }
 
   /// <summary>
