@@ -11,22 +11,24 @@ public class ArtifactSlotsUI : InjectMonoBehaviour
   [Inject]
   private ThoughtsCompatibilityManager _thoughtsCompatibilityManager;
 
-  private ArtifactInstance _artifactInstance;
+  private bool _pinned = false;
+
+  public ArtifactInstance ArtifactInstance { get; private set; }
 
   public void Initialize(ArtifactInstance artifactInstance)
   {
     // Защита: если мы уже инициализированы этим артефактом, ничего не делаем
-    if (_artifactInstance == artifactInstance)
+    if (ArtifactInstance == artifactInstance)
       return;
 
     // Защита: отписываемся от старого артефакта, если он был
-    if (_artifactInstance != null)
+    if (ArtifactInstance != null)
     {
-      _artifactInstance.OnThoughtEquipped -= HandleThoughtEquipped;
-      _artifactInstance.OnThoughtUnequipped -= HandleThoughtUnequipped;
+      ArtifactInstance.OnThoughtEquipped -= HandleThoughtEquipped;
+      ArtifactInstance.OnThoughtUnequipped -= HandleThoughtUnequipped;
     }
 
-    _artifactInstance = artifactInstance;
+    ArtifactInstance = artifactInstance;
 
     if (artifactTooltip != null)
       artifactTooltip.Initialize(artifactInstance);
@@ -41,30 +43,30 @@ public class ArtifactSlotsUI : InjectMonoBehaviour
       slot.SetData(artifactInstance.EquippedThoughts[i]);
     }
 
-    _artifactInstance.OnThoughtEquipped += HandleThoughtEquipped;
-    _artifactInstance.OnThoughtUnequipped += HandleThoughtUnequipped;
+    ArtifactInstance.OnThoughtEquipped += HandleThoughtEquipped;
+    ArtifactInstance.OnThoughtUnequipped += HandleThoughtUnequipped;
   }
 
   private void OnDestroy()
   {
-    if (_artifactInstance == null)
+    if (ArtifactInstance == null)
       return;
 
-    _artifactInstance.OnThoughtEquipped -= HandleThoughtEquipped;
-    _artifactInstance.OnThoughtUnequipped -= HandleThoughtUnequipped;
+    ArtifactInstance.OnThoughtEquipped -= HandleThoughtEquipped;
+    ArtifactInstance.OnThoughtUnequipped -= HandleThoughtUnequipped;
   }
 
-  protected override void OnEnable()
-  {
-    base.OnEnable();
+  public void ToggleActivity() => _pinned = !_pinned;
 
-    //_thoughtsCompatibilityManager.SetActiveArtifact(_artifactInstance);
+  public void SetAsActive() {
+    if (_thoughtsCompatibilityManager.ActiveArtifact == null)
+      _thoughtsCompatibilityManager.SetActiveArtifact(ArtifactInstance);
   }
 
-  protected void OnDisable()
+  public void UnsetAsActive()
   {
-    //if (_thoughtsCompatibilityManager.ActiveArtifact == _artifactInstance)
-    //  _thoughtsCompatibilityManager.ClearActiveArtifact();
+    if (!_pinned && _thoughtsCompatibilityManager.ActiveArtifact == ArtifactInstance)
+      _thoughtsCompatibilityManager.ClearActiveArtifact();
   }
 
   private void HandleThoughtEquipped(int slotIndex, Thought thought)

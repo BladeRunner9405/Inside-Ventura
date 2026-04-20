@@ -10,7 +10,7 @@ public class ArtifactTooltip : TooltipBase
     _artifactInstance = artifactInstance;
   }
 
-  public override void OnPointerEnter(PointerEventData eventData)
+  public override void ShowTooltip()
   {
     if (_artifactInstance == null)
       return;

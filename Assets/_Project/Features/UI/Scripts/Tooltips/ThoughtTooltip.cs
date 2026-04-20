@@ -11,7 +11,7 @@ public class ThoughtTooltip : TooltipBase
     base.Awake();
   }
 
-  public override void OnPointerEnter(PointerEventData eventData)
+  public override void ShowTooltip()
   {
     if (_globalTooltip == null || _slot.CurrentThought == null || !_slot.IsCompatibleWithActiveArtifact())
       return;

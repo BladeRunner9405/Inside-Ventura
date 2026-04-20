@@ -17,6 +17,9 @@ public class ThoughtSlotUI
   [SerializeField]
   private Image mask;
 
+  [SerializeField]
+  private Image tooltip;
+
   private CanvasGroup _canvasGroup;
 
   [Inject]
@@ -66,7 +69,6 @@ public class ThoughtSlotUI
     if (!SourceBag || !data) return true;
 
     var activeArtifact = _thoughtsCompatibilityManager.ActiveArtifact;
-    Debug.Log(activeArtifact);
     if (activeArtifact == null) return true;
 
     return data.HasRightType(activeArtifact.BaseData);
@@ -117,12 +119,16 @@ public class ThoughtSlotUI
       iconImage.sprite = data.InventoryIcon;
       iconImage.color = IsCompatibleWithActiveArtifact() ? Color.white : new Color(1, 1, 1, 0.3f);
       if (mask) mask.color = Color.white;
+
+      tooltip.raycastTarget = true;
     }
     else
     {
       iconImage.sprite = null;
       iconImage.color = Color.clear;
       if (mask) mask.color = Color.clear;
+
+      tooltip.raycastTarget = false;
     }
   }
 }

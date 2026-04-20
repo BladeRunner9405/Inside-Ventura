@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public abstract class TooltipBase : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public abstract class TooltipBase : MonoBehaviour
 {
   [Inject]
   protected TooltipText _globalTooltip;
@@ -16,14 +16,28 @@ public abstract class TooltipBase : MonoBehaviour, IPointerEnterHandler, IPointe
   [SerializeField]
   protected GameObject outline;
 
+  private bool _pinned;
+
   protected virtual void Awake()
   {
     DependencyContainer.Instance.InjectDependencies(this);
   }
 
-  public abstract void OnPointerEnter(PointerEventData eventData);
+  public void TogglePinned() {
+    _pinned = !_pinned;
 
-  public void OnPointerExit(PointerEventData eventData) {
+    if (_pinned) ShowTooltip();
+    else HideTooltip();
+  }
+
+  public void OnPointerEnter() {
+    ShowTooltip();
+  }
+
+  public abstract void ShowTooltip();
+
+  public void OnPointerExit() {
+    if (_pinned) return;
     HideTooltip();
   }
 

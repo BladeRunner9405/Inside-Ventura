@@ -10,7 +10,7 @@ public class InventoryTooltip : TooltipBase
     _thoughtBag = thoughtBag;
   }
 
-  public override void OnPointerEnter(PointerEventData eventData)
+  public override void ShowTooltip()
   {
     if (_thoughtBag == null)
       return;
