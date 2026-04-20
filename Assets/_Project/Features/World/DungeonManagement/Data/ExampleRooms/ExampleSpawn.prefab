@@ -2658,7 +2658,7 @@ GameObject:
   - component: {fileID: 7421907047251739059}
   - component: {fileID: 1915796427884261084}
   m_Layer: 0
-  m_Name: NewSpawn
+  m_Name: ExampleSpawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -608,7 +608,7 @@ GameObject:
   - component: {fileID: 8076696424960162949}
   - component: {fileID: 7393533273290543405}
   m_Layer: 0
-  m_Name: NewFightRoom
+  m_Name: ExampleFightRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

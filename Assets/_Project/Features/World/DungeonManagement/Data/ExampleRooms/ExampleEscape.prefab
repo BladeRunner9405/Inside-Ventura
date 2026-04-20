@@ -2766,7 +2766,7 @@ GameObject:
   - component: {fileID: 8127712050662733588}
   - component: {fileID: 6398225994262226623}
   m_Layer: 0
-  m_Name: NewEscape
+  m_Name: ExampleEscape
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
