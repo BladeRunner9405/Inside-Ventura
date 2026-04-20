@@ -244,7 +244,7 @@ namespace InsideVentura.World
 
           _dungeonMap.Add(
             newPos,
-            new RoomInstance(randomTemplate, RoomType.Normal, false, randomEncounter)
+            new RoomInstance(randomTemplate, RoomType.NormalRank1, false, randomEncounter)
           );
           roomsCreated++;
         }
@@ -328,6 +328,10 @@ namespace InsideVentura.World
         DoorDirection.West => DoorDirection.East,
         _ => DoorDirection.South,
       };
+    }
+
+    public RoomType GetCurrentRoomType() {
+      return _dungeonMap[_currentCoords].Type;
     }
   }
 }

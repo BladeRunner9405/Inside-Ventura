@@ -1,51 +1,70 @@
+using System;
+using CherryFramework.DependencyManager;
 using InsideVentura.World;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Chest : InteractableObject
 {
-  [SerializeField]
-  private float maxSpawnDistance;
-  public GameObject[] itemsToSpawn; // мы реализуем по-другому, это заглушка
-  public int quantity;
+  [SerializeField] private float maxSpawnDistance;
 
-  [SerializeField]
-  private GameObject thoughtItemPrefab;
-  [SerializeField]
-  private Thought[] possibleThoughts;
+  [Header("Prefabs")]
+  [SerializeField] private GameObject moneyItemPrefab;
+  //[SerializeField] private GameObject manaItemPrefab;
+  [SerializeField] private GameObject healthItemPrefab;
+  [SerializeField] private GameObject thoughtItemPrefab;
+
+  [Header("Chances data")]
+  [SerializeField] private LevelChancesData levelChances;
+
+  [Inject]
+  private ThoughtsAvaliabilityManager thoughtsAvaliabilityManager;
 
   public override void OnInteract()
   {
-    SpawnItems();
+    var chances = levelChances.GetCurrentChances();
+    SpawnItems(chances);
+
     base.OnInteract();
   }
 
-  // тут скоро будет нормальная логика
-  private void SpawnItems()
+  private void SpawnItems(RoomChancesData data)
   {
-    for (int i = 0; i < quantity; ++i)
-    {
-      Vector3 spawnPosition = transform.position
-                              + (Vector3)Random.insideUnitCircle.normalized * Random.Range(0, maxSpawnDistance);
-
-      SpawnRandomThought(spawnPosition);
-      SpawnRandomItem(spawnPosition);
-    }
+    SpawnStatItem(data.Money, moneyItemPrefab);
+    // SpawnStat(data.Mana, manaItemPrefab);
+    SpawnStatItem(data.Health, healthItemPrefab);
+    SpawnThoughts(data.Thoughts);
   }
-  private void SpawnRandomThought(Vector3 spawnPosition)
-  {
-    Thought randomThought = possibleThoughts[Random.Range(0, possibleThoughts.Length)];
-    GameObject newThought = Instantiate(thoughtItemPrefab, spawnPosition, transform.rotation);
 
-    ThoughtItem thoughtItem = newThought.GetComponent<ThoughtItem>();
-    if (thoughtItem != null)
+  private void SpawnStatItem(ItemChancesData chances, GameObject defaultPrefab)
+  {
+    if (defaultPrefab == null) return;
+
+    int count = chances.Roll();
+    for (int i = 0; i < count; ++i)
     {
-      thoughtItem.Setup(randomThought);
+      var prefab = chances.PickPrefab(defaultPrefab);
+      Instantiate(prefab, GetNewSpawnPosition(), transform.rotation);
     }
   }
 
-  private void SpawnRandomItem(Vector3 spawnPosition)
+  private void SpawnThoughts(ItemChancesData chances)
   {
-    GameObject randomItem = itemsToSpawn[Random.Range(0, itemsToSpawn.Length)];
-    Instantiate(randomItem, spawnPosition, transform.rotation);
+    if (thoughtItemPrefab == null)
+      return;
+
+    int count = chances.Roll();
+    for (int i = 0; i < count; i++)
+    {
+      Thought randomThought = thoughtsAvaliabilityManager.GetRandomThought();
+      if (randomThought == null) continue;
+
+      var newThought    = Instantiate(thoughtItemPrefab, GetNewSpawnPosition(), transform.rotation);
+
+      newThought.GetComponent<ThoughtItem>().Setup(randomThought);
+    }
   }
+
+  private Vector3 GetNewSpawnPosition() =>
+      transform.position + (Vector3)Random.insideUnitCircle.normalized * Random.Range(0, maxSpawnDistance);
 }
