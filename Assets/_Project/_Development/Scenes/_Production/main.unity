@@ -1318,13 +1318,13 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5309074386348388230, guid: 05ad525941d09c44cb86a125d67c2543, type: 3}
+      propertyPath: encounterManager
+      value: 
+      objectReference: {fileID: 2114132546952618894}
     - target: {fileID: 7330905539847839026, guid: 05ad525941d09c44cb86a125d67c2543, type: 3}
       propertyPath: m_Name
       value: CanvasHUD
-      objectReference: {fileID: 0}
-    - target: {fileID: 7330905539847839026, guid: 05ad525941d09c44cb86a125d67c2543, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8872134014147528618, guid: 05ad525941d09c44cb86a125d67c2543, type: 3}
       propertyPath: m_Pivot.x
@@ -1406,8 +1406,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8960851103067054146, guid: 05ad525941d09c44cb86a125d67c2543, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

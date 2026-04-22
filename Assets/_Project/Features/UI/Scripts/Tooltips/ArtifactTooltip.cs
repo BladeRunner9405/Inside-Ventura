@@ -19,10 +19,14 @@ public class ArtifactTooltip : TooltipBase
       outline.SetActive(true);
 
     tooltipBackground.color = new Color(0f, 0f, 0f, 0.75f);
+    UpdateTooltipText();
+
+    // _globalTooltip.SetText($"<b><u>{_artifactInstance.BaseData.Name}</u></b>");
+  }
+
+  public void UpdateTooltipText() {
     string tooltipText = BuildTooltipText(_artifactInstance);
     tooltip?.SetText(tooltipText);
-
-    _globalTooltip.SetText($"<b><u>{_artifactInstance.BaseData.Name}</u></b>");
   }
 
   private string BuildTooltipText(ArtifactInstance artifact)

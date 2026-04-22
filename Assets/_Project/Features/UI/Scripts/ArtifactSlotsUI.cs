@@ -71,13 +71,17 @@ public class ArtifactSlotsUI : InjectMonoBehaviour
 
   private void HandleThoughtEquipped(int slotIndex, Thought thought)
   {
-    if (slotIndex < slots.Length)
+    if (slotIndex < slots.Length) {
       slots[slotIndex].SetData(thought);
+      artifactTooltip.UpdateTooltipText();
+    }
   }
 
   private void HandleThoughtUnequipped(int slotIndex)
   {
-    if (slotIndex < slots.Length)
+    if (slotIndex < slots.Length) {
       slots[slotIndex].Clear();
+      artifactTooltip.UpdateTooltipText();
+    }
   }
 }

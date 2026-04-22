@@ -25,7 +25,7 @@ public class ThoughtTooltip : TooltipBase
     string tooltipText = BuildTooltipText(_slot.CurrentThought);
     tooltip?.SetText(tooltipText);
 
-    _globalTooltip.SetText($"<b><u>{thought.Name}</u></b>\n{thought.Description}");
+    // _globalTooltip.SetText($"<b><u>{thought.Name}</u></b>\n{thought.Description}");
   }
 
   public static string BuildTooltipText(Thought thought)

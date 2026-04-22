@@ -48,6 +48,6 @@ public abstract class TooltipBase : MonoBehaviour
 
     tooltipBackground.color = Color.clear;
     tooltip?.Clear();
-    _globalTooltip?.Clear();
+    // _globalTooltip?.Clear();
   }
 }

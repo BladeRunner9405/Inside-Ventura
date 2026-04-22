@@ -22,7 +22,7 @@ public class InventoryTooltip : TooltipBase
     string tooltipText = BuildTooltipText(_thoughtBag);
     tooltip?.SetText(tooltipText);
 
-    _globalTooltip.SetText($"<b><u>{_thoughtBag.Name}</u></b>");
+    // _globalTooltip.SetText($"<b><u>{_thoughtBag.Name}</u></b>");
   }
 
   private string BuildTooltipText(ThoughtBag thoughtBag)
