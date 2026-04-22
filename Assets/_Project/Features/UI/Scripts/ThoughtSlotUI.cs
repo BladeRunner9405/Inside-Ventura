@@ -62,7 +62,7 @@ public class ThoughtSlotUI
     _thoughtsCompatibilityManager.OnActiveArtifactsChanged -= OnActiveArtifactChanged;
   }
 
-  private void OnActiveArtifactChanged(ArtifactInstance artifact) => RefreshVisual();
+  private void OnActiveArtifactChanged() => RefreshVisual();
 
   public bool IsCompatibleWithActiveArtifacts()
   {
@@ -136,9 +136,15 @@ public class ThoughtSlotUI
     }
   }
 
-  /*public void ToggleArtifacts() {
+  public void SetActiveArtifacts() {
     if (!data) return;
 
     _thoughtsCompatibilityManager.ActivateForThought(data.Type);
-  }*/
+  }
+
+  public void UnsetActiveArtifacts() {
+    if (!data) return;
+
+    _thoughtsCompatibilityManager.DeactivateForThoughts();
+  }
 }

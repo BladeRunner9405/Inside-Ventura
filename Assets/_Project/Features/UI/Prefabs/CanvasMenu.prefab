@@ -1146,6 +1146,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 7380026886925942621}
+          m_TargetAssemblyTypeName: ArtifactSlotsUI, Assembly-CSharp
+          m_MethodName: set_IsPointerOnArtifact
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
   - eventID: 1
     callback:
       m_PersistentCalls:
@@ -1174,6 +1186,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 7380026886925942621}
+          m_TargetAssemblyTypeName: ArtifactSlotsUI, Assembly-CSharp
+          m_MethodName: set_IsPointerOnArtifact
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - eventID: 4
     callback:
       m_PersistentCalls:
@@ -1192,7 +1216,7 @@ MonoBehaviour:
           m_CallState: 2
         - m_Target: {fileID: 7380026886925942621}
           m_TargetAssemblyTypeName: ArtifactSlotsUI, Assembly-CSharp
-          m_MethodName: ToggleActivity
+          m_MethodName: TogglePinned
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -2938,6 +2962,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1485956086796354017}
+          m_TargetAssemblyTypeName: ArtifactSlotsUI, Assembly-CSharp
+          m_MethodName: set_IsPointerOnArtifact
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
   - eventID: 1
     callback:
       m_PersistentCalls:
@@ -2966,6 +3002,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1485956086796354017}
+          m_TargetAssemblyTypeName: ArtifactSlotsUI, Assembly-CSharp
+          m_MethodName: set_IsPointerOnArtifact
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - eventID: 4
     callback:
       m_PersistentCalls:
@@ -2984,7 +3032,7 @@ MonoBehaviour:
           m_CallState: 2
         - m_Target: {fileID: 1485956086796354017}
           m_TargetAssemblyTypeName: ArtifactSlotsUI, Assembly-CSharp
-          m_MethodName: ToggleActivity
+          m_MethodName: TogglePinned
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -3875,6 +3923,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1070971514828192056}
+          m_TargetAssemblyTypeName: ArtifactSlotsUI, Assembly-CSharp
+          m_MethodName: set_IsPointerOnArtifact
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 1
+          m_CallState: 2
   - eventID: 1
     callback:
       m_PersistentCalls:
@@ -3903,6 +3963,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 1070971514828192056}
+          m_TargetAssemblyTypeName: ArtifactSlotsUI, Assembly-CSharp
+          m_MethodName: set_IsPointerOnArtifact
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
   - eventID: 4
     callback:
       m_PersistentCalls:
@@ -3921,7 +3993,7 @@ MonoBehaviour:
           m_CallState: 2
         - m_Target: {fileID: 1070971514828192056}
           m_TargetAssemblyTypeName: ArtifactSlotsUI, Assembly-CSharp
-          m_MethodName: ToggleActivity
+          m_MethodName: TogglePinned
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

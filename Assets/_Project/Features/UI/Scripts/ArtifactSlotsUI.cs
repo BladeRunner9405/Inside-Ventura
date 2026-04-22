@@ -13,17 +13,17 @@ public class ArtifactSlotsUI : InjectMonoBehaviour
 
   private bool _pinned = false;
 
+  public bool IsPointerOnArtifact { get; set; }
+
   public ArtifactInstance ArtifactInstance { get; private set; }
 
-  public void Initialize(ArtifactInstance artifactInstance)
-  {
+  public void Initialize(ArtifactInstance artifactInstance) {
     // Защита: если мы уже инициализированы этим артефактом, ничего не делаем
     if (ArtifactInstance == artifactInstance)
       return;
 
     // Защита: отписываемся от старого артефакта, если он был
-    if (ArtifactInstance != null)
-    {
+    if (ArtifactInstance != null) {
       ArtifactInstance.OnThoughtEquipped -= HandleThoughtEquipped;
       ArtifactInstance.OnThoughtUnequipped -= HandleThoughtUnequipped;
     }
@@ -34,8 +34,7 @@ public class ArtifactSlotsUI : InjectMonoBehaviour
       artifactTooltip.Initialize(artifactInstance);
 
     var count = Mathf.Min(slots.Length, artifactInstance.BaseData.SlotsCount);
-    for (var i = 0; i < count; ++i)
-    {
+    for (var i = 0; i < count; ++i) {
       var slot = slots[i];
       slot.SourceBag = null;
       slot.SourceArtifactInstance = artifactInstance;
@@ -47,6 +46,10 @@ public class ArtifactSlotsUI : InjectMonoBehaviour
     ArtifactInstance.OnThoughtUnequipped += HandleThoughtUnequipped;
   }
 
+  private void Start() {
+    _thoughtsCompatibilityManager.OnThoughtDeselected += HandleThoughtDeselected;
+  }
+
   private void OnDestroy()
   {
     if (ArtifactInstance == null)
@@ -54,9 +57,11 @@ public class ArtifactSlotsUI : InjectMonoBehaviour
 
     ArtifactInstance.OnThoughtEquipped -= HandleThoughtEquipped;
     ArtifactInstance.OnThoughtUnequipped -= HandleThoughtUnequipped;
+
+    _thoughtsCompatibilityManager.OnThoughtDeselected -= HandleThoughtDeselected;
   }
 
-  public void ToggleActivity() => _pinned = !_pinned;
+  public void TogglePinned() => _pinned = !_pinned;
 
   public void SetAsActive() {
     if (_thoughtsCompatibilityManager.IfNoActiveArtifacts())
@@ -67,6 +72,12 @@ public class ArtifactSlotsUI : InjectMonoBehaviour
   {
     if (!_pinned && _thoughtsCompatibilityManager.ContainsArtifact(ArtifactInstance))
       _thoughtsCompatibilityManager.RemoveActiveArtifact(ArtifactInstance);
+  }
+
+  private void HandleThoughtDeselected() {
+    if (IsPointerOnArtifact) {
+      SetAsActive();
+    }
   }
 
   private void HandleThoughtEquipped(int slotIndex, Thought thought)

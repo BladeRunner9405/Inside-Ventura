@@ -85,6 +85,7 @@ public class GameInstaller : InstallerBehaviourBase
       Debug.LogError("[GameInstaller] ОШИБКА: DragAndDropManager не назначен в инспекторе!");
     }
 
+    // 7. Менеджеры UI
     if (_thoughtsCompatibilityManager != null)
     {
       BindAsSingleton(_thoughtsCompatibilityManager);

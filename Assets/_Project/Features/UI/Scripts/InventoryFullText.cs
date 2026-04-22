@@ -18,7 +18,7 @@ public class InventoryFullText : InjectMonoBehaviour
     _text.enabled = false;
   }
 
-  private void Subscribe(Player player) {
+  private void Subscribe() {
     _playerAccessor.Inventory.OnCantAddThought += ShowMessage;
   }
 

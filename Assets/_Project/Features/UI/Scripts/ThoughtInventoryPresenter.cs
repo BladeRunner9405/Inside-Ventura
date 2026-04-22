@@ -38,10 +38,10 @@ public class ThoughtInventoryPresenter : PresenterBase
 
     _playerAccessor.OnPlayerRegistered += OnPlayerRegistered;
 
-    if (_playerAccessor.HasPlayer) OnPlayerRegistered(null);
+    if (_playerAccessor.HasPlayer) OnPlayerRegistered();
   }
 
-  private void OnPlayerRegistered(Player player) {
+  private void OnPlayerRegistered() {
     _bag = _playerAccessor.Inventory.ThoughtBag;
     var slotCount = _bag.MaxSize;
 

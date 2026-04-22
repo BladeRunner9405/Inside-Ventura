@@ -49,7 +49,7 @@ public class HUDManager : BehaviourBase {
     _playerAccessor.OnPlayerRegistered -= OnPlayerRegistered;
   }
 
-  private void OnPlayerRegistered(Player player) {
+  private void OnPlayerRegistered() {
     _playerReady = true;
 
     _playerDataModel = _modelService.GetOrCreateSingletonModel<PlayerDataModel>();

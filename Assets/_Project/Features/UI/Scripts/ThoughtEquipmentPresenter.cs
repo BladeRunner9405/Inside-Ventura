@@ -22,15 +22,15 @@ public class ThoughtEquipmentPresenter : PresenterBase
     base.OnEnable();
 
     _playerAccessor.OnPlayerRegistered += OnPlayerRegistered;
-    
-    if (_playerAccessor.HasPlayer) OnPlayerRegistered(null);
+
+    if (_playerAccessor.HasPlayer) OnPlayerRegistered();
   }
 
   protected void OnDisable() {
     _playerAccessor.OnPlayerRegistered -= OnPlayerRegistered;
   }
 
-  private void OnPlayerRegistered(Player player) {
+  private void OnPlayerRegistered() {
     RefreshSlots();
   }
 

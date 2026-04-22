@@ -11,13 +11,13 @@ public class PlayerAccessor : IPlayerData
   public PlayerStats Stats => _player?.Stats;
 
   public bool HasPlayer => _player != null;
-  public event Action<Player> OnPlayerRegistered;
+  public event Action OnPlayerRegistered;
   public event Action<StatName> OnStatModified;
 
   public void RegisterPlayer(Player player)
   {
     _player = player;
-    OnPlayerRegistered?.Invoke(player);
+    OnPlayerRegistered?.Invoke();
   }
 
   public void UnregisterPlayer(Player player)
