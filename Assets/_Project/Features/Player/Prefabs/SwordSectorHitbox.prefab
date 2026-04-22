@@ -9,10 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4374962403703880676}
-  - component: {fileID: 9071357364563302267}
   - component: {fileID: -5075379379387539034}
   - component: {fileID: 2462862026025648702}
-  - component: {fileID: 9214204667250350431}
+  - component: {fileID: -437990948176116392}
   m_Layer: 0
   m_Name: SwordSectorHitbox
   m_TagString: Untagged
@@ -35,7 +34,40 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &9071357364563302267
+--- !u!114 &-5075379379387539034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322749241776875725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6502c4f2e8f40f4187973c8e2b3ac42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpritesSorting
+  pivot: {fileID: 0}
+--- !u!114 &2462862026025648702
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1322749241776875725}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d679dde95e37fec4db91b2908adaa1d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SectorAttackObject
+  animator: {fileID: 0}
+  currentDamage: 0
+  targetLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  lifeTime: 0.25
+  showDebugVisuals: 1
+  debugLineDuration: 0.1
+--- !u!212 &-437990948176116392
 SpriteRenderer:
   serializedVersion: 2
   m_ObjectHideFlags: 0
@@ -80,8 +112,8 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
-  m_SortingLayerID: -222208283
-  m_SortingLayer: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 0}
@@ -94,51 +126,3 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 0
   m_SpriteSortPoint: 0
---- !u!114 &-5075379379387539034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1322749241776875725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6502c4f2e8f40f4187973c8e2b3ac42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SpritesSorting
---- !u!114 &2462862026025648702
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1322749241776875725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d679dde95e37fec4db91b2908adaa1d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SectorAttackObject
-  animator: {fileID: 9214204667250350431}
-  currentDamage: 0
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 256
-  lifeTime: 0.25
-  showDebugVisuals: 1
-  debugLineDuration: 0.1
---- !u!114 &9214204667250350431
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1322749241776875725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f50bac85dcd06944966c2daea15b7df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AttackAnimator
-  data: {fileID: 11400000, guid: 3c182f245f1ae1644887adac8387e1fc, type: 2}
-  spriteRenderer: {fileID: 9071357364563302267}
-  rotateToDirection: 1
-  flipOnLeftDirection: 1
