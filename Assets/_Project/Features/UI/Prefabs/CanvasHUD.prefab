@@ -933,6 +933,7 @@ GameObject:
   - component: {fileID: 1557090781638393197}
   - component: {fileID: 292427906239404695}
   - component: {fileID: 7723776834120002053}
+  - component: {fileID: 523298750255721976}
   m_Layer: 5
   m_Name: NoSpaceText
   m_TagString: Untagged
@@ -956,7 +957,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -0.00012207031, y: -27.548645}
+  m_AnchoredPosition: {x: -0.00012207031, y: -2}
   m_SizeDelta: {x: 1400, y: 150}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &292427906239404695
@@ -974,7 +975,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7854417254125733680}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
@@ -1060,3 +1061,15 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &523298750255721976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7854417254125733680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7f0b381a1e831e4a956e65573ded886, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryFullText

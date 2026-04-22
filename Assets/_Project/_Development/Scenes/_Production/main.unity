@@ -1318,6 +1318,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1557090781638393197, guid: 05ad525941d09c44cb86a125d67c2543, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -27.548584
+      objectReference: {fileID: 0}
     - target: {fileID: 5309074386348388230, guid: 05ad525941d09c44cb86a125d67c2543, type: 3}
       propertyPath: encounterManager
       value: 
@@ -1325,6 +1329,10 @@ PrefabInstance:
     - target: {fileID: 7330905539847839026, guid: 05ad525941d09c44cb86a125d67c2543, type: 3}
       propertyPath: m_Name
       value: CanvasHUD
+      objectReference: {fileID: 0}
+    - target: {fileID: 7723776834120002053, guid: 05ad525941d09c44cb86a125d67c2543, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8872134014147528618, guid: 05ad525941d09c44cb86a125d67c2543, type: 3}
       propertyPath: m_Pivot.x

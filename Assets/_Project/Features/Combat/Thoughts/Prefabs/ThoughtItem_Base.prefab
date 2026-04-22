@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ThoughtItem
   outline: {fileID: 4458220301563253481}
-  thoughtData: {fileID: 11400000, guid: d4b3892ed89d0a54bbd1d8713562ebfd, type: 2}
+  thoughtData: {fileID: 11400000, guid: 1599944266bf5f34b88f65be7e12f146, type: 2}
   spriteRenderer: {fileID: 1007092854884245711}
 --- !u!61 &208175663639969996
 BoxCollider2D:
