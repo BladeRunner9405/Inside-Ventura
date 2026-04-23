@@ -16,6 +16,17 @@ namespace InsideVentura.World {
 
     [Inject] private DungeonManager _dungeonManager;
 
+    public DungeonRoom GetRoom()
+    {
+      var res = RoomInstance.Room as DungeonRoom;
+      if (res == null)
+      {
+        Debug.LogError($"Room instance doesn't implement {nameof(DungeonRoom)}");
+      }
+
+      return res;
+    }
+
     public virtual void Init(RoomInstanceGrid2D roomInstance) {
       RoomInstance = roomInstance;
 
