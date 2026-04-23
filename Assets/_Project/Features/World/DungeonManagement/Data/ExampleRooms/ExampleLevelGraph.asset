@@ -27,7 +27,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InsideVentura.World.DungeonRoom
   Position: {x: 496, y: 320}
-  type: 1
+  type: 2
   individualRoomTemplates:
   - {fileID: 4938271001061371832, guid: 355ba92795a26023094ff5dd44d8f6f2, type: 3}
   roomTemplateSets: []
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DungeonRoom
   Position: {x: 320, y: 128}
-  type: 1
+  type: 2
   individualRoomTemplates:
   - {fileID: 4938271001061371832, guid: 355ba92795a26023094ff5dd44d8f6f2, type: 3}
   roomTemplateSets: []
@@ -104,8 +104,8 @@ MonoBehaviour:
   - {fileID: 6896466753481673565}
   - {fileID: -6660809770202785577}
   EditorData:
-    PanOffset: {x: 113.75458, y: 80.50931}
-    Zoom: 1.0822676
+    PanOffset: {x: -24.657276, y: 10.086551}
+    Zoom: 1.2453632
   RoomType: InsideVentura.World.DungeonRoom
   ConnectionType: Edgar.Unity.Connection
 --- !u!114 &2295331113537441066
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DungeonRoom
   Position: {x: 320, y: 320}
-  type: 0
+  type: 1
   individualRoomTemplates:
   - {fileID: 9204587858199253963, guid: 1a670604225e98a8f826cf7390106ea9, type: 3}
   roomTemplateSets: []
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DungeonRoom
   Position: {x: 320, y: 224}
-  type: 1
+  type: 2
   individualRoomTemplates:
   - {fileID: 4938271001061371832, guid: 355ba92795a26023094ff5dd44d8f6f2, type: 3}
   roomTemplateSets: []
@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DungeonRoom
   Position: {x: 320, y: 32}
-  type: 3
+  type: 0
   individualRoomTemplates:
   - {fileID: 8262108126446541429, guid: c16e1965d2a284aeca961432b2c67931, type: 3}
   roomTemplateSets: []

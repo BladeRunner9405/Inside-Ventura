@@ -42,7 +42,7 @@ namespace InsideVentura.World {
 
       // Use different colors for different types of rooms
       switch (type) {
-        case DungeonRoomType.Spawn:
+        case DungeonRoomType.Spawn or DungeonRoomType.Safe:
           backgroundColor = new Color(38 / 256f, 115 / 256f, 38 / 256f);
           break;
 

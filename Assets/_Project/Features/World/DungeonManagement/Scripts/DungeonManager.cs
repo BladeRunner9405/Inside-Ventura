@@ -17,6 +17,7 @@ namespace InsideVentura.World {
 
     public void Awake() {
       Random = new();
+      Instance = this;
 
       // Start the generator coroutine
       StartCoroutine(GeneratorCoroutine(generator));

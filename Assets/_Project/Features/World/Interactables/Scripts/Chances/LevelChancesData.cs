@@ -1,4 +1,5 @@
 using System;
+using CherryFramework.DependencyManager;
 using InsideVentura.World;
 using UnityEngine;
 
@@ -6,6 +7,7 @@ using UnityEngine;
 public class RoomChancesData
 {
   public ItemChancesData Money;
+
   // public StatChances Mana;
   public ItemChancesData Health;
   public ItemChancesData Thoughts;
@@ -37,18 +39,17 @@ public class LevelChancesData : ScriptableObject
 
   public RoomChancesData GetCurrentChances()
   {
-    // RoomType currentType = DungeonManager.Instance.GetCurrentRoomType();
-    // RoomChancesData selected = currentType switch
-    // {
-    //   RoomType.Safe => SafeRoomChances,
-    //   RoomType.NormalRank1 => NormalRank1Chances,
-    //   RoomType.NormalRank2 => NormalRank2Chances,
-    //   RoomType.NormalRank3 => NormalRank3Chances,
-    //   RoomType.MiniBoss => MiniBossChances,
-    //   RoomType.Boss => BossChances,
-    //   _ => _defaultChances
-    // };
-    RoomChancesData selected = NormalRank1Chances;
+    var currentType = DungeonManager.Instance.CurrentRoom.GetRoom().type;
+    RoomChancesData selected = currentType switch
+    {
+      DungeonRoomType.Safe or DungeonRoomType.Spawn => SafeRoomChances,
+      DungeonRoomType.NormalRank1 => NormalRank1Chances,
+      DungeonRoomType.NormalRank2 => NormalRank2Chances,
+      DungeonRoomType.NormalRank3 => NormalRank3Chances,
+      DungeonRoomType.MiniBoss => MiniBossChances,
+      DungeonRoomType.Boss => BossChances,
+      _ => _defaultChances
+    };
 
     if (selected == null)
     {

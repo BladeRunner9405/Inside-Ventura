@@ -4,15 +4,20 @@ using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace InsideVentura.World {
-  public class SetupRoomManagers : DungeonGeneratorPostProcessingComponentGrid2D {
-    public override void Run(DungeonGeneratorLevelGrid2D level) {
-      level.GetSharedTilemaps().ForEach(x => {
+namespace InsideVentura.World
+{
+  public class SetupRoomManagers : DungeonGeneratorPostProcessingComponentGrid2D
+  {
+    public override void Run(DungeonGeneratorLevelGrid2D level)
+    {
+      level.GetSharedTilemaps().ForEach(x =>
+      {
         if (x.gameObject.name == "Walls") x.gameObject.layer = 3;
       });
 
       Debug.Log("Setting up dungeon rooms...");
-      foreach (var roomInstance in level.RoomInstances) {
+      foreach (var roomInstance in level.RoomInstances)
+      {
         var roomTemplateInstance = roomInstance.RoomTemplateInstance;
 
         // Find floor tilemap layer
@@ -33,17 +38,20 @@ namespace InsideVentura.World {
       Debug.Log("Done setting up dungeon rooms");
     }
 
-    private RoomManagerBase AddRoomManager(GameObject roomTemplateInstance, RoomInstanceGrid2D roomInstance) {
+    private RoomManagerBase AddRoomManager(GameObject roomTemplateInstance, RoomInstanceGrid2D roomInstance)
+    {
       var dungeonRoom = roomInstance.Room as DungeonRoom;
-      switch (dungeonRoom.type) {
-        case DungeonRoomType.Normal:
+      switch (dungeonRoom.type)
+      {
+        case DungeonRoomType.NormalRank1 or DungeonRoomType.NormalRank2 or DungeonRoomType.NormalRank3:
           return roomTemplateInstance.AddComponent<NormalRoomManager>();
         default:
           return roomTemplateInstance.AddComponent<RoomManagerBase>();
       }
     }
 
-    private void AddFloorCollider(GameObject floor) {
+    private void AddFloorCollider(GameObject floor)
+    {
       var tilemapCollider2D = floor.AddComponent<TilemapCollider2D>();
       tilemapCollider2D.compositeOperation = Collider2D.CompositeOperation.Merge;
 
