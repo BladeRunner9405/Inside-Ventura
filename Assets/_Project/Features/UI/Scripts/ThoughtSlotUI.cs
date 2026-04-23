@@ -20,6 +20,9 @@ public class ThoughtSlotUI
   [SerializeField]
   private Image tooltip;
 
+  [SerializeField]
+  private ThoughtRemover remover;
+
   private CanvasGroup _canvasGroup;
 
   [Inject]
@@ -32,6 +35,8 @@ public class ThoughtSlotUI
 
   // Ссылка на "живой" инстанс артефакта, если слот принадлежит экипировке
   public ArtifactInstance SourceArtifactInstance { get; set; }
+
+  public ThoughtRemover Remover => remover;
 
   // Индекс слота в артефакте
   public int ArtifactSlotIndex { get; set; } = -1;

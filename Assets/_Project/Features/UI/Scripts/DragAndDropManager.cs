@@ -82,6 +82,10 @@ public class DragAndDropManager : InjectMonoBehaviour
 
         if (targetSlot.SourceArtifactInstance != null)
           return thought.HasRightType(targetSlot.SourceArtifactInstance.BaseData);
+
+        if (targetSlot.Remover != null)
+          return true;
+
         return false;
     }
 
@@ -184,6 +188,11 @@ public class DragAndDropManager : InjectMonoBehaviour
         target.SourceArtifactInstance.UnequipThought(target.ArtifactSlotIndex);
         target.SourceArtifactInstance.EquipThought(sourceThought, target.ArtifactSlotIndex);
       }
+
+      if (target.Remover != null) {
+        target.Remover.DropThoughtToWorld(sourceThought);
+        source.SourceBag.RemoveThoughtAt(source.BagSlotIndex);
+      }
     }
 
     private static bool IsCompatible(Thought thought, ArtifactInstance artifact)
@@ -230,5 +239,23 @@ public class DragAndDropManager : InjectMonoBehaviour
         _dragVisualRect = null;
         _sourceSlot = null;
         _draggedThought = null;
+    }
+
+    public Thought DropThoughtToWorld()
+    {
+      if (_draggedThought == null) return null;
+
+      if (_sourceSlot.SourceBag != null)
+      {
+        _sourceSlot.SourceBag.SetThoughtAt(_sourceSlot.BagSlotIndex, null);
+      }
+      else if (_sourceSlot.SourceArtifactInstance != null)
+      {
+        _sourceSlot.SourceArtifactInstance.UnequipThought(_sourceSlot.ArtifactSlotIndex);
+      }
+
+      CleanUp();
+
+      return _draggedThought;
     }
 }
