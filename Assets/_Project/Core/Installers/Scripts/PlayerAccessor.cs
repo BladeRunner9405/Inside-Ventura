@@ -12,6 +12,7 @@ public class PlayerAccessor : IPlayerData
 
   public bool HasPlayer => _player != null;
   public event Action OnPlayerRegistered;
+  public event Action OnPlayerUnregistered;
   public event Action<StatName> OnStatModified;
 
   public void RegisterPlayer(Player player)
@@ -24,6 +25,7 @@ public class PlayerAccessor : IPlayerData
   {
     if (_player == player)
       _player = null;
+    OnPlayerUnregistered?.Invoke();
   }
 
   public Stat GetStat(StatName statName)

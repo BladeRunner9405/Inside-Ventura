@@ -18,14 +18,18 @@ public class ThoughtsCompatibilityManager : InjectMonoBehaviour
   public event Action OnActiveArtifactsChanged;
   public event Action OnThoughtDeselected;
 
+  public bool ActiveForThougthMode { get; set; }
+
   public void AddActiveArtifact(ArtifactInstance artifact)
   {
     _activeArtifacts.Add(artifact);
+    ActiveForThougthMode = false;
     OnActiveArtifactsChanged?.Invoke();
   }
 
   public void RemoveActiveArtifact(ArtifactInstance artifact) {
     _activeArtifacts.Remove(artifact);
+    ActiveForThougthMode = false;
     OnActiveArtifactsChanged?.Invoke();
   }
 
@@ -63,11 +67,14 @@ public class ThoughtsCompatibilityManager : InjectMonoBehaviour
     else if (thoughtType == ThoughtType.Accessory) {
       _activeArtifacts = new HashSet<ArtifactInstance> { _accessory };
     }
+
+    ActiveForThougthMode = true;
     OnActiveArtifactsChanged?.Invoke();
   }
 
   public void DeactivateForThoughts() {
     ClearActiveArtifacts();
+    ActiveForThougthMode = false;
     OnThoughtDeselected?.Invoke();
   }
 }

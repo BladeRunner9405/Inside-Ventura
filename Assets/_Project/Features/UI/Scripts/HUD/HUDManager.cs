@@ -42,11 +42,13 @@ public class HUDManager : BehaviourBase {
     base.OnEnable();
 
     _playerAccessor.OnPlayerRegistered += OnPlayerRegistered;
+    _playerAccessor.OnPlayerUnregistered += OnPlayerUnregistered;
   }
 
   protected void OnDisable() {
     Bindings.ReleaseAllBindings();
     _playerAccessor.OnPlayerRegistered -= OnPlayerRegistered;
+    _playerAccessor.OnPlayerUnregistered -= OnPlayerUnregistered;
   }
 
   private void OnPlayerRegistered() {
@@ -67,6 +69,10 @@ public class HUDManager : BehaviourBase {
     }
 
     _playerAccessor.OnStatModified += OnPlayerStatModified;
+  }
+
+  private void OnPlayerUnregistered() {
+    _playerAccessor.OnStatModified -= OnPlayerStatModified;
   }
 
   private void OnPlayerStatModified(StatName statName)

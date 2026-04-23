@@ -1,3 +1,4 @@
+using System;
 using CherryFramework.DependencyManager;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -21,6 +22,10 @@ public class ArtifactActivityToggler : InjectMonoBehaviour
 
   private void Start() {
     _thoughtsCompatibilityManager.OnActiveArtifactsChanged += Toggle;
+  }
+
+  private void OnDisable() {
+    _thoughtsCompatibilityManager.OnActiveArtifactsChanged -= Toggle;
   }
 
   private void Toggle() {

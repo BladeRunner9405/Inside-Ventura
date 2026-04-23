@@ -73,6 +73,8 @@ public class ThoughtSlotUI
   {
     if (!data) return true;
 
+    if (SourceBag && _thoughtsCompatibilityManager.ActiveForThougthMode) return true;
+
     if (_thoughtsCompatibilityManager.IfNoActiveArtifacts()) return true;
 
     foreach (var activeArtifact in _thoughtsCompatibilityManager.ActiveArtifacts) {
