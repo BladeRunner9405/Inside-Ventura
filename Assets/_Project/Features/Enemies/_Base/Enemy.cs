@@ -106,7 +106,7 @@ public class Enemy : Entity
 
         // 2. Определение опасностей (Стены и другие враги)
         // Смещение точки начала лучей чуть вперед, чтобы не застревать внутри коллайдеров
-        Vector2 rayOrigin = (Vector2)transform.position + (_currentSteeringVelocity * 0.2f);
+        Vector2 rayOrigin = (Vector2)bodyCollider.bounds.center + (_currentSteeringVelocity * 0.2f);
 
         for (int i = 0; i < raysCount; i++) 
         {

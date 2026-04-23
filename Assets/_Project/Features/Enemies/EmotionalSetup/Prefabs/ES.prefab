@@ -99,7 +99,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!114 &7517003494791358381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,7 +146,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -1}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -156,7 +156,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 2, y: 3}
   m_EdgeRadius: 0
 --- !u!50 &3065860956137818966
 Rigidbody2D:
@@ -234,7 +234,7 @@ MonoBehaviour:
   dodgeChance:
     _value: 0
   target: {fileID: 0}
-  collider: {fileID: 3044149917865385178}
+  bodyCollider: {fileID: 3044149917865385178}
   hitbox: {fileID: 5082482304728084474}
   _animator: {fileID: 5823906563277345234}
   _spriteRenderer: {fileID: 7293520111826285576}
@@ -306,11 +306,11 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -1.5}
   m_Radius: 0.5
 --- !u!1001 &3991877424212251080
 PrefabInstance:

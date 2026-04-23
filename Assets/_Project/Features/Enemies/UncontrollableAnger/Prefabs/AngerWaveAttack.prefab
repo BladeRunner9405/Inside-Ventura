@@ -50,6 +50,6 @@ MonoBehaviour:
     m_Bits: 512
   lifeTime: 1
   singleAttackPrefab: {fileID: 4264498667369742361, guid: 15265501b7cb7de4bb09741c99ceeecc, type: 3}
-  attackCount: 5
-  distanceBetweenAttacks: 1.5
-  delayBetweenSpawns: 0.1
+  attackCount: 3
+  distanceBetweenAttacks: 2
+  delayBetweenSpawns: 0.5

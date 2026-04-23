@@ -26,8 +26,8 @@ public abstract class Entity : InjectMonoBehaviour
   private readonly RaycastHit2D[] _hitBuffer = new RaycastHit2D[16];
   private ContactFilter2D _contactFilter;
   [Tooltip("Это коллайдер для обработки столкновений со стенами")]
-  [SerializeField] private Collider2D collider;
-  [SerializeField] private Collider2D hitbox;
+  [SerializeField] protected Collider2D bodyCollider;
+  [SerializeField] protected Collider2D hitbox;
   private Rigidbody2D _rb;
 
   // События для визуализации и систем
@@ -35,6 +35,8 @@ public abstract class Entity : InjectMonoBehaviour
   public event Action OnDeath;
   public event Action OnAppear;
   public event Action<Vector2> OnMove; // Для аниматора
+
+  public bool IsMovementLocked { get; set; }
 
   public virtual float Health
   {
@@ -72,23 +74,24 @@ public abstract class Entity : InjectMonoBehaviour
   // Универсальный метод поворота
   public virtual void HandleFlip(Vector2 direction)
   {
-      if (_spriteRenderer == null) return;
+    if (IsMovementLocked) return;
+    if (_spriteRenderer == null) return;
 
-      // Используем порог 0.01f, чтобы не флипать из-за микро-колебаний джойстика
-      if (direction.x > 0.01f)
-      {
-          _spriteRenderer.flipX = false; // Смотрит вправо (если исходный спрайт нарисован вправо)
-      }
-      else if (direction.x < -0.01f)
-      {
-          _spriteRenderer.flipX = true;  // Смотрит влево
-      }
+    // Используем порог 0.01f, чтобы не флипать из-за микро-колебаний джойстика
+    if (direction.x > 0.1f)
+    {
+        _spriteRenderer.flipX = false; // Смотрит вправо (если исходный спрайт нарисован вправо)
+    }
+    else if (direction.x < -0.1f)
+    {
+        _spriteRenderer.flipX = true;  // Смотрит влево
+    }
   }
 
   public virtual void Attack(Vector2 direction)
   {
-      // Когда сущность атакует, она должна резко повернуться в сторону атаки!
-      HandleFlip(direction);
+    // Когда сущность атакует, она должна резко повернуться в сторону атаки!
+    HandleFlip(direction);
   }
 
   protected virtual void Awake()
@@ -144,7 +147,7 @@ public abstract class Entity : InjectMonoBehaviour
       IsDead = true;
       Health = 0;
       OnDeath?.Invoke();
-      collider.enabled = false;
+      bodyCollider.enabled = false;
       hitbox.enabled = false;
 
       if (_animator != null) 
@@ -159,7 +162,7 @@ public abstract class Entity : InjectMonoBehaviour
   public virtual void ResetEntity()
   {
       IsDead = false;
-      collider.enabled = true;
+      bodyCollider.enabled = true;
       Health = MaxHealth;
       InvulnerabilityProcCount = 0; 
       OnAppear?.Invoke();
@@ -178,7 +181,7 @@ public abstract class Entity : InjectMonoBehaviour
   public void Move(Vector2 direction, float speedBoost = 1)
   {
     // Если мертв — обнуляем направление и выходим
-    if (IsDead)
+    if (IsDead|| IsMovementLocked)
     {
       CurrentMoveDirection = Vector2.zero;
       return;
@@ -204,7 +207,7 @@ public abstract class Entity : InjectMonoBehaviour
       if (distance < 0.0001f)
         break;
 
-      var count = collider.Cast(
+      var count = bodyCollider.Cast(
         deltaMove.normalized,
         _contactFilter,
         _hitBuffer,
@@ -235,18 +238,19 @@ public abstract class Entity : InjectMonoBehaviour
   private void ResolveOverlap()
   {
     var results = new Collider2D[5];
-    var count = collider.Overlap(_contactFilter, results);
+    var count = bodyCollider.Overlap(_contactFilter, results);
 
     for (var i = 0; i < count; i++)
     {
-      var dist = collider.Distance(results[i]);
+      var dist = bodyCollider.Distance(results[i]);
       if (dist.isOverlapped)
         _rb.position += dist.normal * dist.distance;
     }
   }
 
-  public void Dash(Vector2 direction, float distance, float duration)
+  public virtual void Dash(Vector2 direction, float distance, float duration)
   {
+    IsMovementLocked = false;
     if (!IsDashing)
       StartCoroutine(DashCoroutine(direction, distance, duration));
   }
@@ -274,6 +278,18 @@ public abstract class Entity : InjectMonoBehaviour
       default: return null;
     }
   }
+
+
+    public void AnimationEvent_LockMovement()
+    {
+        IsMovementLocked = true;
+    }
+
+    // Вызывай это в конце (или в середине, когда игрок должен снова пойти)
+    public void AnimationEvent_UnlockMovement()
+    {
+        IsMovementLocked = false;
+    }
 
   public virtual void OnAnimationEvent_Impact() { }
 

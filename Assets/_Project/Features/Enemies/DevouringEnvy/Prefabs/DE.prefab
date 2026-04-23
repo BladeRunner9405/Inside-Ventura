@@ -234,7 +234,7 @@ MonoBehaviour:
   dodgeChance:
     _value: 0
   target: {fileID: 0}
-  collider: {fileID: 1955962900051767801}
+  bodyCollider: {fileID: 1955962900051767801}
   hitbox: {fileID: 5082482304728084474}
   _animator: {fileID: 8389783169846516483}
   _spriteRenderer: {fileID: 7293520111826285576}
@@ -306,11 +306,11 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.5}
   m_Radius: 0.5
 --- !u!1001 &1111095229020859589
 PrefabInstance:

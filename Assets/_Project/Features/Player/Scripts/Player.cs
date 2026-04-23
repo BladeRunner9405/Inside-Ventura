@@ -34,6 +34,8 @@ public class Player : Entity
   public PlayerEquipment Equipment => equipment;
   public PlayerStats Stats => stats;
 
+  public bool IsInputLocked { get; set; }
+
   protected readonly int animDash = Animator.StringToHash("Dash");
 
   protected override void OnEnable()
@@ -101,19 +103,21 @@ public class Player : Entity
 
   public override void Attack(Vector2 direction)
   {
-      base.Attack(direction);
-      // 1. Говорим телу игрока проиграть анимацию взмаха
-      if (_animator != null) _animator.SetTrigger(animAttack);
+    if (IsMovementLocked || IsInputLocked) return;
+    base.Attack(direction);
+    IsMovementLocked = true;
+    // 1. Говорим телу игрока проиграть анимацию взмаха
+    if (_animator != null) _animator.SetTrigger(animAttack);
 
-      // 2. Передаем команду в экипировку (спавн самого меча/эффекта)
-      if (Equipment != null)
-      {
-          Equipment.TryToAttack(direction);
-      }
+    // 2. Передаем команду в экипировку (спавн самого меча/эффекта)
+    if (Equipment != null)
+    {
+        Equipment.TryToAttack(direction);
+    }
   }
   public void UseAbility(Vector2 direction)
   {
-    if (Equipment != null)
+    if (Equipment != null || !IsInputLocked)
     {
       Equipment.TryToUseAbility(direction);
     }
@@ -155,17 +159,33 @@ public class Player : Entity
   }
 
   protected override IEnumerator DashCoroutine(Vector2 direction, float distance, float duration)
-    {
-        // Включаем неуязвимость
-        ++InvulnerabilityProcCount;
-        
-        // Запускаем анимацию рывка (кувырок, скольжение и т.д.)
-        if (_animator != null) _animator.SetTrigger(animDash);
+  {
+      // Включаем неуязвимость
+      ++InvulnerabilityProcCount;
+      
+      // Запускаем анимацию рывка (кувырок, скольжение и т.д.)
+      if (_animator != null) _animator.SetTrigger(animDash);
 
-        yield return base.DashCoroutine(direction, distance, duration);
-        
-        --InvulnerabilityProcCount;
-    }
-
+      yield return base.DashCoroutine(direction, distance, duration);
+      
+      --InvulnerabilityProcCount;
+  }
   #endregion
+
+  public override void Dash(Vector2 direction, float distance, float duration)
+  {
+    if (IsInputLocked) return;
+    base.Dash(direction, distance, duration);
+  }
+
+  public void AnimationEvent_LockInput()
+  {
+      IsInputLocked = true;
+  }
+
+  // Вызывай это в конце (или в середине, когда игрок должен снова пойти)
+  public void AnimationEvent_UnlockInput()
+  {
+      IsInputLocked = false;
+  }
 }
