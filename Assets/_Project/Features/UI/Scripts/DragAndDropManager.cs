@@ -21,6 +21,9 @@ public class DragAndDropManager : InjectMonoBehaviour
     private RectTransform _dragVisualRect;
     private ThoughtSlotUI _sourceSlot;
 
+    [Inject]
+    private ThoughtsCompatibilityManager _thoughtsCompatibilityManager;
+
     public bool IsDragged { get; set; }
 
     public void StartDrag(ThoughtSlotUI sourceSlot, PointerEventData eventData)
@@ -54,6 +57,7 @@ public class DragAndDropManager : InjectMonoBehaviour
         CleanUp();
 
         IsDragged = false;
+        _thoughtsCompatibilityManager.DeactivateForThoughts();
     }
 
     private ThoughtSlotUI FindNearestValidSlot(PointerEventData eventData)
