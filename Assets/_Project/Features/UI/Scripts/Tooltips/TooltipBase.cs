@@ -1,15 +1,16 @@
 using CherryFramework.DependencyManager;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public abstract class TooltipBase : MonoBehaviour
 {
-  [Inject]
-  protected TooltipText _globalTooltip;
+  //[Inject]
+  //protected TooltipText _globalTooltip;
 
   [SerializeField]
-  protected TooltipText tooltip;
+  protected TextMeshProUGUI tooltipText;
   [SerializeField]
   protected Image tooltipBackground;
 
@@ -18,10 +19,10 @@ public abstract class TooltipBase : MonoBehaviour
 
   private bool _pinned;
 
-  protected virtual void Awake()
+  /*protected virtual void Awake()
   {
     DependencyContainer.Instance.InjectDependencies(this);
-  }
+  }*/
 
   public void TogglePinned() {
     _pinned = !_pinned;
@@ -34,7 +35,17 @@ public abstract class TooltipBase : MonoBehaviour
     ShowTooltip();
   }
 
-  public abstract void ShowTooltip();
+  public virtual void ShowTooltip() {
+    tooltipBackground.color = new Color(0f, 0f, 0f, 0.75f);
+    tooltipText.enabled = true;
+
+    SetTooltipText();
+
+    if (outline != null)
+      outline.SetActive(true);
+  }
+
+  public abstract void SetTooltipText();
 
   public void OnPointerExit() {
     if (_pinned) return;
@@ -47,7 +58,8 @@ public abstract class TooltipBase : MonoBehaviour
         outline.SetActive(false);
 
     tooltipBackground.color = Color.clear;
-    tooltip?.Clear();
+    tooltipText.enabled = false;
+
     // _globalTooltip?.Clear();
   }
 }

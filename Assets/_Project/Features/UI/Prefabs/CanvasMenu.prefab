@@ -589,7 +589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bbdb048337fbe64897a28f2442d76ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ArtifactTooltip
-  tooltip: {fileID: 372523962940299286}
+  tooltipText: {fileID: 3784547560653950583}
   tooltipBackground: {fileID: 1202924165349305973}
   outline: {fileID: 0}
 --- !u!1 &1567190259654304461
@@ -1872,7 +1872,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bbdb048337fbe64897a28f2442d76ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ArtifactTooltip
-  tooltip: {fileID: 8876434203578676430}
+  tooltipText: {fileID: 8033571986412499472}
   tooltipBackground: {fileID: 7691060106389551450}
   outline: {fileID: 0}
 --- !u!1 &3007755071674696756
@@ -3357,7 +3357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bbdb048337fbe64897a28f2442d76ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ArtifactTooltip
-  tooltip: {fileID: 5356661130731494170}
+  tooltipText: {fileID: 4399722351113165568}
   tooltipBackground: {fileID: 8447776313147466881}
   outline: {fileID: 0}
 --- !u!1 &5783082022990693735
@@ -3771,7 +3771,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c6505995db7f1d4daad1ab728bae00b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryTooltip
-  tooltip: {fileID: 3468122876671450744}
+  tooltipText: {fileID: 390498888032538460}
   tooltipBackground: {fileID: 5161311205683149405}
   outline: {fileID: 0}
 --- !u!1 &6032257452293816408

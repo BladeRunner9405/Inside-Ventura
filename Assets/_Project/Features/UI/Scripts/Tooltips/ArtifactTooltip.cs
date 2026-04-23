@@ -1,6 +1,3 @@
-using UnityEngine;
-using UnityEngine.EventSystems;
-
 public class ArtifactTooltip : TooltipBase
 {
   private ArtifactInstance _artifactInstance;
@@ -15,18 +12,13 @@ public class ArtifactTooltip : TooltipBase
     if (_artifactInstance == null)
       return;
 
-    if (outline != null)
-      outline.SetActive(true);
-
-    tooltipBackground.color = new Color(0f, 0f, 0f, 0.75f);
-    UpdateTooltipText();
-
-    // _globalTooltip.SetText($"<b><u>{_artifactInstance.BaseData.Name}</u></b>");
+    base.ShowTooltip();
   }
 
-  public void UpdateTooltipText() {
-    string tooltipText = BuildTooltipText(_artifactInstance);
-    tooltip?.SetText(tooltipText);
+  public override void SetTooltipText() {
+    tooltipText.text = BuildTooltipText(_artifactInstance);
+
+    // _globalTooltip.SetText($"<b><u>{_artifactInstance.BaseData.Name}</u></b>");
   }
 
   private string BuildTooltipText(ArtifactInstance artifact)

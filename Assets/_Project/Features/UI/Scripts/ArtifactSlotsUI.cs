@@ -84,7 +84,7 @@ public class ArtifactSlotsUI : InjectMonoBehaviour
   {
     if (slotIndex < slots.Length) {
       slots[slotIndex].SetData(thought);
-      artifactTooltip.UpdateTooltipText();
+      artifactTooltip.SetTooltipText();
     }
   }
 
@@ -92,7 +92,7 @@ public class ArtifactSlotsUI : InjectMonoBehaviour
   {
     if (slotIndex < slots.Length) {
       slots[slotIndex].Clear();
-      artifactTooltip.UpdateTooltipText();
+      artifactTooltip.SetTooltipText();
     }
   }
 }

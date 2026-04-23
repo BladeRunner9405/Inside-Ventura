@@ -1,29 +1,23 @@
-using UnityEngine;
-using UnityEngine.EventSystems;
-
 public class ThoughtTooltip : TooltipBase
 {
   private ThoughtSlotUI _slot;
 
-  protected override void Awake()
+  protected void Awake()
   {
     _slot = GetComponentInParent<ThoughtSlotUI>();
-    base.Awake();
+    //base.Awake();
   }
 
   public override void ShowTooltip()
   {
-    if (_globalTooltip == null || _slot.CurrentThought == null || !_slot.IsCompatibleWithActiveArtifacts())
+    if (_slot.CurrentThought == null || !_slot.IsCompatibleWithActiveArtifacts())
       return;
 
-    if (outline != null)
-      outline.SetActive(true);
+    base.ShowTooltip();
+  }
 
-    var thought = _slot.CurrentThought;
-
-    tooltipBackground.color = new Color(0f, 0f, 0f, 0.75f);
-    string tooltipText = BuildTooltipText(_slot.CurrentThought);
-    tooltip?.SetText(tooltipText);
+  public override void SetTooltipText() {
+    tooltipText.text = BuildTooltipText(_slot.CurrentThought);
 
     // _globalTooltip.SetText($"<b><u>{thought.Name}</u></b>\n{thought.Description}");
   }

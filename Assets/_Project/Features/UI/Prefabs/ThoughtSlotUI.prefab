@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 043fe8af44886dc499d11303cf3c7e3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ThoughtTooltip
-  tooltip: {fileID: 6275575298638842992}
+  tooltipText: {fileID: 2767925087291913414}
   tooltipBackground: {fileID: 1121674145833926310}
   outline: {fileID: 3441661744354214970}
 --- !u!1 &1626355206946153561
@@ -616,6 +616,7 @@ MonoBehaviour:
   iconImage: {fileID: 8103914615071410756}
   mask: {fileID: 396905337048557732}
   tooltip: {fileID: 7858359388314039125}
+  remover: {fileID: 0}
 --- !u!114 &2949430056456089074
 MonoBehaviour:
   m_ObjectHideFlags: 0

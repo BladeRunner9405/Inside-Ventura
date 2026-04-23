@@ -1,6 +1,3 @@
-using UnityEngine;
-using UnityEngine.EventSystems;
-
 public class InventoryTooltip : TooltipBase
 {
   private ThoughtBag _thoughtBag;
@@ -15,12 +12,11 @@ public class InventoryTooltip : TooltipBase
     if (_thoughtBag == null)
       return;
 
-    if (outline != null)
-      outline.SetActive(true);
+    base.ShowTooltip();
+  }
 
-    tooltipBackground.color = new Color(0f, 0f, 0f, 0.75f);
-    string tooltipText = BuildTooltipText(_thoughtBag);
-    tooltip?.SetText(tooltipText);
+  public override void SetTooltipText() {
+    tooltipText.text = BuildTooltipText(_thoughtBag);
 
     // _globalTooltip.SetText($"<b><u>{_thoughtBag.Name}</u></b>");
   }
