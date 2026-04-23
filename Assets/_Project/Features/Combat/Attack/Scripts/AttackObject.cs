@@ -4,10 +4,6 @@ using UnityEngine;
 
 public abstract class AttackObject : InjectMonoBehaviour
 {
-  [Header("Visuals")]
-  [SerializeField]
-  protected AttackAnimator animator; // ПЕРЕНЕСЛИ СЮДА!
-
   [Header("Debug Info")]
   [SerializeField]
   protected float currentDamage;
@@ -38,17 +34,7 @@ public abstract class AttackObject : InjectMonoBehaviour
     spawnTime = Time.time;
     hitEntities.Clear();
 
-    // БАЗА САМА РЕШАЕТ, КАК ЗАПУСКАТЬ АТАКУ
-    if (animator != null)
-    {
-      // PerformAttack вызовется на нужном кадре анимации
-      animator.Play(PerformAttack, Despawn, Direction);
-    }
-    else
-    {
-      // Если аниматора нет (например, у спавнера), просто выполняем логику
-      PerformAttack();
-    }
+    PerformAttack();
   }
 
   // НОВЫЙ МЕТОД: Дочерние классы пишут геометрию атаки здесь

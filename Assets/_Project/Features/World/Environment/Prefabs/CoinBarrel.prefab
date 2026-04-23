@@ -130,9 +130,9 @@ MonoBehaviour:
     _value: 0
   target: {fileID: 0}
   _view: {fileID: 0}
-  quantity: 4
   maxSpawnDistance: 1.5
   moneyPrefab: {fileID: 5814571315230343909, guid: 1ce0be89c7cf3554f8c4b8ddaadfd030, type: 3}
+  levelChances: {fileID: 11400000, guid: 2c0931bc2311ffd4f9509f7ba68a2dae, type: 2}
 --- !u!1 &7435880930646268131
 GameObject:
   m_ObjectHideFlags: 0

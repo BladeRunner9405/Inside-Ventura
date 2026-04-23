@@ -6,7 +6,10 @@ namespace InsideVentura.World
   public enum RoomType
   {
     Safe,
-    Normal,
+    NormalRank1,
+    NormalRank2,
+    NormalRank3,
+    MiniBoss,
     Boss,
   }
 

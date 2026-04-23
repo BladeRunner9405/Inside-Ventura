@@ -25,7 +25,9 @@ public abstract class Entity : InjectMonoBehaviour
 
   private readonly RaycastHit2D[] _hitBuffer = new RaycastHit2D[16];
   private ContactFilter2D _contactFilter;
-  private Collider2D _col;
+  [Tooltip("Это коллайдер для обработки столкновений со стенами")]
+  [SerializeField] protected Collider2D bodyCollider;
+  [SerializeField] protected Collider2D hitbox;
   private Rigidbody2D _rb;
 
   // События для визуализации и систем
@@ -34,8 +36,7 @@ public abstract class Entity : InjectMonoBehaviour
   public event Action OnAppear;
   public event Action<Vector2> OnMove; // Для аниматора
 
-  [SerializeField]
-  protected SimpleEnemyAnimator _view;
+  public bool IsMovementLocked { get; set; }
 
   public virtual float Health
   {
@@ -50,10 +51,52 @@ public abstract class Entity : InjectMonoBehaviour
   public int InvulnerabilityProcCount { get; set; } = 0;
   public bool IsInvulnerable => InvulnerabilityProcCount > 0;
 
+  [Header("Visuals")]
+  [SerializeField] protected Animator _animator;
+  [SerializeField] protected SpriteRenderer _spriteRenderer;
+
+  protected readonly int animSpeed = Animator.StringToHash("Speed");
+  protected readonly int animHit = Animator.StringToHash("Hit");
+  protected readonly int animDie = Animator.StringToHash("Die");
+  protected readonly int animAttack = Animator.StringToHash("Attack");
+
+  protected virtual void Update()
+  {
+      if (IsDead || _animator == null) return;
+
+      // Автоматически передаем скорость в Аниматор. 
+      // В Animator Controller нужно настроить переход из Idle в Run, если Speed > 0.01
+      _animator.SetFloat(animSpeed, CurrentMoveDirection.sqrMagnitude);
+
+      HandleFlip(CurrentMoveDirection);
+  }
+
+  // Универсальный метод поворота
+  public virtual void HandleFlip(Vector2 direction)
+  {
+    if (IsMovementLocked) return;
+    if (_spriteRenderer == null) return;
+
+    // Используем порог 0.01f, чтобы не флипать из-за микро-колебаний джойстика
+    if (direction.x > 0.1f)
+    {
+        _spriteRenderer.flipX = false; // Смотрит вправо (если исходный спрайт нарисован вправо)
+    }
+    else if (direction.x < -0.1f)
+    {
+        _spriteRenderer.flipX = true;  // Смотрит влево
+    }
+  }
+
+  public virtual void Attack(Vector2 direction)
+  {
+    // Когда сущность атакует, она должна резко повернуться в сторону атаки!
+    HandleFlip(direction);
+  }
+
   protected virtual void Awake()
   {
     _rb = GetComponent<Rigidbody2D>();
-    _col = GetComponent<Collider2D>();
 
     _contactFilter.useTriggers = false;
     _contactFilter.SetLayerMask(LayerMask.GetMask("Obstacle"));
@@ -73,40 +116,64 @@ public abstract class Entity : InjectMonoBehaviour
 
   public virtual void TakeDamage(float amount)
   {
-    if (IsDead || IsInvulnerable || amount <= 0)
-      return;
+      if (IsDead || IsInvulnerable || amount <= 0)
+        return;
 
-    var hasDodged = UnityEngine.Random.value <= (dodgeChance.ModifiedValue);
-    if (hasDodged)
-    {
-      OnTakeDamage?.Invoke(0f);
-      return;
-    }
+      var hasDodged = UnityEngine.Random.value <= (dodgeChance.ModifiedValue);
+      if (hasDodged)
+      {
+        OnTakeDamage?.Invoke(0f);
+        return;
+      }
 
-    Health -= amount;
-    OnTakeDamage?.Invoke(amount);
+      Health -= amount;
+      OnTakeDamage?.Invoke(amount);
 
-    if (Health <= 0)
-      Die();
+      // ИСПРАВЛЕНИЕ: Разделяем логику боли и смерти
+      if (Health <= 0)
+      {
+          Die(); // Если умерли - только смерть
+      }
+      else
+      {
+          if (_animator != null) _animator.SetTrigger(animHit); // Если выжили - играем анимацию попадания
+      }
   }
 
   protected virtual void Die()
   {
-    if (IsDead)
-      return;
-    IsDead = true;
-    Health = 0;
-    OnDeath?.Invoke();
-    _col.enabled = false;
+      if (IsDead)
+        return;
+      IsDead = true;
+      Health = 0;
+      OnDeath?.Invoke();
+      bodyCollider.enabled = false;
+      hitbox.enabled = false;
+
+      if (_animator != null) 
+      {
+          // ИСПРАВЛЕНИЕ: Сбрасываем мусорные триггеры, чтобы они не перебили смерть
+          _animator.ResetTrigger(animAttack);
+          _animator.ResetTrigger(animHit);
+          _animator.SetTrigger(animDie);
+      }
   }
 
   public virtual void ResetEntity()
   {
-    IsDead = false;
-    _col.enabled = true;
-    Health = MaxHealth;
-    InvulnerabilityProcCount = 0; // Сбрасываем неуязвимость
-    OnAppear?.Invoke();
+      IsDead = false;
+      bodyCollider.enabled = true;
+      Health = MaxHealth;
+      InvulnerabilityProcCount = 0; 
+      OnAppear?.Invoke();
+
+      // ИСПРАВЛЕНИЕ: Критически важно для Object Pooling!
+      // При воскрешении врага сбрасываем Аниматор в исходное состояние (Idle)
+      if (_animator != null)
+      {
+          _animator.Rebind();
+          _animator.Update(0f); 
+      }
   }
 
   public Vector2 CurrentMoveDirection { get; private set; }
@@ -114,7 +181,7 @@ public abstract class Entity : InjectMonoBehaviour
   public void Move(Vector2 direction, float speedBoost = 1)
   {
     // Если мертв — обнуляем направление и выходим
-    if (IsDead)
+    if (IsDead|| IsMovementLocked)
     {
       CurrentMoveDirection = Vector2.zero;
       return;
@@ -140,7 +207,7 @@ public abstract class Entity : InjectMonoBehaviour
       if (distance < 0.0001f)
         break;
 
-      var count = _col.Cast(
+      var count = bodyCollider.Cast(
         deltaMove.normalized,
         _contactFilter,
         _hitBuffer,
@@ -168,27 +235,22 @@ public abstract class Entity : InjectMonoBehaviour
     }
   }
 
-  public virtual void Attack(Vector2 direction)
-  {
-    // Базовая реализация пуста.
-    // Player и конкретные враги будут её переопределять.
-  }
-
   private void ResolveOverlap()
   {
     var results = new Collider2D[5];
-    var count = _col.Overlap(_contactFilter, results);
+    var count = bodyCollider.Overlap(_contactFilter, results);
 
     for (var i = 0; i < count; i++)
     {
-      var dist = _col.Distance(results[i]);
+      var dist = bodyCollider.Distance(results[i]);
       if (dist.isOverlapped)
         _rb.position += dist.normal * dist.distance;
     }
   }
 
-  public void Dash(Vector2 direction, float distance, float duration)
+  public virtual void Dash(Vector2 direction, float distance, float duration)
   {
+    IsMovementLocked = false;
     if (!IsDashing)
       StartCoroutine(DashCoroutine(direction, distance, duration));
   }
@@ -216,4 +278,21 @@ public abstract class Entity : InjectMonoBehaviour
       default: return null;
     }
   }
+
+
+    public void AnimationEvent_LockMovement()
+    {
+        IsMovementLocked = true;
+    }
+
+    // Вызывай это в конце (или в середине, когда игрок должен снова пойти)
+    public void AnimationEvent_UnlockMovement()
+    {
+        IsMovementLocked = false;
+    }
+
+  public virtual void OnAnimationEvent_Impact() { }
+
+  // Вызывается в самом конце анимации атаки
+  public virtual void OnAnimationEvent_End() { }
 }

@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36fb88667f4c42fc862534a07dd0ad7a, type: 3}
+  m_Name: ChestChances
+  m_EditorClassIdentifier: Assembly-CSharp::LevelChancesData
+  SafeRoomChances:
+    Money: {fileID: 11400000, guid: a350674341c36194692a9621854582f0, type: 2}
+    Health: {fileID: 11400000, guid: f91159f6b98f6a842989a892a8d9cd71, type: 2}
+    Thoughts: {fileID: 11400000, guid: 57b0aa4ff42676a49ac7ed36447ad627, type: 2}
+  NormalRank1Chances:
+    Money: {fileID: 11400000, guid: a350674341c36194692a9621854582f0, type: 2}
+    Health: {fileID: 11400000, guid: f91159f6b98f6a842989a892a8d9cd71, type: 2}
+    Thoughts: {fileID: 11400000, guid: 57b0aa4ff42676a49ac7ed36447ad627, type: 2}
+  NormalRank2Chances:
+    Money: {fileID: 0}
+    Health: {fileID: 0}
+    Thoughts: {fileID: 0}
+  NormalRank3Chances:
+    Money: {fileID: 11400000, guid: a350674341c36194692a9621854582f0, type: 2}
+    Health: {fileID: 11400000, guid: f91159f6b98f6a842989a892a8d9cd71, type: 2}
+    Thoughts: {fileID: 11400000, guid: 0e8683e1378765042b684bd54a3a44a0, type: 2}
+  MiniBossChances:
+    Money: {fileID: 0}
+    Health: {fileID: 0}
+    Thoughts: {fileID: 0}
+  BossChances:
+    Money: {fileID: 0}
+    Health: {fileID: 0}
+    Thoughts: {fileID: 0}
