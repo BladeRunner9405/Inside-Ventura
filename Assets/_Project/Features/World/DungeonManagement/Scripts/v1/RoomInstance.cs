@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace InsideVentura.World
+namespace InsideVentura.World.v1
 {
   public enum RoomType
   {

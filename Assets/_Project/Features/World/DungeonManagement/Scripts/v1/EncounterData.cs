@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace InsideVentura.World
+namespace InsideVentura.World.v1
 {
   // Настройки конкретного типа врага в волне
   [Serializable]

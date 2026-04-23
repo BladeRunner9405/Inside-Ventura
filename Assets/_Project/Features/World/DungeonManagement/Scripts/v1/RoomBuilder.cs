@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace InsideVentura.World
+namespace InsideVentura.World.v1
 {
   public enum CellBehavior
   {

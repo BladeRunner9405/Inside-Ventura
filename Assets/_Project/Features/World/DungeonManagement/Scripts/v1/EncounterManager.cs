@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using CherryFramework.SimplePool; // Предполагается наличие этого пространства имен
 using UnityEngine;
 
-namespace InsideVentura.World
+namespace InsideVentura.World.v1
 {
     public class EncounterManager : MonoBehaviour
     {

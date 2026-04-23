@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91017645584155e4b9378968d3d5889b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InsideVentura.World.NextLevelInteractable
-  outline: {fileID: 0}
+  outline: {fileID: 6806291987732391911}
 --- !u!1 &6806291987732391911
 GameObject:
   m_ObjectHideFlags: 0

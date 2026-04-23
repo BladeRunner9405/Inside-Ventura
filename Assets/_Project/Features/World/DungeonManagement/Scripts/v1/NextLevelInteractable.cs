@@ -1,12 +1,12 @@
 using CherryFramework.DependencyManager;
 using UnityEngine;
 
-namespace InsideVentura.World
+namespace InsideVentura.World.v1
 {
   public class NextLevelInteractable : InteractableObject
   {
     [Inject]
-    private DungeonManager _dungeonManager;
+    private World.DungeonManager _dungeonManager;
 
     public override void OnInteract()
     {
@@ -17,7 +17,7 @@ namespace InsideVentura.World
       if (_dungeonManager != null)
       {
         Debug.Log("<color=magenta>[Dungeon]</color> Спускаемся на следующий этаж...");
-        _dungeonManager.GenerateNextLevel();
+        _dungeonManager.RestartLevel();
       }
 
       base.OnInteract(); // Вызовет твой SetActive(false) и Destroy

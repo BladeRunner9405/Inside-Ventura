@@ -37,17 +37,18 @@ public class LevelChancesData : ScriptableObject
 
   public RoomChancesData GetCurrentChances()
   {
-    RoomType currentType = DungeonManager.Instance.GetCurrentRoomType();
-    RoomChancesData selected = currentType switch
-    {
-      RoomType.Safe => SafeRoomChances,
-      RoomType.NormalRank1 => NormalRank1Chances,
-      RoomType.NormalRank2 => NormalRank2Chances,
-      RoomType.NormalRank3 => NormalRank3Chances,
-      RoomType.MiniBoss => MiniBossChances,
-      RoomType.Boss => BossChances,
-      _ => _defaultChances
-    };
+    // RoomType currentType = DungeonManager.Instance.GetCurrentRoomType();
+    // RoomChancesData selected = currentType switch
+    // {
+    //   RoomType.Safe => SafeRoomChances,
+    //   RoomType.NormalRank1 => NormalRank1Chances,
+    //   RoomType.NormalRank2 => NormalRank2Chances,
+    //   RoomType.NormalRank3 => NormalRank3Chances,
+    //   RoomType.MiniBoss => MiniBossChances,
+    //   RoomType.Boss => BossChances,
+    //   _ => _defaultChances
+    // };
+    RoomChancesData selected = NormalRank1Chances;
 
     if (selected == null)
     {

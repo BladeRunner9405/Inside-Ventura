@@ -1,5 +1,5 @@
 using CherryFramework.DependencyManager;
-using InsideVentura.World;
+using InsideVentura.World.v1;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -12,8 +12,8 @@ public class DragAndDropManager : InjectMonoBehaviour
     [SerializeField]
     private GameObject dragVisualPrefab;
 
-    [SerializeField]
-    private EncounterManager encounterManager;
+    // [SerializeField]
+    // private EncounterManager encounterManager;
 
     private Thought _draggedThought;
 
@@ -25,8 +25,13 @@ public class DragAndDropManager : InjectMonoBehaviour
 
     public void StartDrag(ThoughtSlotUI sourceSlot, PointerEventData eventData)
     {
-      if (encounterManager.IsEncounterActive)
-      {
+      // DEPRECATED.
+      // if (encounterManager.IsEncounterActive)
+      // {
+      //   return;
+      // }
+
+      if (EncounterStatus.Active) {
         return;
       }
 

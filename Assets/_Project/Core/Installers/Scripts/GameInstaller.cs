@@ -8,6 +8,7 @@ using CherryFramework.StateService;
 using CherryFramework.TickDispatcher;
 using CherryFramework.UI.Views;
 using CherryFramework.Utils.PlayerPrefsWrapper;
+using InsideVentura.World;
 using UnityEngine;
 
 [DefaultExecutionOrder(-10000)]
@@ -34,9 +35,7 @@ public class GameInstaller : InstallerBehaviourBase
 
   [Header("World Settings")]
   [SerializeField]
-  private InsideVentura.World.DungeonManager _dungeonManager;
-  [SerializeField]
-  private ThoughtsAvaliabilityManager _thoughtsAvaliabilityManager;
+  private DungeonManager _dungeonManager;
 
   protected override void Install()
   {
@@ -87,7 +86,6 @@ public class GameInstaller : InstallerBehaviourBase
       Debug.LogError("[GameInstaller] ОШИБКА: DragAndDropManager не назначен в инспекторе!");
     }
 
-    // 7. Менеджеры UI
     if (_thoughtsCompatibilityManager != null)
     {
       BindAsSingleton(_thoughtsCompatibilityManager);
@@ -96,7 +94,6 @@ public class GameInstaller : InstallerBehaviourBase
     {
       Debug.LogWarning("[GameInstaller] ПРЕДУПРЕЖДЕНИЕ: ThoughtsCompatibilityManager не назначен в инспекторе!");
     }
-
     if (_thoughtItemTooltip != null)
     {
       BindAsSingleton(_thoughtItemTooltip);
@@ -104,15 +101,6 @@ public class GameInstaller : InstallerBehaviourBase
     else
     {
       Debug.LogWarning("[GameInstaller] ПРЕДУПРЕЖДЕНИЕ: ThoughtItemTooltip не назначен в инспекторе!");
-    }
-
-    if (_thoughtsAvaliabilityManager != null)
-    {
-      BindAsSingleton(_thoughtsAvaliabilityManager);
-    }
-    else
-    {
-      Debug.LogWarning("[GameInstaller] ПРЕДУПРЕЖДЕНИЕ: ThoughtsAvaliabilityManager не назначен в инспекторе!");
     }
 
   }

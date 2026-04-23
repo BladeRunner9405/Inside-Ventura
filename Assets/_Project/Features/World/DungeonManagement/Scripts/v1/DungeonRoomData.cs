@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace InsideVentura.World
+namespace InsideVentura.World.v1
 {
   [CreateAssetMenu(fileName = "NewRoomData", menuName = "InsideVentura/Dungeon/RoomData")]
   public class DungeonRoomData : ScriptableObject
