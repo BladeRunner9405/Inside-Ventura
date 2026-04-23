@@ -24,6 +24,10 @@ public abstract class TooltipBase : MonoBehaviour
     DependencyContainer.Instance.InjectDependencies(this);
   }*/
 
+  private void Start() {
+    tooltipText.enabled = false;
+  }
+
   public void TogglePinned() {
     _pinned = !_pinned;
 
