@@ -8,8 +8,8 @@ public class ES_IdleState : EnemyState
     {
         var setup = (EmotionalSetup)EnemyInstance;
         
-        // Как только кулдаун прошел — переходим в атаку
-        if (setup.IsAttackReady)
+        // НОВОЕ: Если кулдаун прошел И мы ВИДИМ игрока — переходим в атаку
+        if (setup.IsAttackReady && setup.HasLineOfSightToTarget())
         {
             Brain.ChangeState(new ES_AttackState());
         }

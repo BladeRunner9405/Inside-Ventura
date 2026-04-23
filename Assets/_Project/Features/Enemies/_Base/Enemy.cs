@@ -43,6 +43,10 @@ public class Enemy : Entity
     private float[] _danger;
     private Vector2 _currentSteeringVelocity;
 
+    [Header("Vision & Aggro")]
+    [Tooltip("Максимальная дистанция, на которой враг замечает игрока")]
+    public float visionRange = 10f;
+
     // --- ИНИЦИАЛИЗАЦИЯ ---
 
     protected override void Awake() 
@@ -224,4 +228,34 @@ public class Enemy : Entity
             Brain.enabled = false; // Полностью глушим компонент, чтобы Update/FixedUpdate перестали тикать
         }
     }   
+
+    // --- ЛОГИКА ЗРЕНИЯ ---
+
+    /// <summary>
+    /// Проверяет, находится ли цель в радиусе зрения и нет ли между ними стен.
+    /// </summary>
+    public bool HasLineOfSightToTarget()
+    {
+        if (target == null) return false;
+
+        // 1. Проверка дистанции
+        float distToTarget = Vector2.Distance(bodyCollider.bounds.center, target.position);
+        if (distToTarget > visionRange) return false; // Игрок слишком далеко
+
+        // 2. Проверка препятствий (Raycast)
+        Vector2 directionToTarget = (target.position - bodyCollider.bounds.center).normalized;
+        
+        // Пускаем луч от центра врага к игроку на длину distToTarget.
+        // Проверяем ТОЛЬКО слой препятствий (стен)
+        RaycastHit2D hit = Physics2D.Raycast(
+            bodyCollider.bounds.center, 
+            directionToTarget, 
+            distToTarget, 
+            obstacleLayer
+        );
+
+        // Если коллайдер пустой, значит луч не врезался в стену — мы видим игрока!
+        // Если что-то задели — значит игрок за стеной.
+        return hit.collider == null;
+    }
 }
