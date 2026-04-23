@@ -85,6 +85,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7442035023727073168}
   - component: {fileID: 2144534949975296342}
+  - component: {fileID: 6436804807802030741}
   m_Layer: 0
   m_Name: ThoughtDragVisual
   m_TagString: Untagged
@@ -123,7 +124,20 @@ CanvasGroup:
   m_Alpha: 1
   m_Interactable: 1
   m_BlocksRaycasts: 1
-  m_IgnoreParentGroups: 0
+  m_IgnoreParentGroups: 1
+--- !u!114 &6436804807802030741
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6899186520313650796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c2f2279aedc9c1428955ff57f1d0d81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DragVisualActivator
+  image: {fileID: 8103914615071410756}
 --- !u!1 &8877700539488343185
 GameObject:
   m_ObjectHideFlags: 0

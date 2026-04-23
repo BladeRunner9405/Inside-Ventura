@@ -21,13 +21,17 @@ public class ThoughtEquipmentPresenter : PresenterBase
   {
     base.OnEnable();
 
-    _playerAccessor.OnPlayerRegistered += OnPlayerRegistered;
-
     if (_playerAccessor.HasPlayer) OnPlayerRegistered();
   }
 
-  protected void OnDisable() {
+  private void Start() {
+    _playerAccessor.OnPlayerRegistered += OnPlayerRegistered;
+  }
+
+  protected override void OnDestroy() {
     _playerAccessor.OnPlayerRegistered -= OnPlayerRegistered;
+
+    base.OnDestroy();
   }
 
   private void OnPlayerRegistered() {

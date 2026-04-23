@@ -38,17 +38,17 @@ public class HUDManager : BehaviourBase {
     if (_playerReady) UpdateCooldownUI();
   }
 
-  protected override void OnEnable() {
-    base.OnEnable();
-
+  private void Start() {
     _playerAccessor.OnPlayerRegistered += OnPlayerRegistered;
     _playerAccessor.OnPlayerUnregistered += OnPlayerUnregistered;
   }
 
-  protected void OnDisable() {
+  protected override void OnDestroy() {
     Bindings.ReleaseAllBindings();
     _playerAccessor.OnPlayerRegistered -= OnPlayerRegistered;
     _playerAccessor.OnPlayerUnregistered -= OnPlayerUnregistered;
+
+    base.OnDestroy();
   }
 
   private void OnPlayerRegistered() {

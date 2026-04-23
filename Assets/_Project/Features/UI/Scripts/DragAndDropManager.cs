@@ -21,6 +21,8 @@ public class DragAndDropManager : InjectMonoBehaviour
     private RectTransform _dragVisualRect;
     private ThoughtSlotUI _sourceSlot;
 
+    public bool IsDragged { get; set; }
+
     public void StartDrag(ThoughtSlotUI sourceSlot, PointerEventData eventData)
     {
       if (encounterManager.IsEncounterActive)
@@ -33,6 +35,8 @@ public class DragAndDropManager : InjectMonoBehaviour
 
       CreateDragVisual(sourceSlot);
       MoveDragVisual(eventData);
+
+      IsDragged = true;
     }
 
     public void OnDrag(PointerEventData eventData) => MoveDragVisual(eventData);
@@ -48,6 +52,8 @@ public class DragAndDropManager : InjectMonoBehaviour
             TryTransferThought(_sourceSlot, targetSlot);
 
         CleanUp();
+
+        IsDragged = false;
     }
 
     private ThoughtSlotUI FindNearestValidSlot(PointerEventData eventData)
@@ -172,6 +178,7 @@ public class DragAndDropManager : InjectMonoBehaviour
 
       if (source.SourceBag != null)
       {
+        source.SourceBag.RemoveThoughtAt(source.BagSlotIndex);
         source.SourceBag.SetThoughtAt(source.BagSlotIndex, targetThought);
       }
       else if (source.SourceArtifactInstance != null)
@@ -182,6 +189,7 @@ public class DragAndDropManager : InjectMonoBehaviour
 
       if (target.SourceBag != null)
       {
+        target.SourceBag.RemoveThoughtAt(target.BagSlotIndex);
         target.SourceBag.SetThoughtAt(target.BagSlotIndex, sourceThought);
       }
       else if (target.SourceArtifactInstance != null) {
@@ -190,8 +198,12 @@ public class DragAndDropManager : InjectMonoBehaviour
       }
 
       if (target.Remover != null) {
+        if (source.SourceBag != null)
+          source.SourceBag.RemoveThoughtAt(source.BagSlotIndex);
+        else if (source.SourceArtifactInstance != null)
+          source.SourceArtifactInstance.UnequipThought(source.ArtifactSlotIndex);
+
         target.Remover.DropThoughtToWorld(sourceThought);
-        source.SourceBag.RemoveThoughtAt(source.BagSlotIndex);
       }
     }
 
@@ -202,17 +214,10 @@ public class DragAndDropManager : InjectMonoBehaviour
     {
         _dragVisual = Instantiate(dragVisualPrefab, rootCanvas.transform, false);
         _dragVisual.transform.SetAsLastSibling();
-
-        var img = _dragVisual.transform.GetChild(0).GetChild(0).GetComponent<Image>(); // некрасиво
-        if (img != null)
-        {
-            img.sprite = _draggedThought.InventoryIcon;
-            img.raycastTarget = false;
-        }
+        _dragVisual.GetComponent<DragVisual>().Initialize(_draggedThought);
 
         _dragVisualRect = _dragVisual.GetComponent<RectTransform>();
-        if (_dragVisualRect != null)
-            _dragVisualRect.sizeDelta = sourceSlot.GetComponent<RectTransform>().sizeDelta;
+        _dragVisualRect.sizeDelta = sourceSlot.GetComponent<RectTransform>().sizeDelta;
     }
 
     private void MoveDragVisual(PointerEventData eventData)
@@ -239,23 +244,5 @@ public class DragAndDropManager : InjectMonoBehaviour
         _dragVisualRect = null;
         _sourceSlot = null;
         _draggedThought = null;
-    }
-
-    public Thought DropThoughtToWorld()
-    {
-      if (_draggedThought == null) return null;
-
-      if (_sourceSlot.SourceBag != null)
-      {
-        _sourceSlot.SourceBag.SetThoughtAt(_sourceSlot.BagSlotIndex, null);
-      }
-      else if (_sourceSlot.SourceArtifactInstance != null)
-      {
-        _sourceSlot.SourceArtifactInstance.UnequipThought(_sourceSlot.ArtifactSlotIndex);
-      }
-
-      CleanUp();
-
-      return _draggedThought;
     }
 }

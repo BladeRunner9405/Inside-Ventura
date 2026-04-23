@@ -18,18 +18,18 @@ public class ThoughtsCompatibilityManager : InjectMonoBehaviour
   public event Action OnActiveArtifactsChanged;
   public event Action OnThoughtDeselected;
 
-  public bool ActiveForThougthMode { get; set; }
+  public bool HasPinnedArtifact { get; set; }
 
-  public void AddActiveArtifact(ArtifactInstance artifact)
+  public void AddPinnedArtifact(ArtifactInstance artifact)
   {
     _activeArtifacts.Add(artifact);
-    ActiveForThougthMode = false;
+    HasPinnedArtifact = true;
     OnActiveArtifactsChanged?.Invoke();
   }
 
-  public void RemoveActiveArtifact(ArtifactInstance artifact) {
+  public void RemovePinnedArtifact(ArtifactInstance artifact) {
     _activeArtifacts.Remove(artifact);
-    ActiveForThougthMode = false;
+    HasPinnedArtifact = false;
     OnActiveArtifactsChanged?.Invoke();
   }
 
@@ -47,7 +47,7 @@ public class ThoughtsCompatibilityManager : InjectMonoBehaviour
   }
 
   public void ActivateForThought(ThoughtType thoughtType) {
-    if (!IfNoActiveArtifacts()) return;
+    if (HasPinnedArtifact) return;
 
     _heart = _playerAccessor.Equipment.Heart;
     _weapon = _playerAccessor.Equipment.Weapon;
@@ -68,13 +68,13 @@ public class ThoughtsCompatibilityManager : InjectMonoBehaviour
       _activeArtifacts = new HashSet<ArtifactInstance> { _accessory };
     }
 
-    ActiveForThougthMode = true;
     OnActiveArtifactsChanged?.Invoke();
   }
 
   public void DeactivateForThoughts() {
+    if (HasPinnedArtifact) return;
+
     ClearActiveArtifacts();
-    ActiveForThougthMode = false;
     OnThoughtDeselected?.Invoke();
   }
 }

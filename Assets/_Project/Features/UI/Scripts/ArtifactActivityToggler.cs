@@ -12,6 +12,8 @@ public class ArtifactActivityToggler : InjectMonoBehaviour
 
   [Inject]
   private ThoughtsCompatibilityManager _thoughtsCompatibilityManager;
+  [Inject]
+  private DragAndDropManager _dragAndDropManager;
 
   private void Awake() {
     _button = GetComponentInParent<Button>();
@@ -24,11 +26,13 @@ public class ArtifactActivityToggler : InjectMonoBehaviour
     _thoughtsCompatibilityManager.OnActiveArtifactsChanged += Toggle;
   }
 
-  private void OnDisable() {
+  private void OnDestroy() {
     _thoughtsCompatibilityManager.OnActiveArtifactsChanged -= Toggle;
   }
 
   private void Toggle() {
+    if (_dragAndDropManager.IsDragged) return;
+    
     if (_thoughtsCompatibilityManager.IfNoActiveArtifacts()) {
       _button.interactable = true;
       _trigger.enabled = true;

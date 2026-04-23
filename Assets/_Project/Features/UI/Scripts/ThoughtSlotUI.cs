@@ -44,6 +44,8 @@ public class ThoughtSlotUI
   // Индекс слота в инвентаре
   public int BagSlotIndex { get; set; } = -1;
 
+  private bool _isDragged = false;
+
   // Текущая мысль (берет значение data из базового класса PopulatorElementBase)
   public Thought CurrentThought => data;
 
@@ -54,17 +56,17 @@ public class ThoughtSlotUI
     DependencyContainer.Instance.InjectDependencies(this);
   }
 
-  protected override void OnEnable()
+  private void Start()
   {
-    base.OnEnable();
-
     _thoughtsCompatibilityManager.OnActiveArtifactsChanged += OnActiveArtifactChanged;
     RefreshVisual();
   }
 
-  private void OnDisable()
+  protected override void OnDestroy()
   {
     _thoughtsCompatibilityManager.OnActiveArtifactsChanged -= OnActiveArtifactChanged;
+
+    base.OnDestroy();
   }
 
   private void OnActiveArtifactChanged() => RefreshVisual();
@@ -73,7 +75,7 @@ public class ThoughtSlotUI
   {
     if (!data) return true;
 
-    if (SourceBag && _thoughtsCompatibilityManager.ActiveForThougthMode) return true;
+    if (SourceBag && !_thoughtsCompatibilityManager.HasPinnedArtifact) return true;
 
     if (_thoughtsCompatibilityManager.IfNoActiveArtifacts()) return true;
 
@@ -93,6 +95,8 @@ public class ThoughtSlotUI
     _dragDropManager.StartDrag(this, eventData);
     _canvasGroup.alpha = 0.4f;
     _canvasGroup.blocksRaycasts = false;
+
+    _isDragged = true;
   }
 
   public void OnDrag(PointerEventData eventData)
@@ -110,6 +114,8 @@ public class ThoughtSlotUI
     _dragDropManager?.EndDrag(eventData);
     _canvasGroup.alpha = 1f;
     _canvasGroup.blocksRaycasts = true;
+
+    _isDragged = false;
   }
 
   public override void SetData(Thought thought)
@@ -151,6 +157,7 @@ public class ThoughtSlotUI
 
   public void UnsetActiveArtifacts() {
     if (!data) return;
+    if (_isDragged) return;
 
     _thoughtsCompatibilityManager.DeactivateForThoughts();
   }

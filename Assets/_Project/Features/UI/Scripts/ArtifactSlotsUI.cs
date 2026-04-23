@@ -65,13 +65,13 @@ public class ArtifactSlotsUI : InjectMonoBehaviour
 
   public void SetAsActive() {
     if (_thoughtsCompatibilityManager.IfNoActiveArtifacts())
-      _thoughtsCompatibilityManager.AddActiveArtifact(ArtifactInstance);
+      _thoughtsCompatibilityManager.AddPinnedArtifact(ArtifactInstance);
   }
 
   public void UnsetAsActive()
   {
     if (!_pinned && _thoughtsCompatibilityManager.ContainsArtifact(ArtifactInstance))
-      _thoughtsCompatibilityManager.RemoveActiveArtifact(ArtifactInstance);
+      _thoughtsCompatibilityManager.RemovePinnedArtifact(ArtifactInstance);
   }
 
   private void HandleThoughtDeselected() {
