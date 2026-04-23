@@ -47,7 +47,7 @@ public class PushAwayEnemiesEffect : Effect
         if (pushDirection == Vector2.zero)
           pushDirection = Vector2.right;
 
-        enemy.Dash(pushDirection, pushDistance, pushDuration);
+        enemy.Dash(pushDirection, pushDistance, pushDuration, false);
       }
     }
   }

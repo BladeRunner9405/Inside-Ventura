@@ -15,6 +15,6 @@ public class DashAccessory : Accessory
   public override void ExecuteAbility(AccessoryInstance instance, Vector2 direction)
   {
     // Делаем рывок через инстанс
-    instance.PlayerAccessor.Dash(direction, distance, duration);
+    instance.PlayerAccessor.Dash(direction, distance, duration, false);
   }
 }

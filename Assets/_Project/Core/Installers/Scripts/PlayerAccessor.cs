@@ -61,9 +61,9 @@ public class PlayerAccessor : IPlayerData
     OnStatModified?.Invoke(statName);
   }
 
-  public void Dash(Vector2 direction, float distance, float duration)
+  public void Dash(Vector2 direction, float distance, float duration, bool isAttackingDash)
   {
-    _player?.Dash(direction, distance, duration);
+    _player?.Dash(direction, distance, duration, isAttackingDash);
   }
 
   public void TakeDamage(float amount)
@@ -79,6 +79,6 @@ public interface IPlayerData
   PlayerEquipment Equipment { get; }
   PlayerStats Stats { get; }
   Stat GetStat(StatName statName);
-  void Dash(Vector2 direction, float distance, float duration);
+  void Dash(Vector2 direction, float distance, float duration, bool isAttackingDash);
   void TakeDamage(float amount);
 }

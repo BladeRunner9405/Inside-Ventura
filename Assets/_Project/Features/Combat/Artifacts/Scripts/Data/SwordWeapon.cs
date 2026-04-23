@@ -58,7 +58,7 @@ public class SwordWeapon : Weapon
 
     if (isCombo)
     {
-      // instance.PlayerAccessor.Dash(dir, lungeDistance, lungeDuration);
+      instance.PlayerAccessor.Dash(dir, lungeDistance, lungeDuration, true);
       instance.ResetChainCount(); // Сбрасываем комбо после спец удара
     }
   }

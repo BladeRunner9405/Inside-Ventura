@@ -178,10 +178,10 @@ public abstract class Entity : InjectMonoBehaviour
 
   public Vector2 CurrentMoveDirection { get; private set; }
 
-  public void Move(Vector2 direction, float speedBoost = 1)
+  public void Move(Vector2 direction, float speedBoost = 1, bool ignoreLocks=false)
   {
     // Если мертв — обнуляем направление и выходим
-    if (IsDead|| IsMovementLocked)
+    if (IsDead || (IsMovementLocked & !ignoreLocks))
     {
       CurrentMoveDirection = Vector2.zero;
       return;
@@ -248,9 +248,8 @@ public abstract class Entity : InjectMonoBehaviour
     }
   }
 
-  public virtual void Dash(Vector2 direction, float distance, float duration)
+  public virtual void Dash(Vector2 direction, float distance, float duration, bool isAttackingDash)
   {
-    IsMovementLocked = false;
     if (!IsDashing)
       StartCoroutine(DashCoroutine(direction, distance, duration));
   }
@@ -261,7 +260,7 @@ public abstract class Entity : InjectMonoBehaviour
     float elapsed = 0;
     while (elapsed < duration)
     {
-      Move(direction, distance);
+      Move(direction, distance, true);
       elapsed += Time.fixedDeltaTime;
       yield return new WaitForFixedUpdate();
     }

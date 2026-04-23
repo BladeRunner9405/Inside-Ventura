@@ -37,6 +37,7 @@ public class Player : Entity
   public bool IsInputLocked { get; set; }
 
   protected readonly int animDash = Animator.StringToHash("Dash");
+  protected readonly int animDashWithAttack = Animator.StringToHash("AttackDash");
 
   protected override void OnEnable()
   {
@@ -164,7 +165,7 @@ public class Player : Entity
       ++InvulnerabilityProcCount;
       
       // Запускаем анимацию рывка (кувырок, скольжение и т.д.)
-      if (_animator != null) _animator.SetTrigger(animDash);
+      
 
       yield return base.DashCoroutine(direction, distance, duration);
       
@@ -172,10 +173,18 @@ public class Player : Entity
   }
   #endregion
 
-  public override void Dash(Vector2 direction, float distance, float duration)
+  public override void Dash(Vector2 direction, float distance, float duration, bool isAttackingDash)
   {
     if (IsInputLocked) return;
-    base.Dash(direction, distance, duration);
+    if (!isAttackingDash)
+    {
+      if (_animator != null) _animator.SetTrigger(animDash);
+    }
+    else
+    {
+      if (_animator != null) _animator.SetTrigger(animDashWithAttack);
+    }
+    base.Dash(direction, distance, duration, isAttackingDash);
   }
 
   public void AnimationEvent_LockInput()
