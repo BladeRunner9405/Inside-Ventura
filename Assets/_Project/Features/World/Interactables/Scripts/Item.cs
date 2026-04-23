@@ -1,7 +1,7 @@
 using CherryFramework.DependencyManager;
 using UnityEngine;
 
-namespace InsideVentura.World.v1
+namespace InsideVentura.World
 {
   public abstract class Item : InteractableObject {
     [Inject] private World.DungeonManager _dungeonManager;

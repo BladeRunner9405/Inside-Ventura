@@ -1,4 +1,4 @@
-using InsideVentura.World.v1;
+using InsideVentura.World;
 using UnityEngine;
 
 public class Chest : InteractableObject

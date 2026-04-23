@@ -26,7 +26,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44c8014d31544667085426dbe52eeab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InsideVentura.World.DungeonRoom
-  Position: {x: 496, y: 320}
+  Position: {x: 480, y: 320}
   type: 1
   individualRoomTemplates:
   - {fileID: 4938271001061371832, guid: 355ba92795a26023094ff5dd44d8f6f2, type: 3}
@@ -104,7 +104,7 @@ MonoBehaviour:
   - {fileID: 6896466753481673565}
   - {fileID: -6660809770202785577}
   EditorData:
-    PanOffset: {x: 113.75458, y: 80.50931}
+    PanOffset: {x: 79.979645, y: 144.69891}
     Zoom: 1.0822676
   RoomType: InsideVentura.World.DungeonRoom
   ConnectionType: Edgar.Unity.Connection
