@@ -36,6 +36,8 @@ public class GameInstaller : InstallerBehaviourBase
   [Header("World Settings")]
   [SerializeField]
   private DungeonManager _dungeonManager;
+  [SerializeField]
+  private ThoughtsAvaliabilityManager _thoughtsAvaliabilityManager;
 
   protected override void Install()
   {
@@ -101,6 +103,15 @@ public class GameInstaller : InstallerBehaviourBase
     else
     {
       Debug.LogWarning("[GameInstaller] ПРЕДУПРЕЖДЕНИЕ: ThoughtItemTooltip не назначен в инспекторе!");
+    }
+
+    if (_thoughtsAvaliabilityManager != null)
+    {
+      BindAsSingleton(_thoughtsAvaliabilityManager);
+    }
+    else
+    {
+      Debug.LogWarning("[GameInstaller] ПРЕДУПРЕЖДЕНИЕ: ThoughtsAvaliabilityManager не назначен в инспекторе!");
     }
 
   }
