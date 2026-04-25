@@ -5739,10 +5739,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Chest
   outline: {fileID: 1179012548}
   maxSpawnDistance: 1.5
-  itemsToSpawn: []
-  quantity: 0
+  moneyItemPrefab: {fileID: 0}
+  healthItemPrefab: {fileID: 0}
   thoughtItemPrefab: {fileID: 1631135601703695119, guid: 1a7c29cb97ba4b34bbe2653dfd40abac, type: 3}
-  possibleThoughts: []
+  levelChances: {fileID: 0}
 --- !u!1001 &365026524
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6799,6 +6799,10 @@ PrefabInstance:
       propertyPath: _dragDropManager
       value: 
       objectReference: {fileID: 1681451022}
+    - target: {fileID: 2230160839145156290, guid: 056e50e33373b484caddfa36896c57a6, type: 3}
+      propertyPath: _languageManager
+      value: 
+      objectReference: {fileID: 1988672967}
     - target: {fileID: 2230160839145156290, guid: 056e50e33373b484caddfa36896c57a6, type: 3}
       propertyPath: _thoughtItemTooltip
       value: 
@@ -20212,6 +20216,50 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHPBar
   enemy: {fileID: 372930782}
   slider: {fileID: 1128438294}
+--- !u!1 &1988672965
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1988672966}
+  - component: {fileID: 1988672967}
+  m_Layer: 0
+  m_Name: LanguageManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1988672966
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988672965}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2041783611}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1988672967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1988672965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a46cbb7fa5625a48a9698eb76902135, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LanguageManager
 --- !u!1 &2041783610
 GameObject:
   m_ObjectHideFlags: 0
@@ -20244,6 +20292,7 @@ Transform:
   - {fileID: 451134008}
   - {fileID: 1681451021}
   - {fileID: 1490232232}
+  - {fileID: 1988672966}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2043778242
@@ -20535,10 +20584,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Chest
   outline: {fileID: 1895858224}
   maxSpawnDistance: 1.5
-  itemsToSpawn: []
-  quantity: 3
+  moneyItemPrefab: {fileID: 0}
+  healthItemPrefab: {fileID: 0}
   thoughtItemPrefab: {fileID: 1631135601703695119, guid: 1a7c29cb97ba4b34bbe2653dfd40abac, type: 3}
-  possibleThoughts: []
+  levelChances: {fileID: 0}
 --- !u!1 &2053799223
 GameObject:
   m_ObjectHideFlags: 0

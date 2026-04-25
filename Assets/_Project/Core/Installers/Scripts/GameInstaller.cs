@@ -39,6 +39,10 @@ public class GameInstaller : InstallerBehaviourBase
   [SerializeField]
   private ThoughtsAvaliabilityManager _thoughtsAvaliabilityManager;
 
+  [Header("Language (Yandex SDK)")]
+  [SerializeField]
+  private LanguageManager _languageManager;
+
   protected override void Install()
   {
     // 1. Core Services
@@ -47,7 +51,15 @@ public class GameInstaller : InstallerBehaviourBase
     BindAsSingleton(new SaveGameManager(new PlayerPrefsData(), true));
     BindAsSingleton(new StateService(_ticker, true));
 
-    //
+    // 1.5. Langauge Manager
+    if (_languageManager != null)
+    {
+      BindAsSingleton(_languageManager);
+    }
+    else
+    {
+      Debug.LogWarning("[GameInstaller] ОШИБКА: LanguageManager не назначен в инспекторе!");
+    }
 
     // 2. Audio
     if (_audioSettings != null)
