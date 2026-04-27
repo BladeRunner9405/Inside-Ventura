@@ -36,7 +36,6 @@ public class PlayerStats : BehaviourBase
   public DataModelStat Mana { get; set; } // Idea Points, тратятся активацией активируемых мыслей
   public DataModelStat Money { get; set; } // Замыслы, игровая валюта
 
-
   /*public float CurrentHealth
   {
     get => _model.currentHealth;
