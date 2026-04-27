@@ -4525,8 +4525,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 6.2200003, y: 6.04, z: 0}
-  m_LocalScale: {x: 0.8000001, y: 0.8000001, z: 0.8000001}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 680056475}
   - {fileID: 1917239836}
@@ -5739,10 +5739,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Chest
   outline: {fileID: 1179012548}
   maxSpawnDistance: 1.5
-  itemsToSpawn: []
-  quantity: 0
+  moneyItemPrefab: {fileID: 0}
+  healthItemPrefab: {fileID: 0}
   thoughtItemPrefab: {fileID: 1631135601703695119, guid: 1a7c29cb97ba4b34bbe2653dfd40abac, type: 3}
-  possibleThoughts: []
+  levelChances: {fileID: 0}
 --- !u!1001 &365026524
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8259,7 +8259,7 @@ Transform:
   m_GameObject: {fileID: 682866570}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.2200003, y: 6.04, z: -10.8}
+  m_LocalPosition: {x: 6.2200003, y: 6.04, z: -10.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11292,7 +11292,7 @@ Transform:
   m_GameObject: {fileID: 1096880056}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.2200003, y: 6.04, z: -10.8}
+  m_LocalPosition: {x: 6.2200003, y: 6.04, z: -10.6}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20535,10 +20535,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Chest
   outline: {fileID: 1895858224}
   maxSpawnDistance: 1.5
-  itemsToSpawn: []
-  quantity: 3
+  moneyItemPrefab: {fileID: 0}
+  healthItemPrefab: {fileID: 0}
   thoughtItemPrefab: {fileID: 1631135601703695119, guid: 1a7c29cb97ba4b34bbe2653dfd40abac, type: 3}
-  possibleThoughts: []
+  levelChances: {fileID: 0}
 --- !u!1 &2053799223
 GameObject:
   m_ObjectHideFlags: 0
