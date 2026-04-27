@@ -10,17 +10,12 @@ namespace InsideVentura.World
       _dungeonManager.RegisterRoomObject(gameObject);
     }
 
-    protected virtual void OnPickup() { }
+    protected abstract void OnPickup();
 
     protected virtual bool CanPickUp()
     {
       // хватает ли места и т. п.
       return true;
-    }
-
-    protected override void OnEnable()
-    {
-      base.OnEnable();
     }
 
     public override void OnInteract()
@@ -29,7 +24,7 @@ namespace InsideVentura.World
         return;
 
       OnPickup();
-      base.OnInteract();
+      Deactivate();
     }
   }
 }

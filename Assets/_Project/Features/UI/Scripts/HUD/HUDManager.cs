@@ -98,47 +98,58 @@ public class HUDManager : BehaviourBase {
     UpdateHearts(currentHealth, GetMaxHealth());
   }
 
-  private void UpdateHearts(float currentHealth, float maxHealth) {
+  private void UpdateHearts(float currentHealth, float maxHealth)
+  {
     if (heartsContainer == null || heartPrefab == null) return;
 
+    int heartsCount = Mathf.CeilToInt(maxHealth / 2f);
     RebuildHearts(maxHealth);
 
-    for (var i = 0; i < maxHealth; ++i) {
-      var heart = heartsContainer.GetChild(i);
-      var heartImage = heart.GetComponent<Image>();
+    for (int i = 0; i < heartsCount; ++i)
+    {
+      Transform heart = heartsContainer.GetChild(i);
+      Image heartImage = heart.GetComponent<Image>();
       if (heartImage == null) continue;
 
-      var heartHealth = Mathf.Clamp(currentHealth - i, 0f, 1f);
+      float healthMin = i * 2f;
+      float healthMax = (i + 1) * 2f;
 
-      if (heartHealth <= 0)
-        SetHeartSprite(heartImage, HeartState.Empty);
-      else if (heartHealth >= 1)
+      if (currentHealth >= healthMax)
         SetHeartSprite(heartImage, HeartState.Full);
-      else
+      else if (currentHealth >= healthMin + 1f)
         SetHeartSprite(heartImage, HeartState.Half);
+      else
+        SetHeartSprite(heartImage, HeartState.Empty);
     }
   }
 
-  private void RebuildHearts(float maxHealth) {
-    var lastHeartsCount = Mathf.CeilToInt(_lastMaxHealth);
-    var heartsCount = Mathf.CeilToInt(maxHealth);
+  private void RebuildHearts(float maxHealth)
+  {
+    int lastHeartsCount = Mathf.CeilToInt(_lastMaxHealth / 2f);
+    int heartsCount = Mathf.CeilToInt(maxHealth / 2f);
 
     if (lastHeartsCount == heartsCount) return;
 
-    if (lastHeartsCount > heartsCount) {
-      Debug.Log(1);
-      for (var i = 0; i < lastHeartsCount - heartsCount; ++i) {
-        var heart = heartsContainer.GetChild(heartsCount + i);
+    if (lastHeartsCount > heartsCount)
+    {
+      for (int i = 0; i < lastHeartsCount - heartsCount; ++i)
+      {
+        Transform heart = heartsContainer.GetChild(heartsCount + i);
         heart.gameObject.SetActive(false);
       }
     }
-    else if (lastHeartsCount < heartsCount) {
-      for (var i = 0; i < heartsCount - lastHeartsCount; ++i) {
-        if (heartsContainer.childCount - lastHeartsCount - i > 0) {
-          var heart = heartsContainer.GetChild(lastHeartsCount + i);
+    else if (lastHeartsCount < heartsCount)
+    {
+      for (int i = 0; i < heartsCount - lastHeartsCount; ++i)
+      {
+        int index = lastHeartsCount + i;
+        if (index < heartsContainer.childCount)
+        {
+          Transform heart = heartsContainer.GetChild(index);
           heart.gameObject.SetActive(true);
         }
-        else {
+        else
+        {
           Instantiate(heartPrefab, heartsContainer);
         }
       }

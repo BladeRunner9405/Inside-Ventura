@@ -1,3 +1,4 @@
+using System;
 using CherryFramework.DependencyManager;
 using UnityEngine;
 
@@ -12,13 +13,18 @@ public abstract class InteractableObject : InjectMonoBehaviour
   [Inject]
   protected PlayerAccessor PlayerAccessor;
 
+  protected event Action OnPlayerNearby;
+
   public void PlayerIsNearby(bool nearby)
   {
     // мб этот метод нам не понадобится, но все равно. Срабатываеит, если рядом игрок
     _isPlayerNearby = nearby;
+    OnPlayerNearby?.Invoke();
   }
 
-  public virtual void OnInteract()
+  public virtual void OnInteract() => Deactivate();
+
+  protected void Deactivate()
   {
     SetActive(false);
     Destroy(this);
