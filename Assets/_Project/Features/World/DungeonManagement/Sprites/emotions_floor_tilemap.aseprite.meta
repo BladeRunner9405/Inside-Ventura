@@ -4,9 +4,9 @@ ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 2
-  userData:
-  assetBundleName:
-  assetBundleVariant:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
   script: {fileID: 11500000, guid: 62a9f0aa5b59740cfbadc7e5f9823bb0, type: 3}
   importerVersion: 2
   textureImporterSettings:
@@ -103,26 +103,26 @@ ScriptedImporter:
     generateSpriteAtlas: 1
   importFileNodeState: 1
   platformSettingsDirtyTick: 639128949023508917
-  textureAssetName:
+  textureAssetName: 
   singleSpriteImportData:
-  - name:
-    originalName:
+  - name: 
+    originalName: 
     pivot: {x: 0, y: 0}
     alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 0
       y: 0
       width: 0
       height: 0
-    spriteID:
+    spriteID: 
     spriteBone: []
     spriteOutline: []
     vertices: []
     spritePhysicsOutline: []
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
@@ -130,11 +130,11 @@ ScriptedImporter:
   spriteSheetImportData: []
   tileSetImportData:
   - name: emotions_floor_1
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 4
@@ -153,16 +153,16 @@ ScriptedImporter:
       - {x: -8, y: -8}
       - {x: 4.1333675, y: -8}
       - {x: 4, y: -4}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
   - name: emotions_floor_2
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 4
@@ -179,16 +179,16 @@ ScriptedImporter:
       - {x: -8, y: 8}
       - {x: -8, y: -4}
       - {x: 8, y: -4}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 28}
   - name: emotions_floor_3
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 4
@@ -205,16 +205,16 @@ ScriptedImporter:
       - {x: -8, y: 8}
       - {x: -8, y: -4}
       - {x: 8, y: -4}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 52}
   - name: emotions_floor_4
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 4
@@ -231,16 +231,16 @@ ScriptedImporter:
       - {x: -8, y: 8}
       - {x: -8, y: -4}
       - {x: 8, y: -4}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 76}
   - name: emotions_floor_5
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 4
@@ -257,16 +257,16 @@ ScriptedImporter:
       - {x: -8, y: 8}
       - {x: -8, y: -4}
       - {x: 8, y: -4}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 100}
   - name: emotions_floor_6
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 4
@@ -285,16 +285,16 @@ ScriptedImporter:
       - {x: -4, y: -4}
       - {x: -4, y: -8}
       - {x: 8, y: -8}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 124}
   - name: emotions_floor_7
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 4
@@ -311,16 +311,16 @@ ScriptedImporter:
       - {x: -8, y: 8}
       - {x: -8, y: -8}
       - {x: 4, y: -8}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 148}
   - name: emotions_floor_8
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 4
@@ -337,16 +337,16 @@ ScriptedImporter:
       - {x: -8, y: 8}
       - {x: -8, y: -8}
       - {x: 8, y: -8}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 172}
   - name: emotions_floor_9
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 4
@@ -363,16 +363,16 @@ ScriptedImporter:
       - {x: -4, y: 8}
       - {x: -4, y: -8}
       - {x: 8, y: -8}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 196}
   - name: emotions_floor_10
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 4
@@ -389,16 +389,16 @@ ScriptedImporter:
       - {x: -8, y: 8}
       - {x: -8, y: -8}
       - {x: 4, y: -8}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 220}
   - name: emotions_floor_11
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 28
@@ -415,16 +415,16 @@ ScriptedImporter:
       - {x: -4, y: 4}
       - {x: -4, y: -8}
       - {x: 8, y: -8}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 28, y: 4}
   - name: emotions_floor_12
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 28
@@ -441,16 +441,16 @@ ScriptedImporter:
       - {x: -8, y: 2}
       - {x: -8, y: -8}
       - {x: 2, y: -8}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 28, y: 28}
   - name: emotions_floor_13
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 28
@@ -467,16 +467,16 @@ ScriptedImporter:
       - {x: -4, y: 8}
       - {x: -4, y: -8}
       - {x: 8, y: -8}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 28, y: 52}
   - name: emotions_floor_14
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 28
@@ -493,16 +493,16 @@ ScriptedImporter:
       - {x: -8, y: 8}
       - {x: -8, y: -8}
       - {x: 4, y: -8}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 28, y: 76}
   - name: emotions_floor_15
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 28
@@ -519,16 +519,16 @@ ScriptedImporter:
       - {x: -2, y: 8}
       - {x: -2, y: -2}
       - {x: 8, y: -2}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 28, y: 100}
   - name: emotions_floor_16
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 28
@@ -545,16 +545,16 @@ ScriptedImporter:
       - {x: -8, y: 8}
       - {x: -8, y: -2}
       - {x: 2, y: -2}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 28, y: 124}
   - name: emotions_floor_17
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 28
@@ -571,16 +571,16 @@ ScriptedImporter:
       - {x: -4, y: 8}
       - {x: -4, y: -8}
       - {x: 8, y: -8}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 28, y: 148}
   - name: emotions_floor_18
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 28
@@ -597,16 +597,16 @@ ScriptedImporter:
       - {x: -8, y: 8}
       - {x: -8, y: -8}
       - {x: 4, y: -8}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 28, y: 172}
   - name: emotions_floor_19
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 28
@@ -623,16 +623,16 @@ ScriptedImporter:
       - {x: -4, y: 8}
       - {x: -4, y: -8}
       - {x: 8, y: -8}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 28, y: 196}
   - name: emotions_floor_20
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 28
@@ -651,16 +651,16 @@ ScriptedImporter:
       - {x: -8, y: 8}
       - {x: -8, y: -8}
       - {x: 8, y: -8}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 28, y: 220}
   - name: emotions_floor_21
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 52
@@ -677,16 +677,16 @@ ScriptedImporter:
       - {x: -8, y: 4}
       - {x: -8, y: -8}
       - {x: 8, y: -8}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 52, y: 4}
   - name: emotions_floor_22
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 52
@@ -703,16 +703,16 @@ ScriptedImporter:
       - {x: -8, y: 4}
       - {x: -8, y: -8}
       - {x: 8, y: -8}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 52, y: 28}
   - name: emotions_floor_23
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 52
@@ -729,16 +729,16 @@ ScriptedImporter:
       - {x: -8, y: 4}
       - {x: -8, y: -8}
       - {x: 8, y: -8}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 52, y: 52}
   - name: emotions_floor_24
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 52
@@ -755,16 +755,16 @@ ScriptedImporter:
       - {x: -8, y: 4}
       - {x: -8, y: -8}
       - {x: 8, y: -8}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 52, y: 76}
   - name: emotions_floor_25
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 52
@@ -783,16 +783,16 @@ ScriptedImporter:
       - {x: -8, y: 4}
       - {x: -8, y: -8}
       - {x: 8, y: -8}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 52, y: 100}
   - name: emotions_floor_26
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 52
@@ -809,16 +809,16 @@ ScriptedImporter:
       - {x: -8, y: 8}
       - {x: -8, y: -4}
       - {x: 4, y: -4}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 52, y: 124}
   - name: emotions_floor_27
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 52
@@ -835,16 +835,16 @@ ScriptedImporter:
       - {x: -8, y: 4}
       - {x: -8, y: -8}
       - {x: 4, y: -8}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 52, y: 148}
   - name: emotions_floor_28
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 52
@@ -861,16 +861,16 @@ ScriptedImporter:
       - {x: -4, y: 8}
       - {x: -4, y: -4}
       - {x: 8, y: -4}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 52, y: 172}
   - name: emotions_floor_29
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 52
@@ -887,16 +887,16 @@ ScriptedImporter:
       - {x: -8, y: 8}
       - {x: -8, y: -8}
       - {x: 8, y: -8}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 52, y: 196}
   - name: emotions_floor_30
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 52
@@ -913,16 +913,16 @@ ScriptedImporter:
       - {x: -8, y: 8}
       - {x: -8, y: -4}
       - {x: 8, y: -4}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 52, y: 220}
   - name: emotions_floor_31
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 76
@@ -939,16 +939,16 @@ ScriptedImporter:
       - {x: -8, y: 4}
       - {x: -8, y: -8}
       - {x: 8, y: -8}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 76, y: 4}
   - name: emotions_floor_32
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 76
@@ -965,16 +965,16 @@ ScriptedImporter:
       - {x: -4, y: 8}
       - {x: -4, y: -8}
       - {x: 8, y: -8}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 76, y: 28}
   - name: emotions_floor_33
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 76
@@ -991,16 +991,16 @@ ScriptedImporter:
       - {x: -8, y: 8}
       - {x: -8, y: -8}
       - {x: 4, y: -8}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 76, y: 52}
   - name: emotions_floor_34
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 76
@@ -1017,16 +1017,16 @@ ScriptedImporter:
       - {x: -8, y: 8}
       - {x: -8, y: -4}
       - {x: 8, y: -4}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 76, y: 76}
   - name: emotions_floor_35
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 76
@@ -1043,16 +1043,16 @@ ScriptedImporter:
       - {x: -8, y: 4}
       - {x: -8, y: -8}
       - {x: 8, y: -8}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 76, y: 100}
   - name: emotions_floor_36
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 76
@@ -1069,16 +1069,16 @@ ScriptedImporter:
       - {x: -4, y: 8}
       - {x: -4, y: -8}
       - {x: 8, y: -8}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 76, y: 124}
   - name: emotions_floor_37
-    originalName:
+    originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
-    customData:
+    customData: 
     rect:
       serializedVersion: 2
       x: 76
@@ -1095,7 +1095,7 @@ ScriptedImporter:
       - {x: -8, y: 8}
       - {x: -8, y: -8}
       - {x: 4, y: -8}
-    indices:
+    indices: 
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 76, y: 148}
@@ -1393,6 +1393,6 @@ ScriptedImporter:
     androidETC2FallbackOverride: 0
   generatePhysicsShape: 1
   secondarySpriteTextures: []
-  spritePackingTag:
+  spritePackingTag: 
   canvasSize: {x: 256, y: 256}
   previousTextureSize: {x: 128, y: 256}
