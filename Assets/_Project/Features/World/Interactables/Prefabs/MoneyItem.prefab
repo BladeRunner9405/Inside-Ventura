@@ -49,6 +49,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoneyItem
   outline: {fileID: 4458220301563253481}
+  moveSpeed: 6
+  arriveDistance: 0.1
 --- !u!61 &208175663639969996
 BoxCollider2D:
   m_ObjectHideFlags: 0
