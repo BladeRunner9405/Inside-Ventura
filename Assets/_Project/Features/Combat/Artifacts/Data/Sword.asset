@@ -33,6 +33,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 320
   comboAngle: 30
-  comboRange: 4
-  lungeDistance: 1.75
-  lungeDuration: 0.1
+  comboRange: 5
+  lungeDistance: 4
+  lungeDuration: 0.15
