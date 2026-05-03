@@ -1,4 +1,4 @@
-public class ArtifactTooltip : TooltipBase
+public class ArtifactTooltipUI : TooltipBase
 {
   private ArtifactInstance _artifactInstance;
 

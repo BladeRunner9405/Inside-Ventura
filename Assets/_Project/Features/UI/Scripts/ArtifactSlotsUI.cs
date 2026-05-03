@@ -6,12 +6,12 @@ public class ArtifactSlotsUI : InjectMonoBehaviour
   [SerializeField]
   private ThoughtSlotUI[] slots;
   [SerializeField]
-  private ArtifactTooltip artifactTooltip;
+  private ArtifactTooltipUI artifactTooltip;
 
   [Inject]
   private ThoughtsCompatibilityManager _thoughtsCompatibilityManager;
 
-  private bool _pinned = false;
+  public bool Pinned { get; set; } = false;
 
   public bool IsPointerOnArtifact { get; set; }
 
@@ -61,8 +61,6 @@ public class ArtifactSlotsUI : InjectMonoBehaviour
     _thoughtsCompatibilityManager.OnThoughtDeselected -= HandleThoughtDeselected;
   }
 
-  public void TogglePinned() => _pinned = !_pinned;
-
   public void SetAsActive() {
     if (_thoughtsCompatibilityManager.IfNoActiveArtifacts())
       _thoughtsCompatibilityManager.AddPinnedArtifact(ArtifactInstance);
@@ -70,8 +68,8 @@ public class ArtifactSlotsUI : InjectMonoBehaviour
 
   public void UnsetAsActive()
   {
-    if (!_pinned && _thoughtsCompatibilityManager.ContainsArtifact(ArtifactInstance))
-      _thoughtsCompatibilityManager.RemovePinnedArtifact(ArtifactInstance);
+    if (!Pinned && _thoughtsCompatibilityManager.IsArtifactActive(ArtifactInstance))
+      _thoughtsCompatibilityManager.RemovePinnedArtifact();
   }
 
   private void HandleThoughtDeselected() {

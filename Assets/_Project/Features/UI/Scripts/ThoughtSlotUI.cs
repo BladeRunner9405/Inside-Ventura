@@ -75,7 +75,7 @@ public class ThoughtSlotUI
   {
     if (!data) return true;
 
-    if (SourceBag && !_thoughtsCompatibilityManager.HasPinnedArtifact) return true;
+    if (SourceBag && _thoughtsCompatibilityManager.PinnedArtifact == null) return true;
 
     if (_thoughtsCompatibilityManager.IfNoActiveArtifacts()) return true;
 

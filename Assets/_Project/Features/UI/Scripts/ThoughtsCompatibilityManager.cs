@@ -8,6 +8,8 @@ public class ThoughtsCompatibilityManager : InjectMonoBehaviour
   private HashSet<ArtifactInstance> _activeArtifacts = new();
   public IReadOnlyCollection<ArtifactInstance> ActiveArtifacts => _activeArtifacts;
 
+  public ArtifactInstance PinnedArtifact { get; set; }
+
   [Inject]
   private PlayerAccessor _playerAccessor;
 
@@ -17,23 +19,23 @@ public class ThoughtsCompatibilityManager : InjectMonoBehaviour
 
   public event Action OnActiveArtifactsChanged;
   public event Action OnThoughtDeselected;
-
-  public bool HasPinnedArtifact { get; set; }
+  public event Action OnPinnedArtifactsCleared;
 
   public void AddPinnedArtifact(ArtifactInstance artifact)
   {
     _activeArtifacts.Add(artifact);
-    HasPinnedArtifact = true;
+    PinnedArtifact = artifact;
     OnActiveArtifactsChanged?.Invoke();
   }
 
-  public void RemovePinnedArtifact(ArtifactInstance artifact) {
-    _activeArtifacts.Remove(artifact);
-    HasPinnedArtifact = false;
+  public void RemovePinnedArtifact() {
+    _activeArtifacts.Remove(PinnedArtifact);
+    PinnedArtifact = null;
     OnActiveArtifactsChanged?.Invoke();
+    OnPinnedArtifactsCleared?.Invoke();
   }
 
-  public bool ContainsArtifact(ArtifactInstance artifact) {
+  public bool IsArtifactActive(ArtifactInstance artifact) {
     return _activeArtifacts.Contains(artifact);
   }
 
@@ -47,7 +49,7 @@ public class ThoughtsCompatibilityManager : InjectMonoBehaviour
   }
 
   public void ActivateForThought(ThoughtType thoughtType) {
-    if (HasPinnedArtifact) return;
+    if (PinnedArtifact != null) return;
 
     _heart = _playerAccessor.Equipment.Heart;
     _weapon = _playerAccessor.Equipment.Weapon;
@@ -72,7 +74,7 @@ public class ThoughtsCompatibilityManager : InjectMonoBehaviour
   }
 
   public void DeactivateForThoughts() {
-    if (HasPinnedArtifact) return;
+    if (PinnedArtifact != null) return;
 
     ClearActiveArtifacts();
     OnThoughtDeselected?.Invoke();
