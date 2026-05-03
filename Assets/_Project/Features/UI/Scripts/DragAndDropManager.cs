@@ -2,7 +2,6 @@ using CherryFramework.DependencyManager;
 using InsideVentura.World.v1;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 public class DragAndDropManager : InjectMonoBehaviour
 {

@@ -1,13 +1,9 @@
 using CherryFramework.DependencyManager;
-using InsideVentura.World;
+using InsideVentura.World.v1;
 using TMPro;
-using UnityEngine;
 
 public class EncounterText : InjectMonoBehaviour
 {
-  [Inject]
-  private DungeonManager _dungeonManager;
-
   private TextMeshProUGUI _text;
 
   private bool _lastIsEncounter;
@@ -19,12 +15,7 @@ public class EncounterText : InjectMonoBehaviour
 
   private void Update()
   {
-    if (_dungeonManager == null || _text == null) return;
-
-    var currentRoomType = _dungeonManager.CurrentRoom.GetRoom().type;
-
-    bool isEncounter = currentRoomType != DungeonRoomType.Safe && currentRoomType != DungeonRoomType.Spawn &&
-                    currentRoomType != DungeonRoomType.Reward && currentRoomType != DungeonRoomType.Shop;
+    bool isEncounter = EncounterStatus.Active;
     if (_lastIsEncounter != isEncounter)
     {
       _lastIsEncounter = isEncounter;
