@@ -5779,14 +5779,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4373668041575548039, guid: b387098fa40b10b48840d3f9502b7ee7, type: 3}
-      propertyPath: m_hasFontAssetChanged
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5534698162448899885, guid: b387098fa40b10b48840d3f9502b7ee7, type: 3}
-      propertyPath: encounterManager
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5920310730956470844, guid: b387098fa40b10b48840d3f9502b7ee7, type: 3}
       propertyPath: 'objectsToToggle.Array.data[3]'
       value: 
@@ -7851,6 +7843,10 @@ PrefabInstance:
       propertyPath: moneyText
       value: 
       objectReference: {fileID: 1201109505}
+    - target: {fileID: 8096889020437098053, guid: 891ea0f14e6ef5242af27e2b48516685, type: 3}
+      propertyPath: deathPanel
+      value: 
+      objectReference: {fileID: 1926331032}
     - target: {fileID: 8096889020437098053, guid: 891ea0f14e6ef5242af27e2b48516685, type: 3}
       propertyPath: heartsContainer
       value: 
@@ -19088,6 +19084,11 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &1926331032 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7140287865379604791, guid: 05ad525941d09c44cb86a125d67c2543, type: 3}
+  m_PrefabInstance: {fileID: 6348218497971151294}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1948989681
 GameObject:
   m_ObjectHideFlags: 0
@@ -22988,6 +22989,22 @@ PrefabInstance:
     - target: {fileID: 8872134014147528618, guid: 05ad525941d09c44cb86a125d67c2543, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8941401294994865970, guid: 05ad525941d09c44cb86a125d67c2543, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 481578137}
+    - target: {fileID: 8941401294994865970, guid: 05ad525941d09c44cb86a125d67c2543, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RestartLevel
+      objectReference: {fileID: 0}
+    - target: {fileID: 8941401294994865970, guid: 05ad525941d09c44cb86a125d67c2543, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: InsideVentura.World.DungeonManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8941401294994865970, guid: 05ad525941d09c44cb86a125d67c2543, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
