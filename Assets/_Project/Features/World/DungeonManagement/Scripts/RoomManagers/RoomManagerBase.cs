@@ -3,6 +3,7 @@ using System.Linq;
 using CherryFramework.BaseClasses;
 using CherryFramework.DependencyManager;
 using Edgar.Unity;
+using Unity.Cinemachine;
 using UnityEngine;
 
 namespace InsideVentura.World {
@@ -46,6 +47,17 @@ namespace InsideVentura.World {
       Debug.Log(
         $"Room enter. Room name: {RoomInstance.Room.GetDisplayName()}, Room template: {RoomInstance.RoomTemplatePrefab.name}");
       _dungeonManager.CurrentRoom = this;
+
+      UpdateCameraBounds();
+    }
+
+    private void UpdateCameraBounds()
+    {
+      var cam = GameObject.Find("CinemachineCamera");
+      var confiner = cam.GetComponent<CinemachineConfiner2D>();
+      var floor = transform.Find("Tilemaps/Floor");
+      confiner.BoundingShape2D = floor.GetComponent<CompositeCollider2D>();
+      confiner.BakeBoundingShape(cam.GetComponent<CinemachineCamera>(), 5);
     }
 
     /// <summary>

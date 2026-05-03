@@ -29,17 +29,6 @@ namespace InsideVentura.World {
 
       var entity = player.GetComponent<Entity>();
       playerCamera.Follow = entity != null ? entity.target : player.transform;
-
-      var confiner = playerCamera.GetComponent<CinemachineConfiner2D>();
-      if (confiner == null) {
-        Debug.Log("[AdjustCamera] No confiner found on Player Camera object");
-        return;
-      }
-
-      var sharedWalls = _level.GetSharedTilemaps().Single(x => x.name == "Walls");
-      var wallsCollider = sharedWalls.GetComponent<CompositeCollider2D>();
-      wallsCollider.geometryType = CompositeCollider2D.GeometryType.Polygons;
-      confiner.BoundingShape2D = wallsCollider;
     }
   }
 }
