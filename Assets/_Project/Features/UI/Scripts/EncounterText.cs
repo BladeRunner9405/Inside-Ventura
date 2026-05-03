@@ -1,15 +1,16 @@
-using InsideVentura.World.v1;
+using CherryFramework.DependencyManager;
+using InsideVentura.World;
 using TMPro;
 using UnityEngine;
 
-public class EncounterText : MonoBehaviour
+public class EncounterText : InjectMonoBehaviour
 {
-  [SerializeField]
-  private EncounterManager encounterManager;
+  [Inject]
+  private DungeonManager _dungeonManager;
 
   private TextMeshProUGUI _text;
 
-  private bool _lastActiveState;
+  private bool _lastIsEncounter;
 
   private void Awake()
   {
@@ -18,13 +19,16 @@ public class EncounterText : MonoBehaviour
 
   private void Update()
   {
-    if (encounterManager == null || _text == null) return;
+    if (_dungeonManager == null || _text == null) return;
 
-    bool isActive = encounterManager.IsEncounterActive;
-    if (_lastActiveState != isActive)
+    var currentRoomType = _dungeonManager.CurrentRoom.GetRoom().type;
+
+    bool isEncounter = currentRoomType != DungeonRoomType.Safe && currentRoomType != DungeonRoomType.Spawn &&
+                    currentRoomType != DungeonRoomType.Reward && currentRoomType != DungeonRoomType.Shop;
+    if (_lastIsEncounter != isEncounter)
     {
-      _lastActiveState = isActive;
-      _text.enabled = isActive;
+      _lastIsEncounter = isEncounter;
+      _text.enabled = isEncounter;
     }
   }
 }

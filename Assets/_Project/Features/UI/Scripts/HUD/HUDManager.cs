@@ -21,6 +21,9 @@ public class HUDManager : BehaviourBase {
   [SerializeField] private Color cooldownReadyColor = Color.green;
   [SerializeField] private float readyFlashDuration = 0.3f;
 
+  [Header("Death")]
+  [SerializeField] private GameObject deathPanel;
+
   private Accessor<float> _healthAccessor;
   private float _lastMaxHealth;
 
@@ -95,6 +98,10 @@ public class HUDManager : BehaviourBase {
   }
 
   private void UpdateHealthUI(float currentHealth) {
+    if (currentHealth == 0)
+    {
+      deathPanel.SetActive(true);
+    }
     UpdateHearts(currentHealth, GetMaxHealth());
   }
 
