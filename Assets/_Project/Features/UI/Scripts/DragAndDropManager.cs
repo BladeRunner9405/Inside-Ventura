@@ -98,7 +98,7 @@ public class DragAndDropManager : InjectMonoBehaviour
           return thought.HasRightType(targetSlot.SourceArtifactInstance.BaseData);
 
         if (targetSlot.Remover != null)
-          return true;
+          return targetSlot.Remover.IsPointerInsideArea;
 
         return false;
     }

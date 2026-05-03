@@ -11,6 +11,8 @@ public class ThoughtRemover : InjectMonoBehaviour {
   [Inject]
   private PlayerAccessor _playerAccessor;
 
+  public bool IsPointerInsideArea { get; set; } = false;
+
   public void DropThoughtToWorld(Thought thought) {
     Transform playerTransform = _playerAccessor.Transform;
 
