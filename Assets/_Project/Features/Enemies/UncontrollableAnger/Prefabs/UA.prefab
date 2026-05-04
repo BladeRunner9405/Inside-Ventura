@@ -137,6 +137,10 @@ MonoBehaviour:
   hitbox: {fileID: 5082482304728084474}
   _animator: {fileID: 5970913380662848226}
   _spriteRenderer: {fileID: 7293520111826285576}
+  inertionResistance: 0.6
+  inertionDir: {x: 0, y: 0}
+  inertionMagnitude: 0
+  inertionFade: 0.7
   damage: 1
   isBoss: 0
   attackCooldown: 1
@@ -151,6 +155,7 @@ MonoBehaviour:
   steeringLerpSpeed: 10
   floatingDamagePrefab: {fileID: 5299727460215697226, guid: ad3d7c92ac5b2563da66f3935d833e76, type: 3}
   Brain: {fileID: 7517003494791358381}
+  visionRange: 10
   playerDistance: 2.7
   retreatDistance: 2
   waveAttackPrefab: {fileID: 6016825522121415406, guid: 14115f0fa5311d14399fd178239b0b96, type: 3}

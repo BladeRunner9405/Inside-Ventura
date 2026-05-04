@@ -124,6 +124,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   lifeTime: 1
+  hasKnockBack: 1
+  knockBackForce: 5
   radius: 1
 --- !u!95 &5684991956528252861
 Animator:

@@ -60,6 +60,13 @@ public abstract class Entity : InjectMonoBehaviour
   protected readonly int animDie = Animator.StringToHash("Die");
   protected readonly int animAttack = Animator.StringToHash("Attack");
 
+  public float inertionResistance = 0f;
+
+  public Vector2 inertionDir = Vector2.zero;
+  public float inertionMagnitude = 0;
+  public float inertionFade = 0.7f;
+
+
   protected virtual void Update()
   {
       if (IsDead || _animator == null) return;
@@ -69,6 +76,14 @@ public abstract class Entity : InjectMonoBehaviour
       _animator.SetFloat(animSpeed, CurrentMoveDirection.sqrMagnitude);
 
       HandleFlip(CurrentMoveDirection);
+  }
+
+  private void FixedUpdate() {
+    if (inertionMagnitude > 0.1f)
+    {
+      Move(inertionDir, inertionMagnitude * (1 - inertionResistance), true);
+      inertionMagnitude *= inertionFade;
+    }
   }
 
   // Универсальный метод поворота

@@ -59,12 +59,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d679dde95e37fec4db91b2908adaa1d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SectorAttackObject
-  animator: {fileID: 0}
   currentDamage: 0
   targetLayer:
     serializedVersion: 2
     m_Bits: 256
   lifeTime: 0.25
+  hasKnockBack: 1
+  knockBackForce: 5
   showDebugVisuals: 1
   debugLineDuration: 0.1
 --- !u!212 &-437990948176116392

@@ -19,6 +19,9 @@ public abstract class AttackObject : InjectMonoBehaviour
   protected HashSet<Entity> hitEntities = new();
   protected float spawnTime;
 
+  public bool hasKnockBack = false;
+  public float knockBackForce = 0;
+
   protected virtual void Update()
   {
     if (lifeTime > 0 && Time.time - spawnTime >= lifeTime)
@@ -53,6 +56,11 @@ public abstract class AttackObject : InjectMonoBehaviour
       if (!hitEntities.Contains(entity))
       {
         entity.TakeDamage(currentDamage);
+        if (hasKnockBack)
+        {
+          entity.inertionDir = (entity.transform.position - transform.position).normalized;
+          entity.inertionMagnitude = knockBackForce;
+        }
         hitEntities.Add(entity);
         OnEntityHit(entity);
       }
