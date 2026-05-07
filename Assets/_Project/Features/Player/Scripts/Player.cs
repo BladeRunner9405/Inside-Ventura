@@ -21,6 +21,9 @@ public class Player : Entity
   [SerializeField]
   private AimTarget playerAim; // Перенесено из контроллера
 
+  [SerializeField]
+  private ArmRotation armRotation;
+
   [Header("Invulnerability Settings")]
   [SerializeField]
   private float invulnerabilityDuration = 0.5f;
@@ -130,6 +133,11 @@ public class Player : Entity
     {
       playerAim.aimAt(targetWorldPosition);
     }
+
+    if (armRotation != null)
+    {
+      armRotation.RotateToTarget(targetWorldPosition);
+    }
   }
 
   #endregion
@@ -163,12 +171,12 @@ public class Player : Entity
   {
       // Включаем неуязвимость
       ++InvulnerabilityProcCount;
-      
+
       // Запускаем анимацию рывка (кувырок, скольжение и т.д.)
-      
+
 
       yield return base.DashCoroutine(direction, distance, duration);
-      
+
       --InvulnerabilityProcCount;
   }
   #endregion
