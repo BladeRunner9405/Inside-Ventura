@@ -6,6 +6,7 @@ public class WeaponVizualizer : MonoBehaviour
 
   private Animator _animator;
   private readonly int _animAttack = Animator.StringToHash("Attack");
+  private readonly int _animSpecialAttack = Animator.StringToHash("SpecialAttack");
 
   private void Awake()
   {
@@ -22,8 +23,15 @@ public class WeaponVizualizer : MonoBehaviour
     equipment.Weapon.OnAttack += PlayAttackAnimation;
   }
 
-  private void PlayAttackAnimation()
+  private void PlayAttackAnimation(bool isCombo)
   {
-    _animator.SetTrigger(_animAttack);
+    if (isCombo)
+    {
+      _animator.SetTrigger(_animSpecialAttack);
+    }
+    else
+    {
+      _animator.SetTrigger(_animAttack);
+    }
   }
 }

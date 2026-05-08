@@ -38,5 +38,5 @@ public abstract class Weapon : Artifact
   // Префаб атаки или визуальный эффект (например, взмах мечом)
   // [SerializeField] public GameObject attackPrefab;
 
-  public abstract void ExecuteAttack(WeaponInstance instance, Vector2 direction, float finalDamage);
+  public abstract void ExecuteAttack(WeaponInstance instance, Vector2 direction, float finalDamage, bool isCombo = false);
 }
