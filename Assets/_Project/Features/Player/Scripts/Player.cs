@@ -136,7 +136,7 @@ public class Player : Entity
 
     if (armRotation != null)
     {
-      armRotation.RotateToTarget(targetWorldPosition);
+      armRotation.rotateAt(targetWorldPosition);
     }
   }
 

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -17,6 +18,8 @@ public class WeaponInstance : ArtifactInstance
   private float _lastAttackTime;
   private int _currentChainCount;
   private float _currentCooldown;
+
+  public event Action OnAttack;
 
   public int CurrentChainCount { get; private set; }
 
@@ -57,6 +60,8 @@ public class WeaponInstance : ArtifactInstance
     WeaponData.ExecuteAttack(this, direction, finalDamage);
 
     _currentCooldown = AttackSpeed.ModifiedValue;
+
+    OnAttack?.Invoke();
   }
 
   // Изменили конструктор: добавили PlayerAccessor и передали его в base()
