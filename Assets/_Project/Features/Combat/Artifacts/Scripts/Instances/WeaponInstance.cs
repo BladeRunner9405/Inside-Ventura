@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -17,6 +18,8 @@ public class WeaponInstance : ArtifactInstance
   private float _lastAttackTime;
   private int _currentChainCount;
   private float _currentCooldown;
+
+  public event Action<bool> OnAttack; // bool - комбо атака ли это
 
   public int CurrentChainCount { get; private set; }
 
@@ -52,11 +55,14 @@ public class WeaponInstance : ArtifactInstance
     UpdateCombo();
 
     float finalDamage = GetDamageWithCritChance(Damage.ModifiedValue);
+    var isCombo = CurrentChainCount == Mathf.RoundToInt(ChainCount.ModifiedValue);
 
     // Передаем логику атаки обратно в SO (SwordWeapon)
-    WeaponData.ExecuteAttack(this, direction, finalDamage);
+    WeaponData.ExecuteAttack(this, direction, finalDamage, isCombo);
 
     _currentCooldown = AttackSpeed.ModifiedValue;
+
+    OnAttack?.Invoke(isCombo);
   }
 
   // Изменили конструктор: добавили PlayerAccessor и передали его в base()

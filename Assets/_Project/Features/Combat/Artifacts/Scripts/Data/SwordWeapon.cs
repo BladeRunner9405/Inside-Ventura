@@ -33,12 +33,10 @@ public class SwordWeapon : Weapon
   public override void ExecuteAttack(
     WeaponInstance instance,
     Vector2 direction,
-    float normalFinalDamage
+    float normalFinalDamage,
+    bool isCombo
   )
   {
-    var isCombo =
-      instance.CurrentChainCount == Mathf.RoundToInt(instance.ChainCount.ModifiedValue);
-
     var angle = isCombo ? comboAngle : normalAngle;
     var range = isCombo ? comboRange : normalRange;
 

@@ -16,10 +16,6 @@ public class PlayerEquipment : InjectMonoBehaviour
   [SerializeField]
   private Accessory accessoryData;
 
-  [Header("Debug")]
-  [SerializeField]
-  private Thought testThought;
-
   [Inject]
   private PlayerAccessor _playerAccessor;
 
@@ -27,6 +23,7 @@ public class PlayerEquipment : InjectMonoBehaviour
   public HeartInstance Heart { get; private set; }
   public AccessoryInstance Accessory { get; private set; }
 
+  public event Action OnInstancesInitialized;
   public event Action<ArtifactInstance, int, Thought> OnThoughtEquipped;
   public event Action<ArtifactInstance, int> OnThoughtUnequipped;
 
@@ -63,6 +60,8 @@ public class PlayerEquipment : InjectMonoBehaviour
         OnThoughtEquipped?.Invoke(Accessory, slot, thought);
       Accessory.OnThoughtUnequipped += (slot) => OnThoughtUnequipped?.Invoke(Accessory, slot);
     }
+
+    OnInstancesInitialized?.Invoke();
   }
 
   public void EquipThoughtToWeapon(Thought thought, int slotIndex) =>
@@ -77,21 +76,4 @@ public class PlayerEquipment : InjectMonoBehaviour
   public void TryToAttack(Vector2 direction) => Weapon?.TryAttack(direction);
 
   public void TryToUseAbility(Vector2 direction) => Accessory?.TryUseAbility(direction);
-
-  // --- Debug ---
-  [ContextMenu("Экипировать тестовую мысль в 0-ой слот оружия")]
-  public void DebugEquipThoughtToWeaponSlot0()
-  {
-    if (Weapon == null || testThought == null)
-      return;
-
-    if (Weapon.EquippedThoughts[0] == testThought)
-    {
-      Weapon.UnequipThought(0);
-    }
-    else
-    {
-      Weapon.EquipThought(testThought, 0);
-    }
-  }
 }
