@@ -54,6 +54,7 @@ MonoBehaviour:
   healthItemPrefab: {fileID: 1631135601703695119, guid: d445976fb0e63e24c96ed529fc0b05d3, type: 3}
   thoughtItemPrefab: {fileID: 1631135601703695119, guid: 1a7c29cb97ba4b34bbe2653dfd40abac, type: 3}
   levelChances: {fileID: 11400000, guid: e6b69bc59dd4abc48b34725475abb716, type: 2}
+  openSound: {fileID: 8300000, guid: 34ba6be21b051804fbc216e70bbf06ea, type: 3}
 --- !u!61 &5034061477902459261
 BoxCollider2D:
   m_ObjectHideFlags: 0

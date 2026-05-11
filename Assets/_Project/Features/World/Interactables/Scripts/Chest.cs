@@ -15,6 +15,7 @@ public class Chest : InteractableObject
 
   [Header("Chances data")]
   [SerializeField] private LevelChancesData levelChances;
+  [SerializeField] private AudioClip openSound;
 
   [Inject]
   private ThoughtsAvaliabilityManager thoughtsAvaliabilityManager;
@@ -23,7 +24,7 @@ public class Chest : InteractableObject
   {
     var chances = levelChances.GetCurrentChances();
     SpawnItems(chances);
-
+    AudioManager.Instance.PlaySFX(openSound);
     base.OnInteract();
   }
 

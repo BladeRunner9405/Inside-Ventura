@@ -27,6 +27,7 @@ namespace InsideVentura.World
     {
       if (_moveCoroutine != null) return;
       _moveCoroutine = StartCoroutine(MoveToPlayerAndDeactivate());
+      AudioManager.Instance.PlaySFXpickup();
     }
 
     private IEnumerator MoveToPlayerAndDeactivate()

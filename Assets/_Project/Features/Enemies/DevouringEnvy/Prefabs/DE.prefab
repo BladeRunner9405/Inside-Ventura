@@ -225,6 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e524d8cd6fc9b04392dbed3eec83187, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DevouringEnvy
+  sfxData: {fileID: 11400000, guid: bb306e2bfa6ffc948b9182a432b3660c, type: 2}
   health:
     _value: 12
   maxHealth:
@@ -238,6 +239,10 @@ MonoBehaviour:
   hitbox: {fileID: 5082482304728084474}
   _animator: {fileID: 8389783169846516483}
   _spriteRenderer: {fileID: 7293520111826285576}
+  inertionResistance: 0
+  inertionDir: {x: 0, y: 0}
+  inertionMagnitude: 0
+  inertionFade: 0.7
   damage: 1
   isBoss: 0
   attackCooldown: 0.8
@@ -252,6 +257,7 @@ MonoBehaviour:
   steeringLerpSpeed: 10
   floatingDamagePrefab: {fileID: 5299727460215697226, guid: ad3d7c92ac5b2563da66f3935d833e76, type: 3}
   Brain: {fileID: 7517003494791358381}
+  visionRange: 10
   attackDistance: 1.1
   biteAttackPrefab: {fileID: 4264498667369742361, guid: 796a734dfd463a84aa780d06802cde0a, type: 3}
 --- !u!95 &8389783169846516483
