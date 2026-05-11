@@ -5,6 +5,8 @@ using UnityEngine;
 
 public abstract class Entity : InjectMonoBehaviour
 {
+  [Header("Audio")]
+  [SerializeField] protected SfxData sfxData;
   private const float ShellDistance = 0.01f;
 
   [Header("Stats")]
@@ -107,6 +109,8 @@ public abstract class Entity : InjectMonoBehaviour
   {
     // Когда сущность атакует, она должна резко повернуться в сторону атаки!
     HandleFlip(direction);
+    if (sfxData != null) 
+            AudioManager.Instance.PlaySFX(sfxData.attack, sfxData.minPitch, sfxData.maxPitch);
   }
 
   protected virtual void Awake()
@@ -153,25 +157,30 @@ public abstract class Entity : InjectMonoBehaviour
       {
           if (_animator != null) _animator.SetTrigger(animHit); // Если выжили - играем анимацию попадания
       }
+
+      if (sfxData != null && amount > 0)
+            AudioManager.Instance.PlaySFX(sfxData.takeDamage, sfxData.minPitch, sfxData.maxPitch);
   }
 
   protected virtual void Die()
   {
-      if (IsDead)
-        return;
-      IsDead = true;
-      Health = 0;
-      OnDeath?.Invoke();
-      bodyCollider.enabled = false;
-      hitbox.enabled = false;
+    if (sfxData != null)
+            AudioManager.Instance.PlaySFX(sfxData.death);
+    if (IsDead)
+      return;
+    IsDead = true;
+    Health = 0;
+    OnDeath?.Invoke();
+    bodyCollider.enabled = false;
+    hitbox.enabled = false;
 
-      if (_animator != null) 
-      {
-          // ИСПРАВЛЕНИЕ: Сбрасываем мусорные триггеры, чтобы они не перебили смерть
-          _animator.ResetTrigger(animAttack);
-          _animator.ResetTrigger(animHit);
-          _animator.SetTrigger(animDie);
-      }
+    if (_animator != null) 
+    {
+        // ИСПРАВЛЕНИЕ: Сбрасываем мусорные триггеры, чтобы они не перебили смерть
+        _animator.ResetTrigger(animAttack);
+        _animator.ResetTrigger(animHit);
+        _animator.SetTrigger(animDie);
+    }
   }
 
   public virtual void ResetEntity()
@@ -265,6 +274,8 @@ public abstract class Entity : InjectMonoBehaviour
 
   public virtual void Dash(Vector2 direction, float distance, float duration, bool isAttackingDash)
   {
+    if (sfxData != null)
+            AudioManager.Instance.PlaySFX(sfxData.dash);
     if (!IsDashing)
       StartCoroutine(DashCoroutine(direction, distance, duration));
   }

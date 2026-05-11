@@ -45,7 +45,7 @@ namespace InsideVentura.World
     {
       if (!PlayerAccessor.Inventory)
         return;
-
+      base.OnPickup();
       PlayerAccessor.Inventory.AddThoughtToBag(thoughtData);
       _worldTooltip.Hide();
     }

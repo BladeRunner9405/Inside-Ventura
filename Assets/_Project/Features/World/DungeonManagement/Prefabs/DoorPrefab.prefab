@@ -60,6 +60,7 @@ MonoBehaviour:
   - {fileID: -6816347957073725147, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
   - {fileID: 3210481795424400651, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
   spriteRenderer: {fileID: 3495366743071971645}
+  openSound: {fileID: 8300000, guid: 34ba6be21b051804fbc216e70bbf06ea, type: 3}
 --- !u!61 &6038424245722980268
 BoxCollider2D:
   m_ObjectHideFlags: 0

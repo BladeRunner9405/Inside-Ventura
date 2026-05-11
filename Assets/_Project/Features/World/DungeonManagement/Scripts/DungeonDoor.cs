@@ -15,7 +15,8 @@ namespace InsideVentura.World {
     private DoorInstanceGrid2D _doorInstance;
     private DoorDirection _direction;
     private bool _locked = false;
-
+    
+    [SerializeField] private AudioClip openSound;
     public void Init(DoorInstanceGrid2D doorInstance) {
       _doorInstance = doorInstance;
       var vecDir = doorInstance.FacingDirection;
@@ -50,6 +51,7 @@ namespace InsideVentura.World {
 
     public override void OnInteract() {
       if (!_locked) {
+        AudioManager.Instance.PlaySFX(openSound);
         // Find the position to teleport the player, hide this door and show the other.
         var player = PlayerAccessor.Transform;
 

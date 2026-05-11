@@ -16,7 +16,6 @@ public class EnemyHPBar : MonoBehaviour {
     }
 
     enemy.OnTakeDamage += _ => {
-      Debug.Log("something");
       slider.value = enemy.Health / enemy.MaxHealth;
 
       if (enemy.Health == 0) {

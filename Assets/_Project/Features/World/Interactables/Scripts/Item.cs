@@ -10,7 +10,10 @@ namespace InsideVentura.World
       _dungeonManager.RegisterRoomObject(gameObject);
     }
 
-    protected abstract void OnPickup();
+    protected virtual void OnPickup()
+    {
+      AudioManager.Instance.PlaySFXpickup();
+    }
 
     protected virtual bool CanPickUp()
     {

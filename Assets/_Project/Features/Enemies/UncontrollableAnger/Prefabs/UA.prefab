@@ -124,6 +124,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c6ca707cf906325adc5a7616a92c3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UncontrollableAnger
+  sfxData: {fileID: 11400000, guid: 30337e974bede62419520a561b3221fd, type: 2}
   health:
     _value: 36
   maxHealth:

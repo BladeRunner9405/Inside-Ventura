@@ -4,6 +4,7 @@ namespace InsideVentura.World
   {
     protected override void OnPickup()
     {
+      base.OnPickup();
       PlayerAccessor.Stats.CurrentHealth.Change(StatOperationType.Add, 1);
     }
   }
