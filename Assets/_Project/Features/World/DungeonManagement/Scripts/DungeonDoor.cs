@@ -56,13 +56,13 @@ namespace InsideVentura.World {
         Vector2Int dir = _doorInstance.FacingDirection * 2;
         player.position = transform.position + new Vector3(dir.x, dir.y, 0);
 
-        var otherTemplate = _doorInstance.ConnectedRoomInstance.RoomTemplateInstance;
-        otherTemplate.gameObject.SetActive(true);
-        otherTemplate.GetComponent<RoomManagerBase>().OnRoomEnter(player.gameObject);
-
         var thisRoomManager = transform.parent.GetComponent<RoomManagerBase>();
         thisRoomManager.OnRoomLeave(player.gameObject);
         thisRoomManager.gameObject.SetActive(false);
+
+        var otherTemplate = _doorInstance.ConnectedRoomInstance.RoomTemplateInstance;
+        otherTemplate.gameObject.SetActive(true);
+        otherTemplate.GetComponent<RoomManagerBase>().OnRoomEnter(player.gameObject);
       }
       else {
         Debug.Log("<color=red>Дверь заперта!</color> Нужно победить всех врагов.");

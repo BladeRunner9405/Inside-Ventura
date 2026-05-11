@@ -16,6 +16,14 @@ namespace InsideVentura.World
       });
 
       Debug.Log("Setting up dungeon rooms...");
+
+      var player = GameObject.FindGameObjectWithTag("Player");
+      if (player == null)
+      {
+        Debug.Log("[SetupRoomManagers] Could not find player. The spawn OnRoomEnter is not triggered.");
+        return;
+      }
+
       foreach (var roomInstance in level.RoomInstances)
       {
         var roomTemplateInstance = roomInstance.RoomTemplateInstance;
@@ -33,6 +41,13 @@ namespace InsideVentura.World
         // Add the room manager component
         RoomManagerBase roomManager = AddRoomManager(roomTemplateInstance, roomInstance);
         roomManager.Init(roomInstance);
+
+        var room = roomInstance.Room as DungeonRoom;
+        if (room != null && room.type == DungeonRoomType.Spawn)
+        {
+          Debug.Log("Entering spawn room...");
+          roomManager.OnRoomEnter(player);
+        }
       }
 
       Debug.Log("Done setting up dungeon rooms");

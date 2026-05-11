@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using CherryFramework.BaseClasses;
 using CherryFramework.DependencyManager;
@@ -16,6 +17,7 @@ namespace InsideVentura.World {
     protected List<DungeonDoor> Doors;
 
     [Inject] private DungeonManager _dungeonManager;
+    private CompositeCollider2D _floorCollider;
 
     public DungeonRoom GetRoom()
     {
@@ -30,6 +32,9 @@ namespace InsideVentura.World {
 
     public virtual void Init(RoomInstanceGrid2D roomInstance) {
       RoomInstance = roomInstance;
+
+      var floor = transform.Find("Tilemaps/Floor");
+      _floorCollider = floor.GetComponent<CompositeCollider2D>();
 
       Doors = GetComponentsInChildren<DungeonDoor>().ToList();
       foreach (var door in Doors) {
@@ -48,6 +53,8 @@ namespace InsideVentura.World {
         $"Room enter. Room name: {RoomInstance.Room.GetDisplayName()}, Room template: {RoomInstance.RoomTemplatePrefab.name}");
       _dungeonManager.CurrentRoom = this;
 
+      _floorCollider.GenerateGeometry();
+
       UpdateCameraBounds();
     }
 
@@ -55,8 +62,8 @@ namespace InsideVentura.World {
     {
       var cam = GameObject.Find("CinemachineCamera");
       var confiner = cam.GetComponent<CinemachineConfiner2D>();
-      var floor = transform.Find("Tilemaps/Floor");
-      confiner.BoundingShape2D = floor.GetComponent<CompositeCollider2D>();
+      confiner.InvalidateBoundingShapeCache();
+      confiner.BoundingShape2D = _floorCollider;
       confiner.BakeBoundingShape(cam.GetComponent<CinemachineCamera>(), 5);
     }
 
