@@ -25,9 +25,9 @@ namespace InsideVentura.World
 
     protected override void OnPickup()
     {
+      base.OnPickup();
       if (_moveCoroutine != null) return;
       _moveCoroutine = StartCoroutine(MoveToPlayerAndDeactivate());
-      AudioManager.Instance.PlaySFXpickup();
     }
 
     private IEnumerator MoveToPlayerAndDeactivate()
