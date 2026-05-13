@@ -9,15 +9,15 @@ namespace InsideVentura.World {
     }
 
     public void OnTriggerEnter2D(Collider2D otherCollider) {
-      if (otherCollider.gameObject.CompareTag("Player")) {
-        _roomManagerBase?.OnRoomEnter(otherCollider.gameObject);
-      }
+      // if (otherCollider.gameObject.CompareTag("Player")) {
+      //   _roomManagerBase?.OnRoomEnter(otherCollider.gameObject);
+      // }
     }
 
     public void OnTriggerExit2D(Collider2D otherCollider) {
-      if (otherCollider.gameObject.CompareTag("Player")) {
-        _roomManagerBase?.OnRoomLeave(otherCollider.gameObject);
-      }
+      // if (otherCollider.gameObject.CompareTag("Player")) {
+      //   _roomManagerBase?.OnRoomLeave(otherCollider.gameObject);
+      // }
     }
   }
 }
