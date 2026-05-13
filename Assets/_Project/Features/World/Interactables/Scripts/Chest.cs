@@ -17,15 +17,28 @@ public class Chest : InteractableObject
   [SerializeField] private LevelChancesData levelChances;
   [SerializeField] private AudioClip openSound;
 
+  [Header("Animation")]
+  [SerializeField] private SpriteRenderer image;
+  [SerializeField] private Sprite openedSprite;
+
   [Inject]
   private ThoughtsAvaliabilityManager thoughtsAvaliabilityManager;
 
   public override void OnInteract()
   {
+    if (!isInteractable) return;
+
+    SetFocused(false);
+    isInteractable = false;
+
     var chances = levelChances.GetCurrentChances();
     SpawnItems(chances);
     AudioManager.Instance.PlaySFX(openSound);
-    base.OnInteract();
+
+    image.sprite = openedSprite;
+    GetComponent<BoxCollider2D>().enabled = false;
+
+    // base.OnInteract();
   }
 
   private void SpawnItems(RoomChancesData data)

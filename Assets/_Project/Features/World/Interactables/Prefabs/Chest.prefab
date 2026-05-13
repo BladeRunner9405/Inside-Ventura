@@ -55,6 +55,8 @@ MonoBehaviour:
   thoughtItemPrefab: {fileID: 1631135601703695119, guid: 1a7c29cb97ba4b34bbe2653dfd40abac, type: 3}
   levelChances: {fileID: 11400000, guid: e6b69bc59dd4abc48b34725475abb716, type: 2}
   openSound: {fileID: 8300000, guid: 34ba6be21b051804fbc216e70bbf06ea, type: 3}
+  image: {fileID: 3628781634480701962}
+  openedSprite: {fileID: 7526137235488779926, guid: 6d6e122dc9660314896a5462e8d97ce7, type: 3}
 --- !u!61 &5034061477902459261
 BoxCollider2D:
   m_ObjectHideFlags: 0

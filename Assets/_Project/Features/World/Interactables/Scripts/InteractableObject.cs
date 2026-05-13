@@ -10,6 +10,8 @@ public abstract class InteractableObject : InjectMonoBehaviour
 
   private bool isActive = true;
 
+  protected bool isInteractable = true;
+
   [Inject]
   protected PlayerAccessor PlayerAccessor;
 
@@ -45,7 +47,7 @@ public abstract class InteractableObject : InjectMonoBehaviour
   public virtual void SetFocused(bool active)
   {
     // срабатывает, если игрок стоит рядом с предметом и готов его взять.
-    if (outline.activeSelf != active)
+    if (outline.activeSelf != active && isInteractable)
       outline.SetActive(active);
     // ... тут логика для появления UI с инфой об предмете
   }

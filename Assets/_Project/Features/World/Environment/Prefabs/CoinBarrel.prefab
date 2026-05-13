@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5034061477902459261}
   - component: {fileID: 7967648524297885639}
   - component: {fileID: 8802884418508593399}
+  - component: {fileID: -1465960647858123152}
   m_Layer: 6
   m_Name: CoinBarrel
   m_TagString: Untagged
@@ -120,6 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58a30312b8f4f12ef82bd074d9cef24b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CoinBarrell
+  sfxData: {fileID: 11400000, guid: 7835fad31eeab294c85fbcc31a9a11c0, type: 2}
   health:
     _value: 50
   maxHealth:
@@ -129,10 +131,33 @@ MonoBehaviour:
   dodgeChance:
     _value: 0
   target: {fileID: 0}
-  _view: {fileID: 0}
+  bodyCollider: {fileID: 5034061477902459261}
+  hitbox: {fileID: 5034061477902459261}
+  _animator: {fileID: 0}
+  _spriteRenderer: {fileID: 0}
+  inertionResistance: 0
+  inertionDir: {x: 0, y: 0}
+  inertionMagnitude: 0
+  inertionFade: 0.7
   maxSpawnDistance: 1.5
   moneyPrefab: {fileID: 5814571315230343909, guid: 1ce0be89c7cf3554f8c4b8ddaadfd030, type: 3}
   levelChances: {fileID: 11400000, guid: 2c0931bc2311ffd4f9509f7ba68a2dae, type: 2}
+  openedSprite: {fileID: -6944601386670287752, guid: 9f5a7d481651a604783a1d0a69ec3f89, type: 3}
+--- !u!114 &-1465960647858123152
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3791626637372268971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95e2926b68e090b46a9581991cd0c29c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EntityVisuals
+  entity: {fileID: 8802884418508593399}
+  spriteRenderer: {fileID: 3628781634480701962}
+  damageFlashDuration: 0.1
 --- !u!1 &7435880930646268131
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,8 +241,8 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 21300568, guid: 8549e9d156f682f48af963ea4d9ddd9b, type: 3}
-  m_Color: {r: 0.4273106, g: 0.056589793, b: 0.056589793, a: 1}
+  m_Sprite: {fileID: 3865930993750864040, guid: 3297965189c1f9942935f8b7d2a4fbff, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -277,7 +302,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 0.75, y: 0.8125}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

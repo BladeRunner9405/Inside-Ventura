@@ -5386,6 +5386,7 @@ MonoBehaviour:
   thoughtItemPrefab: {fileID: 1631135601703695119, guid: 1a7c29cb97ba4b34bbe2653dfd40abac, type: 3}
   levelChances: {fileID: 0}
   openSound: {fileID: 0}
+  openedSprite: {fileID: 0}
 --- !u!1001 &365026524
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -23138,7 +23139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!58 &8784012674444009201
 CircleCollider2D:
   m_ObjectHideFlags: 0

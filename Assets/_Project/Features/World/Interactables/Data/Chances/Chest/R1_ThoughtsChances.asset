@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemChancesData
   baseMin: 0
   baseMax: 0
-  chanceMore: 0.005
+  chanceMore: 0.5
   moreMin: 1
   moreMax: 1
   chanceMuchMore: 0
