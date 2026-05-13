@@ -90,6 +90,25 @@ namespace InsideVentura.World {
       AdvanceWave();
     }
 
+    public override void OnRoomLeave(GameObject player)
+    {
+      base.OnRoomLeave(player);
+      // Уничтожаем всех убитых в этой комнате врагов
+      DestroyDeadEnemies();
+    }
+
+    private void DestroyDeadEnemies()
+    {
+      var enemies = GetComponentsInChildren<Enemy>(true);
+      foreach (var enemy in enemies)
+      {
+        if (enemy.IsDead)
+        {
+          Destroy(enemy.gameObject);
+        }
+      }
+    }
+
     private void AdvanceWave() {
       _curWave++;
       if (_curWave == _waveCount) {
