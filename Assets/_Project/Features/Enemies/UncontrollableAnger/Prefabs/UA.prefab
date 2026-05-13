@@ -126,9 +126,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UncontrollableAnger
   sfxData: {fileID: 11400000, guid: 30337e974bede62419520a561b3221fd, type: 2}
   health:
-    _value: 36
+    _value: 24
   maxHealth:
-    _value: 36
+    _value: 24
   moveSpeed:
     _value: 3.75
   dodgeChance:
