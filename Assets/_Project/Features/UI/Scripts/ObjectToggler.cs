@@ -29,7 +29,7 @@ public class ObjectToggler : MonoBehaviour
       button.onClick.RemoveListener(ToggleObjects);
   }
 
-  private void ToggleObjects()
+  public void ToggleObjects()
   {
     // Если список не задан, ничего не делаем
     if (objectsToToggle == null)

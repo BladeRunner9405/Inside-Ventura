@@ -61,7 +61,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Cancel",
+                    "name": "Menu",
                     "type": "Button",
                     "id": "04113478-1d7b-4eb3-be22-05b814b5ca59",
                     "expectedControlType": "",
@@ -221,7 +221,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse;Touch;Joystick;XR",
-                    "action": "Cancel",
+                    "action": "Menu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

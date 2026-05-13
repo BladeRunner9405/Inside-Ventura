@@ -31,7 +31,7 @@ public class InputToggler : MonoBehaviour
       _button.onClick.RemoveListener(TogglePanel);
   }
 
-  private void TogglePanel()
+  public void TogglePanel()
   {
     if (_playerActionMap != null)
     {
