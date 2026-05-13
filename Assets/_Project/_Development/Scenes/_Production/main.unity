@@ -5033,6 +5033,7 @@ MonoBehaviour:
   - {fileID: -6816347957073725147, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
   - {fileID: 3210481795424400651, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
   spriteRenderer: {fileID: 2048537105}
+  openSound: {fileID: 0}
 --- !u!1 &247884005
 GameObject:
   m_ObjectHideFlags: 0
@@ -9489,6 +9490,7 @@ MonoBehaviour:
   - {fileID: -6816347957073725147, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
   - {fileID: 3210481795424400651, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
   spriteRenderer: {fileID: 1658300123}
+  openSound: {fileID: 0}
 --- !u!1 &1005527787
 GameObject:
   m_ObjectHideFlags: 0
@@ -9697,6 +9699,7 @@ MonoBehaviour:
   - {fileID: -6816347957073725147, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
   - {fileID: 3210481795424400651, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
   spriteRenderer: {fileID: 1253135004}
+  openSound: {fileID: 0}
 --- !u!114 &1040229775 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3619348919853713597, guid: 05ad525941d09c44cb86a125d67c2543, type: 3}
@@ -16138,6 +16141,7 @@ MonoBehaviour:
   - {fileID: -6816347957073725147, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
   - {fileID: 3210481795424400651, guid: 8ac01094858d96843a655a0ffa6ce2ec, type: 3}
   spriteRenderer: {fileID: 636136390}
+  openSound: {fileID: 0}
 --- !u!1 &1658300121
 GameObject:
   m_ObjectHideFlags: 0
@@ -23192,7 +23196,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 6.2200003, y: 6.04, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
+  m_LocalScale: {x: 0.45, y: 0.45, z: 0.45}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 6547336223546170475}
@@ -23306,7 +23310,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &4856137141634013605
 MonoBehaviour:
   m_ObjectHideFlags: 0
