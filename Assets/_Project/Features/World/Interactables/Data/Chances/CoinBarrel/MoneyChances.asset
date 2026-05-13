@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51fb256f1c484d5a9d2f206ebcb7995f, type: 3}
   m_Name: MoneyChances
   m_EditorClassIdentifier: Assembly-CSharp::ItemChancesData
-  baseMin: 0
-  baseMax: 0
-  chanceMore: 1
-  moreMin: 1
-  moreMax: 4
+  baseMin: 1
+  baseMax: 4
+  chanceMore: 0
+  moreMin: 0
+  moreMax: 0
   chanceMuchMore: 0
   muchMoreMin: 0
   muchMoreMax: 0

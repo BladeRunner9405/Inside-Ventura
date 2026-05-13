@@ -13,6 +13,9 @@ public class CoinBarrell : Entity {
   [Header("Animation")]
   [SerializeField] private Sprite openedSprite;
 
+  [Header("UI")]
+  [SerializeField] private FloatingDamage floatingDamagePrefab;
+
   [Inject] protected PlayerAccessor PlayerAccessor;
 
   protected override void Start()
@@ -44,5 +47,15 @@ public class CoinBarrell : Entity {
   {
     GetComponentInChildren<SpriteRenderer>().sprite = openedSprite;
     GetComponent<Rigidbody2D>().simulated = false;
+  }
+
+  public override void TakeDamage(float amount)
+  {
+    base.TakeDamage(amount);
+
+    // Создание текста урона через пул
+    var damageText = GamePools.FloatingDamages.Get(floatingDamagePrefab, transform.position, Quaternion.identity);
+    damageText.gameObject.SetActive(true);
+    damageText.Initialize(amount);
   }
 }
