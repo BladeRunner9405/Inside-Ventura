@@ -36,7 +36,7 @@ public class Chest : InteractableObject
     AudioManager.Instance.PlaySFX(openSound);
 
     image.sprite = openedSprite;
-    GetComponent<BoxCollider2D>().enabled = false;
+    GetComponent<Collider2D>().enabled = false;
 
     // base.OnInteract();
   }
