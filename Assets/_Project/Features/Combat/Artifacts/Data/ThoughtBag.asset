@@ -16,12 +16,12 @@ MonoBehaviour:
   inventoryDescription: "\u0445\u0440\u0430\u043D\u0438\u0442 \u043C\u044B\u0441\u043B\u0438
     (\u043E\u043D \u044D\u0442\u043E \u0434\u0435\u043B\u0430\u0435\u0442)"
   thoughts:
-  - {fileID: 11400000, guid: 1599944266bf5f34b88f65be7e12f146, type: 2}
-  - {fileID: 11400000, guid: 4226a9a5faebde8479e53fab2e04cb6e, type: 2}
-  - {fileID: 11400000, guid: ff98e578b9b01e346b3440a0a8ef3bde, type: 2}
-  - {fileID: 11400000, guid: 1a8de9b8c77d4c64ea7c73777c15c3ba, type: 2}
-  - {fileID: 11400000, guid: 8c9334e017d74254fa691fbdea5f9889, type: 2}
-  - {fileID: 11400000, guid: d4b3892ed89d0a54bbd1d8713562ebfd, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

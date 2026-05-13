@@ -123,6 +123,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -130,11 +143,11 @@ TextureImporter:
       name: _Run_0
       rect:
         serializedVersion: 2
-        x: 42
-        y: 0
-        width: 30
-        height: 39
-      alignment: 0
+        x: 43
+        y: 1
+        width: 28
+        height: 37
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -152,11 +165,11 @@ TextureImporter:
       name: _Run_1
       rect:
         serializedVersion: 2
-        x: 163
+        x: 164
         y: 0
-        width: 28
-        height: 38
-      alignment: 0
+        width: 26
+        height: 37
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -174,11 +187,11 @@ TextureImporter:
       name: _Run_2
       rect:
         serializedVersion: 2
-        x: 288
+        x: 289
         y: 0
-        width: 20
-        height: 38
-      alignment: 0
+        width: 18
+        height: 37
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -196,11 +209,11 @@ TextureImporter:
       name: _Run_3
       rect:
         serializedVersion: 2
-        x: 405
-        y: 0
-        width: 21
-        height: 39
-      alignment: 0
+        x: 406
+        y: 1
+        width: 19
+        height: 37
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -218,11 +231,11 @@ TextureImporter:
       name: _Run_4
       rect:
         serializedVersion: 2
-        x: 523
-        y: 2
-        width: 27
-        height: 38
-      alignment: 0
+        x: 524
+        y: 3
+        width: 25
+        height: 36
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -240,11 +253,11 @@ TextureImporter:
       name: _Run_5
       rect:
         serializedVersion: 2
-        x: 640
-        y: 1
-        width: 31
-        height: 38
-      alignment: 0
+        x: 641
+        y: 2
+        width: 29
+        height: 36
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -262,11 +275,11 @@ TextureImporter:
       name: _Run_6
       rect:
         serializedVersion: 2
-        x: 763
+        x: 764
         y: 0
-        width: 27
-        height: 38
-      alignment: 0
+        width: 25
+        height: 37
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -284,11 +297,11 @@ TextureImporter:
       name: _Run_7
       rect:
         serializedVersion: 2
-        x: 886
+        x: 887
         y: 0
-        width: 19
-        height: 38
-      alignment: 0
+        width: 17
+        height: 37
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -306,11 +319,11 @@ TextureImporter:
       name: _Run_8
       rect:
         serializedVersion: 2
-        x: 1005
-        y: 0
-        width: 20
-        height: 39
-      alignment: 0
+        x: 1006
+        y: 1
+        width: 18
+        height: 37
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -328,11 +341,11 @@ TextureImporter:
       name: _Run_9
       rect:
         serializedVersion: 2
-        x: 1122
-        y: 2
-        width: 28
-        height: 38
-      alignment: 0
+        x: 1123
+        y: 3
+        width: 26
+        height: 36
+      alignment: 7
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
@@ -350,7 +363,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 9a0f885726c85414b8e3e9b94f23e02a
     internalID: 0
     vertices: []
     indices: 
@@ -358,7 +371,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.0},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":7,"pivotUnitMode":1,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       _Run_0: -6815865655073467910
       _Run_1: -3541803180178263175
