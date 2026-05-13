@@ -858,7 +858,7 @@ MonoBehaviour:
   equipment: {fileID: 5668263648549799090}
   stats: {fileID: 4856137141599547314}
   playerAim: {fileID: 1202628106580099477}
-  armRotation: {fileID: 2938971864913846168}
+  armRotation: {fileID: 0}
   invulnerabilityDuration: 0.5
 --- !u!114 &5668263648549799090
 MonoBehaviour:

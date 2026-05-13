@@ -86,6 +86,13 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
+    functionName: PlaySound
+    data: 
+    objectReferenceParameter: {fileID: 8300000, guid: d51eb482a3323ab46a46aff8d5cecc0d, type: 3}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.041666668
     functionName: AnimationEvent_LockMovement
     data: 
     objectReferenceParameter: {fileID: 0}

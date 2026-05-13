@@ -73,7 +73,7 @@ public abstract class Entity : InjectMonoBehaviour
   {
       if (IsDead || _animator == null) return;
 
-      // Автоматически передаем скорость в Аниматор. 
+      // Автоматически передаем скорость в Аниматор.
       // В Animator Controller нужно настроить переход из Idle в Run, если Speed > 0.01
       _animator.SetFloat(animSpeed, CurrentMoveDirection.sqrMagnitude);
 
@@ -105,12 +105,18 @@ public abstract class Entity : InjectMonoBehaviour
     }
   }
 
+  public void PlaySound(AudioClip clip)
+  {
+    if (sfxData != null)
+      AudioManager.Instance.PlaySFX(clip, sfxData.minPitch, sfxData.maxPitch);
+  }
+
   public virtual void Attack(Vector2 direction)
   {
     // Когда сущность атакует, она должна резко повернуться в сторону атаки!
     HandleFlip(direction);
-    if (sfxData != null) 
-            AudioManager.Instance.PlaySFX(sfxData.attack, sfxData.minPitch, sfxData.maxPitch);
+    //if (sfxData != null)
+    //        AudioManager.Instance.PlaySFX(sfxData.attack, sfxData.minPitch, sfxData.maxPitch);
   }
 
   protected virtual void Awake()
@@ -164,8 +170,6 @@ public abstract class Entity : InjectMonoBehaviour
 
   protected virtual void Die()
   {
-    if (sfxData != null)
-            AudioManager.Instance.PlaySFX(sfxData.death);
     if (IsDead)
       return;
     IsDead = true;
@@ -174,7 +178,7 @@ public abstract class Entity : InjectMonoBehaviour
     bodyCollider.enabled = false;
     hitbox.enabled = false;
 
-    if (_animator != null) 
+    if (_animator != null)
     {
         // ИСПРАВЛЕНИЕ: Сбрасываем мусорные триггеры, чтобы они не перебили смерть
         _animator.ResetTrigger(animAttack);
@@ -188,7 +192,7 @@ public abstract class Entity : InjectMonoBehaviour
       IsDead = false;
       bodyCollider.enabled = true;
       Health = MaxHealth;
-      InvulnerabilityProcCount = 0; 
+      InvulnerabilityProcCount = 0;
       OnAppear?.Invoke();
 
       // ИСПРАВЛЕНИЕ: Критически важно для Object Pooling!
@@ -196,7 +200,7 @@ public abstract class Entity : InjectMonoBehaviour
       if (_animator != null)
       {
           _animator.Rebind();
-          _animator.Update(0f); 
+          _animator.Update(0f);
       }
   }
 
@@ -274,8 +278,6 @@ public abstract class Entity : InjectMonoBehaviour
 
   public virtual void Dash(Vector2 direction, float distance, float duration, bool isAttackingDash)
   {
-    if (sfxData != null)
-            AudioManager.Instance.PlaySFX(sfxData.dash);
     if (!IsDashing)
       StartCoroutine(DashCoroutine(direction, distance, duration));
   }
