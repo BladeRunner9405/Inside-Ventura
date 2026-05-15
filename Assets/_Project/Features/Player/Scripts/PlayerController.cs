@@ -65,7 +65,9 @@ public class PlayerController : MonoBehaviour
 
   private void ExecuteAttack()
   {
-    Vector2 direction = GetDirectionToMouse();
+    //Vector2 direction = GetDirectionToMouse();
+    Vector2 direction = (m_moveAmt != Vector2.zero) ? m_moveAmt.normalized : GetDirectionToMouse();
+
     player.Attack(direction);
   }
 
