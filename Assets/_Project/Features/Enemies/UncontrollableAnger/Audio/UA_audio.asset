@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18fe062dd6d9e324dbf8e951877f3614, type: 3}
+  m_Name: UA_audio
+  m_EditorClassIdentifier: Assembly-CSharp::SfxData
+  attack: {fileID: 8300000, guid: 30b18a7ea1343da4ca00aca2ab58a4c7, type: 3}
+  takeDamage: {fileID: 8300000, guid: b539c5134cd1cb04899775c802b11452, type: 3}
+  death: {fileID: 8300000, guid: a2a933a342e2b6342a1a663d23995c2c, type: 3}
+  dash: {fileID: 0}
+  minPitch: 0.9
+  maxPitch: 1.1

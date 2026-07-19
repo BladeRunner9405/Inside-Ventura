@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36fb88667f4c42fc862534a07dd0ad7a, type: 3}
+  m_Name: CoinBarrelChances
+  m_EditorClassIdentifier: Assembly-CSharp::LevelChancesData
+  SafeRoomChances:
+    Money: {fileID: 11400000, guid: 8002f82887fbfe64a87be6f28e1f95a1, type: 2}
+    Health: {fileID: 0}
+    Thoughts: {fileID: 0}
+  NormalRank1Chances:
+    Money: {fileID: 11400000, guid: 8002f82887fbfe64a87be6f28e1f95a1, type: 2}
+    Health: {fileID: 0}
+    Thoughts: {fileID: 0}
+  NormalRank2Chances:
+    Money: {fileID: 11400000, guid: 8002f82887fbfe64a87be6f28e1f95a1, type: 2}
+    Health: {fileID: 0}
+    Thoughts: {fileID: 0}
+  NormalRank3Chances:
+    Money: {fileID: 11400000, guid: 8002f82887fbfe64a87be6f28e1f95a1, type: 2}
+    Health: {fileID: 0}
+    Thoughts: {fileID: 0}
+  MiniBossChances:
+    Money: {fileID: 11400000, guid: 8002f82887fbfe64a87be6f28e1f95a1, type: 2}
+    Health: {fileID: 0}
+    Thoughts: {fileID: 0}
+  BossChances:
+    Money: {fileID: 11400000, guid: 8002f82887fbfe64a87be6f28e1f95a1, type: 2}
+    Health: {fileID: 0}
+    Thoughts: {fileID: 0}

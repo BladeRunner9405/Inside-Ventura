@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1054d2504a2bb344800094bf0aa3c95, type: 3}
+  m_Name: EasyEncounter
+  m_EditorClassIdentifier: Assembly-CSharp::InsideVentura.World.EncounterData
+  waves:
+  - enemies:
+    - enemyPrefab: {fileID: 7545988898748453450, guid: 3aa49c372089c204dbbd3629a2c2d222, type: 3}
+      count: 3
+    - enemyPrefab: {fileID: 7545988898748453450, guid: d4cff6db5a8cb214990b23920e2e9da9, type: 3}
+      count: 3
+    - enemyPrefab: {fileID: 7545988898748453450, guid: 3aa49c372089c204dbbd3629a2c2d222, type: 3}
+      count: 3
+  - enemies:
+    - enemyPrefab: {fileID: 7545988898748453450, guid: d4cff6db5a8cb214990b23920e2e9da9, type: 3}
+      count: 5
+  maxConcurrentEnemies: 6

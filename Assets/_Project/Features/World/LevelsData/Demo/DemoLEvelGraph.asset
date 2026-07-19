@@ -1,0 +1,252 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-8422280170392163930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Edgar.Unity::Edgar.Unity.Connection
+  From: {fileID: -5891087680953518197}
+  To: {fileID: -3753358045634003706}
+--- !u!114 &-6751494882907650196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Edgar.Unity::Edgar.Unity.Connection
+  From: {fileID: -3753358045634003706}
+  To: {fileID: 4021168002495234440}
+--- !u!114 &-6465861037080532564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Edgar.Unity::Edgar.Unity.Connection
+  From: {fileID: 2295331113537441066}
+  To: {fileID: 5285161534663789096}
+--- !u!114 &-5891087680953518197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44c8014d31544667085426dbe52eeab8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InsideVentura.World.DungeonRoom
+  Position: {x: 112, y: 144}
+  type: 2
+  individualRoomTemplates: []
+  roomTemplateSets: []
+--- !u!114 &-5173812835183038282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Edgar.Unity::Edgar.Unity.Connection
+  From: {fileID: -3753358045634003706}
+  To: {fileID: 427477667822749780}
+--- !u!114 &-3753358045634003706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44c8014d31544667085426dbe52eeab8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InsideVentura.World.DungeonRoom
+  Position: {x: 320, y: 144}
+  type: 2
+  individualRoomTemplates: []
+  roomTemplateSets: []
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8400baee4cafd34091c865089a167b2, type: 3}
+  m_Name: DemoLEvelGraph
+  m_EditorClassIdentifier: Edgar.Unity::Edgar.Unity.LevelGraph
+  Connections:
+  - {fileID: 97702500287651966}
+  - {fileID: -6751494882907650196}
+  - {fileID: 5017526671530949061}
+  - {fileID: -5173812835183038282}
+  - {fileID: -8422280170392163930}
+  - {fileID: 613840972605885156}
+  - {fileID: -6465861037080532564}
+  CorridorIndividualRoomTemplates: []
+  CorridorRoomTemplateSets: []
+  DefaultIndividualRoomTemplates: []
+  DefaultRoomTemplateSets:
+  - {fileID: 11400000, guid: c7943d3c9b27d639d81832ead0b01160, type: 2}
+  Rooms:
+  - {fileID: 2295331113537441066}
+  - {fileID: 5285161534663789096}
+  - {fileID: 6896466753481673565}
+  - {fileID: -3753358045634003706}
+  - {fileID: 4021168002495234440}
+  - {fileID: 427477667822749780}
+  - {fileID: -5891087680953518197}
+  EditorData:
+    PanOffset: {x: 45.58228, y: 68.93541}
+    Zoom: 1.1660194
+  RoomType: InsideVentura.World.DungeonRoom
+  ConnectionType: Edgar.Unity.Connection
+--- !u!114 &97702500287651966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Edgar.Unity::Edgar.Unity.Connection
+  From: {fileID: 5285161534663789096}
+  To: {fileID: -3753358045634003706}
+--- !u!114 &427477667822749780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44c8014d31544667085426dbe52eeab8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InsideVentura.World.DungeonRoom
+  Position: {x: 496, y: 144}
+  type: 2
+  individualRoomTemplates: []
+  roomTemplateSets: []
+--- !u!114 &613840972605885156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Edgar.Unity::Edgar.Unity.Connection
+  From: {fileID: -5891087680953518197}
+  To: {fileID: 6896466753481673565}
+--- !u!114 &2295331113537441066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44c8014d31544667085426dbe52eeab8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonRoom
+  Position: {x: 320, y: 368}
+  type: 1
+  individualRoomTemplates:
+  - {fileID: 9204587858199253963, guid: 5ea69fabbee2903c487a5ad1131abf61, type: 3}
+  roomTemplateSets: []
+--- !u!114 &4021168002495234440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44c8014d31544667085426dbe52eeab8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InsideVentura.World.DungeonRoom
+  Position: {x: 320, y: 64}
+  type: 2
+  individualRoomTemplates: []
+  roomTemplateSets: []
+--- !u!114 &5017526671530949061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f692f83df7c1b5468af64edd22287dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Edgar.Unity::Edgar.Unity.Connection
+  From: {fileID: 4021168002495234440}
+  To: {fileID: 6896466753481673565}
+--- !u!114 &5285161534663789096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44c8014d31544667085426dbe52eeab8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonRoom
+  Position: {x: 320, y: 240}
+  type: 2
+  individualRoomTemplates: []
+  roomTemplateSets: []
+--- !u!114 &6896466753481673565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44c8014d31544667085426dbe52eeab8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DungeonRoom
+  Position: {x: 320, y: -16}
+  type: 0
+  individualRoomTemplates:
+  - {fileID: 8262108126446541429, guid: c90632d6948c3ed2c9c007f3c1217fb7, type: 3}
+  roomTemplateSets: []

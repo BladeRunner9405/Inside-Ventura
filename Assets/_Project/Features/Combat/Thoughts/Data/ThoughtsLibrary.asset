@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 354f2d02726a16d44b50f71ce2dd3de8, type: 3}
+  m_Name: ThoughtsLibrary
+  m_EditorClassIdentifier: Assembly-CSharp::ThoughtsLibrary
+  allThoughts:
+  - {fileID: 11400000, guid: 1599944266bf5f34b88f65be7e12f146, type: 2}
+  - {fileID: 11400000, guid: 4226a9a5faebde8479e53fab2e04cb6e, type: 2}
+  - {fileID: 11400000, guid: ff98e578b9b01e346b3440a0a8ef3bde, type: 2}
+  - {fileID: 11400000, guid: 1a8de9b8c77d4c64ea7c73777c15c3ba, type: 2}
+  - {fileID: 11400000, guid: 8c9334e017d74254fa691fbdea5f9889, type: 2}
+  - {fileID: 11400000, guid: d4b3892ed89d0a54bbd1d8713562ebfd, type: 2}
